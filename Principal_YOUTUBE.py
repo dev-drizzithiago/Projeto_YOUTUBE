@@ -8,8 +8,8 @@ class YouTube_v3:
     def __init__(self):
         # MENU
         self.janela_principal_YT = tk.Tk()
-        self.barra_menu = Menu(self.janela_principal_YT)
-        self.arq_menu = Menu(self.barra_menu, tearoff=0, relief='groove')
+        self.barra_menu = Menu(self.janela_principal_YT, title='Downloads YouTube')
+        self.arq_menu = Menu(self.barra_menu, tearoff=0, relief='raised', selectcolor='#f0f0f0')
         self.arq_menu.add_command(label='Novo', command=self.add_link)
         self.arq_menu.add_command(label='Abrir', command=self.abrir)
         self.arq_menu.add_command(label='Salvar', command=self.nada_fazer)
