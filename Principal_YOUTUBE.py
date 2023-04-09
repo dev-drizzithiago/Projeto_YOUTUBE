@@ -9,7 +9,9 @@ def janela_principal():
     class YouTube_v3:
         def __init__(self):
             # JANELA DE LOGIN
+            self.janela_menu = tk.Tk()
             self.janela_principal_YT = tk.Tk()
+            self.janela_principal_YT.focus_displayof()
             self.janela_principal_YT.title('DownTube')
             self.frame_1 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
             self.frame_1.pack(fill=tk.Y)
@@ -46,14 +48,13 @@ def janela_principal():
                                                 database='mercadinho_pinheiro')
                 messagebox.showinfo('AVISO!', 'Abrindo o programa \n'
                                               'Aperte "ok" para continuar!')
-                self.janela_principal_YT.destroy()
+                self.janela_principal_YT.withdraw()
                 self.janela_menu()
             except db.Error as erro:
                 messagebox.showerror('AVISO', F' ==> {erro}')
 
         # JANELA DE MENU
         def janela_menu(self):
-            self.janela_menu = tk.Tk()
             self.janela_menu.title('Menu')
             self.janela_menu.geometry('300x150')
             self.frame_menu_1 = tk.Frame(self.janela_menu, width=50, height=50, padx=5, pady=5)
