@@ -18,11 +18,9 @@ class YouTube_v3:
         self.arq_menu.add_separator()
         self.arq_menu.add_command(label='Sair', command=self.janela_principal_YT.quit)
         self.barra_menu.add_cascade(label='Arquivo', menu=self.arq_menu)
-
+       
         self.edit_menu = Menu(self.barra_menu, tearoff=0)
         self.edit_menu.add_command(label='Desfazer')
-
-        self.arq_menu.add_separator()
         self.edit_menu.add_command(label='Cortar', command=self.nada_fazer)
         self.edit_menu.add_command(label='Copiar', command=self.nada_fazer)
         self.edit_menu.add_command(label='Colar', command=self.nada_fazer)
@@ -47,11 +45,15 @@ class YouTube_v3:
     def add_link(self):
         janela_add_link = tk.Tk()
         frame_1 = tk.Frame(janela_add_link)
-        frame_1.pack()
-        label_txt_1 = tk.Label(frame_1, text='Adicione o link ao lado... ==>', )
+        frame_1.pack(fill=tk.Y)
+        frame_2 = tk.Frame(janela_add_link)
+        frame_2.pack(fill=tk.Y)
+        label_txt_1 = tk.Label(frame_1, text='Adicione o link ao lado... ==>', bd=1, padx=5, pady=5)
         label_txt_1.pack(side='left')
-        caixa_txt_1 = tk.Entry(frame_1)
+        caixa_txt_1 = tk.Entry(frame_1, textvariable='Caixa de texto', bd=1)
         caixa_txt_1.pack(anchor='center')
+        botao_add_link = tk.Button(frame_2, bd=4, width=10, height=1, padx=3, pady=3, relief='groove')
+        botao_add_link.pack(anchor='center')
         tk.mainloop()
 
 
