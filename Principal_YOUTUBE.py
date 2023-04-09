@@ -48,27 +48,39 @@ def janela_principal():
                                               'Aperte "ok" para continuar!')
                 self.janela_principal_YT.destroy()
 
-                janela_add_link = tk.Tk()
-                frame_1 = tk.Frame(janela_add_link, width=20, height=20, padx=5, pady=5)
-                frame_1.pack(fill=tk.Y)
-                frame_2 = tk.Frame(janela_add_link, width=20, height=20, padx=5, pady=5)
-                frame_2.pack(fill=tk.Y)
+                self.janela_add_link = tk.Tk()
+                self.frame_1 = tk.Frame(self.janela_add_link, width=20, height=20, padx=5, pady=5)
+                self.frame_1.pack(fill=tk.Y)
+                self.frame_2 = tk.Frame(self.janela_add_link, width=20, height=20, padx=5, pady=5)
+                self.frame_2.pack(fill=tk.Y)
 
-                label_txt_1 = tk.Label(frame_1, text='Adicione o link', bd=3, padx=10, pady=10)
-                label_txt_1.pack(side='top')
-                caixa_txt_1 = tk.Entry(frame_1, textvariable='Caixa de texto', bd=1)
-                caixa_txt_1.pack(anchor='center')
+                self.label_txt_1 = tk.Label(self.frame_1, text='Adicione o link', bd=3, padx=10, pady=10)
+                self.label_txt_1.pack(side='top')
+                self.caixa_txt_1 = tk.Entry(self.frame_1, textvariable='Caixa de texto', bd=3, width=100)
+                self.caixa_txt_1.pack(anchor='center')
 
-                botao_add_link = tk.Button(frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3, relief='groove')
+                botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
+                                           relief='groove', command=self.add_link_db)
                 botao_add_link.pack(anchor='center')
                 tk.mainloop()
             except db.Error as erro:
                 messagebox.showerror('AVISO', F' ==> {erro}')
 
-        def add_link_(self):
-            self.conexao_banco.cursor()
-            comando_SQL = "INSERTO INTO youtube (id_link, link_youtube) values " \
-                          "default, " 
+        def add_link_db(self):
+            link_yt = []
+            link_yt.append(self.caixa_txt_1.get())
+            cursor = self.conexao_banco.cursor()
+            messagebox.showinfo('aviso', link_yt)
+            try:
+                comando_SQL = "INSERT INTO youtube (link_youtube) " \
+                              "VALUES (%s) "
+                valores_sql_lnk = link_yt
+                cursor.execute(comando_SQL, valores_sql_lnk)
+                titulo_msc = YouTube.title
+                messagebox.showinfo('AVISO!', '')
+            except db.Error as falha:
+                messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
+                                              f'{falha}')
 
     iniciando = YouTube_v3()
 
