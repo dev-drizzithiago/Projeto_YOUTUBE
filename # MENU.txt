@@ -1,0 +1,30 @@
+# MENU
+        self.janela_principal_YT = tk.Tk()
+        self.barra_menu = Menu(self.janela_principal_YT, title='Downloads YouTube')
+        self.arq_menu = Menu(self.barra_menu, tearoff=0, relief='raised', selectcolor='#f0f0f0')
+        self.arq_menu.add_command(label='Novo', command=self.add_link)
+        self.arq_menu.add_command(label='Abrir', command=self.abrir)
+        self.arq_menu.add_command(label='Salvar', command=self.nada_fazer)
+        self.arq_menu.add_command(label='Salvar como', command=self.nada_fazer)
+        self.arq_menu.add_command(label='Fechar', command=self.nada_fazer)
+
+        self.arq_menu.add_separator()
+        self.arq_menu.add_command(label='Sair', command=self.janela_principal_YT.quit)
+        self.barra_menu.add_cascade(label='Arquivo', menu=self.arq_menu)
+
+        self.edit_menu = Menu(self.barra_menu, tearoff=0)
+        self.edit_menu.add_command(label='Desfazer')
+        self.edit_menu.add_command(label='Cortar', command=self.nada_fazer)
+        self.edit_menu.add_command(label='Copiar', command=self.nada_fazer)
+        self.edit_menu.add_command(label='Colar', command=self.nada_fazer)
+        self.edit_menu.add_command(label='Delete', command=self.nada_fazer)
+        self.edit_menu.add_command(label='Selecionar tudo', command=self.nada_fazer)
+        self.barra_menu.add_cascade(label='Editar', menu=self.edit_menu)
+
+        self.ajuda_menu = Menu(self.barra_menu, tearoff=0)
+        self.ajuda_menu.add_command(label='Indice de Ajuda', command=self.nada_fazer)
+        self.ajuda_menu.add_command(label='Sobre...', command=self.nada_fazer)
+        self.barra_menu.add_cascade(label='Ajuda', menu=self.ajuda_menu)
+
+        self.janela_principal_YT.config(menu=self.barra_menu)
+        tk.mainloop()
