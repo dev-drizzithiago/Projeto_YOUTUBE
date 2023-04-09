@@ -6,9 +6,10 @@ from tkinter import filedialog, Menu
 class YouTube_v3:
 
     def __init__(self):
+        # MENU
         self.janela_principal_YT = tk.Tk()
         self.barra_menu = Menu(self.janela_principal_YT)
-        self.arq_menu = Menu(self.barra_menu, tearoff=0)
+        self.arq_menu = Menu(self.barra_menu, tearoff=0, relief='groove')
         self.arq_menu.add_command(label='Novo', command=self.add_link)
         self.arq_menu.add_command(label='Abrir', command=self.abrir)
         self.arq_menu.add_command(label='Salvar', command=self.nada_fazer)
@@ -18,7 +19,7 @@ class YouTube_v3:
         self.arq_menu.add_separator()
         self.arq_menu.add_command(label='Sair', command=self.janela_principal_YT.quit)
         self.barra_menu.add_cascade(label='Arquivo', menu=self.arq_menu)
-       
+
         self.edit_menu = Menu(self.barra_menu, tearoff=0)
         self.edit_menu.add_command(label='Desfazer')
         self.edit_menu.add_command(label='Cortar', command=self.nada_fazer)
@@ -52,7 +53,7 @@ class YouTube_v3:
         label_txt_1.pack(side='left')
         caixa_txt_1 = tk.Entry(frame_1, textvariable='Caixa de texto', bd=1)
         caixa_txt_1.pack(anchor='center')
-        botao_add_link = tk.Button(frame_2, bd=4, width=10, height=1, padx=3, pady=3, relief='groove')
+        botao_add_link = tk.Button(frame_2, bd=4, width=10, height=1, padx=3, pady=3, relief='groove', cursor='watch')
         botao_add_link.pack(anchor='center')
         tk.mainloop()
 
