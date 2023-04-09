@@ -81,18 +81,20 @@ def janela_principal():
             self.caixa_txt_1 = tk.Entry(self.frame_1, textvariable='Caixa de texto', bd=3, width=100)
             self.caixa_txt_1.pack(anchor='center')
 
-            botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
+            self.botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
                                        relief='groove', command=self.add_link_db)
-            botao_add_link.pack(anchor='center')
+            self.botao_add_link.pack(anchor='center')
+
             self.botao_voltar = tk.Button(self.frame_2, text='Voltar ao Menu Principal', width=6, height=2, pady=2,
                                         padx=2, command=self.janela_menu)
-            self.botao_voltar
+            self.botao_voltar.pack(anchor='center')
+
             self.botao_sair_programa = tk.Button(self.frame_2, text='Sair do Programa', width=15, height=2, pady=2,
                                                  padx=2, command=self.janela_add_link.destroy)
-            self.botao_sair_programa.pack(anchor='se')
+            self.botao_sair_programa.pack(side='right')
 
 
-        def add_link(self):
+        def conexao_db(self):
             usuario = self.login_caixa_txt.get()
             senha = self.pass_caixa_txt.get()
             try:
@@ -108,9 +110,9 @@ def janela_principal():
 
         def add_link_db(self):
             link_yt = str([self.caixa_txt_1.get()])
-            cursor = self.conexao_banco.cursor()
             titulo_yt_lnk = YouTube(link_yt).title
             print(titulo_yt_lnk)
+            cursor = self.conexao_banco.cursor()
             try:
                 comando_SQL = "INSERT INTO youtube (" \
                               "link_youtube, titulo_yt) " \
@@ -126,3 +128,4 @@ def janela_principal():
 
 
 janela_principal()
+
