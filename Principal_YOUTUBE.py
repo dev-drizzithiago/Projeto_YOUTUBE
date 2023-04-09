@@ -38,22 +38,33 @@ def janela_principal():
 
         # JANELA DE MENU
         def janela_menu(self):
+            self.janela_principal_YT.destroy()
             self.janela_menu = tk.Tk()
             self.janela_menu.title('Menu')
-            self.janela_menu.geometry('300x300')
-            self.frame_menu_1 = tk.Frame(self.janela_menu, width=20, height=20, padx=5, pady=5)
+            self.janela_menu.geometry('300x150')
+            self.frame_menu_1 = tk.Frame(self.janela_menu, width=50, height=50, padx=5, pady=5)
             self.frame_menu_1.pack(fill=tk.Y)
-            self.frame_menu_2 = tk.Frame(self.janela_menu, width=20, height=20, padx=5, pady=5)
+            self.frame_menu_2 = tk.Frame(self.janela_menu, width=50, height=50, padx=5, pady=5)
             self.frame_menu_2.pack(fill=tk.Y)
+
+            self.opcao_menu = tk.IntVar()
+            self.opcao_menu.set(1)
+
             self.label_principal = tk.Label(self.frame_menu_1, text='Escolha uma opção', padx=2, pady=2)
             self.label_principal.pack(anchor='center')
-            self.opcao_menu = tk.IntVar()
-            self.opcao_1 = tk.Radiobutton(self.frame_menu_1, text='Copiar um link', width=20, height=20, padx=5, pady=5)
-            self.opcao_1.pack(anchor='w')
-            self.opcao_2 = tk.Radiobutton(self.frame_menu_1, text='Listar os links', width=20, height=20, padx=5, pady=5)
-            self.opcao_2.pack(anchor='sw')
+            self.opcao_1 = tk.Radiobutton(self.frame_menu_1, text='Adicionar link do YouTube', padx=5, pady=5,
+                                          variable=self.opcao_menu, value=1)
+            self.opcao_1.pack(side='left')
+            self.opcao_2 = tk.Radiobutton(self.frame_menu_1, text='Listar os links', padx=5, pady=5,
+                                          variable=self.opcao_menu, value=2)
+            self.opcao_2.pack(side='left')
 
-
+            self.botao_enter_menu = tk.Button(self.frame_menu_2, text='Adicionar um link', width=20, height=1, padx=2,
+                                              pady=2, command=self.janela_add_lnk)
+            self.botao_enter_menu.pack(anchor='center')
+            self.botao_voltar_menu = tk.Button(self.frame_menu_2, text='Sair do programa', width=20, height=1, padx=2,
+                                               pady=2, command=self.janela_menu.destroy)
+            self.botao_voltar_menu.pack(side='right')
 
 
 
@@ -73,11 +84,12 @@ def janela_principal():
             botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
                                        relief='groove', command=self.add_link_db)
             botao_add_link.pack(anchor='center')
-            self.botao_sair = tk.Button(self.frame_2, text='Voltar ao Menu Principal', width=6, height=2, pady=2,
-                                        padx=2,
-                                        command=self.janela_add_link.destroy)
-            self.botao_sair_programa = Button(self.frame_2, text='Sair do Programa')
-            self.botao_sair_programa.pack(anchor='SE')
+            self.botao_voltar = tk.Button(self.frame_2, text='Voltar ao Menu Principal', width=6, height=2, pady=2,
+                                        padx=2, command=self.janela_menu)
+            self.botao_voltar
+            self.botao_sair_programa = tk.Button(self.frame_2, text='Sair do Programa', width=15, height=2, pady=2,
+                                                 padx=2, command=self.janela_add_link.destroy)
+            self.botao_sair_programa.pack(anchor='se')
 
 
         def add_link(self):
