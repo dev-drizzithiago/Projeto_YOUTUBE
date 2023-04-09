@@ -48,7 +48,11 @@ class YouTube_v3:
         janela_add_link = tk.Tk()
         frame_1 = tk.Frame(janela_add_link)
         frame_1.pack()
-        caixa_txt_1 = tk.Entry()
+        label_txt_1 = tk.Label(frame_1, text='Adicione o link ao lado... ==>', )
+        label_txt_1.pack(side='left')
+        caixa_txt_1 = tk.Entry(frame_1)
+        caixa_txt_1.pack(anchor='center')
+        tk.mainloop()
 
 
 iniciando = YouTube_v3()
