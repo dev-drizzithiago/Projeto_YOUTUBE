@@ -8,9 +8,9 @@ import mysql.connector as db
 def janela_principal():
     class YouTube_v3:
         def __init__(self):
-            # MENU
-
+            # JANELA DE LOGIN
             self.janela_principal_YT = tk.Tk()
+            self.janela_principal_YT.title('DownTube')
             self.frame_1 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
             self.frame_1.pack(fill=tk.Y)
             self.frame_2 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
@@ -36,18 +36,30 @@ def janela_principal():
 
             tk.mainloop()
 
+        # JANELA DE MENU
         def janela_menu(self):
             self.janela_menu = tk.Tk()
-            self.frame_menu_1 = tk.Frame(self.janela_menu)
+            self.janela_menu.title('Menu')
+            self.janela_menu.geometry('300x300')
+            self.frame_menu_1 = tk.Frame(self.janela_menu, width=20, height=20, padx=5, pady=5)
             self.frame_menu_1.pack(fill=tk.Y)
-            self.frame_menu_2 = tk.Frame(self.janela_menu)
+            self.frame_menu_2 = tk.Frame(self.janela_menu, width=20, height=20, padx=5, pady=5)
             self.frame_menu_2.pack(fill=tk.Y)
-            self.label_principal = tk.Label(self.frame_menu_1, text='Escolha uma opção')
+            self.label_principal = tk.Label(self.frame_menu_1, text='Escolha uma opção', padx=2, pady=2)
             self.label_principal.pack(anchor='center')
+            self.opcao_menu = tk.IntVar()
+            self.opcao_1 = tk.Radiobutton(self.frame_menu_1, text='Copiar um link', width=20, height=20, padx=5, pady=5)
+            self.opcao_1.pack(anchor='w')
+            self.opcao_2 = tk.Radiobutton(self.frame_menu_1, text='Listar os links', width=20, height=20, padx=5, pady=5)
+            self.opcao_2.pack(anchor='sw')
+
+
+
 
 
         def janela_add_lnk(self):
             self.janela_add_link = tk.Tk()
+            self.janela_add_link.title('Adicionando um LINK')
             self.frame_1 = tk.Frame(self.janela_add_link, width=20, height=20, padx=5, pady=5)
             self.frame_1.pack(fill=tk.Y)
             self.frame_2 = tk.Frame(self.janela_add_link, width=20, height=20, padx=5, pady=5)
