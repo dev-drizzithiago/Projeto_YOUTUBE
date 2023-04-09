@@ -66,6 +66,15 @@ def janela_principal():
             except db.Error as erro:
                 messagebox.showerror('AVISO', F' ==> {erro}')
 
+        def janela_menu(self):
+            self.janela_menu = tk.Tk()
+
+            self.frame_menu_1 = tk.Frame(self.janela_menu)
+            self.frame_menu_1.pack()
+
+            self.frame_menu_2 = tk.Frame(self.janela_menu)
+            self.frame_menu_2.pack()
+
         def add_link_db(self):
             link_yt = str([self.caixa_txt_1.get()])
             cursor = self.conexao_banco.cursor()
