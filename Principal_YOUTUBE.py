@@ -8,7 +8,26 @@ class YouTube_v3:
     def __init__(self):
         # MENU
         self.janela_principal_YT = tk.Tk()
-       
+        self.frame_1 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=5, padx=5)
+        self.frame_1.pack(fill=tk.Y)
+        self.frame_2 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=5, padx=5)
+        self.frame_2.pack(fill=tk.Y)
+
+        self.lb_caixa_txt_login = tk.Label(self.frame_1, text='Login')
+        self.lb_caixa_txt_login.pack(side='top')
+        self.login_caixa_txt = tk.Entry(self.frame_1, width=20, bd=4)
+        self.login_caixa_txt.pack(ancho='center')
+
+        self.lb_caixa_txt_pass = tk.Label(self.frame_1, text='PassWord')
+        self.lb_caixa_txt_pass.pack(side='top')
+        self.pass_caixa_txt = tk.Entry(self.frame_1, width=20, bd=4)
+        self.pass_caixa_txt.pack(anchor='center')
+
+        self.botao_entrar = tk.Button(self.frame_2, text='Entrar', width=6, height=2, relief='ridge')
+        self.botao_entrar.pack(anchor='center')
+
+
+
         tk.mainloop()
 
     def nada_fazer(self):
