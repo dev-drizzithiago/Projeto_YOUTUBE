@@ -67,17 +67,17 @@ def janela_principal():
                 messagebox.showerror('AVISO', F' ==> {erro}')
 
         def add_link_db(self):
-            link_yt = []
-            link_yt.append(self.caixa_txt_1.get())
+            link_yt = str([self.caixa_txt_1.get()])
             cursor = self.conexao_banco.cursor()
-            messagebox.showinfo('aviso', link_yt)
+            titulo_yt_lnk = YouTube(link_yt).title
+            print(titulo_yt_lnk)
             try:
-                comando_SQL = "INSERT INTO youtube (link_youtube) " \
-                              "VALUES (%s) "
-                valores_sql_lnk = link_yt
+                comando_SQL = "INSERT INTO youtube (" \
+                              "link_youtube, titulo_yt) " \
+                              "VALUES (%s, %s) "
+                valores_sql_lnk = (link_yt, titulo_yt_lnk)
                 cursor.execute(comando_SQL, valores_sql_lnk)
-                titulo_msc = YouTube.title
-                messagebox.showinfo('AVISO!', '')
+                messagebox.showinfo('AVISO!', f'Foi adicionado o vídeo {titulo_yt_lnk}')
             except db.Error as falha:
                 messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
                                               f'{falha}')
