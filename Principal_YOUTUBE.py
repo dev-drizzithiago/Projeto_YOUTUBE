@@ -8,8 +8,25 @@ def janela_principal():
     class YouTube_v3:
         def __init__(self):
             # JANELA DE LOGIN
+
             self.janela_menu = None
             self.janela_add_link = None
+            self.conexao_banco = None
+            self.frame_menu_1 = None
+            self.frame_menu_2 = None
+            self.menu_radio = None
+            self.label_principal = None
+            self.opcao_1 = None
+            self.opcao_2 = None
+            self.botao_enter_menu = None
+            self.botao_fechar = None
+            self.label_txt_1 = None
+            self.caixa_txt_1 = None
+            self.botao_add_link = None
+            self.botao_voltar = None
+            self.link_yt = None
+            self.titulo_yt = None
+
             self.janela_principal_YT = tk.Tk()
             self.janela_principal_YT.title('DownTube')
             self.frame_1 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
@@ -73,9 +90,11 @@ def janela_principal():
                                           variable=self.menu_radio, value=2)
             self.opcao_2.pack(anchor='sw')
             # Botões
-            self.botao_enter_menu = tk.Button(self.frame_menu_2, text='Adicionar um link', width=20, height=1,  padx=2, pady=2, command=self.valor_opcao_menu_tk)
+            self.botao_enter_menu = tk.Button(self.frame_menu_2, text='Adicionar um link', width=20, height=1, padx=2,
+                                              pady=2, command=self.valor_opcao_menu_tk)
             self.botao_enter_menu.pack(anchor='center')
-            self.botao_fechar = tk.Button(self.frame_menu_2, text='Sair do programa', width=20, height=1, padx=2, pady=2, command=self.fechar_programa_tk)
+            self.botao_fechar = tk.Button(self.frame_menu_2, text='Sair do programa', width=20, height=1, padx=2,
+                                          pady=2, command=self.fechar_programa_tk)
             self.botao_fechar.pack(side='right')
 
         def valor_opcao_menu_tk(self):
@@ -143,7 +162,7 @@ def janela_principal():
             self.janela_menu.destroy()
             self.janela_add_link.destroy()
 
-    iniciando = YouTube_v3()
+    YouTube_v3()
 
 
 janela_principal()
