@@ -64,7 +64,7 @@ def janela_principal():
             self.label_frame_1 = tk.LabelFrame(self.janela_menu)
 
             self.opcao_menu = tk.IntVar()
-            self.opcao_menu.set(0)
+            self.opcao_menu.set(1)
 
             self.label_principal = tk.Label(self.frame_menu_1, text='Escolha uma opção', padx=2, pady=2)
             self.label_principal.pack(anchor='center')
@@ -75,23 +75,26 @@ def janela_principal():
                                           variable=self.opcao_menu, value=2)
             self.opcao_2.pack(side='left')
             self.botao_enter_menu = tk.Button(self.frame_menu_2, text='Adicionar um link', width=20, height=1,
-                                              padx=2, pady=2, command=self.janela_add_lnk)
+                                              padx=2, pady=2, command=self.valor_opcao_menu)
             self.botao_enter_menu.pack(anchor='center')
             self.botao_fechar = tk.Button(self.frame_menu_2, text='Sair do programa', width=20, height=1,
                                           padx=2, pady=2, command=self.janela_menu.quit)
             self.botao_fechar.pack(side='right')
 
         def valor_opcao_menu(self):
-            opcao = int(self.opcao_menu.get())
+            opcao = self.opcao_menu.get()
+            print(opcao)
             if opcao == 1:
+                self.janela_menu.destroy()
                 self.janela_add_lnk()
             elif opcao == 2:
                 messagebox.askyesno('Janela Menu', 'Deseja sair?')
                 if messagebox.askyesno() == 'yes':
                     self.janela_menu.destroy()
+            else:
+                messagebox.showerror('Mensagem!', 'Opção invalida')
 
         def janela_add_lnk(self):
-            self.janela_menu.destroy()
             self.janela_add_link = tk.Tk()
             self.janela_add_link.geometry('400x200')
             self.janela_add_link.title('Adicionando um LINK')
