@@ -32,7 +32,7 @@ def janela_principal():
             self.botao_entrar.pack(anchor='center')
 
             self.sair_janela = tk.Button(self.janela_principal_YT, text='Sair', width=5, height=1,
-                                         command=self.fechar_programa_tk)
+                                         command=self.janela_principal_YT.destroy)
             self.sair_janela.pack(anchor='se')
 
             tk.mainloop()
@@ -66,9 +66,11 @@ def janela_principal():
             self.menu_radio.set(int)
             self.label_principal = tk.Label(self.frame_menu_1, text='Escolha uma opção', padx=2, pady=2)
             self.label_principal.pack(anchor='center')
-            self.opcao_1 = tk.Radiobutton(self.frame_menu_1, text='Adicionar link do YouTube', padx=5, pady=5, variable=self.opcao_menu, value=1)
+            self.opcao_1 = tk.Radiobutton(self.frame_menu_1, text='Adicionar link', padx=5, pady=5,
+                                          variable=self.menu_radio, value=1)
             self.opcao_1.pack(anchor='w')
-            self.opcao_2 = tk.Radiobutton(self.frame_menu_1, text='Listar os links', padx=5, pady=5, variable=self.opcao_menu, value=2)
+            self.opcao_2 = tk.Radiobutton(self.frame_menu_1, text='Listar os links', padx=5, pady=5,
+                                          variable=self.menu_radio, value=2)
             self.opcao_2.pack(anchor='sw')
             # Botões
             self.botao_enter_menu = tk.Button(self.frame_menu_2, text='Adicionar um link', width=20, height=1,  padx=2, pady=2, command=self.valor_opcao_menu_tk)
@@ -77,11 +79,8 @@ def janela_principal():
             self.botao_fechar.pack(side='right')
 
         def valor_opcao_menu_tk(self):
-            opcao = self.opcao_menu.get()
+            opcao = self.menu_radio.get()
             print(opcao)
-            if opcao == 1:
-                self.janela_menu.withdraw()
-                self.janela_add_lnk_tk()
 
         def janela_add_lnk_tk(self):
             self.janela_add_link = tk.Tk()
@@ -107,7 +106,7 @@ def janela_principal():
             self.botao_voltar.pack(side='right')
 
             self.botao_fechar = tk.Button(self.frame_2, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
-                                          relief='groove', command=self.fechar_programa_tk)
+                                          relief='groove', command=self.janela_add_link.withdraw)
             self.botao_fechar.pack(side='right')
 
         def add_link_db(self):
