@@ -42,10 +42,10 @@ def janela_principal():
             usuario = self.login_caixa_txt.get()
             senha = self.pass_caixa_txt.get()
             try:
-                self.conexao_banco = db.connect(host='localhost',
+                self.conexao_banco = db.connect(host='db4free.net',
                                                 user=usuario,
                                                 password=senha,
-                                                database='mercadinho_pinheiro')
+                                                database='drizzithiago_sql')
                 messagebox.showinfo('AVISO!', 'Abrindo o programa \n'
                                               'Aperte "ok" para continuar!')
                 self.janela_principal_YT.withdraw()
