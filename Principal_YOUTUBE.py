@@ -121,17 +121,23 @@ def janela_principal():
             self.botao_fechar.pack(side='right')
 
         def add_link_db(self):
-            link_yt = str([self.caixa_txt_1.get()])
-            titulo_yt_lnk = str(YouTube(link_yt).title)
+            try:
+                self.link_yt = str([self.caixa_txt_1.get()])
+                valor_link = YouTube(self.link_yt)
+                self.titulo_yt = str(valor_link.title)
+            except:
+                messagebox.showerror('MENU', 'Esse titulo possui caracteres estpeciais\n'
+                                             'Adicione manualmente o titulo')
             cursor = self.conexao_banco.cursor()
             self.limpar()
             try:
                 comando_SQL = "INSERT INTO youtube (" \
                               "link_youtube, titulo_yt) " \
                               "VALUES (%s, %s) "
-                valores_sql_lnk = (link_yt, titulo_yt_lnk)
+                valores_sql_lnk = (self.link_yt, self.link_yt)
                 cursor.execute(comando_SQL, valores_sql_lnk)
-                messagebox.showinfo('AVISO!', f'Foi adicionado o vídeo {titulo_yt_lnk}')
+                messagebox.showinfo('AVISO!', f'Foi adicionado o vídeo \n'
+                                              f'{self.titulo_yt}')
             except db.Error as falha:
                 messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
                                               f'{falha}')
