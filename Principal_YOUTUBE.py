@@ -114,7 +114,7 @@ def janela_principal():
 
             self.botao_voltar = tk.Button(self.janela_add_link, text='Volta ao Menu', width=15, height=1, padx=3, pady=3,
                                           relief='groove')
-            self.botao_fechar.pack(side='right')
+            self.botao_voltar.pack(side='right')
 
             self.botao_fechar = tk.Button(self.frame_2, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
                                           relief='groove', command=self.fechar_programa)
