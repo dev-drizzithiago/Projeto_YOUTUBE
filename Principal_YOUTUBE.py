@@ -30,7 +30,7 @@ def janela_principal():
             self.botao_entrar.pack(anchor='center')
 
             self.sair_janela = tk.Button(self.janela_principal_YT, text='Sair', width=5, height=1,
-                                         command=self.janela_principal_YT.destroy)
+                                         command=self.fechar_programa_tk)
             self.sair_janela.pack(anchor='se')
 
             tk.mainloop()
