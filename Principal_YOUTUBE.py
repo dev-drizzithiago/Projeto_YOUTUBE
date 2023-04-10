@@ -40,7 +40,7 @@ def janela_principal():
             usuario = self.login_caixa_txt.get()
             senha = self.pass_caixa_txt.get()
             try:
-                self.conexao_banco = db.connect(host='db4free.net',
+                self.conexao_banco = db.connect(host='localhost',
                                                 user=usuario,
                                                 password=senha,
                                                 database='drizzithiago_sql')
