@@ -74,9 +74,9 @@ def janela_principal():
             self.janela_menu.title('Menu')
             self.janela_menu.geometry('300x200')
             self.frame_menu_1 = tk.Frame(self.janela_menu, width=50, height=50, padx=5, pady=5)
-            self.frame_menu_1.pack(anchor='center')
+            self.frame_menu_1.pack(anchor='w')
             self.frame_menu_2 = tk.Frame(self.janela_menu, width=50, height=50, padx=5, pady=5)
-            self.frame_menu_2.pack(anchor='center')
+            self.frame_menu_2.pack(anchor='ne')
 
             # Botões RADIO
             self.menu_radio = tk.IntVar()
@@ -88,7 +88,7 @@ def janela_principal():
             self.opcao_1.pack(anchor='w')
             self.opcao_2 = tk.Radiobutton(self.frame_menu_1, text='Listar os links', padx=5, pady=5,
                                           variable=self.menu_radio, value=2)
-            self.opcao_2.pack(anchor='sw')
+            self.opcao_2.pack(anchor='w')
             # Botões
             self.botao_enter_menu = tk.Button(self.frame_menu_2, text='Adicionar um link', width=20, height=1, padx=2,
                                               pady=2, command=self.valor_opcao_menu_tk)
