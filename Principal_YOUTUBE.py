@@ -64,7 +64,7 @@ def janela_principal():
             self.label_frame_1 = tk.LabelFrame(self.janela_menu)
 
             self.opcao_menu = tk.IntVar()
-            self.opcao_menu.set(1)
+            self.opcao_menu.set(0)
 
             self.label_principal = tk.Label(self.frame_menu_1, text='Escolha uma opção', padx=2, pady=2)
             self.label_principal.pack(anchor='center')
@@ -80,6 +80,15 @@ def janela_principal():
             self.botao_fechar = tk.Button(self.frame_menu_2, text='Sair do programa', width=20, height=1,
                                           padx=2, pady=2, command=self.janela_menu.quit)
             self.botao_fechar.pack(side='right')
+
+        def valor_opcao_menu(self):
+            opcao = int(self.opcao_menu.get())
+            if opcao == 1:
+                self.janela_add_lnk()
+            elif opcao == 2:
+                messagebox.askyesno('Janela Menu', 'Deseja sair?')
+                if messagebox.askyesno() == 'yes':
+                    self.janela_menu.destroy()
 
         def janela_add_lnk(self):
             self.janela_menu.destroy()
@@ -106,9 +115,8 @@ def janela_principal():
             self.botao_fechar.pack(side='right')
 
         def add_link_db(self):
-            link_yt = str([self.caixa_txt_1.get()])
-            titulo_yt_lnk = YouTube(link_yt).title
-            print(titulo_yt_lnk)
+            link_yt = [self.caixa_txt_1.get()]
+            titulo_yt_lnk = str(YouTube(link_yt).title)
             cursor = self.conexao_banco.cursor()
             self.limpar()
             try:
