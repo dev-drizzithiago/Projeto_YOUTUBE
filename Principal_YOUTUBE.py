@@ -8,6 +8,8 @@ def janela_principal():
     class YouTube_v3:
         def __init__(self):
             # JANELA DE LOGIN
+            self.janela_menu = None
+            self.janela_add_link = None
             self.janela_principal_YT = tk.Tk()
             self.janela_principal_YT.title('DownTube')
             self.frame_1 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
@@ -60,23 +62,18 @@ def janela_principal():
             self.frame_menu_2.pack(anchor='center')
 
             # Botões RADIO
-            self.opcao_menu = tk.IntVar()
-            self.opcao_menu.set(int)
+            self.menu_radio = tk.IntVar()
+            self.menu_radio.set(int)
             self.label_principal = tk.Label(self.frame_menu_1, text='Escolha uma opção', padx=2, pady=2)
             self.label_principal.pack(anchor='center')
-            self.opcao_1 = tk.Radiobutton(self.frame_menu_1, text='Adicionar link do YouTube', padx=5, pady=5,
-                                          variable=self.opcao_menu, value=1)
+            self.opcao_1 = tk.Radiobutton(self.frame_menu_1, text='Adicionar link do YouTube', padx=5, pady=5, variable=self.opcao_menu, value=1)
             self.opcao_1.pack(anchor='w')
-            self.opcao_2 = tk.Radiobutton(self.frame_menu_1, text='Listar os links', padx=5, pady=5,
-                                          variable=self.opcao_menu, value=2)
+            self.opcao_2 = tk.Radiobutton(self.frame_menu_1, text='Listar os links', padx=5, pady=5, variable=self.opcao_menu, value=2)
             self.opcao_2.pack(anchor='sw')
-
             # Botões
-            self.botao_enter_menu = tk.Button(self.frame_menu_2, text='Adicionar um link', width=20, height=1,
-                                              padx=2, pady=2, command=self.valor_opcao_menu_tk)
+            self.botao_enter_menu = tk.Button(self.frame_menu_2, text='Adicionar um link', width=20, height=1,  padx=2, pady=2, command=self.valor_opcao_menu_tk)
             self.botao_enter_menu.pack(anchor='center')
-            self.botao_fechar = tk.Button(self.frame_menu_2, text='Sair do programa', width=20, height=1,
-                                          padx=2, pady=2, command=self.janela_menu.destroy)
+            self.botao_fechar = tk.Button(self.frame_menu_2, text='Sair do programa', width=20, height=1, padx=2, pady=2, command=self.fechar_programa_tk)
             self.botao_fechar.pack(side='right')
 
         def valor_opcao_menu_tk(self):
@@ -120,7 +117,7 @@ def janela_principal():
                 self.titulo_yt = str(valor_link.title).upper()
             except:
                 messagebox.showerror('MENU', 'Esse titulo possui caracteres estpeciais\n'
-                                             'Adicione manualmente o titulo')
+                                             'Adicione manualmente o titulo', message='teste')
             cursor = self.conexao_banco.cursor()
             self.limpar()
             try:
