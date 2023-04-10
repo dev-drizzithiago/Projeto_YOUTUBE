@@ -46,7 +46,7 @@ def janela_principal():
                                                 database='drizzithiago_sql')
                 messagebox.showinfo('AVISO!', 'Abrindo o programa \n'
                                               'Aperte "ok" para continuar!')
-                self.janela_principal_YT.withdraw()
+                self.janela_principal_YT.destroy()
                 self.janela_menu()
             except db.Error as erro:
                 messagebox.showerror('AVISO', F' ==> {erro}')
@@ -61,11 +61,9 @@ def janela_principal():
             self.frame_menu_2 = tk.Frame(self.janela_menu, width=50, height=50, padx=5, pady=5)
             self.frame_menu_2.pack(fill=tk.Y)
 
-            self.label_frame_1 = tk.LabelFrame(self.janela_menu)
-
+            # Botões RADIO
             self.opcao_menu = tk.IntVar()
-            self.opcao_menu.set(1)
-
+            self.opcao_menu.set(int)
             self.label_principal = tk.Label(self.frame_menu_1, text='Escolha uma opção', padx=2, pady=2)
             self.label_principal.pack(anchor='center')
             self.opcao_1 = tk.Radiobutton(self.frame_menu_1, text='Adicionar link do YouTube', padx=5, pady=5,
@@ -73,6 +71,7 @@ def janela_principal():
             self.opcao_1.pack(side='left')
             self.opcao_2 = tk.Radiobutton(self.frame_menu_1, text='Listar os links', padx=5, pady=5,
                                           variable=self.opcao_menu, value=2)
+            # Botões
             self.opcao_2.pack(side='left')
             self.botao_enter_menu = tk.Button(self.frame_menu_2, text='Adicionar um link', width=20, height=1,
                                               padx=2, pady=2, command=self.valor_opcao_menu)
@@ -113,12 +112,16 @@ def janela_principal():
                                             relief='groove', command=self.add_link_db)
             self.botao_add_link.pack(anchor='center')
 
+            self.botao_voltar = tk.Button(self.janela_add_link, text='Volta ao Menu', width=15, height=1, padx=3, pady=3,
+                                          relief='groove', command=self.janela_menu)
+            self.botao_fechar.pack(side='right')
+
             self.botao_fechar = tk.Button(self.frame_2, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
                                           relief='groove', command=self.fechar_programa)
             self.botao_fechar.pack(side='right')
 
         def add_link_db(self):
-            link_yt = [self.caixa_txt_1.get()]
+            link_yt = str([self.caixa_txt_1.get()])
             titulo_yt_lnk = str(YouTube(link_yt).title)
             cursor = self.conexao_banco.cursor()
             self.limpar()
