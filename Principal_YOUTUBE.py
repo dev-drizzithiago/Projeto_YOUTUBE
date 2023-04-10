@@ -9,9 +9,7 @@ def janela_principal():
     class YouTube_v3:
         def __init__(self):
             # JANELA DE LOGIN
-            self.janela_menu = tk.Tk()
             self.janela_principal_YT = tk.Tk()
-            self.janela_principal_YT.focus_displayof()
             self.janela_principal_YT.title('DownTube')
             self.frame_1 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
             self.frame_1.pack(fill=tk.Y)
@@ -55,12 +53,13 @@ def janela_principal():
 
         # JANELA DE MENU
         def janela_menu(self):
+            self.janela_menu = tk.Tk()
             self.janela_menu.title('Menu')
             self.janela_menu.geometry('300x150')
             self.frame_menu_1 = tk.Frame(self.janela_menu, width=50, height=50, padx=5, pady=5)
             self.frame_menu_1.pack(fill=tk.Y)
             self.frame_menu_2 = tk.Frame(self.janela_menu, width=50, height=50, padx=5, pady=5)
-            self.frame_menu_2.pack(fill=tk.Y, expand='yes')
+            self.frame_menu_2.pack(fill=tk.Y)
 
             self.label_frame_1 = tk.LabelFrame(self.janela_menu)
 
@@ -95,7 +94,7 @@ def janela_principal():
 
             self.label_txt_1 = tk.Label(self.frame_1, text='Adicione o link', bd=3, padx=10, pady=10)
             self.label_txt_1.pack(side='top')
-            self.caixa_txt_1 = tk.Entry(self.frame_1, textvariable='Caixa de texto', bd=3, width=100)
+            self.caixa_txt_1 = tk.Entry(self.frame_1, bd=3, width=100)
             self.caixa_txt_1.pack(anchor='center')
 
             self.botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
@@ -103,12 +102,12 @@ def janela_principal():
             self.botao_add_link.pack(anchor='center')
 
             self.botao_voltar = tk.Button(self.frame_2, text='Voltar', bd=4, width=10, height=1, pady=3, padx=3,
-                                          command=self.voltar_menu)
-            self.botao_voltar.pack(anchor='se')
+                                           relief='groove', command=self.voltar_menu)
+            self.botao_voltar.pack(side='right')
 
             self.botao_fechar = tk.Button(self.frame_2, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
-                                          command=self.janela_add_link.destroy)
-            self.botao_fechar.pack(anchor='se')
+                                          relief='groove', command=self.fechar_programa)
+            self.botao_fechar.pack(side='right')
 
         def add_link_db(self):
             link_yt = str([self.caixa_txt_1.get()])
@@ -130,8 +129,9 @@ def janela_principal():
         def limpar(self):
             self.caixa_txt_1.delete('0', 'end')
 
-        def voltar_menu(self):
-            self.janela_menu.update()
+        def fechar_programa(self):
+            self.janela_add_link.destroy()
+            self.conexao_banco.close()
 
     iniciando = YouTube_v3()
 
