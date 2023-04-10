@@ -31,7 +31,7 @@ def janela_principal():
             self.botao_entrar.pack(anchor='center')
 
             self.sair_janela = tk.Button(self.janela_principal_YT, text='Sair', width=5, height=1,
-                                         command=self.janela_principal_YT.quit)
+                                         command=self.janela_principal_YT.destroy)
             self.sair_janela.pack(anchor='se')
 
             tk.mainloop()
@@ -77,7 +77,7 @@ def janela_principal():
                                               padx=2, pady=2, command=self.valor_opcao_menu)
             self.botao_enter_menu.pack(anchor='center')
             self.botao_fechar = tk.Button(self.frame_menu_2, text='Sair do programa', width=20, height=1,
-                                          padx=2, pady=2, command=self.janela_menu.quit)
+                                          padx=2, pady=2, command=self.janela_menu.destroy)
             self.botao_fechar.pack(side='right')
 
         def valor_opcao_menu(self):
@@ -117,7 +117,7 @@ def janela_principal():
             self.botao_voltar.pack(side='right')
 
             self.botao_fechar = tk.Button(self.frame_2, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
-                                          relief='groove', command=self.fechar_programa)
+                                          relief='groove', command=self.janela_add_link.destroy)
             self.botao_fechar.pack(side='right')
 
         def add_link_db(self):
@@ -134,7 +134,7 @@ def janela_principal():
                 comando_SQL = "INSERT INTO youtube (" \
                               "link_youtube, titulo_yt) " \
                               "VALUES (%s, %s) "
-                valores_sql_lnk = (self.link_yt, self.link_yt)
+                valores_sql_lnk = (self.link_yt, self.titulo_yt)
                 cursor.execute(comando_SQL, valores_sql_lnk)
                 messagebox.showinfo('AVISO!', f'Foi adicionado o vídeo \n'
                                               f'{self.titulo_yt}')
@@ -145,9 +145,6 @@ def janela_principal():
         def limpar(self):
             self.caixa_txt_1.delete('0', 'end')
 
-        def fechar_programa(self):
-            self.janela_add_link.destroy()
-            self.conexao_banco.close()
 
     iniciando = YouTube_v3()
 
