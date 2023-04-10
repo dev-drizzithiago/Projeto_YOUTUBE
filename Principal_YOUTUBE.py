@@ -1,7 +1,6 @@
 from pytube import YouTube
 import tkinter as tk
 from tkinter import messagebox
-from tkinter.ttk import *
 import mysql.connector as db
 
 
@@ -12,9 +11,9 @@ def janela_principal():
             self.janela_principal_YT = tk.Tk()
             self.janela_principal_YT.title('DownTube')
             self.frame_1 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
-            self.frame_1.pack(fill=tk.Y)
+            self.frame_1.pack(anchor='center')
             self.frame_2 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
-            self.frame_2.pack(fill=tk.Y)
+            self.frame_2.pack(anchor='center')
 
             self.lb_caixa_txt_login = tk.Label(self.frame_1, text='Login')
             self.lb_caixa_txt_login.pack(side='top')
@@ -44,22 +43,21 @@ def janela_principal():
                                                 user=usuario,
                                                 password=senha,
                                                 database='drizzithiago_sql')
-                messagebox.showinfo('AVISO!', 'Abrindo o programa \n'
-                                              'Aperte "ok" para continuar!')
-                self.janela_principal_YT.destroy()
-                self.janela_menu()
+                print('Abrindo o programa')
+                self.janela_principal_YT.withdraw()
+                self.janela_menu_tk()
             except db.Error as erro:
                 messagebox.showerror('AVISO', F' ==> {erro}')
 
         # JANELA DE MENU
-        def janela_menu(self):
+        def janela_menu_tk(self):
             self.janela_menu = tk.Tk()
             self.janela_menu.title('Menu')
-            self.janela_menu.geometry('300x150')
+            self.janela_menu.geometry('300x200')
             self.frame_menu_1 = tk.Frame(self.janela_menu, width=50, height=50, padx=5, pady=5)
-            self.frame_menu_1.pack(fill=tk.Y)
+            self.frame_menu_1.pack(anchor='center')
             self.frame_menu_2 = tk.Frame(self.janela_menu, width=50, height=50, padx=5, pady=5)
-            self.frame_menu_2.pack(fill=tk.Y)
+            self.frame_menu_2.pack(anchor='center')
 
             # Botões RADIO
             self.opcao_menu = tk.IntVar()
@@ -68,32 +66,27 @@ def janela_principal():
             self.label_principal.pack(anchor='center')
             self.opcao_1 = tk.Radiobutton(self.frame_menu_1, text='Adicionar link do YouTube', padx=5, pady=5,
                                           variable=self.opcao_menu, value=1)
-            self.opcao_1.pack(side='left')
+            self.opcao_1.pack(anchor='w')
             self.opcao_2 = tk.Radiobutton(self.frame_menu_1, text='Listar os links', padx=5, pady=5,
                                           variable=self.opcao_menu, value=2)
+            self.opcao_2.pack(anchor='sw')
+
             # Botões
-            self.opcao_2.pack(side='left')
             self.botao_enter_menu = tk.Button(self.frame_menu_2, text='Adicionar um link', width=20, height=1,
-                                              padx=2, pady=2, command=self.valor_opcao_menu)
+                                              padx=2, pady=2, command=self.valor_opcao_menu_tk)
             self.botao_enter_menu.pack(anchor='center')
             self.botao_fechar = tk.Button(self.frame_menu_2, text='Sair do programa', width=20, height=1,
                                           padx=2, pady=2, command=self.janela_menu.destroy)
             self.botao_fechar.pack(side='right')
 
-        def valor_opcao_menu(self):
+        def valor_opcao_menu_tk(self):
             opcao = self.opcao_menu.get()
             print(opcao)
             if opcao == 1:
-                self.janela_menu.destroy()
-                self.janela_add_lnk()
-            elif opcao == 2:
-                messagebox.askyesno('Janela Menu', 'Deseja sair?')
-                if messagebox.askyesno() == 'yes':
-                    self.janela_menu.destroy()
-            else:
-                messagebox.showerror('Mensagem!', 'Opção invalida')
+                self.janela_menu.withdraw()
+                self.janela_add_lnk_tk()
 
-        def janela_add_lnk(self):
+        def janela_add_lnk_tk(self):
             self.janela_add_link = tk.Tk()
             self.janela_add_link.geometry('400x200')
             self.janela_add_link.title('Adicionando um LINK')
@@ -112,19 +105,19 @@ def janela_principal():
                                             relief='groove', command=self.add_link_db)
             self.botao_add_link.pack(anchor='center')
 
-            self.botao_voltar = tk.Button(self.janela_add_link, text='Volta ao Menu', width=15, height=1, padx=3, pady=3,
-                                          relief='groove')
+            self.botao_voltar = tk.Button(self.janela_add_link, text='Volta ao Menu', width=15, height=1, padx=3,
+                                          pady=3, relief='groove', command=self.voltar_menu)
             self.botao_voltar.pack(side='right')
 
             self.botao_fechar = tk.Button(self.frame_2, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
-                                          relief='groove', command=self.janela_add_link.destroy)
+                                          relief='groove', command=self.fechar_programa_tk)
             self.botao_fechar.pack(side='right')
 
         def add_link_db(self):
             try:
                 self.link_yt = str([self.caixa_txt_1.get()])
                 valor_link = YouTube(self.link_yt)
-                self.titulo_yt = str(valor_link.title)
+                self.titulo_yt = str(valor_link.title).upper()
             except:
                 messagebox.showerror('MENU', 'Esse titulo possui caracteres estpeciais\n'
                                              'Adicione manualmente o titulo')
@@ -142,9 +135,17 @@ def janela_principal():
                 messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
                                               f'{falha}')
 
+        def voltar_menu(self):
+            self.janela_add_link.destroy()
+            self.janela_menu_tk()
+
         def limpar(self):
             self.caixa_txt_1.delete('0', 'end')
 
+        def fechar_programa_tk(self):
+            self.janela_principal_YT.destroy()
+            self.janela_menu.destroy()
+            self.janela_add_link.destroy()
 
     iniciando = YouTube_v3()
 
