@@ -1,6 +1,6 @@
 from pytube import YouTube
 import tkinter as tk
-from tkinter import messagebox, Tk
+from tkinter import messagebox
 from tkinter.ttk import *
 import mysql.connector as db
 
@@ -100,10 +100,6 @@ def janela_principal():
             self.botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
                                             relief='groove', command=self.add_link_db)
             self.botao_add_link.pack(anchor='center')
-
-            self.botao_voltar = tk.Button(self.frame_2, text='Voltar', bd=4, width=10, height=1, pady=3, padx=3,
-                                           relief='groove', command=self.voltar_menu)
-            self.botao_voltar.pack(side='right')
 
             self.botao_fechar = tk.Button(self.frame_2, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
                                           relief='groove', command=self.fechar_programa)
