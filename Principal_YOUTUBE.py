@@ -9,7 +9,6 @@ def janela_principal():
     class YouTube_v3:
         def __init__(self):
             # JANELA DE LOGIN
-            self.janela_menu = tk.Tk()
             self.janela_principal_YT = tk.Tk()
             self.janela_principal_YT.focus_displayof()
             self.janela_principal_YT.title('DownTube')
@@ -49,12 +48,13 @@ def janela_principal():
                 messagebox.showinfo('AVISO!', 'Abrindo o programa \n'
                                               'Aperte "ok" para continuar!')
                 self.janela_principal_YT.withdraw()
-                self.janela_menu()
+                self.janela_menu_tk()
             except db.Error as erro:
                 messagebox.showerror('AVISO', F' ==> {erro}')
 
         # JANELA DE MENU
-        def janela_menu(self):
+        def janela_menu_tk(self):
+            self.janela_menu = tk.Tk()
             self.janela_menu.title('Menu')
             self.janela_menu.geometry('300x150')
             self.frame_menu_1 = tk.Frame(self.janela_menu, width=50, height=50, padx=5, pady=5)
@@ -65,7 +65,7 @@ def janela_principal():
             self.label_frame_1 = tk.LabelFrame(self.janela_menu)
 
             self.opcao_menu = tk.IntVar()
-            self.opcao_menu.set(1)
+            self.opcao_menu.set(int)
 
             self.label_principal = tk.Label(self.frame_menu_1, text='Escolha uma opção', padx=2, pady=2)
             self.label_principal.pack(anchor='center')
