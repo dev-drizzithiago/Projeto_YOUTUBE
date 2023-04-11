@@ -98,6 +98,7 @@ def janela_principal():
             self.label_txt_1.pack(side='top')
             self.caixa_txt_1 = tk.Entry(self.frame_1, textvariable='Caixa de texto', bd=3, width=100)
             self.caixa_txt_1.pack(anchor='center')
+            self.caixa_txt_1.insert(self, 'Cole aqui o link')
 
             self.botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
                                             relief='groove', command=self.add_link_db)
@@ -111,12 +112,19 @@ def janela_principal():
 
         def janela_view_lnks_tk(self):
             self.janela_view_link = tk.Tk()
-            self.janela_view_link.geometry('300x300')
             self.janela_view_link.title('VIEW MENU')
+            self.janela_view_link.geometry('600x400')
             self.frame_view_1 = tk.Frame(self.janela_view_link, padx=5, pady=5)
             self.frame_view_1.pack(fill=tk.Y)
             self.frame_view_2 = tk.Frame(self.janela_view_link, padx=5, pady=5)
             self.frame_view_2.pack(fill=tk.Y)
+
+            amtvar = tk.IntVar()
+            dopvar = tk.StringVar()
+
+
+
+            self.botao_downloads = tk.Button(self)
 
 
 
