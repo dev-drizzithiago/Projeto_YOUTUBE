@@ -13,6 +13,7 @@ def janela_principal():
             self.janela_principal_YT = tk.Tk()
             self.janela_principal_YT.focus_displayof()
             self.janela_principal_YT.title('DownTube')
+            self.janela_principal_YT.geometry('200x185')
             self.frame_1 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
             self.frame_1.pack(fill=tk.Y)
             self.frame_2 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
@@ -116,6 +117,8 @@ def janela_principal():
             self.frame_view_1.pack(fill=tk.Y)
             self.frame_view_2 = tk.Frame(self.janela_view_link, padx=5, pady=5)
             self.frame_view_2.pack(fill=tk.Y)
+
+
 
 
         def add_link_db(self):
