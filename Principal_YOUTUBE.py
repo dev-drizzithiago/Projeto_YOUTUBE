@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import messagebox, Tk
 from tkinter.ttk import *
 import mysql.connector as db
+import sqlite3
 
 
 def janela_principal():
@@ -76,20 +77,19 @@ def janela_principal():
                                           variable=self.opcao_menu, value=2)
             self.opcao_2.pack(side='left')
             self.botao_enter_menu = tk.Button(self.frame_menu_2, text='Adicionar um link', width=20, height=1,
-                                              padx=2, pady=2, command=self.janela_add_lnk)
+                                              padx=2, pady=2, command=self.janela_add_lnk_tk)
             self.botao_enter_menu.pack(anchor='center')
             self.botao_fechar = tk.Button(self.frame_menu_2, text='Sair do programa', width=20, height=1,
                                           padx=2, pady=2, command=self.janela_menu.quit)
             self.botao_fechar.pack(side='right')
 
-        def janela_add_lnk(self):
+        def janela_add_lnk_tk(self):
             self.janela_menu.destroy()
             self.janela_add_link = tk.Tk()
             self.janela_add_link.geometry('400x200')
             self.janela_add_link.title('Adicionando um LINK')
             self.frame_1 = tk.Frame(self.janela_add_link, padx=5, pady=5)
             self.frame_1.pack(fill=tk.Y)
-
             self.frame_2 = tk.Frame(self.janela_add_link, padx=5, pady=5)
             self.frame_2.pack(fill=tk.Y)
 
@@ -101,14 +101,22 @@ def janela_principal():
             self.botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
                                             relief='groove', command=self.add_link_db)
             self.botao_add_link.pack(anchor='center')
-
             self.botao_voltar = tk.Button(self.frame_2, text='Voltar', bd=4, width=10, height=1, pady=3, padx=3,
                                           command=self.voltar_menu)
             self.botao_voltar.pack(anchor='se')
-
             self.botao_fechar = tk.Button(self.frame_2, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
                                           command=self.janela_add_link.destroy)
             self.botao_fechar.pack(anchor='se')
+
+        def janela_view_lnks_tk(self):
+            self.janela_view_link = tk.Tk()
+            self.janela_view_link.geometry('300x300')
+            self.janela_view_link.title('VIEW MENU')
+            self.frame_view_1 = tk.Frame(self.janela_view_link, padx=5, pady=5)
+            self.frame_view_1.pack(fill=tk.Y)
+            self.frame_view_2 = tk.Frame(self.janela_view_link, padx=5, pady=5)
+            self.frame_view_2.pack(fill=tk.Y)
+
 
         def add_link_db(self):
             link_yt = str([self.caixa_txt_1.get()])
@@ -131,7 +139,8 @@ def janela_principal():
             self.caixa_txt_1.delete('0', 'end')
 
         def voltar_menu(self):
-            self.janela_menu.update()
+            self.janela_add_link.destroy()
+            self.janela_menu_tk()
 
     iniciando = YouTube_v3()
 
