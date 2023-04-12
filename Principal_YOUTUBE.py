@@ -106,10 +106,10 @@ def janela_principal():
                                             relief='groove', command=self.add_link_db)
             self.botao_add_link.pack(anchor='center')
             self.botao_voltar = tk.Button(self.frame_2, text='Voltar', bd=4, width=10, height=1, pady=3, padx=3,
-                                          command=self.voltar_menu)
+                                          relief='groove', command=self.voltar_menu)
             self.botao_voltar.pack(anchor='se')
             self.botao_fechar = tk.Button(self.frame_2, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
-                                          command=self.janela_add_link.destroy)
+                                          relief='groove', command=self.janela_add_link.destroy)
             self.botao_fechar.pack(anchor='se')
 
         def janela_view_lnks_tk(self):
