@@ -34,7 +34,7 @@ def janela_principal():
             self.botao_entrar.pack(anchor='center')
 
             self.sair_janela = tk.Button(self.janela_principal_YT, text='Sair', width=5, height=1,
-                                         command=self.janela_principal_YT.quit)
+                                         command=self.janela_principal_YT.destroy)
             self.sair_janela.pack(anchor='se')
 
             tk.mainloop()
@@ -49,7 +49,7 @@ def janela_principal():
                                                 database='drizzithiago_sql')
                 messagebox.showinfo('AVISO!', 'Abrindo o programa \n'
                                               'Aperte "ok" para continuar!')
-                self.janela_principal_YT.withdraw()
+                self.janela_principal_YT.destroy()
                 self.janela_menu_tk()
             except db.Error as erro:
                 messagebox.showerror('AVISO', F' ==> {erro}')
@@ -71,17 +71,20 @@ def janela_principal():
 
             self.label_principal = tk.Label(self.frame_menu_1, text='Escolha uma opção', padx=2, pady=2)
             self.label_principal.pack(anchor='center')
+
             self.opcao_1 = tk.Radiobutton(self.frame_menu_1, text='Adicionar link do YouTube', padx=5, pady=5,
                                           variable=self.opcao_menu, value=1)
             self.opcao_1.pack(side='left')
+
             self.opcao_2 = tk.Radiobutton(self.frame_menu_1, text='Listar os links', padx=5, pady=5,
                                           variable=self.opcao_menu, value=2)
             self.opcao_2.pack(side='left')
+
             self.botao_enter_menu = tk.Button(self.frame_menu_2, text='Adicionar um link', width=20, height=1,
-                                              padx=2, pady=2, command=self.janela_add_lnk_tk)
+                                              padx=2, pady=2, command=self.opcao_menu_op)
             self.botao_enter_menu.pack(anchor='center')
             self.botao_fechar = tk.Button(self.frame_menu_2, text='Sair do programa', width=20, height=1,
-                                          padx=2, pady=2, command=self.janela_menu.quit)
+                                          padx=2, pady=2, command=self.janela_menu.destroy)
             self.botao_fechar.pack(side='right')
 
         def janela_add_lnk_tk(self):
@@ -98,7 +101,6 @@ def janela_principal():
             self.label_txt_1.pack(side='top')
             self.caixa_txt_1 = tk.Entry(self.frame_1, textvariable='Caixa de texto', bd=3, width=100)
             self.caixa_txt_1.pack(anchor='center')
-            self.caixa_txt_1.insert(self, 'Cole aqui o link')
 
             self.botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
                                             relief='groove', command=self.add_link_db)
@@ -118,16 +120,19 @@ def janela_principal():
             self.frame_view_1.pack(fill=tk.Y)
             self.frame_view_2 = tk.Frame(self.janela_view_link, padx=5, pady=5)
             self.frame_view_2.pack(fill=tk.Y)
+            self.frame_view_3 = tk.Frame(self.janela_view_link, padx=5, pady=5)
 
             amtvar = tk.IntVar()
             dopvar = tk.StringVar()
 
+            self.botao_downloads = tk.Button(self.frame_view_3, text='Downloads', width=10, padx=5, pady=5)
+            self.botao_downloads.pack(side='right')
 
+            self.botao_limpar = tk.Button(self.frame_view_3, text='Limpar', width=10, padx=5, pady=5)
+            self.botao_limpar.pack(side='right')
 
-            self.botao_downloads = tk.Button(self)
-
-
-
+            self.botao_atualizar = tk.Button(self.frame_view_3, text='Atualizar', width=10, padx=5, pady=5)
+            self.botao_atualizar.pack(side='right')
 
         def add_link_db(self):
             link_yt = str([self.caixa_txt_1.get()])
@@ -145,6 +150,13 @@ def janela_principal():
             except db.Error as falha:
                 messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
                                               f'{falha}')
+
+        def opcao_menu_op(self):
+            opcao = self.opcao_menu.get()
+            if opcao == 1:
+                self.janela_add_lnk_tk()
+            elif opcao == 2:
+                messagebox.showinfo('Aviso', 'Teste')
 
         def limpar(self):
             self.caixa_txt_1.delete('0', 'end')
