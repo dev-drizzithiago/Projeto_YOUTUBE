@@ -106,10 +106,10 @@ def janela_principal():
                                             relief='groove', command=self.add_link_db)
             self.botao_add_link.pack(anchor='center')
             self.botao_voltar = tk.Button(self.frame_2, text='Voltar', bd=4, width=10, height=1, pady=3, padx=3,
-                                          relief='groove', command=self.voltar_menu)
+                                          command=self.voltar_menu)
             self.botao_voltar.pack(anchor='se')
             self.botao_fechar = tk.Button(self.frame_2, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
-                                          relief='groove', command=self.janela_add_link.destroy)
+                                          command=self.janela_add_link.destroy)
             self.botao_fechar.pack(anchor='se')
 
         def janela_view_lnks_tk(self):
@@ -156,8 +156,7 @@ def janela_principal():
             if opcao == 1:
                 self.janela_add_lnk_tk()
             elif opcao == 2:
-                self.janela_view_lnks_tk()
-                self.teste()
+                messagebox.showinfo('Aviso', 'Teste')
 
         def limpar(self):
             self.caixa_txt_1.delete('0', 'end')
@@ -165,9 +164,6 @@ def janela_principal():
         def voltar_menu(self):
             self.janela_add_link.destroy()
             self.janela_menu_tk()
-
-        def teste(self):
-            messagebox.showinfo('Aviso', 'Teste')
 
     iniciando = YouTube_v3()
 
