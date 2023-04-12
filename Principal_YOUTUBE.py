@@ -122,12 +122,13 @@ def janela_principal():
             self.frame_view_2 = tk.Frame(self.janela_view_link, padx=5, pady=5)
             self.frame_view_2.pack(fill=tk.Y)
             self.frame_view_3 = tk.Frame(self.janela_view_link, padx=5, pady=5)
+            self.frame_view_3.pack(fill=tk.Y)
 
             amtvar = tk.IntVar()
             dopvar = tk.StringVar()
 
-            tk.Label(self.janela_view_link, text='Escolha um titulo', font=fonte_Times).grid(row=0, column=0, sticky='W')
-            tk.Label(self.janela_view_link, text='Data', font=fonte_Times).grid(row=1, column=0, sticky='W')
+            tk.Label(self.frame_view_3, text='Escolha um titulo', font=fonte_Times).pack(anchor='sw')
+            tk.Label(self.frame_view_3, text='Data', font=fonte_Times).pack(anchor='sw')
 
             self.botao_downloads = tk.Button(self.frame_view_3, text='Downloads', width=10, padx=5, pady=5)
             self.botao_downloads.pack(side='right')
