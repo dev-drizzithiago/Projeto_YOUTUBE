@@ -156,7 +156,8 @@ def janela_principal():
             if opcao == 1:
                 self.janela_add_lnk_tk()
             elif opcao == 2:
-                messagebox.showinfo('Aviso', 'Teste')
+                self.janela_view_lnks_tk()
+                self.teste()
 
         def limpar(self):
             self.caixa_txt_1.delete('0', 'end')
@@ -164,6 +165,9 @@ def janela_principal():
         def voltar_menu(self):
             self.janela_add_link.destroy()
             self.janela_menu_tk()
+
+        def teste(self):
+            messagebox.showinfo('Aviso', 'Teste')
 
     iniciando = YouTube_v3()
 
