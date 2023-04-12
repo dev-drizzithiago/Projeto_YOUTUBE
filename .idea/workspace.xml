@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f11a36e-f92d-497d-ac85-d0bef0b89a1c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Principal_YOUTUBE.py" beforeDir="false" afterPath="$PROJECT_DIR$/Principal_YOUTUBE.py" afterDir="false" />
-    </list>
+    <list default="true" id="3f11a36e-f92d-497d-ac85-d0bef0b89a1c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,11 +78,6 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Principal_YOUTUBE.py</url>
-          <line>86</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Principal_YOUTUBE.py</url>
           <line>57</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
@@ -105,8 +98,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Principal_YOUTUBE.py</url>
-          <line>133</line>
-          <option name="timeStamp" value="6" />
+          <line>89</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
