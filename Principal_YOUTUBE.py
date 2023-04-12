@@ -7,6 +7,7 @@ import sqlite3
 
 
 def janela_principal():
+    fonte_Times = ('Times new raman', 14)
     class YouTube_v3:
         def __init__(self):
             # JANELA DE LOGIN
@@ -124,6 +125,9 @@ def janela_principal():
 
             amtvar = tk.IntVar()
             dopvar = tk.StringVar()
+
+            tk.Label(self.janela_view_link, text='Escolha um titulo', font=fonte_Times).grid(row=0, column=0, sticky='W')
+            tk.Label(self.janela_view_link, text='Data', font=fonte_Times).grid(row=1, column=0, sticky='W')
 
             self.botao_downloads = tk.Button(self.frame_view_3, text='Downloads', width=10, padx=5, pady=5)
             self.botao_downloads.pack(side='right')
