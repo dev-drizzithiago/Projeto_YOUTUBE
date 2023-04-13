@@ -8,6 +8,7 @@ import sqlite3
 
 def janela_principal():
     fonte_Times = ('Times new raman', 14)
+
     class YouTube_v3:
         def __init__(self):
             # JANELA DE LOGIN
@@ -33,7 +34,7 @@ def janela_principal():
                                           command=self.banco_dados)
             self.botao_entrar.pack(anchor='center')
 
-            self.sair_janela = tk.Button(self.janela_principal_YT, text='Sair', width=5, height=1,
+            self.sair_janela = tk.Button(self.janela_principal_YT, text='Sair', width=5, height=1, relief='ridge',
                                          command=self.janela_principal_YT.destroy)
             self.sair_janela.pack(anchor='se')
 
@@ -47,8 +48,8 @@ def janela_principal():
                                                 user=usuario,
                                                 password=senha,
                                                 database='drizzithiago_sql')
-                messagebox.showinfo('AVISO!', 'Abrindo o programa \n'
-                                              'Aperte "ok" para continuar!')
+                print('AVISO!', 'Abrindo o programa \n'
+                                'Aperte "ok" para continuar!')
                 self.janela_principal_YT.destroy()
                 self.janela_menu_tk()
             except db.Error as erro:
@@ -116,27 +117,29 @@ def janela_principal():
             self.janela_view_link = tk.Tk()
             self.janela_view_link.title('VIEW MENU')
             self.janela_view_link.geometry('600x400')
-            self.frame_view_1 = tk.Frame(self.janela_view_link, padx=5, pady=5)
+            self.frame_view_1 = tk.Frame(self.janela_view_link, width=10, padx=5, pady=5)
             self.frame_view_1.pack(fill=tk.Y)
-            self.frame_view_2 = tk.Frame(self.janela_view_link, padx=5, pady=5)
+            self.frame_view_2 = tk.Frame(self.janela_view_link, width=10, padx=5, pady=5)
             self.frame_view_2.pack(fill=tk.Y)
-            self.frame_view_3 = tk.Frame(self.janela_view_link, padx=5, pady=5)
+            self.frame_view_3 = tk.Frame(self.janela_view_link, width=10, padx=5, pady=5)
             self.frame_view_3.pack(fill=tk.Y)
 
             amtvar = tk.IntVar()
             dopvar = tk.StringVar()
 
-            tk.Label(self.frame_view_3, text='Escolha um titulo', font=fonte_Times).pack(anchor='sw')
-            tk.Label(self.frame_view_3, text='Data', font=fonte_Times).pack(anchor='sw')
+            self.label_1 = tk.Label(self.frame_view_3, text='Escolha um titulo', font=fonte_Times).pack(anchor='sw')
+            self.label_2 = tk.Label(self.frame_view_3, text='Data', font=fonte_Times).pack(anchor='sw')
 
             self.botao_downloads = tk.Button(self.frame_view_3, text='Downloads', width=10, padx=5, pady=5)
             self.botao_downloads.pack(side='right')
 
+            self.botao_atualizar = tk.Button(self.frame_view_3, text='Atualizar', width=10, padx=5, pady=5)
+            self.botao_atualizar.pack(side='right')
+
             self.botao_limpar = tk.Button(self.frame_view_3, text='Limpar', width=10, padx=5, pady=5)
             self.botao_limpar.pack(side='right')
 
-            self.botao_atualizar = tk.Button(self.frame_view_3, text='Atualizar', width=10, padx=5, pady=5)
-            self.botao_atualizar.pack(side='right')
+        
 
         def add_link_db(self):
             link_yt = str([self.caixa_txt_1.get()])
@@ -161,7 +164,6 @@ def janela_principal():
                 self.janela_add_lnk_tk()
             elif opcao == 2:
                 self.janela_view_lnks_tk()
-                self.teste()
 
         def limpar(self):
             self.caixa_txt_1.delete('0', 'end')
