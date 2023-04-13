@@ -100,12 +100,12 @@ def janela_principal():
 
             self.label_txt_1 = tk.Label(self.frame_1, text='Adicione o link', bd=3, padx=10, pady=10)
             self.label_txt_1.pack(side='top')
-            self.caixa_txt_1 = tk.Entry(self.frame_1, textvariable='Caixa de texto', bd=3, width=100)
+            self.caixa_txt_1 = tk.Entry(self.frame_1, bd=3, width=100)
             self.caixa_txt_1.pack(anchor='center')
 
             self.titulo_inf = tk.StringVar()
-            self.label_add = tk.Label(self.janela_add_link, text=self.titulo_inf,
-                                      relief='groove', width=50, height=3, padx=3, pady=3)
+            self.label_add = tk.Label(self.janela_add_link, textvariable=self.titulo_inf,
+                                      relief='groove', width=100, height=3, padx=3, pady=3)
             self.label_add.pack(anchor='s')
 
             self.botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
