@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f11a36e-f92d-497d-ac85-d0bef0b89a1c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/Projeto_YOUTUBE.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Projeto_YOUTUBE.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Principal_YOUTUBE.py" beforeDir="false" afterPath="$PROJECT_DIR$/Principal_YOUTUBE.py" afterDir="false" />
     </list>
@@ -97,7 +99,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Principal_YOUTUBE.py</url>
-          <line>115</line>
+          <line>119</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">

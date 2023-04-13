@@ -91,7 +91,7 @@ def janela_principal():
         def janela_add_lnk_tk(self):
             self.janela_menu.destroy()
             self.janela_add_link = tk.Tk()
-            self.janela_add_link.geometry('400x200')
+            self.janela_add_link.geometry('400x230')
             self.janela_add_link.title('Adicionando um LINK')
             self.frame_1 = tk.Frame(self.janela_add_link, padx=5, pady=5)
             self.frame_1.pack(fill=tk.Y)
@@ -102,6 +102,11 @@ def janela_principal():
             self.label_txt_1.pack(side='top')
             self.caixa_txt_1 = tk.Entry(self.frame_1, textvariable='Caixa de texto', bd=3, width=100)
             self.caixa_txt_1.pack(anchor='center')
+
+            self.titulo_inf = tk.StringVar()
+            self.label_add = tk.Label(self.janela_add_link, text=self.titulo_inf,
+                                      relief='groove', width=50, height=3, padx=3, pady=3)
+            self.label_add.pack(anchor='s')
 
             self.botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
                                             relief='groove', command=self.add_link_db)
@@ -143,17 +148,17 @@ def janela_principal():
 
         def add_link_db(self):
             link_yt = str([self.caixa_txt_1.get()])
-            titulo_yt_lnk = YouTube(link_yt).title
-            print(titulo_yt_lnk)
+            self.titulo_yt_lnk = YouTube(link_yt).title
+            self.titulo_inf.set(self.titulo_yt_lnk)
             cursor = self.conexao_banco.cursor()
             self.limpar()
             try:
                 comando_SQL = "INSERT INTO youtube (" \
                               "link_youtube, titulo_yt) " \
                               "VALUES (%s, %s) "
-                valores_sql_lnk = (link_yt, titulo_yt_lnk)
+                valores_sql_lnk = (link_yt, self.titulo_yt_lnk)
                 cursor.execute(comando_SQL, valores_sql_lnk)
-                messagebox.showinfo('AVISO!', f'Foi adicionado o vídeo {titulo_yt_lnk}')
+                messagebox.showinfo('AVISO!', f'Foi adicionado o vídeo {self.titulo_yt_lnk}')
             except db.Error as falha:
                 messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
                                               f'{falha}')
