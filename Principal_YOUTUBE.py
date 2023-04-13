@@ -104,7 +104,7 @@ def janela_principal():
             self.caixa_txt_1.pack(anchor='center')
 
             self.titulo_inf = tk.StringVar()
-            self.label_add = tk.Label(self.janela_add_link, textvariable=self.titulo_inf,
+            self.label_add = tk.Label(self.janela_add_link, textvariable=self.titulo_inf, bd=2,
                                       relief='groove', width=100, height=3, padx=3, pady=3)
             self.label_add.pack(anchor='s')
 
