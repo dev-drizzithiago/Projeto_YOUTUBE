@@ -12,13 +12,18 @@ def janela_principal():
     class YouTube_v3:
         def __init__(self):
             # JANELA DE LOGIN
+            self.largura = str(600)
+            self.altura = str(250)
             self.janela_principal_YT = tk.Tk()
             self.janela_principal_YT.focus_displayof()
+            self.janela_principal_YT.geometry('300x200')
             self.janela_principal_YT.title('DownTube')
             self.frame_1 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
             self.frame_1.pack(fill=tk.Y)
             self.frame_2 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
             self.frame_2.pack(fill=tk.Y)
+            self.frame_3 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
+            self.frame_3.pack(anchor='se')
 
             self.lb_caixa_txt_login = tk.Label(self.frame_1, text='Login')
             self.lb_caixa_txt_login.pack(side='top')
@@ -34,11 +39,12 @@ def janela_principal():
                                           command=self.banco_dados)
             self.botao_entrar.pack(anchor='center')
 
-            self.sair_janela = tk.Button(self.janela_principal_YT, text='Sair', width=5, height=1, relief='ridge',
-                                         command=self.janela_principal_YT.destroy)
-            self.sair_janela.pack(anchor='se')
+            self.sair_janela = tk.Button(self.frame_3, text='Sair', width=5, height=1, relief='ridge',
+                                         pady=5, padx=5, command=self.janela_principal_YT.destroy)
+            self.sair_janela.pack(side='right')
 
             tk.mainloop()
+
 
         def banco_dados(self):
             usuario = self.login_caixa_txt.get()
@@ -54,12 +60,16 @@ def janela_principal():
                 self.janela_menu_tk()
             except db.Error as erro:
                 messagebox.showerror('AVISO', F' ==> {erro}')
+                resp = messagebox.askyesno('ERRO!', 'Deseja continuar??')
+                if not resp:
+                    messagebox.showwarning('', 'Seu programa não vai funcionar \nsem um banco de dados conectado')
+                    self.janela_principal_YT.destroy()
 
         # JANELA DE MENU
         def janela_menu_tk(self):
             self.janela_menu = tk.Tk()
             self.janela_menu.title('Menu')
-            self.janela_menu.geometry('300x150')
+            self.janela_menu.geometry('350x250')
             self.frame_menu_1 = tk.Frame(self.janela_menu, width=50, height=50, padx=5, pady=5)
             self.frame_menu_1.pack(fill=tk.Y)
             self.frame_menu_2 = tk.Frame(self.janela_menu, width=50, height=50, padx=5, pady=5)
@@ -91,7 +101,7 @@ def janela_principal():
         def janela_add_lnk_tk(self):
             self.janela_menu.destroy()
             self.janela_add_link = tk.Tk()
-            self.janela_add_link.geometry('400x230')
+            self.janela_add_link.geometry(self.largura + 'x' + self.altura)
             self.janela_add_link.title('Adicionando um LINK')
             self.frame_1 = tk.Frame(self.janela_add_link, padx=5, pady=5)
             self.frame_1.pack(fill=tk.Y)
@@ -103,9 +113,12 @@ def janela_principal():
             self.caixa_txt_1 = tk.Entry(self.frame_1, bd=3, width=100)
             self.caixa_txt_1.pack(anchor='center')
 
+            self.label_frame_2 = tk.LabelFrame(self.janela_add_link, text='Titulo Adicionado')
+            self.label_frame_2.pack(anchor='center')
+
             self.titulo_inf = tk.StringVar()
-            self.label_add = tk.Label(self.janela_add_link, textvariable=self.titulo_inf, bd=2,
-                                      relief='groove', width=100, height=3, padx=3, pady=3)
+            self.label_add = tk.Label(self.janela_add_link, textvariable=self.titulo_inf, bd=2, anchor='center',
+                                      justify='center', relief='groove', width=100, height=3, padx=3, pady=3)
             self.label_add.pack(anchor='s')
 
             self.botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
@@ -113,10 +126,11 @@ def janela_principal():
             self.botao_add_link.pack(anchor='center')
             self.botao_voltar = tk.Button(self.frame_2, text='Voltar', bd=4, width=10, height=1, pady=3, padx=3,
                                           relief='groove', command=self.voltar_menu)
-            self.botao_voltar.pack(anchor='se')
+            self.botao_voltar.pack(anchor='w')
             self.botao_fechar = tk.Button(self.frame_2, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
                                           relief='groove', command=self.janela_add_link.destroy)
             self.botao_fechar.pack(anchor='se')
+
 
         def janela_view_lnks_tk(self):
             self.janela_view_link = tk.Tk()
@@ -147,7 +161,7 @@ def janela_principal():
         def add_link_db(self):
             link_yt = str([self.caixa_txt_1.get()])
             titulo_yt_lnk = YouTube(link_yt).title
-            self.titulo_inf.set(titulo_yt_lnk)
+            self.titulo_inf.set(f'Vídeo adicionado: \n{titulo_yt_lnk}')
             cursor = self.conexao_banco.cursor()
             self.limpar()
             try:
@@ -156,10 +170,13 @@ def janela_principal():
                               "VALUES (%s, %s) "
                 valores_sql_lnk = (link_yt, titulo_yt_lnk)
                 cursor.execute(comando_SQL, valores_sql_lnk)
-            # messagebox.showinfo('AVISO!', f'Foi adicionado o vídeo {titulo_yt_lnk}')
+                messagebox.showinfo('AVISO!', f'Foi adicionado o vídeo: \n{titulo_yt_lnk}')
             except db.Error as falha:
                 messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
                                               f'{falha}')
+        def barra_progresso(self):
+            self.progresso_wd = tk.Tk()
+            self.progresso_wd.geometry('10x10')
 
         def opcao_menu_op(self):
             opcao = self.opcao_menu.get()
