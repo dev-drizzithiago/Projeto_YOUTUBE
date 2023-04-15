@@ -45,7 +45,6 @@ def janela_principal():
 
             tk.mainloop()
 
-
         def banco_dados(self):
             usuario = self.login_caixa_txt.get()
             senha = self.pass_caixa_txt.get()
@@ -131,7 +130,6 @@ def janela_principal():
                                           relief='groove', command=self.janela_add_link.destroy)
             self.botao_fechar.pack(anchor='se')
 
-
         def janela_view_lnks_tk(self):
             self.janela_view_link = tk.Tk()
             self.janela_view_link.title('VIEW MENU')
@@ -146,8 +144,8 @@ def janela_principal():
             amtvar = tk.IntVar()
             dopvar = tk.StringVar()
 
-            self.label_1 = tk.Label(self.frame_view_3, text='Escolha um titulo', font=fonte_Times).pack(anchor='sw')
-            self.label_2 = tk.Label(self.frame_view_3, text='Data', font=fonte_Times).pack(anchor='sw')
+            tk.Label(self.frame_view_3, text='Escolha um titulo', font=fonte_Times).pack(anchor='sw')
+            tk.Label(self.frame_view_3, text='Data', font=fonte_Times).pack(anchor='sw')
 
             self.botao_downloads = tk.Button(self.frame_view_3, text='Downloads', width=10, padx=5, pady=5)
             self.botao_downloads.pack(side='right')
@@ -170,10 +168,10 @@ def janela_principal():
                               "VALUES (%s, %s) "
                 valores_sql_lnk = (link_yt, titulo_yt_lnk)
                 cursor.execute(comando_SQL, valores_sql_lnk)
-                messagebox.showinfo('AVISO!', f'Foi adicionado o vídeo: \n{titulo_yt_lnk}')
             except db.Error as falha:
                 messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
                                               f'{falha}')
+
         def barra_progresso(self):
             self.progresso_wd = tk.Tk()
             self.progresso_wd.geometry('10x10')
@@ -191,9 +189,6 @@ def janela_principal():
         def voltar_menu(self):
             self.janela_add_link.destroy()
             self.janela_menu_tk()
-
-        def teste(self):
-            messagebox.showinfo('Aviso', 'Teste')
 
     iniciando = YouTube_v3()
 
