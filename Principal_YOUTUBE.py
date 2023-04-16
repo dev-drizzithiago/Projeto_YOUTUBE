@@ -133,22 +133,26 @@ def janela_principal():
         def janela_view_lnks_tk(self):
             self.janela_view_link = tk.Tk()
             self.janela_view_link.title('VIEW MENU')
-            self.janela_view_link.geometry('600x400')
-            self.frame_view_1 = tk.Frame(self.janela_view_link, bd=5, bg='#7FFFD4', width=200, height=100, padx=5, pady=5)
+            self.janela_view_link.geometry('900x600')
+            self.frame_view_1 = tk.Frame(self.janela_view_link, bd=5, bg='#7FFFD4', width=200, height=100, padx=5,
+                                         pady=5)
             self.frame_view_1.pack(anchor='n')
 
-            self.frame_view_2 = tk.Frame(self.janela_view_link, bd=5, bg='#ADFF2F', width=200, height=100, padx=5, pady=5)
+            self.frame_view_2 = tk.Frame(self.janela_view_link, bd=5, bg='#ADFF2F', width=200, height=100, padx=5,
+                                         pady=5)
             self.frame_view_2.pack(anchor='center')
 
-            self.frame_view_3 = tk.Frame(self.janela_view_link, bd=5, bg='#F0E68C', width=200, height=100, padx=5, pady=5)
+            self.frame_view_3 = tk.Frame(self.janela_view_link, bd=5, bg='#F0E68C', width=200, height=100, padx=5,
+                                         pady=5)
             self.frame_view_3.pack(anchor='s')
 
             self.var_lista = tk.StringVar
-            self.label_view_1 = tk.Label(self.frame_view_1, text='Escolha um titulo', font=fonte_Times, padx=10, pady=10)
+            self.label_view_1 = tk.Label(self.frame_view_1, text='Escolha um titulo', font=fonte_Times, padx=10,
+                                         pady=10)
             self.label_view_1.pack(anchor='sw')
 
-            self.lista_titulos = tk.Listbox(self.frame_view_2, selectmode='multiple')
-            self.lista_titulos.pack(padx=10, pady=10, expand='YES', fill='both')
+            self.lista_titulos = tk.Listbox(self.frame_view_2, bg='#00FF00', selectmode='multiple', width=100, height=20)
+            self.lista_titulos.pack(padx=10, pady=10, expand='YES', anchor='center')
 
             self.botao_downloads = tk.Button(self.frame_view_3, text='Downloads', width=10, padx=5, pady=5)
             self.botao_downloads.pack(side='right')
@@ -157,19 +161,19 @@ def janela_principal():
             self.botao_limpar = tk.Button(self.frame_view_3, text='Limpar', width=10, padx=5, pady=5)
             self.botao_limpar.pack(side='right')
 
+            # BUSCANDO AS INFORMAÇÕES NO BANCO DE DADOS
             self.bd_view = self.conexao_banco.cursor()
-            self.comando_sql = '''SELECT titulo FROM youtube'''
+            self.comando_sql = '''SELECT titulo_yt FROM youtube'''
             self.bd_view.execute(self.comando_sql)
+            self.titulos = list()
             for listagem in self.bd_view:
-                self.titulos = listagem
+                self.titulos.append(listagem)
 
-            messagebox.showinfo('', self.titulos)
-
+            # LISTANDO COM OBJETO 'tk.ListBox'
             for lista_titulos_bd in range(len(self.titulos)):
-                self.lista_titulos.insert('', lista_titulos_bd)
-                self.lista_titulos.itemconfig(lista_titulos_bd, bg="#bdc1d6")
-
-
+                print(lista_titulos_bd)
+                self.lista_titulos.insert('end', self.titulos[lista_titulos_bd])
+                self.lista_titulos.itemconfig(lista_titulos_bd, bg="#F0E68C")
 
         def add_link_db(self):
             link_yt = str([self.caixa_txt_1.get()])
@@ -196,6 +200,7 @@ def janela_principal():
             if opcao == 1:
                 self.janela_add_lnk_tk()
             elif opcao == 2:
+                self.janela_menu.destroy()
                 self.janela_view_lnks_tk()
 
         def limpar(self):
