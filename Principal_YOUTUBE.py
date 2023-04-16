@@ -97,28 +97,36 @@ def janela_principal():
             self.botao_fechar.pack(side='right')
 
         def janela_add_lnk_tk(self):
+
+            # JANELA ADD_LINK
             self.janela_menu.destroy()
             self.janela_add_link = tk.Tk()
             self.janela_add_link.geometry(self.largura + 'x' + self.altura)
             self.janela_add_link.title('Adicionando um LINK')
+
+            # FRAME
             self.frame_1 = tk.Frame(self.janela_add_link, padx=5, pady=5)
             self.frame_1.pack(fill=tk.Y)
             self.frame_2 = tk.Frame(self.janela_add_link, padx=5, pady=5)
             self.frame_2.pack(fill=tk.Y)
 
+            # LABEL
             self.label_txt_1 = tk.Label(self.frame_1, text='Adicione o link', bd=3, padx=10, pady=10)
             self.label_txt_1.pack(side='top')
             self.caixa_txt_1 = tk.Entry(self.frame_1, bd=3, width=100)
             self.caixa_txt_1.pack(anchor='center')
 
+            # StringVar
+            self.titulo_inf = tk.StringVar()
+
+            # LABEL
             self.label_frame_2 = tk.LabelFrame(self.janela_add_link, text='Titulo Adicionado')
             self.label_frame_2.pack(anchor='center')
 
-            self.titulo_inf = tk.StringVar()
+            # bOTÕES
             self.label_add = tk.Label(self.janela_add_link, textvariable=self.titulo_inf, bd=2, anchor='center',
                                       justify='center', relief='groove', width=100, height=3, padx=3, pady=3)
             self.label_add.pack(anchor='s')
-
             self.botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
                                             relief='groove', command=self.add_link_db)
             self.botao_add_link.pack(anchor='center')
@@ -130,29 +138,49 @@ def janela_principal():
             self.botao_fechar.pack(anchor='se')
 
         def janela_view_lnks_tk(self):
+
+            # JANELA PRINCIPAL
             self.janela_view_link = tk.Tk()
             self.janela_view_link.title('VIEW MENU')
             self.janela_view_link.geometry('900x600')
-            self.frame_view_1 = tk.Frame(self.janela_view_link, bd=5, bg='#7FFFD4', width=200, height=100, padx=5,
-                                         pady=5)
+            self.janela_view_link.configure(padx=10, pady=10, bg='#B0E0E6')
+
+            # FRAME_VIEW
+            self.frame_view_1 = tk.Frame(self.janela_view_link, bd=5, bg='#7FFFD4',
+                                         width=200, height=100, padx=5, pady=5)
             self.frame_view_1.pack(anchor='n')
 
-            self.frame_view_2 = tk.Frame(self.janela_view_link, bd=5, bg='#F4A460', width=200, height=100, padx=5,
-                                         pady=5)
+            self.frame_view_2 = tk.Frame(self.janela_view_link, bd=5, bg='#F4A460',
+                                         width=200, height=100, padx=5, pady=5)
             self.frame_view_2.pack(anchor='center')
 
-            self.frame_view_3 = tk.Frame(self.janela_view_link, bd=5, bg='#F0E68C', width=200, height=100, padx=5,
-                                         pady=5)
+            self.frame_view_3 = tk.Frame(self.janela_view_link, bd=5, bg='#F0E68C',
+                                         width=200, height=100, padx=5, pady=5)
             self.frame_view_3.pack(anchor='s')
 
-            self.var_lista = tk.StringVar
+            self.frame_view_4 = tk.Frame(self.janela_view_link, bd=5, bg='#F0E68C',
+                                         width=200, height=100, padx=5, pady=5)
+            self.frame_view_4.pack(anchor='s')
+
+            # StringVar
+            # self.var_view = tk.StringVar(value=dir())
+            self.var_lista = tk.StringVar()
+
+            # LABEL
             self.label_view_1 = tk.Label(self.frame_view_1, text='Escolha um titulo', font=fonte_Times, padx=10,
                                          pady=10)
             self.label_view_1.pack(anchor='sw')
 
-            self.lista_titulos = tk.Listbox(self.frame_view_2, bg='#FFDEAD', selectmode='multiple', width=100, height=20)
-            self.lista_titulos.pack(padx=10, pady=10, expand='YES', anchor='center')
+            self.label_mostrar_selecionado = tk.Label(self.frame_view_4, width=100, height=20)
+            self.label_mostrar_selecionado.pack(anchor='s')
 
+            # LISTBOX
+            self.lista_titulos = tk.Listbox(self.frame_view_2, bg='#FFDEAD', selectmode='extended',
+                                            width=100, height=20)
+            self.lista_titulos.pack(padx=10, pady=10, expand='YES', anchor='center')
+            # self.lista_titulos.bind('<<ListBoxSelect>')
+
+            # BOTÕES
             self.botao_downloads = tk.Button(self.frame_view_3, text='Downloads', width=10, padx=5, pady=5,
                                              command=self.downloads_yt)
             self.botao_downloads.pack(side='right')
@@ -165,14 +193,14 @@ def janela_principal():
 
         def listagem_arq_bd(self):
             # BUSCANDO AS INFORMAÇÕES NO BANCO DE DADOS
-            self.limpar_caixa_lista_links()
-            self.bd_view = self.conexao_banco.cursor()
-            self.comando_sql = '''SELECT titulo_yt FROM youtube'''
-            self.bd_view.execute(self.comando_sql)
-            self.titulos = list()
-            for listagem in self.bd_view:
+            self.bd_view = self.conexao_banco.cursor()  # Conecta com o bando de dados.
+            self.comando_sql = '''SELECT titulo_yt FROM youtube'''  # Comando para listar os arquivos no bd
+            self.bd_view.execute(self.comando_sql)  # Executando o comando
+            self.titulos = list()  # Cria uma lista para colocar os dados
+            for listagem in self.bd_view: 
                 self.titulos.append(listagem)
 
+            self.limpar_caixa_lista_links()
             # LISTANDO COM OBJETO 'tk.ListBox'
             for lista_titulos_bd in range(len(self.titulos)):
                 self.lista_titulos.insert('end', self.titulos[lista_titulos_bd])
@@ -220,11 +248,11 @@ def janela_principal():
             links_lista = []
             selecao_titulo = self.lista_titulos.curselection()
             for titulo_link in selecao_titulo:
-                opcao = self.lista_titulos.get(titulo_link)
-                links_lista.append(opcao)
+                titulo_escolhido = self.lista_titulos.get(titulo_link)
+                links_lista.append(titulo_escolhido)
+
             for linhas in links_lista:
                 print(linhas)
-
 
     iniciando = YouTube_v3()
 
