@@ -24,13 +24,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;G:/Meu Drive/Estudos/Python/Baixando-links-do-YOUTUBE/Projeto_Youtube.v1.02/youtube.v1.02.py&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "G:/Meu Drive/Estudos/Python/Baixando-links-do-YOUTUBE/Projeto_Youtube.v1.02/youtube.v1.02.py",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.grazie"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="Principal_YOUTUBE" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Projeto_YOUTUBE" />

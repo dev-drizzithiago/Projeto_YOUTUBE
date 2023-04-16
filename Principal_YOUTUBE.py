@@ -197,7 +197,7 @@ def janela_principal():
             self.comando_sql = '''SELECT titulo_yt FROM youtube'''  # Comando para listar os arquivos no bd
             self.bd_view.execute(self.comando_sql)  # Executando o comando
             self.titulos = list()  # Cria uma lista para colocar os dados
-            for listagem in self.bd_view: 
+            for listagem in self.bd_view:
                 self.titulos.append(listagem)
 
             self.limpar_caixa_lista_links()
@@ -206,11 +206,12 @@ def janela_principal():
                 self.lista_titulos.insert('end', self.titulos[lista_titulos_bd])
                 self.lista_titulos.itemconfig(lista_titulos_bd, bg="#DEB887")
 
+        # Função responsável por adicionar o link no banco de dados.
         def add_link_db(self):
-            link_yt = str([self.caixa_txt_1.get()])
-            titulo_yt_lnk = YouTube(link_yt).title
-            self.titulo_inf.set(f'Vídeo adicionado: \n{titulo_yt_lnk}')
-            cursor = self.conexao_banco.cursor()
+            link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em uma variável
+            titulo_yt_lnk = YouTube(link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
+            self.titulo_inf.set(f'Vídeo adicionado: \n{titulo_yt_lnk}')  # Notifica que o link foi adicionando, mostrando apenas o titulo.
+            cursor = self.conexao_banco.cursor()  # Busca a conexao com o DB e joga as instruçoes em uma variável
             self.limpar_caixa_addlink()
             try:
                 comando_SQL = "INSERT INTO youtube (" \
