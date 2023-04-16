@@ -138,7 +138,7 @@ def janela_principal():
                                          pady=5)
             self.frame_view_1.pack(anchor='n')
 
-            self.frame_view_2 = tk.Frame(self.janela_view_link, bd=5, bg='#ADFF2F', width=200, height=100, padx=5,
+            self.frame_view_2 = tk.Frame(self.janela_view_link, bd=5, bg='#F4A460', width=200, height=100, padx=5,
                                          pady=5)
             self.frame_view_2.pack(anchor='center')
 
@@ -151,17 +151,22 @@ def janela_principal():
                                          pady=10)
             self.label_view_1.pack(anchor='sw')
 
-            self.lista_titulos = tk.Listbox(self.frame_view_2, bg='#00FF00', selectmode='multiple', width=100, height=20)
+            self.lista_titulos = tk.Listbox(self.frame_view_2, bg='#FFDEAD', selectmode='multiple', width=100, height=20)
             self.lista_titulos.pack(padx=10, pady=10, expand='YES', anchor='center')
 
-            self.botao_downloads = tk.Button(self.frame_view_3, text='Downloads', width=10, padx=5, pady=5)
+            self.botao_downloads = tk.Button(self.frame_view_3, text='Downloads', width=10, padx=5, pady=5,
+                                             command=self.downloads_yt)
             self.botao_downloads.pack(side='right')
-            self.botao_atualizar = tk.Button(self.frame_view_3, text='Atualizar', width=10, padx=5, pady=5)
+            self.botao_atualizar = tk.Button(self.frame_view_3, text='Atualizar', width=10, padx=5, pady=5,
+                                             command=self.listagem_arq_bd)
             self.botao_atualizar.pack(side='right')
-            self.botao_limpar = tk.Button(self.frame_view_3, text='Limpar', width=10, padx=5, pady=5)
+            self.botao_limpar = tk.Button(self.frame_view_3, text='Limpar', width=10, padx=5, pady=5,
+                                          command=self.limpar_caixa_lista_links)
             self.botao_limpar.pack(side='right')
 
+        def listagem_arq_bd(self):
             # BUSCANDO AS INFORMAÇÕES NO BANCO DE DADOS
+            self.limpar_caixa_lista_links()
             self.bd_view = self.conexao_banco.cursor()
             self.comando_sql = '''SELECT titulo_yt FROM youtube'''
             self.bd_view.execute(self.comando_sql)
@@ -171,16 +176,15 @@ def janela_principal():
 
             # LISTANDO COM OBJETO 'tk.ListBox'
             for lista_titulos_bd in range(len(self.titulos)):
-                print(lista_titulos_bd)
                 self.lista_titulos.insert('end', self.titulos[lista_titulos_bd])
-                self.lista_titulos.itemconfig(lista_titulos_bd, bg="#F0E68C")
+                self.lista_titulos.itemconfig(lista_titulos_bd, bg="#DEB887")
 
         def add_link_db(self):
             link_yt = str([self.caixa_txt_1.get()])
             titulo_yt_lnk = YouTube(link_yt).title
             self.titulo_inf.set(f'Vídeo adicionado: \n{titulo_yt_lnk}')
             cursor = self.conexao_banco.cursor()
-            self.limpar()
+            self.limpar_caixa_addlink()
             try:
                 comando_SQL = "INSERT INTO youtube (" \
                               "link_youtube, titulo_yt) " \
@@ -203,12 +207,25 @@ def janela_principal():
                 self.janela_menu.destroy()
                 self.janela_view_lnks_tk()
 
-        def limpar(self):
+        def limpar_caixa_addlink(self):
             self.caixa_txt_1.delete('0', 'end')
+
+        def limpar_caixa_lista_links(self):
+            self.lista_titulos.delete('0', 'end')
 
         def voltar_menu(self):
             self.janela_add_link.destroy()
             self.janela_menu_tk()
+
+        def downloads_yt(self):
+            links_lista = []
+            selecao_titulo = self.lista_titulos.curselection()
+            for titulo_link in selecao_titulo:
+                opcao = self.lista_titulos.get(titulo_link)
+                links_lista.append(opcao)
+            for linhas in links_lista:
+                print(linhas)
+
 
     iniciando = YouTube_v3()
 
