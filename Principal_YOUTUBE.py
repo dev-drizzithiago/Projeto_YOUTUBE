@@ -68,10 +68,9 @@ def janela_principal():
         def janela_menu_tk(self):
             self.janela_menu = tk.Tk()
             self.janela_menu.title('Menu')
-            self.janela_menu.geometry('350x250')
-            self.frame_menu_1 = tk.Frame(self.janela_menu, width=50, height=50, padx=5, pady=5)
+            self.frame_menu_1 = tk.Frame(self.janela_menu, padx=5, pady=5)
             self.frame_menu_1.pack(fill=tk.Y)
-            self.frame_menu_2 = tk.Frame(self.janela_menu, width=50, height=50, padx=5, pady=5)
+            self.frame_menu_2 = tk.Frame(self.janela_menu, padx=5, pady=5)
             self.frame_menu_2.pack(fill=tk.Y, expand='yes')
 
             self.label_frame_1 = tk.LabelFrame(self.janela_menu)
@@ -90,10 +89,10 @@ def janela_principal():
                                           variable=self.opcao_menu, value=2)
             self.opcao_2.pack(side='left')
 
-            self.botao_enter_menu = tk.Button(self.frame_menu_2, text='Adicionar um link', width=20, height=1,
+            self.botao_enter_menu = tk.Button(self.frame_menu_2, text='Adicionar um link', width=30, height=2,
                                               padx=2, pady=2, command=self.opcao_menu_op)
             self.botao_enter_menu.pack(anchor='center')
-            self.botao_fechar = tk.Button(self.frame_menu_2, text='Sair do programa', width=20, height=1,
+            self.botao_fechar = tk.Button(self.frame_menu_2, text='Sair do programa', width=30, height=2,
                                           padx=2, pady=2, command=self.janela_menu.destroy)
             self.botao_fechar.pack(side='right')
 
