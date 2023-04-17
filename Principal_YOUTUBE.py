@@ -185,40 +185,43 @@ def janela_principal():
                                              command=self.downloads_yt)
             self.botao_downloads.pack(side='right')
             self.botao_atualizar = tk.Button(self.frame_view_3, text='Atualizar', width=10, padx=5, pady=5,
-                                             command=self.listagem_arq_bd)
+                                             command=self.listagem_arq_bd_view)
             self.botao_atualizar.pack(side='right')
             self.botao_limpar = tk.Button(self.frame_view_3, text='Limpar', width=10, padx=5, pady=5,
                                           command=self.limpar_caixa_lista_links)
             self.botao_limpar.pack(side='right')
 
-        def listagem_arq_bd(self):
+        def listagem_arq_bd_view(self):
             # BUSCANDO AS INFORMAÇÕES NO BANCO DE DADOS
             self.bd_view = self.conexao_banco.cursor()  # Conecta com o bando de dados.
-            self.comando_sql = '''SELECT titulo_yt FROM youtube'''  # Comando para listar os arquivos no bd
+            self.comando_sql = 'SELECT titulo_yt FROM youtube'  # Comando para listar os arquivos no bd
             self.bd_view.execute(self.comando_sql)  # Executando o comando
-            self.titulos = list()  # Cria uma lista para colocar os dados
+            self.titulos = list()  # Cria uma lista para colocar os dados.
             for listagem in self.bd_view:
                 self.titulos.append(listagem)
-
+            for links in self.titulos:
+                print(links)
             self.limpar_caixa_lista_links()
             # LISTANDO COM OBJETO 'tk.ListBox'
             for lista_titulos_bd in range(len(self.titulos)):
                 self.lista_titulos.insert('end', self.titulos[lista_titulos_bd])
                 self.lista_titulos.itemconfig(lista_titulos_bd, bg="#DEB887")
+                print(self.titulos)
 
         # Função responsável por adicionar o link no banco de dados.
         def add_link_db(self):
-            link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em uma variável
+            link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em numa variável.
             titulo_yt_lnk = YouTube(link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
-            self.titulo_inf.set(f'Vídeo adicionado: \n{titulo_yt_lnk}')  # Notifica que o link foi adicionando, mostrando apenas o titulo.
-            cursor = self.conexao_banco.cursor()  # Busca a conexao com o DB e joga as instruçoes em uma variável
-            self.limpar_caixa_addlink()
+            self.titulo_inf.set(f'Vídeo adicionado: \n{titulo_yt_lnk}')  # Notifica que o link foi adicionando.
+            cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
+            self.limpar_caixa_addlink()  # Limpa a caixa de texto para poder adicionar outro link
             try:
+                # Comando em SQL para adicionar no DB
                 comando_SQL = "INSERT INTO youtube (" \
                               "link_youtube, titulo_yt) " \
-                              "VALUES (%s, %s) "
-                valores_sql_lnk = (link_yt, titulo_yt_lnk)
-                cursor.execute(comando_SQL, valores_sql_lnk)
+                              "VALUES (%s, %s)"
+                valores_sql_lnk = (link_yt, titulo_yt_lnk)  # atribui os valores na variável
+                cursor.execute(comando_SQL, valores_sql_lnk)  # Executa o comando e adicionar literalmente no db
             except db.Error as falha:
                 messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
                                               f'{falha}')
@@ -246,14 +249,16 @@ def janela_principal():
             self.janela_menu_tk()
 
         def downloads_yt(self):
-            links_lista = []
+            links_lista_1 = []
+            links_lista_2 = []
             selecao_titulo = self.lista_titulos.curselection()
             for titulo_link in selecao_titulo:
                 titulo_escolhido = self.lista_titulos.get(titulo_link)
-                links_lista.append(titulo_escolhido)
+                links_lista_1.append(titulo_escolhido)
 
-            for linhas in links_lista:
-                print(linhas)
+            for dados_down in links_lista_1:
+                link_down = dados_down
+                print(link_down)
 
     iniciando = YouTube_v3()
 
