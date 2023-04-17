@@ -162,7 +162,6 @@ def janela_principal():
             self.frame_view_4.pack(anchor='s')
 
             # StringVar
-            # self.var_view = tk.StringVar(value=dir())
             self.var_lista = tk.StringVar()
 
             # LABEL
@@ -182,13 +181,20 @@ def janela_principal():
             # BOTÕES
             self.botao_downloads = tk.Button(self.frame_view_3, text='Downloads', width=10, padx=5, pady=5,
                                              command=self.downloads_yt)
-            self.botao_downloads.pack(side='right')
+            self.botao_downloads.pack(anchor='w')
             self.botao_atualizar = tk.Button(self.frame_view_3, text='Atualizar', width=10, padx=5, pady=5,
                                              command=self.listagem_arq_bd_view)
-            self.botao_atualizar.pack(side='right')
+            self.botao_atualizar.pack(anchor='w')
             self.botao_limpar = tk.Button(self.frame_view_3, text='Limpar', width=10, padx=5, pady=5,
                                           command=self.limpar_caixa_lista_links)
-            self.botao_limpar.pack(side='right')
+            self.botao_limpar.pack(anchor='e')
+            self.botao_add_link = tk.Button(self.frame_view_3, text='Adicionar mais um link', width=20, padx=5, pady=5,
+                                            command=self.janela_add_lnk_tk())
+            self.botao_add_link.pack(anchor='e')
+            self.botao_conct_db = tk.Button(self.frame_view_3, text='Conectar em outro banco de dados', width=20,
+                                            padx=5, pady=5, command=self.janela_principal_YT)
+
+            # lISTA OS DADOS QUANDO ABRE A JANELA
             self.listagem_arq_bd_view()
 
         def listagem_arq_bd_view(self):
