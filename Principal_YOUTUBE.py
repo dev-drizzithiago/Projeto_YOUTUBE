@@ -191,8 +191,9 @@ def janela_principal():
             self.botao_add_link = tk.Button(self.frame_view_3, text='Adicionar mais um link', width=20, padx=5, pady=5,
                                             command=self.janela_add_lnk_tk())
             self.botao_add_link.pack(anchor='e')
-            self.botao_conct_db = tk.Button(self.frame_view_3, text='Conectar em outro banco de dados', width=20,
-                                            padx=5, pady=5, command=self.janela_principal_YT)
+            self.botao_conct_db = tk.Button(self.frame_view_3, text='Banco de dados', width=20, padx=5, pady=5,
+                                            command=self.janela_principal_YT)
+            self.botao_conct_db.pack(anchor='s')
 
             # lISTA OS DADOS QUANDO ABRE A JANELA
             self.listagem_arq_bd_view()
