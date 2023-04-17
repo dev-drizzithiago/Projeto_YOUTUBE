@@ -28,18 +28,18 @@ def janela_principal():
             self.frame_4.pack(anchor='se')
 
             # VARIÁVEIS
-            self.Var_DB_login = tk.IntVar()
-            self.Var_DB_login.set(int)
+            self.opcao_db = tk.IntVar()
+            self.opcao_db.set(int)
 
             # BOTÃO RADIOS
             self.radio_bd_1 = tk.Radiobutton(self.frame_3, text='Banco de Dados externo (db4free.net)',
-                                             padx=5, pady=5, variable=self.Var_DB_login, value=1)
+                                             padx=5, pady=5, variable=self.opcao_db, value=1)
             self.radio_bd_1.pack(anchor='w')
             self.radio_bd_2 = tk.Radiobutton(self.frame_3, text='Banco de Dados Interno (localhost)',
-                                             padx=5, pady=5, variable=self.Var_DB_login, value=2)
+                                             padx=5, pady=5, variable=self.opcao_db, value=2)
             self.radio_bd_2.pack(anchor='w')
             self.radio_db_no = tk.Radiobutton(self.frame_3, text='Sem Banco de Dados', padx=5, pady=4,
-                                              variable=self.Var_DB_login, value=3)
+                                              variable=self.opcao_db, value=3)
             self.radio_db_no.pack(anchor='w')
 
             #  Caixa de Texto
@@ -54,7 +54,7 @@ def janela_principal():
             self.pass_caixa_txt.pack(anchor='center')
 
             self.botao_entrar = tk.Button(self.frame_2, text='Conectar', width=15, height=1, relief='ridge',
-                                          command=self.opcao_DB())
+                                          command=self.banco_dados_opcao)
             self.botao_entrar.pack(anchor='center')
 
             self.sair_janela = tk.Button(self.frame_4, text='Sair', width=5, height=1, relief='ridge',
@@ -63,26 +63,24 @@ def janela_principal():
 
             tk.mainloop()
 
-        def opcao_DB(self):
-            opcao_bd_enter = self.Var_DB_login.get()
-            if opcao_bd_enter == '1':
+        def banco_dados_opcao(self):
+            opcao_bd_enter = self.opcao_db.get()
+            if opcao_bd_enter == 1:
                 self.servidor_banco_dados = 'db4free.net'
-                self.banco_dados_func()
             elif opcao_bd_enter == 2:
                 self.servidor_banco_dados = 'localhost'
             elif opcao_bd_enter == 3:
-                print('''Vou fazer o usuario escolher a pasta que ficara o arquivo na extensão de texto''')
+                # print('''Vou fazer o usuario escolher a pasta que ficara o arquivo na extensão de texto''')
+                messagebox.showinfo('AVISO!', 'Opção em desenvolvimento \nVocê esta sendo encaminhado para o servidor local!')
+                self.servidor_banco_dados = 'localhost'
             else:
                 messagebox.showwarning('ERRO', 'Ocorreu um ERRO na seleção da opção')
-
-            self.usuario = self.login_caixa_txt.get()
-            self.senha = self.pass_caixa_txt.get()
-
-        def banco_dados_func(self):
+            usuario = self.login_caixa_txt.get()
+            senha = self.pass_caixa_txt.get()
             try:
                 self.conexao_banco = db.connect(host=self.servidor_banco_dados,
-                                                user=self.usuario,
-                                                password=self.senha,
+                                                user=usuario,
+                                                password=senha,
                                                 database='drizzithiago_sql')
                 print('AVISO!', 'Abrindo o programa')
                 self.janela_login.destroy()
@@ -91,8 +89,9 @@ def janela_principal():
                 messagebox.showerror('AVISO', F' ==> {erro}')
                 resp = messagebox.askyesno('ERRO!', 'Deseja continuar??')
                 if not resp:
-                    messagebox.showwarning('', 'Seu programa não vai funcionar \nsem um banco de dados conectado')
                     self.janela_login.destroy()
+
+        # JANELA DE MENU
 
         def janela_add_lnk_tk(self):
             # JANELA ADD_LINK
