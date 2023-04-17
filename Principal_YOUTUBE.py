@@ -1,9 +1,9 @@
+import mysql.connector
 from pytube import YouTube
 import tkinter as tk
-from tkinter import messagebox, Tk
+from tkinter import messagebox
 from tkinter.ttk import *
 import mysql.connector as db
-import sqlite3
 
 
 def janela_principal():
@@ -53,8 +53,7 @@ def janela_principal():
                                                 user=usuario,
                                                 password=senha,
                                                 database='drizzithiago_sql')
-                print('AVISO!', 'Abrindo o programa \n'
-                                'Aperte "ok" para continuar!')
+                print('AVISO!', 'Abrindo o programa')
                 self.janela_principal_YT.destroy()
                 self.janela_menu_tk()
             except db.Error as erro:
@@ -209,8 +208,11 @@ def janela_principal():
         # Função responsável por adicionar o link no banco de dados.
         def add_link_db(self):
             link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em numa variável.
-            titulo_yt_lnk = YouTube(link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
-            self.titulo_inf.set(f'Vídeo adicionado: \n{titulo_yt_lnk}')  # Notifica que o link foi adicionando.
+            try:
+                self.titulo_yt_lnk = YouTube(link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
+                self.titulo_inf.set(f'Vídeo adicionado: \n{self.titulo_yt_lnk}')  # Notifica que o link foi adicionando.
+            except:
+                messagebox.showerror('ERROR', 'Ocorreu um erro ao adicionar um TITULO!')
             cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
             self.limpar_caixa_addlink()  # Limpa a caixa de texto para poder adicionar outro link
             try:
@@ -218,7 +220,7 @@ def janela_principal():
                 comando_SQL = "INSERT INTO youtube (" \
                               "link_youtube, titulo_yt) " \
                               "VALUES (%s, %s)"
-                valores_sql_lnk = (link_yt, titulo_yt_lnk)  # atribui os valores na variável
+                valores_sql_lnk = (link_yt, self.titulo_yt_lnk)  # atribui os valores na variável
                 cursor.execute(comando_SQL, valores_sql_lnk)  # Executa o comando e adicionar literalmente no db
             except db.Error as falha:
                 messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
@@ -254,11 +256,15 @@ def janela_principal():
                 links_lista_1.append(titulo_escolhido)
             for dados_down in links_lista_1:
                 titulo_down = str(dados_down)
+                print(titulo_down)
                 cursor_down = self.conexao_banco.cursor()
-                convertendo_down_sql = str("SELECT * FROM youtube "
-                                       "WHERE titulo_yt = " + "'" + titulo_down + "'")
-                comando_sql_down = convertendo_down_sql
-                cursor_down.execute(comando_sql_down)
+                try:
+                    convertendo_down_sql = str("SELECT * FROM youtube "
+                                               "WHERE titulo_yt LIKE " + "'" + titulo_down + "%'")
+                    comando_sql_down = convertendo_down_sql
+                    cursor_down.execute(comando_sql_down)
+                except mysql.connector.Error as falha:
+                    messagebox.showerror('ERROR', f' Ocorreu um erro: \n{falha}')
                 for id, link, titulo in cursor_down:
                     print(link)
 
