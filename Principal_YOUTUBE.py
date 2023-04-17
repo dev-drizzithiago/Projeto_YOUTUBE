@@ -49,7 +49,7 @@ def janela_principal():
             usuario = self.login_caixa_txt.get()
             senha = self.pass_caixa_txt.get()
             try:
-                self.conexao_banco = db.connect(host='localhost',
+                self.conexao_banco = db.connect(host='db4free.net',
                                                 user=usuario,
                                                 password=senha,
                                                 database='drizzithiago_sql')
@@ -217,9 +217,9 @@ def janela_principal():
             self.limpar_caixa_addlink()  # Limpa a caixa de texto para poder adicionar outro link
             try:
                 # Comando em SQL para adicionar no DB
-                comando_SQL = "INSERT INTO youtube (" \
-                              "link_youtube, titulo_yt) " \
-                              "VALUES (%s, %s)"
+                comando_SQL = 'INSERT INTO youtube (' \
+                              'link_youtube, titulo_yt) ' \
+                              'VALUES (%s, %s)'
                 valores_sql_lnk = (link_yt, self.titulo_yt_lnk)  # atribui os valores na variável
                 cursor.execute(comando_SQL, valores_sql_lnk)  # Executa o comando e adicionar literalmente no db
             except db.Error as falha:
@@ -260,7 +260,7 @@ def janela_principal():
                 cursor_down = self.conexao_banco.cursor()
                 try:
                     convertendo_down_sql = str("SELECT * FROM youtube "
-                                               "WHERE titulo_yt LIKE " + "'" + titulo_down + "%'")
+                                               "WHERE titulo_yt LIKE " + '"' + titulo_down + '"')
                     comando_sql_down = convertendo_down_sql
                     cursor_down.execute(comando_sql_down)
                 except mysql.connector.Error as falha:
