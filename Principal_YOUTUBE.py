@@ -2,7 +2,7 @@ import mysql.connector
 from pytube import YouTube
 import tkinter as tk
 from tkinter import messagebox
-from tkinter.ttk import *
+from tkinter import *
 import mysql.connector as db
 
 
@@ -14,15 +14,15 @@ def janela_principal():
             # JANELA DE LOGIN
             self.largura = str(600)
             self.altura = str(250)
-            self.janela_principal_YT = tk.Tk()
-            self.janela_principal_YT.focus_displayof()
-            self.janela_principal_YT.geometry('300x200')
-            self.janela_principal_YT.title('DownTube')
-            self.frame_1 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
+            self.janela_login = tk.Tk()
+            self.janela_login.focus_displayof()
+            self.janela_login.geometry('300x200')
+            self.janela_login.title('DownTube')
+            self.frame_1 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10)
             self.frame_1.pack(fill=tk.Y)
-            self.frame_2 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
+            self.frame_2 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10)
             self.frame_2.pack(fill=tk.Y)
-            self.frame_3 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
+            self.frame_3 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10)
             self.frame_3.pack(anchor='se')
 
             self.lb_caixa_txt_login = tk.Label(self.frame_1, text='Login')
@@ -32,7 +32,7 @@ def janela_principal():
 
             self.lb_caixa_txt_pass = tk.Label(self.frame_1, text='PassWord')
             self.lb_caixa_txt_pass.pack(side='top')
-            self.pass_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4)
+            self.pass_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4,show='*')
             self.pass_caixa_txt.pack(anchor='center')
 
             self.botao_entrar = tk.Button(self.frame_2, text='Entrar', width=15, height=1, relief='ridge',
@@ -40,7 +40,7 @@ def janela_principal():
             self.botao_entrar.pack(anchor='center')
 
             self.sair_janela = tk.Button(self.frame_3, text='Sair', width=5, height=1, relief='ridge',
-                                         pady=5, padx=5, command=self.janela_principal_YT.destroy)
+                                         pady=5, padx=5, command=self.janela_login.destroy)
             self.sair_janela.pack(side='right')
 
             tk.mainloop()
@@ -54,51 +54,20 @@ def janela_principal():
                                                 password=senha,
                                                 database='drizzithiago_sql')
                 print('AVISO!', 'Abrindo o programa')
-                self.janela_principal_YT.destroy()
-                self.janela_menu_tk()
+                self.janela_login.destroy()
+                self.janela_principal_tk()
             except db.Error as erro:
                 messagebox.showerror('AVISO', F' ==> {erro}')
                 resp = messagebox.askyesno('ERRO!', 'Deseja continuar??')
                 if not resp:
                     messagebox.showwarning('', 'Seu programa não vai funcionar \nsem um banco de dados conectado')
-                    self.janela_principal_YT.destroy()
+                    self.janela_login.destroy()
 
         # JANELA DE MENU
-        def janela_menu_tk(self):
-            self.janela_menu = tk.Tk()
-            self.janela_menu.title('Menu')
-            self.frame_menu_1 = tk.Frame(self.janela_menu, padx=5, pady=5)
-            self.frame_menu_1.pack(fill=tk.Y)
-            self.frame_menu_2 = tk.Frame(self.janela_menu, padx=5, pady=5)
-            self.frame_menu_2.pack(fill=tk.Y, expand='yes')
 
-            self.label_frame_1 = tk.LabelFrame(self.janela_menu)
-
-            self.opcao_menu = tk.IntVar()
-            self.opcao_menu.set(int)
-
-            self.label_principal = tk.Label(self.frame_menu_1, text='Escolha uma opção', padx=2, pady=2)
-            self.label_principal.pack(anchor='center')
-
-            self.opcao_1 = tk.Radiobutton(self.frame_menu_1, text='Adicionar link do YouTube', padx=5, pady=5,
-                                          variable=self.opcao_menu, value=1)
-            self.opcao_1.pack(side='left')
-
-            self.opcao_2 = tk.Radiobutton(self.frame_menu_1, text='Listar os links', padx=5, pady=5,
-                                          variable=self.opcao_menu, value=2)
-            self.opcao_2.pack(side='left')
-
-            self.botao_enter_menu = tk.Button(self.frame_menu_2, text='Adicionar um link', width=30, height=2,
-                                              padx=2, pady=2, command=self.opcao_menu_op)
-            self.botao_enter_menu.pack(anchor='center')
-            self.botao_fechar = tk.Button(self.frame_menu_2, text='Sair do programa', width=30, height=2,
-                                          padx=2, pady=2, command=self.janela_menu.destroy)
-            self.botao_fechar.pack(side='right')
 
         def janela_add_lnk_tk(self):
-
             # JANELA ADD_LINK
-            self.janela_menu.destroy()
             self.janela_add_link = tk.Tk()
             self.janela_add_link.geometry(self.largura + 'x' + self.altura)
             self.janela_add_link.title('Adicionando um LINK')
@@ -136,7 +105,7 @@ def janela_principal():
                                           relief='groove', command=self.janela_add_link.destroy)
             self.botao_fechar.pack(anchor='se')
 
-        def janela_view_lnks_tk(self):
+        def janela_principal_tk(self):
 
             # JANELA PRINCIPAL
             self.janela_view_link = tk.Tk()
@@ -148,21 +117,19 @@ def janela_principal():
             self.frame_view_1 = tk.Frame(self.janela_view_link, bd=5, bg='#7FFFD4',
                                          width=200, height=100, padx=5, pady=5)
             self.frame_view_1.pack(anchor='n')
-
             self.frame_view_2 = tk.Frame(self.janela_view_link, bd=5, bg='#F4A460',
                                          width=200, height=100, padx=5, pady=5)
             self.frame_view_2.pack(anchor='center')
-
             self.frame_view_3 = tk.Frame(self.janela_view_link, bd=5, bg='#F0E68C',
                                          width=200, height=100, padx=5, pady=5)
-            self.frame_view_3.pack(anchor='s')
-
+            self.frame_view_3.pack(anchor='w')
             self.frame_view_4 = tk.Frame(self.janela_view_link, bd=5, bg='#F0E68C',
                                          width=200, height=100, padx=5, pady=5)
-            self.frame_view_4.pack(anchor='s')
+            self.frame_view_4.pack(anchor='e')
 
             # StringVar
-            self.var_lista = tk.StringVar()
+            self.var_lista = tk.StringVar(str)
+            self.var_opcao = tk.IntVar(int)
 
             # LABEL
             self.label_view_1 = tk.Label(self.frame_view_1, text='Escolha um titulo', font=fonte_Times, padx=10,
@@ -176,24 +143,18 @@ def janela_principal():
             self.lista_titulos = tk.Listbox(self.frame_view_2, bg='#FFDEAD', selectmode='extended',
                                             width=100, height=20)
             self.lista_titulos.pack(padx=10, pady=10, expand='YES', anchor='center')
-            # self.lista_titulos.bind('<<ListBoxSelect>')
 
-            # BOTÕES
-            self.botao_downloads = tk.Button(self.frame_view_3, text='Downloads', width=10, padx=5, pady=5,
-                                             command=self.downloads_yt)
-            self.botao_downloads.pack(anchor='w')
-            self.botao_atualizar = tk.Button(self.frame_view_3, text='Atualizar', width=10, padx=5, pady=5,
-                                             command=self.listagem_arq_bd_view)
-            self.botao_atualizar.pack(anchor='w')
-            self.botao_limpar = tk.Button(self.frame_view_3, text='Limpar', width=10, padx=5, pady=5,
-                                          command=self.limpar_caixa_lista_links)
-            self.botao_limpar.pack(anchor='e')
-            self.botao_add_link = tk.Button(self.frame_view_3, text='Adicionar mais um link', width=20, padx=5, pady=5,
-                                            command=self.janela_add_lnk_tk())
-            self.botao_add_link.pack(anchor='e')
-            self.botao_conct_db = tk.Button(self.frame_view_3, text='Banco de dados', width=20, padx=5, pady=5,
-                                            command=self.janela_principal_YT)
-            self.botao_conct_db.pack(anchor='s')
+            # BOTÕES RADIOS
+            self.radio_downloads = tk.Radiobutton(self.frame_view_3, text='Downloads', width=10, padx=5, pady=5)
+            self.radio_downloads.pack(anchor='w')
+            self.radio_atualizar = tk.Radiobutton(self.frame_view_4, text='Atualizar', width=10, padx=5, pady=5)
+            self.radio_atualizar.pack(anchor='w')
+            self.radio_limpar = tk.Radiobutton(self.frame_view_3, text='Limpar', width=10, padx=5, pady=5)
+            self.radio_limpar.pack(anchor='w')
+            self.radio_addLink = tk.Radiobutton(self.frame_view_4, text='Adicionar mais um link', width=20, padx=5, pady=5)
+            self.radio_addLink.pack(anchor='w')
+            self.radio_BD = tk.Radiobutton(self.frame_view_3, text='Banco de dados', width=20, padx=5, pady=5)
+            self.radio_BD.pack(anchor='w')
 
             # lISTA OS DADOS QUANDO ABRE A JANELA
             self.listagem_arq_bd_view()
@@ -238,12 +199,9 @@ def janela_principal():
             self.progresso_wd.geometry('10x10')
 
         def opcao_menu_op(self):
-            opcao = self.opcao_menu.get()
+            opcao = self.var_opcao.get()
             if opcao == 1:
                 self.janela_add_lnk_tk()
-            elif opcao == 2:
-                self.janela_menu.destroy()
-                self.janela_view_lnks_tk()
 
         def limpar_caixa_addlink(self):
             self.caixa_txt_1.delete('0', 'end')
