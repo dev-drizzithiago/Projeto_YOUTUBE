@@ -16,15 +16,33 @@ def janela_principal():
             self.altura = str(250)
             self.janela_login = tk.Tk()
             self.janela_login.focus_displayof()
-            self.janela_login.geometry('300x200')
+            self.janela_login.geometry('400x320')
             self.janela_login.title('DownTube')
             self.frame_1 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10)
             self.frame_1.pack(fill=tk.Y)
             self.frame_2 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10)
             self.frame_2.pack(fill=tk.Y)
             self.frame_3 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10)
-            self.frame_3.pack(anchor='se')
+            self.frame_3.pack(fill=tk.Y)
+            self.frame_4 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10)
+            self.frame_4.pack(anchor='se')
 
+            # VARIÁVEIS
+            self.Var_DB_login = tk.IntVar()
+            self.Var_DB_login.set(int)
+
+            # BOTÃO RADIOS
+            self.radio_bd_1 = tk.Radiobutton(self.frame_3, text='Banco de Dados externo (db4free.net)',
+                                             padx=5, pady=5, variable=self.Var_DB_login, value=1)
+            self.radio_bd_1.pack(anchor='w')
+            self.radio_bd_2 = tk.Radiobutton(self.frame_3, text='Banco de Dados Interno (localhost)',
+                                             padx=5, pady=5, variable=self.Var_DB_login, value=2)
+            self.radio_bd_2.pack(anchor='w')
+            self.radio_db_no = tk.Radiobutton(self.frame_3, text='Sem Banco de Dados', padx=5, pady=4,
+                                              variable=self.Var_DB_login, value=3)
+            self.radio_db_no.pack(anchor='w')
+
+            #  Caixa de Texto
             self.lb_caixa_txt_login = tk.Label(self.frame_1, text='Login')
             self.lb_caixa_txt_login.pack(side='top')
             self.login_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4)
@@ -32,26 +50,39 @@ def janela_principal():
 
             self.lb_caixa_txt_pass = tk.Label(self.frame_1, text='PassWord')
             self.lb_caixa_txt_pass.pack(side='top')
-            self.pass_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4,show='"')
+            self.pass_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4, show='"')
             self.pass_caixa_txt.pack(anchor='center')
 
-            self.botao_entrar = tk.Button(self.frame_2, text='Entrar', width=15, height=1, relief='ridge',
-                                          command=self.banco_dados)
+            self.botao_entrar = tk.Button(self.frame_2, text='Conectar', width=15, height=1, relief='ridge',
+                                          command=self.opcao_DB())
             self.botao_entrar.pack(anchor='center')
 
-            self.sair_janela = tk.Button(self.frame_3, text='Sair', width=5, height=1, relief='ridge',
+            self.sair_janela = tk.Button(self.frame_4, text='Sair', width=5, height=1, relief='ridge',
                                          pady=5, padx=5, command=self.janela_login.destroy)
             self.sair_janela.pack(side='right')
 
             tk.mainloop()
 
-        def banco_dados(self):
-            usuario = self.login_caixa_txt.get()
-            senha = self.pass_caixa_txt.get()
+        def opcao_DB(self):
+            opcao_bd_enter = self.Var_DB_login.get()
+            if opcao_bd_enter == '1':
+                self.servidor_banco_dados = 'db4free.net'
+                self.banco_dados_func()
+            elif opcao_bd_enter == 2:
+                self.servidor_banco_dados = 'localhost'
+            elif opcao_bd_enter == 3:
+                print('''Vou fazer o usuario escolher a pasta que ficara o arquivo na extensão de texto''')
+            else:
+                messagebox.showwarning('ERRO', 'Ocorreu um ERRO na seleção da opção')
+
+            self.usuario = self.login_caixa_txt.get()
+            self.senha = self.pass_caixa_txt.get()
+
+        def banco_dados_func(self):
             try:
-                self.conexao_banco = db.connect(host='db4free.net',
-                                                user=usuario,
-                                                password=senha,
+                self.conexao_banco = db.connect(host=self.servidor_banco_dados,
+                                                user=self.usuario,
+                                                password=self.senha,
                                                 database='drizzithiago_sql')
                 print('AVISO!', 'Abrindo o programa')
                 self.janela_login.destroy()
@@ -62,9 +93,6 @@ def janela_principal():
                 if not resp:
                     messagebox.showwarning('', 'Seu programa não vai funcionar \nsem um banco de dados conectado')
                     self.janela_login.destroy()
-
-        # JANELA DE MENU
-
 
         def janela_add_lnk_tk(self):
             # JANELA ADD_LINK
@@ -85,7 +113,7 @@ def janela_principal():
             self.caixa_txt_1.pack(anchor='center')
 
             # StringVar
-            self.titulo_inf = tk.StringVar()  # Responsavel por informar na label o que foi adicionado. 
+            self.titulo_inf = tk.StringVar()  # Responsavel por informar na label o que foi adicionado.
 
             # LABEL
             self.label_frame_2 = tk.LabelFrame(self.janela_add_link, text='Titulo Adicionado')
@@ -143,15 +171,15 @@ def janela_principal():
 
             # BOTÕES RADIOS
             self.radio_downloads = tk.Radiobutton(self.frame_view_3, text='Downloads', width=10, padx=5, pady=5)
-            self.radio_downloads.pack(anchor='w')
-            self.radio_atualizar = tk.Radiobutton(self.frame_view_4, text='Atualizar', width=10, padx=5, pady=5)
+            self.radio_downloads.pack(anchor='center')
+            self.radio_addLink = tk.Radiobutton(self.frame_view_3, text='Adicionar mais um link', width=20, padx=5,
+                                                pady=5)
+            self.radio_addLink.pack(anchor='center')
+
+            self.radio_atualizar = tk.Radiobutton(self.frame_view_3, text='Atualizar', width=10, padx=5, pady=5)
             self.radio_atualizar.pack(anchor='w')
             self.radio_limpar = tk.Radiobutton(self.frame_view_3, text='Limpar', width=10, padx=5, pady=5)
             self.radio_limpar.pack(anchor='w')
-            self.radio_addLink = tk.Radiobutton(self.frame_view_4, text='Adicionar mais um link', width=20, padx=5, pady=5)
-            self.radio_addLink.pack(anchor='w')
-            self.radio_BD = tk.Radiobutton(self.frame_view_3, text='Banco de dados', width=20, padx=5, pady=5)
-            self.radio_BD.pack(anchor='w')
 
             # lISTA OS DADOS QUANDO ABRE A JANELA
             self.listagem_arq_bd_view()
