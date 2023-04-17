@@ -255,9 +255,10 @@ def janela_principal():
             for dados_down in links_lista_1:
                 titulo_down = str(dados_down)
                 cursor_down = self.conexao_banco.cursor()
-                comando_down_sql = str("SELECT * FROM youtube "
-                                       "WHERE titulo_yt = " + "'" + titulo_down + "%'")
-                cursor_down.execute(comando_down_sql)
+                convertendo_down_sql = str("SELECT * FROM youtube "
+                                       "WHERE titulo_yt = " + "'" + titulo_down + "'")
+                comando_sql_down = convertendo_down_sql
+                cursor_down.execute(comando_sql_down)
                 for id, link, titulo in cursor_down:
                     print(link)
 
