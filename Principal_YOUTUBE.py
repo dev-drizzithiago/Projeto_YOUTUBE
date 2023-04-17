@@ -32,7 +32,7 @@ def janela_principal():
 
             self.lb_caixa_txt_pass = tk.Label(self.frame_1, text='PassWord')
             self.lb_caixa_txt_pass.pack(side='top')
-            self.pass_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4,show='*')
+            self.pass_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4,show='"')
             self.pass_caixa_txt.pack(anchor='center')
 
             self.botao_entrar = tk.Button(self.frame_2, text='Entrar', width=15, height=1, relief='ridge',
@@ -85,7 +85,7 @@ def janela_principal():
             self.caixa_txt_1.pack(anchor='center')
 
             # StringVar
-            self.titulo_inf = tk.StringVar()
+            self.titulo_inf = tk.StringVar()  # Responsavel por informar na label o que foi adicionado. 
 
             # LABEL
             self.label_frame_2 = tk.LabelFrame(self.janela_add_link, text='Titulo Adicionado')
@@ -98,9 +98,6 @@ def janela_principal():
             self.botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
                                             relief='groove', command=self.add_link_db)
             self.botao_add_link.pack(anchor='center')
-            self.botao_voltar = tk.Button(self.frame_2, text='Voltar', bd=4, width=10, height=1, pady=3, padx=3,
-                                          relief='groove', command=self.voltar_menu)
-            self.botao_voltar.pack(anchor='w')
             self.botao_fechar = tk.Button(self.frame_2, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
                                           relief='groove', command=self.janela_add_link.destroy)
             self.botao_fechar.pack(anchor='se')
@@ -208,10 +205,6 @@ def janela_principal():
 
         def limpar_caixa_lista_links(self):
             self.lista_titulos.delete('0', 'end')
-
-        def voltar_menu(self):
-            self.janela_add_link.destroy()
-            self.janela_menu_tk()
 
         def downloads_yt(self):
             links_lista_1 = []
