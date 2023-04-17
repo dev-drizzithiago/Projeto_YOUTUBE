@@ -190,23 +190,21 @@ def janela_principal():
             self.botao_limpar = tk.Button(self.frame_view_3, text='Limpar', width=10, padx=5, pady=5,
                                           command=self.limpar_caixa_lista_links)
             self.botao_limpar.pack(side='right')
+            self.listagem_arq_bd_view()
 
         def listagem_arq_bd_view(self):
             # BUSCANDO AS INFORMAÇÕES NO BANCO DE DADOS
             self.bd_view = self.conexao_banco.cursor()  # Conecta com o bando de dados.
-            self.comando_sql = 'SELECT titulo_yt FROM youtube'  # Comando para listar os arquivos no bd
+            self.comando_sql = 'SELECT * FROM youtube'  # Comando para listar os arquivos no bd
             self.bd_view.execute(self.comando_sql)  # Executando o comando
             self.titulos = list()  # Cria uma lista para colocar os dados.
-            for listagem in self.bd_view:
-                self.titulos.append(listagem)
-            for links in self.titulos:
-                print(links)
+            for id_link, link_yt, titulos_yt in self.bd_view:
+                self.titulos.append(titulos_yt)
             self.limpar_caixa_lista_links()
             # LISTANDO COM OBJETO 'tk.ListBox'
             for lista_titulos_bd in range(len(self.titulos)):
                 self.lista_titulos.insert('end', self.titulos[lista_titulos_bd])
                 self.lista_titulos.itemconfig(lista_titulos_bd, bg="#DEB887")
-                print(self.titulos)
 
         # Função responsável por adicionar o link no banco de dados.
         def add_link_db(self):
@@ -250,15 +248,18 @@ def janela_principal():
 
         def downloads_yt(self):
             links_lista_1 = []
-            links_lista_2 = []
             selecao_titulo = self.lista_titulos.curselection()
             for titulo_link in selecao_titulo:
                 titulo_escolhido = self.lista_titulos.get(titulo_link)
                 links_lista_1.append(titulo_escolhido)
-
             for dados_down in links_lista_1:
-                link_down = dados_down
-                print(link_down)
+                titulo_down = str(dados_down)
+                cursor_down = self.conexao_banco.cursor()
+                comando_down_sql = str("SELECT * FROM youtube "
+                                       "WHERE titulo_yt = " + "'" + titulo_down + "%'")
+                cursor_down.execute(comando_down_sql)
+                for id, link, titulo in cursor_down:
+                    print(link)
 
     iniciando = YouTube_v3()
 
