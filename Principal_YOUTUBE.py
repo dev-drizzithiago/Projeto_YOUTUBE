@@ -18,13 +18,14 @@ def janela_principal():
             self.janela_login.focus_displayof()
             self.janela_login.geometry('400x300')
             self.janela_login.title('DownTube')
-            self.frame_1 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10)
+            self.janela_login.configure(bg='#B0E0E6')
+            self.frame_1 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10,  bg='#B0E0E6')
             self.frame_1.pack(fill=tk.Y)
-            self.frame_2 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10)
+            self.frame_2 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10,  bg='#B0E0E6')
             self.frame_2.pack(fill=tk.Y)
-            self.frame_3 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10)
+            self.frame_3 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10,  bg='#B0E0E6')
             self.frame_3.pack(fill=tk.Y)
-            self.frame_4 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10)
+            self.frame_4 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10,  bg='#B0E0E6')
             self.frame_4.pack(anchor='se')
 
             # VARIÁVEIS
@@ -32,32 +33,29 @@ def janela_principal():
             self.opcao_db.set(int)
 
             # BOTÃO RADIOS
-            self.radio_bd_1 = tk.Radiobutton(self.frame_3, text='Banco de Dados externo (db4free.net)',
+            self.radio_bd_1 = tk.Radiobutton(self.frame_3, text='Banco de Dados externo (db4free.net)', bg='#B0E0E6',
                                              padx=5, pady=5, variable=self.opcao_db, value=1)
             self.radio_bd_1.pack(anchor='w')
-            self.radio_bd_2 = tk.Radiobutton(self.frame_3, text='Banco de Dados Interno (localhost)',
+            self.radio_bd_2 = tk.Radiobutton(self.frame_3, text='Banco de Dados Interno (localhost)', bg='#B0E0E6',
                                              padx=5, pady=5, variable=self.opcao_db, value=2)
             self.radio_bd_2.pack(anchor='w')
-            # self.radio_db_no = tk.Radiobutton(self.frame_3, text='Sem Banco de Dados', padx=5, pady=4,
-            #                                 variable=self.opcao_db, value=3)
-            # self.radio_db_no.pack(anchor='w')
 
             #  Caixa de Texto
-            self.lb_caixa_txt_login = tk.Label(self.frame_1, text='Login')
+            self.lb_caixa_txt_login = tk.Label(self.frame_1, text='Login',  bg='#B0E0E6')
             self.lb_caixa_txt_login.pack(side='top')
-            self.login_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4)
+            self.login_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4,  bg='#B0E0E6')
             self.login_caixa_txt.pack(ancho='center')
 
-            self.lb_caixa_txt_pass = tk.Label(self.frame_1, text='PassWord')
+            self.lb_caixa_txt_pass = tk.Label(self.frame_1, text='PassWord',  bg='#B0E0E6')
             self.lb_caixa_txt_pass.pack(side='top')
-            self.pass_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4, show='"')
+            self.pass_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4, show='"',  bg='#B0E0E6')
             self.pass_caixa_txt.pack(anchor='center')
 
             self.botao_entrar = tk.Button(self.frame_2, text='Conectar', width=15, height=1, relief='ridge',
                                           command=self.banco_dados_opcao)
             self.botao_entrar.pack(anchor='center')
 
-            self.sair_janela = tk.Button(self.frame_4, text='Sair', width=5, height=1, relief='ridge',
+            self.sair_janela = tk.Button(self.frame_4, text='Sair', width=5, height=1, relief='ridge', bg='#B0E0E6',
                                          pady=5, padx=5, command=self.janela_login.destroy)
             self.sair_janela.pack(side='right')
 
@@ -169,12 +167,12 @@ def janela_principal():
             # BOTÕES RADIOS
             self.radio_addLink = tk.Radiobutton(self.frame_view_3, text='Adicionar mais um link', bg='#B0E0E6',
                                                 width=20, padx=5,
-                                                pady=5, variable=self.var_opcao, value=2)
+                                                pady=5, variable=self.var_opcao, value=1)
             self.radio_addLink.pack(side='left')
 
             self.radio_downloads = tk.Radiobutton(self.frame_view_3, text='Downloads', bg='#B0E0E6', width=10, padx=5,
                                                   pady=5,
-                                                  variable=self.var_opcao, value=1)
+                                                  variable=self.var_opcao, value=2)
             self.radio_downloads.pack(side='left')
 
             self.radio_atualizar = tk.Radiobutton(self.frame_view_3, text='Atualizar', bg='#B0E0E6', width=10, padx=5,
@@ -186,7 +184,7 @@ def janela_principal():
             self.radio_limpar.pack(side='left')
 
             # Bottão Entrar
-            self.botao_enter = tk.Button(self.frame_view_4, text='Entrar', bg='B0E0E6', bd=5, width=10, pady=5, padx=5,
+            self.botao_enter = tk.Button(self.frame_view_4, text='Entrar', bg='#B0E0E6', bd=5, width=10, pady=5, padx=5,
                                          command=self.opcao_radio)
             self.botao_enter.pack(anchor='center')
 
@@ -197,6 +195,12 @@ def janela_principal():
             opcao = self.var_opcao.get()
             if opcao == 1:
                 self.janela_add_lnk_tk()
+            elif opcao == 2:
+                print('Em desenvolvimento <download>')
+            elif opcao == 3:
+                print('Em desenvolvimento <atualizar>')
+            elif opcao == 4:
+                print('Em desenvolvimento <limpar>')
 
         def listagem_arq_bd_view(self):
             # BUSCANDO AS INFORMAÇÕES NO BANCO DE DADOS
