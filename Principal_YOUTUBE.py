@@ -16,7 +16,7 @@ def janela_principal():
             self.altura = str(250)
             self.janela_login = tk.Tk()
             self.janela_login.focus_displayof()
-            self.janela_login.geometry('400x320')
+            self.janela_login.geometry('400x300')
             self.janela_login.title('DownTube')
             self.frame_1 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10)
             self.frame_1.pack(fill=tk.Y)
@@ -38,9 +38,9 @@ def janela_principal():
             self.radio_bd_2 = tk.Radiobutton(self.frame_3, text='Banco de Dados Interno (localhost)',
                                              padx=5, pady=5, variable=self.opcao_db, value=2)
             self.radio_bd_2.pack(anchor='w')
-            self.radio_db_no = tk.Radiobutton(self.frame_3, text='Sem Banco de Dados', padx=5, pady=4,
-                                              variable=self.opcao_db, value=3)
-            self.radio_db_no.pack(anchor='w')
+            # self.radio_db_no = tk.Radiobutton(self.frame_3, text='Sem Banco de Dados', padx=5, pady=4,
+            #                                 variable=self.opcao_db, value=3)
+            # self.radio_db_no.pack(anchor='w')
 
             #  Caixa de Texto
             self.lb_caixa_txt_login = tk.Label(self.frame_1, text='Login')
@@ -71,7 +71,8 @@ def janela_principal():
                 self.servidor_banco_dados = 'localhost'
             elif opcao_bd_enter == 3:
                 # print('''Vou fazer o usuario escolher a pasta que ficara o arquivo na extensão de texto''')
-                messagebox.showinfo('AVISO!', 'Opção em desenvolvimento \nVocê esta sendo encaminhado para o servidor local!')
+                messagebox.showinfo('AVISO!',
+                                    'Opção em desenvolvimento \nVocê esta sendo encaminhado para o servidor local!')
                 self.servidor_banco_dados = 'localhost'
             else:
                 messagebox.showwarning('ERRO', 'Ocorreu um ERRO na seleção da opção')
@@ -138,50 +139,64 @@ def janela_principal():
             self.janela_view_link.configure(padx=10, pady=10, bg='#B0E0E6')
 
             # FRAME_VIEW
-            self.frame_view_1 = tk.Frame(self.janela_view_link, bd=5, bg='#7FFFD4',
-                                         width=200, height=100, padx=5, pady=5)
-            self.frame_view_1.pack(anchor='n')
-            self.frame_view_2 = tk.Frame(self.janela_view_link, bd=5, bg='#F4A460',
-                                         width=200, height=100, padx=5, pady=5)
+            self.frame_view_1 = tk.Frame(self.janela_view_link, bd=5, bg='#B0E0E6', width=200, height=100, padx=5,
+                                         pady=5)
+            self.frame_view_1.pack(anchor='center')
+            self.frame_view_2 = tk.Frame(self.janela_view_link, bd=5, bg='#B0E0E6', width=200, height=100, padx=5,
+                                         pady=5)
             self.frame_view_2.pack(anchor='center')
-            self.frame_view_3 = tk.Frame(self.janela_view_link, bd=5, bg='#F0E68C',
-                                         width=200, height=100, padx=5, pady=5)
-            self.frame_view_3.pack(anchor='w')
-            self.frame_view_4 = tk.Frame(self.janela_view_link, bd=5, bg='#F0E68C',
-                                         width=200, height=100, padx=5, pady=5)
-            self.frame_view_4.pack(anchor='e')
+            self.frame_view_3 = tk.Frame(self.janela_view_link, bd=5, bg='#B0E0E6', width=200, height=100, padx=5,
+                                         pady=5)
+            self.frame_view_3.pack(anchor='center')
+            self.frame_view_4 = tk.Frame(self.janela_view_link, bd=5, bg='#B0E0E6', width=200, height=100, padx=5,
+                                         pady=5)
+            self.frame_view_4.pack(side='bottom')
 
             # StringVar
-            self.var_lista = tk.StringVar(str)
-            self.var_opcao = tk.IntVar(int)
+            self.var_opcao = tk.IntVar()
+            self.var_opcao.set(int)
 
             # LABEL
-            self.label_view_1 = tk.Label(self.frame_view_1, text='Escolha um titulo', font=fonte_Times, padx=10,
-                                         pady=10)
-            self.label_view_1.pack(anchor='sw')
-
-            self.label_mostrar_selecionado = tk.Label(self.frame_view_4, width=100, height=20)
-            self.label_mostrar_selecionado.pack(anchor='s')
+            self.label_view_1 = tk.Label(self.frame_view_1, text='Escolha um titulo e selecione uma opção abaixo',
+                                         font=fonte_Times, padx=10, pady=10)
+            self.label_view_1.pack(side='top')
 
             # LISTBOX
-            self.lista_titulos = tk.Listbox(self.frame_view_2, bg='#FFDEAD', selectmode='extended',
-                                            width=100, height=20)
+            self.lista_titulos = tk.Listbox(self.frame_view_2, bg='#FFDEAD', selectmode='extended', width=100,
+                                            height=20)
             self.lista_titulos.pack(padx=10, pady=10, expand='YES', anchor='center')
 
             # BOTÕES RADIOS
-            self.radio_downloads = tk.Radiobutton(self.frame_view_3, text='Downloads', width=10, padx=5, pady=5)
-            self.radio_downloads.pack(anchor='center')
-            self.radio_addLink = tk.Radiobutton(self.frame_view_3, text='Adicionar mais um link', width=20, padx=5,
-                                                pady=5)
-            self.radio_addLink.pack(anchor='center')
+            self.radio_addLink = tk.Radiobutton(self.frame_view_3, text='Adicionar mais um link', bg='#B0E0E6',
+                                                width=20, padx=5,
+                                                pady=5, variable=self.var_opcao, value=2)
+            self.radio_addLink.pack(side='left')
 
-            self.radio_atualizar = tk.Radiobutton(self.frame_view_3, text='Atualizar', width=10, padx=5, pady=5)
-            self.radio_atualizar.pack(anchor='w')
-            self.radio_limpar = tk.Radiobutton(self.frame_view_3, text='Limpar', width=10, padx=5, pady=5)
-            self.radio_limpar.pack(anchor='w')
+            self.radio_downloads = tk.Radiobutton(self.frame_view_3, text='Downloads', bg='#B0E0E6', width=10, padx=5,
+                                                  pady=5,
+                                                  variable=self.var_opcao, value=1)
+            self.radio_downloads.pack(side='left')
+
+            self.radio_atualizar = tk.Radiobutton(self.frame_view_3, text='Atualizar', bg='#B0E0E6', width=10, padx=5,
+                                                  pady=5,
+                                                  variable=self.var_opcao, value=3)
+            self.radio_atualizar.pack(side='left')
+            self.radio_limpar = tk.Radiobutton(self.frame_view_3, text='Limpar', bg='#B0E0E6', width=10, padx=5, pady=5,
+                                               variable=self.var_opcao, value=4)
+            self.radio_limpar.pack(side='left')
+
+            # Bottão Entrar
+            self.botao_enter = tk.Button(self.frame_view_4, text='Entrar', bg='B0E0E6', bd=5, width=10, pady=5, padx=5,
+                                         command=self.opcao_radio)
+            self.botao_enter.pack(anchor='center')
 
             # lISTA OS DADOS QUANDO ABRE A JANELA
             self.listagem_arq_bd_view()
+
+        def opcao_radio(self):
+            opcao = self.var_opcao.get()
+            if opcao == 1:
+                self.janela_add_lnk_tk()
 
         def listagem_arq_bd_view(self):
             # BUSCANDO AS INFORMAÇÕES NO BANCO DE DADOS
@@ -221,11 +236,6 @@ def janela_principal():
         def barra_progresso(self):
             self.progresso_wd = tk.Tk()
             self.progresso_wd.geometry('10x10')
-
-        def opcao_menu_op(self):
-            opcao = self.var_opcao.get()
-            if opcao == 1:
-                self.janela_add_lnk_tk()
 
         def limpar_caixa_addlink(self):
             self.caixa_txt_1.delete('0', 'end')
