@@ -196,7 +196,7 @@ def janela_principal():
             if opcao == 1:  # Abrir janela para adicionar links.
                 self.janela_add_lnk_tk()
             elif opcao == 2:  # Abre janela de opção para downloads
-                print('Em desenvolvimento <download>')
+                self.downloads_yt()
             elif opcao == 3:  # atualiza a caixa do 'ListBox'
                 self.listagem_arq_bd_view()
             elif opcao == 4:  # Limpa a caixa do 'ListBox'
