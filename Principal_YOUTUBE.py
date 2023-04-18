@@ -12,20 +12,18 @@ def janela_principal():
     class YouTube_v3:
         def __init__(self):
             # JANELA DE LOGIN
-            self.largura = str(600)
-            self.altura = str(250)
             self.janela_login = tk.Tk()
             self.janela_login.focus_displayof()
             self.janela_login.geometry('400x300')
             self.janela_login.title('DownTube')
-            self.janela_login.configure(bg='#B0E0E6')
-            self.frame_1 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10,  bg='#B0E0E6')
+            self.janela_login.configure(bg='#C0C0C0')
+            self.frame_1 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10, bg='#C0C0C0')
             self.frame_1.pack(fill=tk.Y)
-            self.frame_2 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10,  bg='#B0E0E6')
+            self.frame_2 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10, bg='#C0C0C0')
             self.frame_2.pack(fill=tk.Y)
-            self.frame_3 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10,  bg='#B0E0E6')
+            self.frame_3 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10, bg='#C0C0C0')
             self.frame_3.pack(fill=tk.Y)
-            self.frame_4 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10,  bg='#B0E0E6')
+            self.frame_4 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10, bg='#C0C0C0')
             self.frame_4.pack(anchor='se')
 
             # VARIÁVEIS
@@ -33,29 +31,30 @@ def janela_principal():
             self.opcao_db.set(int)
 
             # BOTÃO RADIOS
-            self.radio_bd_1 = tk.Radiobutton(self.frame_3, text='Banco de Dados externo (db4free.net)', bg='#B0E0E6',
+            self.radio_bd_1 = tk.Radiobutton(self.frame_3, text='Banco de Dados externo (db4free.net)', bg='#C0C0C0',
                                              padx=5, pady=5, variable=self.opcao_db, value=1)
             self.radio_bd_1.pack(anchor='w')
-            self.radio_bd_2 = tk.Radiobutton(self.frame_3, text='Banco de Dados Interno (localhost)', bg='#B0E0E6',
+            self.radio_bd_2 = tk.Radiobutton(self.frame_3, text='Banco de Dados Interno (localhost)', bg='#C0C0C0',
                                              padx=5, pady=5, variable=self.opcao_db, value=2)
             self.radio_bd_2.pack(anchor='w')
 
             #  Caixa de Texto
-            self.lb_caixa_txt_login = tk.Label(self.frame_1, text='Login',  bg='#B0E0E6')
+            self.lb_caixa_txt_login = tk.Label(self.frame_1, text='Login', bg='#C0C0C0')
             self.lb_caixa_txt_login.pack(side='top')
-            self.login_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4,  bg='#B0E0E6')
+            self.login_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4, bg='#C0C0C0')
             self.login_caixa_txt.pack(ancho='center')
 
-            self.lb_caixa_txt_pass = tk.Label(self.frame_1, text='PassWord',  bg='#B0E0E6')
+            self.lb_caixa_txt_pass = tk.Label(self.frame_1, text='PassWord', bg='#C0C0C0')
             self.lb_caixa_txt_pass.pack(side='top')
-            self.pass_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4, show='"',  bg='#B0E0E6')
+            self.pass_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4, show='"', bg='#C0C0C0')
             self.pass_caixa_txt.pack(anchor='center')
 
             self.botao_entrar = tk.Button(self.frame_2, text='Conectar', width=15, height=1, relief='ridge',
+                                          bg='#DCDCDC',
                                           command=self.banco_dados_opcao)
             self.botao_entrar.pack(anchor='center')
 
-            self.sair_janela = tk.Button(self.frame_4, text='Sair', width=5, height=1, relief='ridge', bg='#B0E0E6',
+            self.sair_janela = tk.Button(self.frame_4, text='Sair', width=5, height=1, relief='ridge', bg='#DCDCDC',
                                          pady=5, padx=5, command=self.janela_login.destroy)
             self.sair_janela.pack(side='right')
 
@@ -66,11 +65,6 @@ def janela_principal():
             if opcao_bd_enter == 1:
                 self.servidor_banco_dados = 'db4free.net'
             elif opcao_bd_enter == 2:
-                self.servidor_banco_dados = 'localhost'
-            elif opcao_bd_enter == 3:
-                # print('''Vou fazer o usuario escolher a pasta que ficara o arquivo na extensão de texto''')
-                messagebox.showinfo('AVISO!',
-                                    'Opção em desenvolvimento \nVocê esta sendo encaminhado para o servidor local!')
                 self.servidor_banco_dados = 'localhost'
             else:
                 messagebox.showwarning('ERRO', 'Ocorreu um ERRO na seleção da opção')
@@ -95,39 +89,44 @@ def janela_principal():
         def janela_add_lnk_tk(self):
             # JANELA ADD_LINK
             self.janela_add_link = tk.Tk()
-            self.janela_add_link.geometry(self.largura + 'x' + self.altura)
+            self.janela_add_link.geometry('800x230')
             self.janela_add_link.title('Adicionando um LINK')
-            self.janela_add_link.configure(bg='#B0E0E6')
+            self.janela_add_link.configure(bg='#A9A9A9')
 
             # FRAME
-            self.frame_1 = tk.Frame(self.janela_add_link, padx=5, pady=5, bg='#B0E0E6')
+            self.frame_1 = tk.Frame(self.janela_add_link, padx=5, pady=5, bg='#A9A9A9')
             self.frame_1.pack(fill=tk.Y)
-            self.frame_2 = tk.Frame(self.janela_add_link, padx=5, pady=5, bg='#B0E0E6')
+            self.frame_2 = tk.Frame(self.janela_add_link, padx=5, pady=5, bg='#A9A9A9')
             self.frame_2.pack(fill=tk.Y)
 
             # LABEL
-            self.label_txt_1 = tk.Label(self.frame_1, text='Adicione o link', bd=3, padx=10, pady=10, bg='#B0E0E6')
+            self.label_txt_1 = tk.Label(self.frame_1, text='Adicione o link', bd=3, padx=10, pady=10, bg='#A9A9A9')
             self.label_txt_1.pack(side='top')
-            self.caixa_txt_1 = tk.Entry(self.frame_1, bd=3, width=100, bg='#B0E0E6')
+            self.caixa_txt_1 = tk.Entry(self.frame_1, bd=3, width=100, bg='#A9A9A9')
             self.caixa_txt_1.pack(anchor='center')
 
             # StringVar
-            self.titulo_inf = tk.StringVar()  # Responsavel por informar na label o que foi adicionado.
+            self.titulo_inf = tk.StringVar()  # Responsável por informar na label o que foi adicionado.
+            self.titulo_inf.set(str)
 
             # LABEL
-            self.label_frame_2 = tk.LabelFrame(self.janela_add_link, text='Titulo Adicionado', bg='#B0E0E6')
+            self.label_frame_2 = tk.LabelFrame(self.janela_add_link, text='Titulo Adicionado', bg='#A9A9A9')
             self.label_frame_2.pack(anchor='center')
 
-            # bOTÕES
-            self.label_add = tk.Label(self.janela_add_link, textvariable=self.titulo_inf, bd=2, anchor='center', bg='#B0E0E6',
-                                      justify='center', relief='groove', width=100, height=3, padx=3, pady=3)
-            self.label_add.pack(anchor='s')
+
+
+            # BOTÕES
             self.botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
-                                            bg='#B0E0E6', relief='groove', command=self.add_link_db)
+                                            bg='#D3D3D3', relief='groove', command=self.add_link_db)
             self.botao_add_link.pack(anchor='center')
-            self.botao_fechar = tk.Button(self.frame_2, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
-                                          bg='#B0E0E6', relief='groove', command=self.janela_add_link.destroy)
-            self.botao_fechar.pack(anchor='se')
+
+            self.label_add = tk.Label(self.janela_add_link, textvariable=self.titulo_inf, bd=2, anchor='center',
+                                      bg='#A9A9A9', relief='groove', width=100, height=3, padx=3, pady=3)
+            self.label_add.pack(anchor='s')
+
+            self.botao_fechar = tk.Button(self.janela_add_link, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
+                                          bg='#D3D3D3', relief='groove', command=self.janela_add_link.destroy)
+            self.botao_fechar.pack(side='right')
 
         def janela_principal_tk(self):
 
@@ -170,14 +169,17 @@ def janela_principal():
                                                 width=20, padx=5, pady=5, variable=self.var_opcao, value=1)
             self.radio_addLink.pack(side='left')
 
-            self.radio_downloads = tk.Radiobutton(self.frame_view_3, text='Downloads', bg='#B0E0E6', bd=5, width=10, padx=5,
+            self.radio_downloads = tk.Radiobutton(self.frame_view_3, text='Downloads', bg='#B0E0E6', bd=5, width=10,
+                                                  padx=5,
                                                   pady=5, variable=self.var_opcao, value=2)
             self.radio_downloads.pack(side='left')
 
-            self.radio_atualizar = tk.Radiobutton(self.frame_view_3, text='Atualizar', bg='#B0E0E6', bd=5,  width=10, padx=5,
+            self.radio_atualizar = tk.Radiobutton(self.frame_view_3, text='Atualizar', bg='#B0E0E6', bd=5, width=10,
+                                                  padx=5,
                                                   pady=5, variable=self.var_opcao, value=3)
             self.radio_atualizar.pack(side='left')
-            self.radio_limpar = tk.Radiobutton(self.frame_view_3, text='Limpar', bg='#B0E0E6', bd=5, width=10, padx=5, pady=5,
+            self.radio_limpar = tk.Radiobutton(self.frame_view_3, text='Limpar', bg='#B0E0E6', bd=5, width=10, padx=5,
+                                               pady=5,
                                                variable=self.var_opcao, value=4)
             self.radio_limpar.pack(side='left')
 
