@@ -193,14 +193,14 @@ def janela_principal():
 
         def opcao_radio(self):
             opcao = self.var_opcao.get()
-            if opcao == 1:
+            if opcao == 1:  # Abrir janela para adicionar links.
                 self.janela_add_lnk_tk()
-            elif opcao == 2:
+            elif opcao == 2:  # Abre janela de opção para downloads
                 print('Em desenvolvimento <download>')
-            elif opcao == 3:
-                print('Em desenvolvimento <atualizar>')
-            elif opcao == 4:
-                print('Em desenvolvimento <limpar>')
+            elif opcao == 3:  # atualiza a caixa do 'ListBox'
+                self.listagem_arq_bd_view()
+            elif opcao == 4:  # Limpa a caixa do 'ListBox'
+                self.limpar_caixa_lista_links()
 
         def listagem_arq_bd_view(self):
             # BUSCANDO AS INFORMAÇÕES NO BANCO DE DADOS
