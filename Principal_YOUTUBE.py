@@ -75,7 +75,6 @@ def janela_principal():
                                                 user=usuario,
                                                 password=senha,
                                                 database='drizzithiago_sql')
-                print('AVISO!', 'Abrindo o programa')
                 self.janela_login.destroy()
                 self.janela_principal_tk()
             except db.Error as erro:
@@ -90,7 +89,7 @@ def janela_principal():
             # JANELA ADD_LINK
             self.janela_add_link = tk.Tk()
             self.janela_add_link.geometry('800x230')
-            self.janela_add_link.title('Adicionando um LINK')
+            self.janela_add_link.title('Adicione um LINK')
             self.janela_add_link.configure(bg='#A9A9A9')
 
             # FRAME
@@ -102,18 +101,16 @@ def janela_principal():
             # LABEL
             self.label_txt_1 = tk.Label(self.frame_1, text='Adicione o link', bd=3, padx=10, pady=10, bg='#A9A9A9')
             self.label_txt_1.pack(side='top')
+
+            # Caixa de entrada
             self.caixa_txt_1 = tk.Entry(self.frame_1, bd=3, width=100, bg='#A9A9A9')
             self.caixa_txt_1.pack(anchor='center')
 
             # StringVar
             self.titulo_inf = tk.StringVar()  # Responsável por informar na label o que foi adicionado.
-            self.titulo_inf.set(str)
-
             # LABEL
-            self.label_frame_2 = tk.LabelFrame(self.janela_add_link, text='Titulo Adicionado', bg='#A9A9A9')
+            self.label_frame_2 = tk.Label(self.janela_add_link, textvariable=self.titulo_inf, bg='#A9A9A9')
             self.label_frame_2.pack(anchor='center')
-
-
 
             # BOTÕES
             self.botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
@@ -220,8 +217,10 @@ def janela_principal():
         def add_link_db(self):
             link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em numa variável.
             try:
-                self.titulo_yt_lnk = YouTube(link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
+                self.titulo_yt_lnk = str(YouTube(link_yt).title)  # Prepara o link e apenas o titulo é adiciona na variável.
+                print(self.titulo_yt_lnk)
                 self.titulo_inf.set(f'Vídeo adicionado: \n{self.titulo_yt_lnk}')  # Notifica que o link foi adicionando.
+
             except:
                 messagebox.showerror('ERROR', 'Ocorreu um erro ao adicionar um TITULO!')
             cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
