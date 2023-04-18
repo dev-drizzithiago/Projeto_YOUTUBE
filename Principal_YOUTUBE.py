@@ -97,35 +97,36 @@ def janela_principal():
             self.janela_add_link = tk.Tk()
             self.janela_add_link.geometry(self.largura + 'x' + self.altura)
             self.janela_add_link.title('Adicionando um LINK')
+            self.janela_add_link.configure(bg='#B0E0E6')
 
             # FRAME
-            self.frame_1 = tk.Frame(self.janela_add_link, padx=5, pady=5)
+            self.frame_1 = tk.Frame(self.janela_add_link, padx=5, pady=5, bg='#B0E0E6')
             self.frame_1.pack(fill=tk.Y)
-            self.frame_2 = tk.Frame(self.janela_add_link, padx=5, pady=5)
+            self.frame_2 = tk.Frame(self.janela_add_link, padx=5, pady=5, bg='#B0E0E6')
             self.frame_2.pack(fill=tk.Y)
 
             # LABEL
-            self.label_txt_1 = tk.Label(self.frame_1, text='Adicione o link', bd=3, padx=10, pady=10)
+            self.label_txt_1 = tk.Label(self.frame_1, text='Adicione o link', bd=3, padx=10, pady=10, bg='#B0E0E6')
             self.label_txt_1.pack(side='top')
-            self.caixa_txt_1 = tk.Entry(self.frame_1, bd=3, width=100)
+            self.caixa_txt_1 = tk.Entry(self.frame_1, bd=3, width=100, bg='#B0E0E6')
             self.caixa_txt_1.pack(anchor='center')
 
             # StringVar
             self.titulo_inf = tk.StringVar()  # Responsavel por informar na label o que foi adicionado.
 
             # LABEL
-            self.label_frame_2 = tk.LabelFrame(self.janela_add_link, text='Titulo Adicionado')
+            self.label_frame_2 = tk.LabelFrame(self.janela_add_link, text='Titulo Adicionado', bg='#B0E0E6')
             self.label_frame_2.pack(anchor='center')
 
             # bOTÕES
-            self.label_add = tk.Label(self.janela_add_link, textvariable=self.titulo_inf, bd=2, anchor='center',
+            self.label_add = tk.Label(self.janela_add_link, textvariable=self.titulo_inf, bd=2, anchor='center', bg='#B0E0E6',
                                       justify='center', relief='groove', width=100, height=3, padx=3, pady=3)
             self.label_add.pack(anchor='s')
             self.botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
-                                            relief='groove', command=self.add_link_db)
+                                            bg='#B0E0E6', relief='groove', command=self.add_link_db)
             self.botao_add_link.pack(anchor='center')
             self.botao_fechar = tk.Button(self.frame_2, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
-                                          relief='groove', command=self.janela_add_link.destroy)
+                                          bg='#B0E0E6', relief='groove', command=self.janela_add_link.destroy)
             self.botao_fechar.pack(anchor='se')
 
         def janela_principal_tk(self):
@@ -165,21 +166,18 @@ def janela_principal():
             self.lista_titulos.pack(padx=10, pady=10, expand='YES', anchor='center')
 
             # BOTÕES RADIOS
-            self.radio_addLink = tk.Radiobutton(self.frame_view_3, text='Adicionar mais um link', bg='#B0E0E6',
-                                                width=20, padx=5,
-                                                pady=5, variable=self.var_opcao, value=1)
+            self.radio_addLink = tk.Radiobutton(self.frame_view_3, text='Adicionar mais um link', bg='#B0E0E6', bd=5,
+                                                width=20, padx=5, pady=5, variable=self.var_opcao, value=1)
             self.radio_addLink.pack(side='left')
 
-            self.radio_downloads = tk.Radiobutton(self.frame_view_3, text='Downloads', bg='#B0E0E6', width=10, padx=5,
-                                                  pady=5,
-                                                  variable=self.var_opcao, value=2)
+            self.radio_downloads = tk.Radiobutton(self.frame_view_3, text='Downloads', bg='#B0E0E6', bd=5, width=10, padx=5,
+                                                  pady=5, variable=self.var_opcao, value=2)
             self.radio_downloads.pack(side='left')
 
-            self.radio_atualizar = tk.Radiobutton(self.frame_view_3, text='Atualizar', bg='#B0E0E6', width=10, padx=5,
-                                                  pady=5,
-                                                  variable=self.var_opcao, value=3)
+            self.radio_atualizar = tk.Radiobutton(self.frame_view_3, text='Atualizar', bg='#B0E0E6', bd=5,  width=10, padx=5,
+                                                  pady=5, variable=self.var_opcao, value=3)
             self.radio_atualizar.pack(side='left')
-            self.radio_limpar = tk.Radiobutton(self.frame_view_3, text='Limpar', bg='#B0E0E6', width=10, padx=5, pady=5,
+            self.radio_limpar = tk.Radiobutton(self.frame_view_3, text='Limpar', bg='#B0E0E6', bd=5, width=10, padx=5, pady=5,
                                                variable=self.var_opcao, value=4)
             self.radio_limpar.pack(side='left')
 
