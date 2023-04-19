@@ -217,7 +217,7 @@ def janela_principal():
         def add_link_db(self):
             link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em numa variável.
             try:
-                self.titulo_yt_lnk = str(YouTube(link_yt).title)  # Prepara o link e apenas o titulo é adiciona na variável.
+                self.titulo_yt_lnk = YouTube(link_yt).title # Prepara o link e apenas o titulo é adiciona na variável.
                 print(self.titulo_yt_lnk)
                 self.titulo_inf.set(f'Vídeo adicionado: \n{self.titulo_yt_lnk}')  # Notifica que o link foi adicionando.
 
@@ -232,6 +232,7 @@ def janela_principal():
                               'VALUES (%s, %s)'
                 valores_sql_lnk = (link_yt, self.titulo_yt_lnk)  # atribui os valores na variável
                 cursor.execute(comando_SQL, valores_sql_lnk)  # Executa o comando e adicionar literalmente no db
+                self.titulo_yt_lnk = ''
             except db.Error as falha:
                 messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
                                               f'{falha}')
