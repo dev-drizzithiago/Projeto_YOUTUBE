@@ -1,5 +1,4 @@
 import mysql.connector
-from pytube import YouTube
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import *
@@ -11,7 +10,7 @@ def janela_principal():
 
     class YouTube_v3:
         def __init__(self):
-            # self.janela_add_lnk_tk()
+            #self.janela_add_lnk_tk()
             # JANELA DE LOGIN
             self.janela_login = tk.Tk()
             self.janela_login.focus_displayof()
@@ -100,11 +99,9 @@ def janela_principal():
             self.frame_2.pack(fill=tk.Y)
 
             # LABEL_1
-            self.label_frame_1 = tk.LabelFrame(self.frame_1, text='YouTube', bd=3, padx=10, pady=10, bg='#A9A9A9')
-            self.label_frame_1.pack(fill='both', expand='yes')
-            self.label_1 = tk.Label(self.frame_1, text='Adicione o link na caixa de texto', bd=2, anchor='center',
-                                    bg='#A9A9A9', relief='groove', width=150, height=3, padx=3, pady=3)
-            self.label_1.pack(side='top')
+            self.label1 = tk.Label(self.frame_1, text='Adicione um link do Youtube', bd=3, padx=10, pady=10,
+                                               height=2, bg='#A9A9A9')
+            self.label1.pack(fill='both', expand='yes')
 
             # Caixa de entrada
             self.caixa_txt_1 = tk.Entry(self.frame_1, bd=3, width=100, bg='#A9A9A9')
@@ -114,12 +111,9 @@ def janela_principal():
             self.titulo_inf = tk.StringVar()  # Responsável por informar na label o que foi adicionado.
 
             # LABEL_2
-            self.label_frame_2 = tk.LabelFrame(self.janela_add_link, text='Video adicionado', bg='#A9A9A9', height=8,
-                                               labelanchor='n')
-            self.label_frame_2.pack(fill='both', expand='no')
-
-            self.label_add = tk.Label(self.label_frame_2, textvariable=self.titulo_inf, bg='#A9A9A9', anchor='center')
-            self.label_add.pack()
+            self.label_add = tk.Label(self.frame_2, textvariable=self.titulo_inf, bg='#A9A9A9', anchor='center', width=50,
+                                      height=4, padx=5, pady=5, bd=2)
+            self.label_add.pack(anchor='center')
 
             # BOTÕES
             self.botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
@@ -220,14 +214,9 @@ def janela_principal():
 
         # Função responsável por adicionar o link no banco de dados.
         def add_link_db(self):
-            link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em numa variável.
-            try:
-                # Prepara o link e apenas o titulo é adiciona na variável.
-                titulo_arq = YouTube(link_yt)
-                self.titulo = titulo_arq.title
-                self.titulo_inf.set(self.titulo)
-            except:
-                messagebox.showerror('ERROR', 'Ocorreu um erro ao adicionar um TITULO!')
+            from pytube import YouTube
+            self.link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em numa variável.
+            self.titulo_arq = YouTube(self.link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
             cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
             self.limpar_caixa_addlink()  # Limpa a caixa de texto para poder adicionar outro link
             try:
@@ -235,12 +224,13 @@ def janela_principal():
                 comando_SQL = 'INSERT INTO youtube (' \
                               'link_youtube, titulo_yt) ' \
                               'VALUES (%s, %s)'
-                valores_sql_lnk = (link_yt, self.titulo)  # atribui os valores na variável
+                valores_sql_lnk = (self.link_yt, self.titulo_arq)  # atribui os valores na variável
                 cursor.execute(comando_SQL, valores_sql_lnk)  # Executa o comando e adicionar literalmente no db
+                self.titulo_inf.set(f'Vídeo adicionado com sucesso! \n{self.titulo_arq}')
+                self.titulo_arq = ''
             except db.Error as falha:
                 messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
                                               f'{falha}')
-                self.titulo.delete('0', 'end')
 
         def barra_progresso(self):
             self.progresso_wd = tk.Tk()
