@@ -1,22 +1,20 @@
-from pytube import YouTube
-import tkinter as tk
-from tkinter import messagebox, Tk
-from tkinter.ttk import *
-import mysql.connector as db
-import sqlite3
-
-
 def janela_principal():
+    from pytube import YouTube
+    import tkinter as tk
+    from tkinter import messagebox
+    import mysql.connector as db
+
     class YouTube_v3:
         def __init__(self):
             # JANELA DE LOGIN
-            self.janela_principal_YT = tk.Tk()
-            self.janela_principal_YT.focus_displayof()
-            self.janela_principal_YT.title('DownTube')
-            self.janela_principal_YT.geometry('200x185')
-            self.frame_1 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
+            self.login_banco = tk.Tk()
+            self.login_banco.focus_displayof()
+            self.login_banco.title('DownTube')
+            self.login_banco.geometry('350x200')
+            self.login_banco.configure(pady=5, padx=5, bd=5)
+            self.frame_1 = tk.Frame(self.login_banco, width=20, height=20, pady=10, padx=10)
             self.frame_1.pack(fill=tk.Y)
-            self.frame_2 = tk.Frame(self.janela_principal_YT, width=20, height=20, pady=10, padx=10)
+            self.frame_2 = tk.Frame(self.login_banco, width=20, height=20, pady=10, padx=10)
             self.frame_2.pack(fill=tk.Y)
 
             self.lb_caixa_txt_login = tk.Label(self.frame_1, text='Login')
@@ -29,12 +27,12 @@ def janela_principal():
             self.pass_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4)
             self.pass_caixa_txt.pack(anchor='center')
 
-            self.botao_entrar = tk.Button(self.frame_2, text='Entrar', width=15, height=1, relief='ridge',
+            self.botao_entrar = tk.Button(self.frame_2, text='Conectar', width=15, height=1, relief='ridge',
                                           command=self.banco_dados)
             self.botao_entrar.pack(anchor='center')
 
-            self.sair_janela = tk.Button(self.janela_principal_YT, text='Sair', width=5, height=1,
-                                         command=self.janela_principal_YT.destroy)
+            self.sair_janela = tk.Button(self.login_banco, text='Sair', width=5, height=1, padx=5, pady=5,
+                                         command=self.login_banco.destroy)
             self.sair_janela.pack(anchor='se')
 
             tk.mainloop()
@@ -90,7 +88,7 @@ def janela_principal():
         def janela_add_lnk_tk(self):
             self.janela_menu.destroy()
             self.janela_add_link = tk.Tk()
-            self.janela_add_link.geometry('400x200')
+            self.janela_add_link.geometry('300x300')
             self.janela_add_link.title('Adicionando um LINK')
             self.frame_1 = tk.Frame(self.janela_add_link, padx=5, pady=5)
             self.frame_1.pack(fill=tk.Y)
@@ -110,7 +108,7 @@ def janela_principal():
             self.botao_voltar.pack(anchor='se')
             self.botao_fechar = tk.Button(self.frame_2, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
                                           relief='groove', command=self.janela_add_link.destroy)
-            self.botao_fechar.pack(anchor='se')
+            self.botao_fechar.pack(side='rigth')
 
         def janela_view_lnks_tk(self):
             self.janela_view_link = tk.Tk()
