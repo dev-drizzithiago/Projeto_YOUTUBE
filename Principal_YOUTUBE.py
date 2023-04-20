@@ -11,7 +11,7 @@ def janela_principal():
 
     class YouTube_v3:
         def __init__(self):
-            self.janela_add_lnk_tk()
+            # self.janela_add_lnk_tk()
             # JANELA DE LOGIN
             self.janela_login = tk.Tk()
             self.janela_login.focus_displayof()
@@ -103,17 +103,15 @@ def janela_principal():
             self.label_frame_1 = tk.LabelFrame(self.frame_1, text='YouTube', bd=3, padx=10, pady=10, bg='#A9A9A9')
             self.label_frame_1.pack(fill='both', expand='yes')
             self.label_1 = tk.Label(self.frame_1, text='Adicione o link na caixa de texto', bd=2, anchor='center',
-                                      bg='#A9A9A9', relief='groove', width=10, height=3, padx=3, pady=3)
+                                    bg='#A9A9A9', relief='groove', width=150, height=3, padx=3, pady=3)
             self.label_1.pack(side='top')
 
             # Caixa de entrada
             self.caixa_txt_1 = tk.Entry(self.frame_1, bd=3, width=100, bg='#A9A9A9')
             self.caixa_txt_1.pack(anchor='center')
-            titulo = str(YouTube(self.caixa_txt_1.get()).title)
 
             # StringVar
             self.titulo_inf = tk.StringVar()  # Responsável por informar na label o que foi adicionado.
-            self.titulo_inf.set(titulo)
 
             # LABEL_2
             self.label_frame_2 = tk.LabelFrame(self.janela_add_link, text='Video adicionado', bg='#A9A9A9', height=8,
@@ -224,7 +222,10 @@ def janela_principal():
         def add_link_db(self):
             link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em numa variável.
             try:
-                self.titulo_yt_lnk = YouTube(link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
+                # Prepara o link e apenas o titulo é adiciona na variável.
+                titulo_arq = YouTube(link_yt)
+                self.titulo = titulo_arq.title
+                self.titulo_inf.set(self.titulo)
             except:
                 messagebox.showerror('ERROR', 'Ocorreu um erro ao adicionar um TITULO!')
             cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
@@ -234,12 +235,12 @@ def janela_principal():
                 comando_SQL = 'INSERT INTO youtube (' \
                               'link_youtube, titulo_yt) ' \
                               'VALUES (%s, %s)'
-                valores_sql_lnk = (link_yt, self.titulo_yt_lnk)  # atribui os valores na variável
+                valores_sql_lnk = (link_yt, self.titulo)  # atribui os valores na variável
                 cursor.execute(comando_SQL, valores_sql_lnk)  # Executa o comando e adicionar literalmente no db
             except db.Error as falha:
                 messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
                                               f'{falha}')
-                self.titulo_yt_lnk.delete('0', 'end')
+                self.titulo.delete('0', 'end')
 
         def barra_progresso(self):
             self.progresso_wd = tk.Tk()
