@@ -99,7 +99,7 @@ def janela_principal():
             self.frame_2.pack(fill=tk.Y)
 
             # LABEL
-            self.label_txt_1 = tk.Label(self.frame_1, text='Adicione o link', bd=3, padx=10, pady=10, bg='#A9A9A9')
+            self.label_txt_1 = tk.LabelFrame(self.frame_1, text='Adicione o link', bd=3, padx=10, pady=10, bg='#A9A9A9')
             self.label_txt_1.pack(side='top')
 
             # Caixa de entrada
@@ -108,7 +108,9 @@ def janela_principal():
 
             # StringVar
             self.titulo_inf = tk.StringVar()  # Responsável por informar na label o que foi adicionado.
+
             # LABEL
+            self.label
             self.label_frame_2 = tk.Label(self.janela_add_link, textvariable=self.titulo_inf, bg='#A9A9A9')
             self.label_frame_2.pack(anchor='center')
 
@@ -217,7 +219,7 @@ def janela_principal():
         def add_link_db(self):
             link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em numa variável.
             try:
-                self.titulo_yt_lnk = YouTube(link_yt).title # Prepara o link e apenas o titulo é adiciona na variável.
+                self.titulo_yt_lnk = YouTube(link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
                 print(self.titulo_yt_lnk)
                 self.titulo_inf.set(f'Vídeo adicionado: \n{self.titulo_yt_lnk}')  # Notifica que o link foi adicionando.
 
