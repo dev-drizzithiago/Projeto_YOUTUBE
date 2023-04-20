@@ -11,6 +11,7 @@ def janela_principal():
 
     class YouTube_v3:
         def __init__(self):
+            self.janela_add_lnk_tk()
             # JANELA DE LOGIN
             self.janela_login = tk.Tk()
             self.janela_login.focus_displayof()
@@ -88,7 +89,7 @@ def janela_principal():
         def janela_add_lnk_tk(self):
             # JANELA ADD_LINK
             self.janela_add_link = tk.Tk()
-            self.janela_add_link.geometry('800x230')
+            self.janela_add_link.geometry('800x250')
             self.janela_add_link.title('Adicione um LINK')
             self.janela_add_link.configure(bg='#A9A9A9')
 
@@ -98,30 +99,34 @@ def janela_principal():
             self.frame_2 = tk.Frame(self.janela_add_link, padx=5, pady=5, bg='#A9A9A9')
             self.frame_2.pack(fill=tk.Y)
 
-            # LABEL
-            self.label_txt_1 = tk.LabelFrame(self.frame_1, text='Adicione o link', bd=3, padx=10, pady=10, bg='#A9A9A9')
-            self.label_txt_1.pack(side='top')
+            # LABEL_1
+            self.label_frame_1 = tk.LabelFrame(self.frame_1, text='YouTube', bd=3, padx=10, pady=10, bg='#A9A9A9')
+            self.label_frame_1.pack(fill='both', expand='yes')
+            self.label_1 = tk.Label(self.frame_1, text='Adicione o link na caixa de texto', bd=2, anchor='center',
+                                      bg='#A9A9A9', relief='groove', width=10, height=3, padx=3, pady=3)
+            self.label_1.pack(side='top')
 
             # Caixa de entrada
             self.caixa_txt_1 = tk.Entry(self.frame_1, bd=3, width=100, bg='#A9A9A9')
             self.caixa_txt_1.pack(anchor='center')
+            titulo = str(YouTube(self.caixa_txt_1.get()).title)
 
             # StringVar
             self.titulo_inf = tk.StringVar()  # Responsável por informar na label o que foi adicionado.
+            self.titulo_inf.set(titulo)
 
-            # LABEL
-            self.label
-            self.label_frame_2 = tk.Label(self.janela_add_link, textvariable=self.titulo_inf, bg='#A9A9A9')
-            self.label_frame_2.pack(anchor='center')
+            # LABEL_2
+            self.label_frame_2 = tk.LabelFrame(self.janela_add_link, text='Video adicionado', bg='#A9A9A9', height=8,
+                                               labelanchor='n')
+            self.label_frame_2.pack(fill='both', expand='no')
+
+            self.label_add = tk.Label(self.label_frame_2, textvariable=self.titulo_inf, bg='#A9A9A9', anchor='center')
+            self.label_add.pack()
 
             # BOTÕES
             self.botao_add_link = tk.Button(self.frame_2, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
                                             bg='#D3D3D3', relief='groove', command=self.add_link_db)
             self.botao_add_link.pack(anchor='center')
-
-            self.label_add = tk.Label(self.janela_add_link, textvariable=self.titulo_inf, bd=2, anchor='center',
-                                      bg='#A9A9A9', relief='groove', width=100, height=3, padx=3, pady=3)
-            self.label_add.pack(anchor='s')
 
             self.botao_fechar = tk.Button(self.janela_add_link, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
                                           bg='#D3D3D3', relief='groove', command=self.janela_add_link.destroy)
@@ -220,9 +225,6 @@ def janela_principal():
             link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em numa variável.
             try:
                 self.titulo_yt_lnk = YouTube(link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
-                print(self.titulo_yt_lnk)
-                self.titulo_inf.set(f'Vídeo adicionado: \n{self.titulo_yt_lnk}')  # Notifica que o link foi adicionando.
-
             except:
                 messagebox.showerror('ERROR', 'Ocorreu um erro ao adicionar um TITULO!')
             cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
@@ -234,10 +236,10 @@ def janela_principal():
                               'VALUES (%s, %s)'
                 valores_sql_lnk = (link_yt, self.titulo_yt_lnk)  # atribui os valores na variável
                 cursor.execute(comando_SQL, valores_sql_lnk)  # Executa o comando e adicionar literalmente no db
-                self.titulo_yt_lnk = ''
             except db.Error as falha:
                 messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
                                               f'{falha}')
+                self.titulo_yt_lnk.delete('0', 'end')
 
         def barra_progresso(self):
             self.progresso_wd = tk.Tk()
