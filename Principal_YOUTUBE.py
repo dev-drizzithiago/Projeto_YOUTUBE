@@ -1,7 +1,6 @@
 import mysql.connector
 import tkinter as tk
 from tkinter import messagebox
-from tkinter import *
 import mysql.connector as db
 
 
@@ -215,19 +214,19 @@ def janela_principal():
         # Função responsável por adicionar o link no banco de dados.
         def add_link_db(self):
             from pytube import YouTube
-            self.link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em numa variável.
-            self.titulo_arq = YouTube(self.link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
+            link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em numa variável.
+            titulo_arq = YouTube(link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
             cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
-            self.limpar_caixa_addlink()  # Limpa a caixa de texto para poder adicionar outro link
             try:
                 # Comando em SQL para adicionar no DB
                 comando_SQL = 'INSERT INTO youtube (' \
                               'link_youtube, titulo_yt) ' \
                               'VALUES (%s, %s)'
-                valores_sql_lnk = (self.link_yt, self.titulo_arq)  # atribui os valores na variável
+                valores_sql_lnk = (link_yt, titulo_arq)  # atribui os valores na variável
                 cursor.execute(comando_SQL, valores_sql_lnk)  # Executa o comando e adicionar literalmente no db
-                self.titulo_inf.set(f'Vídeo adicionado com sucesso! \n{self.titulo_arq}')
-                self.titulo_arq = ''
+                self.titulo_inf.set(f'Vídeo adicionado com sucesso! \n{titulo_arq}')
+                self.limpar_caixa_addlink()  # Limpa a caixa de texto para poder adicionar outro link
+                self.titulo_inf.set(titulo_arq)
             except db.Error as falha:
                 messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
                                               f'{falha}')
