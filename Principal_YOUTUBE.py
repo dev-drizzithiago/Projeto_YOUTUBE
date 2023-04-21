@@ -84,8 +84,6 @@ def janela_principal():
                 if not resp:
                     self.janela_login.destroy()
 
-        # JANELA DE MENU
-
         def janela_add_lnk_tk(self):
             # JANELA ADD_LINK
             self.janela_add_link = tk.Tk()
@@ -107,7 +105,7 @@ def janela_principal():
             self.label1.pack(fill='both', expand='yes')
 
             # Caixa de entrada
-            self.caixa_txt_1 = tk.Entry(self.frame_1_add_lnk, bd=3, width=100, bg='#A9A9A9', relief='raised')
+            self.caixa_txt_1 = tk.Entry(self.frame_1_add_lnk, bd=2, width=100, bg='#A9A9A9')
             self.caixa_txt_1.pack(anchor='center')
 
             # BOTÕES
@@ -126,6 +124,7 @@ def janela_principal():
             link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em numa variável.
             titulo_arq = YouTube(link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
             cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
+            print(titulo_arq)
             try:
                 # Comando em SQL para adicionar no DB
                 comando_SQL = 'INSERT INTO youtube (' \
@@ -176,7 +175,6 @@ def janela_principal():
 
             self.barra_rolagem = tk.Scrollbar(self.frame_view_2, orient='vertical')
             self.barra_rolagem.pack(side='right', fill=tk.Y)
-
 
             self.lista_titulos = tk.Listbox(self.frame_view_2, bg='#FFDEAD', selectmode='extended', width=100,
                                             height=20, yscrollcommand=self.barra_rolagem.set)
