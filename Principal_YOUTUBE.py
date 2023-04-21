@@ -174,9 +174,9 @@ def janela_principal():
 
             # LISTBOX
 
-            self.barra_rolagem = tk.Scrollbar(self.janela_view_link, orient='vertical')
+            self.barra_rolagem = tk.Scrollbar(self.frame_view_2, orient='vertical')
             self.barra_rolagem.pack(side='right', fill=tk.Y)
-            
+
 
             self.lista_titulos = tk.Listbox(self.frame_view_2, bg='#FFDEAD', selectmode='extended', width=100,
                                             height=20, yscrollcommand=self.barra_rolagem.set)
