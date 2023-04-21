@@ -2,6 +2,8 @@ import mysql.connector
 import tkinter as tk
 from tkinter import messagebox
 import mysql.connector as db
+from time import sleep
+from pytube import YouTube
 
 
 def janela_principal():
@@ -87,7 +89,7 @@ def janela_principal():
         def janela_add_lnk_tk(self):
             # JANELA ADD_LINK
             self.janela_add_link = tk.Tk()
-            self.janela_add_link.geometry('800x250')
+            self.janela_add_link.geometry('700x200')
             self.janela_add_link.title('Adicione um LINK')
             self.janela_add_link.configure(bg='#A9A9A9')
 
@@ -108,15 +110,6 @@ def janela_principal():
             self.caixa_txt_1 = tk.Entry(self.frame_1_add_lnk, bd=3, width=100, bg='#A9A9A9', relief='raised')
             self.caixa_txt_1.pack(anchor='center')
 
-            # StringVar
-            self.var_titulo_inf_add = tk.StringVar()  # Responsável por informar na label o que foi adicionado.
-            self.var_titulo_inf_add.set('teste')
-            
-            # LABEL_2
-            self.label_add = tk.Label(self.frame_2_add_lnk, textvariable=self.var_titulo_inf_add, bg='#A9A9A9',
-                                      anchor='center', width=85, padx=5, pady=5, bd=2, relief='raised')
-            self.label_add.pack()
-
             # BOTÕES
             self.botao_add_link = tk.Button(self.frame_3_add_lnk, text='Adicionar', bd=4, width=10, height=1, padx=3,
                                             pady=3,
@@ -130,8 +123,6 @@ def janela_principal():
             # Função responsável por adicionar o link no banco de dados.
 
         def add_link_db(self):
-            from time import sleep
-            from pytube import YouTube
             link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em numa variável.
             titulo_arq = YouTube(link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
             cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
@@ -142,9 +133,9 @@ def janela_principal():
                               'VALUES (%s, %s)'
                 valores_sql_lnk = (link_yt, titulo_arq)  # atribui os valores na variável
                 cursor.execute(comando_SQL, valores_sql_lnk)  # Executa o comando e adicionar literalmente no db
-                # self.var_titulo_inf_add.set(f'Vídeo adicionado com sucesso! \n{titulo_arq}')
+                messagebox.showinfo('Aviso!', f'Vídeo adicionado com sucesso! \n{titulo_arq}')
                 self.limpar_caixa_addlink()  # Limpa a caixa de texto para poder adicionar outro link
-                sleep(1)
+                sleep(0.5)
                 self.listagem_arq_bd_view()
             except db.Error as falha:
                 messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
@@ -182,8 +173,13 @@ def janela_principal():
             self.label_view_1.pack(side='top')
 
             # LISTBOX
+
+            self.barra_rolagem = tk.Scrollbar(self.janela_view_link, orient='vertical')
+            self.barra_rolagem.pack(side='right', fill=tk.Y)
+            
+
             self.lista_titulos = tk.Listbox(self.frame_view_2, bg='#FFDEAD', selectmode='extended', width=100,
-                                            height=20)
+                                            height=20, yscrollcommand=self.barra_rolagem.set)
             self.lista_titulos.pack(padx=10, pady=10, expand='YES', anchor='center')
 
             # BOTÕES RADIOS
