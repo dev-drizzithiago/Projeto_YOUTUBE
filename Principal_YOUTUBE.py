@@ -212,7 +212,7 @@ def janela_principal():
             if opcao == 1:  # Abrir janela para adicionar links.
                 self.janela_add_lnk_tk()
             elif opcao == 2:  # Abre janela de opção para downloads
-                self.downloads_yt()
+                self.janela_downloads_tk()
             elif opcao == 3:  # atualiza a caixa do 'ListBox'
                 self.listagem_arq_bd_view()
             elif opcao == 4:  # Limpa a caixa do 'ListBox'
@@ -242,15 +242,21 @@ def janela_principal():
         def limpar_caixa_lista_links(self):
             self.lista_titulos.delete('0', 'end')
 
-        def downloads_yt(self):
+        def janela_downloads_tk(self):
+            self.janela_downloads = tk.Tk()
+            self.janela_downloads.geometry('300x300')
+            self.janela_downloads.configure(bd=3, pady=5, padx=5)
+            self.frame_down_1 = tk.Frame(self.janela_downloads, width=50, height=10, padx=5, pady=5, bd=2)
+            self.frame_down_1.pack(anchor='center')
             links_lista_1 = []
             selecao_titulo = self.lista_titulos.curselection()
+
             for titulo_link in selecao_titulo:
                 titulo_escolhido = self.lista_titulos.get(titulo_link)
                 links_lista_1.append(titulo_escolhido)
+
             for dados_down in links_lista_1:
                 titulo_down = str(dados_down)
-                print(titulo_down)
                 cursor_down = self.conexao_banco.cursor()
                 try:
                     convertendo_down_sql = str("SELECT * FROM youtube "
@@ -265,7 +271,7 @@ def janela_principal():
                 try:
                     downloads = YouTube(self.link_video)
                     downloads.streams.filter(adaptive=True).first().download('C:/Youtube/Videos')
-                    messagebox.showinfo('Downloads...', f'Download do vídeo {self.titulo_inf} foi concluído')
+                    messagebox.showinfo('Downloads...', f'Download do vídeo \n{self.titulo_inf} \nFoi concluído')
                 except:
                     messagebox.showerror('AVISO!!', 'Ocorreu um erro no downloads do video!')
 
