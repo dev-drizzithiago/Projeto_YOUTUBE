@@ -260,7 +260,14 @@ def janela_principal():
                 except mysql.connector.Error as falha:
                     messagebox.showerror('ERROR', f' Ocorreu um erro: \n{falha}')
                 for id, link, titulo in cursor_down:
-                    print(link)
+                    self.link_video = str(link)
+                    self.titulo_inf = str(titulo)
+                try:
+                    downloads = YouTube(self.link_video)
+                    downloads.streams.filter(adaptive=True).first().download('C:/Youtube/Videos')
+                    messagebox.showinfo('Downloads...', f'Download do vídeo {self.titulo_inf} foi concluído')
+                except:
+                    messagebox.showerror('AVISO!!', 'Ocorreu um erro no downloads do video!')
 
     iniciando = YouTube_v3()
 
