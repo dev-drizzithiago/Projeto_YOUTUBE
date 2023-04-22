@@ -184,19 +184,17 @@ def janela_principal():
             self.radio_addLink = tk.Radiobutton(self.frame_view_3, text='Adicionar mais um link', bg='#B0E0E6', bd=5,
                                                 width=20, padx=5, pady=5, variable=self.var_opcao, value=1)
             self.radio_addLink.pack(side='left')
-
-            self.radio_downloads = tk.Radiobutton(self.frame_view_3, text='Downloads', bg='#B0E0E6', bd=5, width=10,
-                                                  padx=5,
-                                                  pady=5, variable=self.var_opcao, value=2)
-            self.radio_downloads.pack(side='left')
-
+            #
+            self.radio_princp = tk.Radiobutton(self.frame_view_3, text='Downloads', bg='#B0E0E6', bd=5, width=10,
+                                               padx=5, pady=5, variable=self.var_opcao, value=2)
+            self.radio_princp.pack(side='left')
+            #
             self.radio_atualizar = tk.Radiobutton(self.frame_view_3, text='Atualizar', bg='#B0E0E6', bd=5, width=10,
-                                                  padx=5,
-                                                  pady=5, variable=self.var_opcao, value=3)
+                                                  padx=5, pady=5, variable=self.var_opcao, value=3)
             self.radio_atualizar.pack(side='left')
+            #
             self.radio_limpar = tk.Radiobutton(self.frame_view_3, text='Limpar', bg='#B0E0E6', bd=5, width=10, padx=5,
-                                               pady=5,
-                                               variable=self.var_opcao, value=4)
+                                               pady=5, variable=self.var_opcao, value=4)
             self.radio_limpar.pack(side='left')
 
             # Bottão Entrar
@@ -246,8 +244,18 @@ def janela_principal():
             self.janela_downloads = tk.Tk()
             self.janela_downloads.geometry('300x300')
             self.janela_downloads.configure(bd=3, pady=5, padx=5)
-            self.frame_down_1 = tk.Frame(self.janela_downloads, width=50, height=10, padx=5, pady=5, bd=2)
-            self.frame_down_1.pack(anchor='center')
+            self.frame_down_1 = tk.Frame(self.janela_downloads, width=50, height=10, padx=5, pady=5, bd=2, bg='#6495ED')
+            self.frame_down_1.pack(anchor='n')
+            self.frame_down_2 = tk.Frame(self.janela_downloads, width=50, height=10, padx=5, pady=5, bd=2, bg='#6495ED')
+            self.frame_down_2.pack(anchor='center')
+            self.frame_down_3 = tk.Frame(self.janela_downloads, width=50, height=10, padx=5, pady=5, bd=2, bg='#6495ED')
+            self.frame_down_3.pack(anchor='s')
+            self.var_down_opc_radio = tk.IntVar()
+            self.var_down_opc_radio.set(int)
+            self.label_down_opc = tk.Label(self.frame_down_1, text='Escolha uma opcao')
+            self.radio_down_opc_video = tk.Radiobutton(self.frame_down_2, text='Vídeo', pady=5, padx=5, bd=2, bg='#6495ED')
+            self.radio_down_opc_video.pack(side='left')
+
             links_lista_1 = []
             selecao_titulo = self.lista_titulos.curselection()
 
