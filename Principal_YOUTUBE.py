@@ -241,6 +241,8 @@ def janela_principal():
             self.lista_titulos.delete('0', 'end')
 
         def janela_downloads_tk(self):
+
+            # Janela vai ser uma combinação de opções
             self.janela_downloads = tk.Tk()
             self.janela_downloads.geometry('300x300')
             self.janela_downloads.configure(bd=3, pady=5, padx=5)
@@ -250,11 +252,20 @@ def janela_principal():
             self.frame_down_2.pack(anchor='center')
             self.frame_down_3 = tk.Frame(self.janela_downloads, width=50, height=10, padx=5, pady=5, bd=2, bg='#6495ED')
             self.frame_down_3.pack(anchor='s')
+
+            # Variável
             self.var_down_opc_radio = tk.IntVar()
             self.var_down_opc_radio.set(int)
-            self.label_down_opc = tk.Label(self.frame_down_1, text='Escolha uma opcao')
-            self.radio_down_opc_video = tk.Radiobutton(self.frame_down_2, text='Vídeo', pady=5, padx=5, bd=2, bg='#6495ED')
-            self.radio_down_opc_video.pack(side='left')
+
+            # Primeira escolha
+            self.label_down_opc = tk.Label(self.frame_down_1, text='Escolha uma opcao', padx=5, pady=5, bg='#6495ED')
+            self.label_down_opc.pack(side='top')
+            self.radio_down_opc_video = tk.Radiobutton(self.frame_down_2, text='Vídeo', pady=5, padx=5, bd=2, bg='#6495ED',
+                                                       variable=self.var_down_opc_radio, value=1)
+            self.radio_down_opc_video.pack(side='bottom')
+            self.radio_down_opc_audio = tk.Radiobutton(self.frame_down_2, text='Audio', pady=5, padx=5, bd=2, bg='#6495ED',
+                                                       variable=self.var_down_opc_radio, value=2)
+            self.radio_down_opc_audio.pack(side='bottom')
 
             links_lista_1 = []
             selecao_titulo = self.lista_titulos.curselection()
