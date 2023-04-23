@@ -35,6 +35,7 @@ def janela_principal():
             self.radio_bd_1 = tk.Radiobutton(self.frame_3, text='Banco de Dados externo (db4free.net)', bg='#C0C0C0',
                                              padx=5, pady=5, variable=self.opcao_db, value=1)
             self.radio_bd_1.pack(anchor='w')
+            #
             self.radio_bd_2 = tk.Radiobutton(self.frame_3, text='Banco de Dados Interno (localhost)', bg='#C0C0C0',
                                              padx=5, pady=5, variable=self.opcao_db, value=2)
             self.radio_bd_2.pack(anchor='w')
@@ -44,17 +45,16 @@ def janela_principal():
             self.lb_caixa_txt_login.pack(side='top')
             self.login_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4, bg='#C0C0C0')
             self.login_caixa_txt.pack(ancho='center')
-
+            #
             self.lb_caixa_txt_pass = tk.Label(self.frame_1, text='PassWord', bg='#C0C0C0')
             self.lb_caixa_txt_pass.pack(side='top')
             self.pass_caixa_txt = tk.Entry(self.frame_1, width=40, bd=4, show='"', bg='#C0C0C0')
             self.pass_caixa_txt.pack(anchor='center')
-
+            #
             self.botao_entrar = tk.Button(self.frame_2, text='Conectar', width=15, height=1, relief='ridge',
-                                          bg='#DCDCDC',
-                                          command=self.banco_dados_opcao)
+                                          bg='#DCDCDC', command=self.banco_dados_opcao)
             self.botao_entrar.pack(anchor='center')
-
+            #
             self.sair_janela = tk.Button(self.frame_4, text='Sair', width=5, height=1, relief='ridge', bg='#DCDCDC',
                                          pady=5, padx=5, command=self.janela_login.destroy)
             self.sair_janela.pack(side='right')
@@ -123,7 +123,7 @@ def janela_principal():
 
         def add_link_db(self):
             link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em numa variável.
-            if link_yt == 'https://www.youtube.com/':
+            if link_yt[:23] == 'https://www.youtube.com':
                 titulo_arq = YouTube(link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
                 cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
                 try:
