@@ -243,13 +243,13 @@ def janela_principal():
 
             # Janela vai ser uma combinação de opções
             self.janela_downloads = tk.Tk()
-            self.janela_downloads.configure(bd=3, pady=5, padx=5)
-            self.frame_down_1 = tk.Frame(self.janela_downloads, width=50, height=10, padx=5, pady=5, bd=2, bg='#6495ED')
-            self.frame_down_1.pack(side='left')
-            self.frame_down_2 = tk.Frame(self.janela_downloads, width=50, height=10, padx=5, pady=5, bd=2, bg='#6495ED')
-            self.frame_down_2.pack(side='left')
-            self.frame_down_3 = tk.Frame(self.janela_downloads, width=50, height=10, padx=5, pady=5, bd=2, bg='#6495ED')
-            self.frame_down_3.pack(side='left')
+            self.janela_downloads.configure(bd=3, pady=5, padx=5, bg='#6495ED')
+            self.frame_down_1 = tk.Frame(self.janela_downloads, width=50, height=10, padx=5, pady=5, bd=2, bg='#C0C0C0')
+            self.frame_down_1.pack(side='top')
+            self.frame_down_2 = tk.Frame(self.janela_downloads, width=50, height=10, padx=5, pady=5, bd=2, bg='#C0C0C0')
+            self.frame_down_2.pack(side='top')
+            self.frame_down_3 = tk.Frame(self.janela_downloads, width=50, height=10, padx=5, pady=5, bd=2, bg='#C0C0C0')
+            self.frame_down_3.pack(side='top')
 
             # Variável
             self.var_down_opc_radio_1 = tk.IntVar()
@@ -259,30 +259,36 @@ def janela_principal():
 
             # 1º escolha RADIO
             self.label_down_opc = tk.LabelFrame(self.frame_down_1, text='|- Escolha uma opcao de downloads -|',
-                                                padx=5, pady=5, bg='#6495ED')
+                                                padx=5, pady=5, bg='#C0C0C0')
             self.label_down_opc.pack(side='top')
             #
             self.radio_down_opc_video = tk.Radiobutton(self.label_down_opc, text='Vídeo', pady=5, padx=5, bd=2,
-                                                       bg='#6495ED', variable=self.var_down_opc_radio_1, value=1)
+                                                       bg='#C0C0C0', variable=self.var_down_opc_radio_1, value=1)
             self.radio_down_opc_video.pack(side='bottom')
             #
             self.radio_down_opc_audio = tk.Radiobutton(self.label_down_opc, text='Audio', pady=5, padx=5, bd=2,
-                                                       bg='#6495ED', variable=self.var_down_opc_radio_1, value=2)
+                                                       bg='#C0C0C0', variable=self.var_down_opc_radio_1, value=2)
             self.radio_down_opc_audio.pack(side='bottom')
-            # 2º opção
+
+            # 2º opção = Resolução
             self.label_resol = tk.LabelFrame(self.frame_down_2, text='|- Escolha uma Resolução para o vídeo -|',
-                                                padx=5, pady=5, bg='#6495ED')
+                                             padx=5, pady=5, bg='#C0C0C0')
             self.label_resol.pack(side='top')
-            self.radio_resol_480 = tk.Radiobutton(self.label_resol, text='480p', pady=5, padx=5, bd=2, bg='#6495ED',
+            self.radio_resol_480 = tk.Radiobutton(self.label_resol, text='480p', pady=5, padx=5, bd=2, bg='#C0C0C0',
                                                   variable=self.var_down_opc_radio_2, value=1)
             self.radio_resol_480.pack(side='bottom')
             #
-            self.radio_resol_720 = tk.Radiobutton(self.label_resol, text='720p', pady=5, padx=5, bd=2, bg='#6495ED',
+            self.radio_resol_720 = tk.Radiobutton(self.label_resol, text='720p', pady=5, padx=5, bd=2, bg='#C0C0C0',
                                                   variable=self.var_down_opc_radio_2, value=2)
             self.radio_resol_720.pack(side='bottom')
-            self.radio_resol_auto = tk.Radiobutton(self.label_resol, text='Auto', pady=5, padx=5, bd=2, bg='#6495ED',
+            #
+            self.radio_resol_auto = tk.Radiobutton(self.label_resol, text='Auto', pady=5, padx=5, bd=2, bg='#C0C0C0',
                                                    variable=self.var_down_opc_radio_2, value=3)
             self.radio_resol_auto.pack(side='bottom')
+
+            # Botão de ação
+            self.botao_down_enter = tk.Button(self.frame_down_3, text='Download', padx=5, width=15, height=2,
+                                              pady=5, bd=2, bg='#C0C0C0')
 
             links_lista_1 = []
             selecao_titulo = self.lista_titulos.curselection()
