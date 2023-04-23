@@ -209,7 +209,7 @@ def janela_principal():
             if opcao == 1:  # Abrir janela para adicionar links.
                 self.janela_add_lnk_tk()
             elif opcao == 2:  # Abre janela de opção para downloads
-                self.janela_downloads_tk()
+                self.downloads()
             elif opcao == 3:  # atualiza a caixa do 'ListBox'
                 self.listagem_arq_bd_view()
             elif opcao == 4:  # Limpa a caixa do 'ListBox'
@@ -239,47 +239,17 @@ def janela_principal():
         def limpar_caixa_lista_links(self):
             self.lista_titulos.delete('0', 'end')
 
-        def janela_downloads_tk(self):
-
-            # Janela que é uma combinação de opções.
-            self.janela_downloads = tk.Tk()
-            self.janela_downloads.geometry('400x250')
-            self.janela_downloads.configure(bd=3, pady=5, padx=5, bg='#C0C0C0')
-            self.frame_down_1 = tk.Frame(self.janela_downloads, width=50, height=10, padx=5, pady=5, bd=2, bg='#C0C0C0')
-            self.frame_down_1.pack(side='top')
-
-            # Variável
-            self.var_down_opc_radio_1 = tk.IntVar()
-            self.var_down_opc_radio_1.set(int)
-
-            self.radio_down_1 = tk.Radiobutton(self.frame_down_1, text='Audio', variable=self.var_down_opc_radio_1,
-                                               value=1)
-            self.radio_down_1.pack(side='left')
-            self.radio_down_2 = tk.Radiobutton(self.frame_down_1, text='Vídeo', variable=self.var_down_opc_radio_1,
-                                               value=2)
-            self.radio_down_2.pack(side='left')
-            self.botao_acao = tk.Button(self.janela_downloads, text='Downloads', command=self.downloads_link_yt)
-            self.botao_acao.pack(side='bottom')
-
-        def downloads_link_yt(self):
-            opcao_down = self.var_down_opc_radio_1.get()
-            messagebox.showinfo('', opcao_down)
-            if opcao_down == 1:
-                self.downloads()
-                self.downloads_video_mp4()
-            elif opcao_down == 2:
-                self.downloads()
-                self.downloads_audio_mp4()
-
         def downloads(self):
             links_lista_1 = []
+            cursor_down = self.conexao_banco.cursor()
             selecao_titulo = self.lista_titulos.curselection()
+
             for titulo_link in selecao_titulo:
                 titulo_escolhido = self.lista_titulos.get(titulo_link)
                 links_lista_1.append(titulo_escolhido)
+
             for dados_down in links_lista_1:
                 titulo_down = str(dados_down)
-                cursor_down = self.conexao_banco.cursor()
                 try:
                     convertendo_down_sql = str("SELECT * FROM youtube "
                                                "WHERE titulo_yt LIKE " + '"' + titulo_down + '"')
@@ -287,36 +257,11 @@ def janela_principal():
                     cursor_down.execute(comando_sql_down)
                 except mysql.connector.Error as falha:
                     messagebox.showerror('ERROR', f' Ocorreu um erro: \n{falha}')
-                for id, link, titulo in cursor_down:
-                    self.link_video = str(link)
-                    self.titulo_inf = str(titulo)
 
-        def downloads_audio_mp4(self):
-            try:
-                downloads = YouTube(self.link_video)
-                downloads.streams.filter(only_audio=True).first().download('C:/Youtube/Videos')
-                messagebox.showinfo('Downloads...', f'Download do vídeo \n{self.titulo_inf} \nFoi concluído')
-            except:
-                messagebox.showerror('AVISO!!', 'Ocorreu um erro no downloads do video!')
-
-        def downloads_video_mp4(self):
-            # 2º opção = Resolução
-            self.janela_down_resol = tk.Tk()
-            self.janela_down_resol.config(bd=2, pady=5, padx=5, bg='#C0C0C0')
-            self.label_resol = tk.LabelFrame(self.frame_down_2, text='|- Escolha uma Resolução para o vídeo -|',
-                                             padx=5, pady=5, bg='#C0C0C0')
-            self.label_resol.pack(side='top')
-            self.radio_resol_480 = tk.Radiobutton(self.label_resol, text='480p', pady=5, padx=5, bd=2, bg='#C0C0C0',
-                                                  variable='', value=1)
-            self.radio_resol_480.pack(side='left')
-            #
-            self.radio_resol_720 = tk.Radiobutton(self.label_resol, text='720p', pady=5, padx=5, bd=2, bg='#C0C0C0',
-                                                  variable='', value=2)
-            self.radio_resol_720.pack(side='left')
-            #
-            self.radio_resol_auto = tk.Radiobutton(self.label_resol, text='Auto', pady=5, padx=5, bd=2, bg='#C0C0C0',
-                                                   variable=self.var_down_opc_radio_2, value=3)
-            self.radio_resol_auto.pack(side='left')
+            for id, link, titulo in cursor_down:
+                self.link_video = str(link)
+                self.titulo_inf = str(titulo)
+            print(f'Titulo: {self.titulo_inf} \n Link: {self.link_video}')
 
     iniciando = YouTube_v3()
 
