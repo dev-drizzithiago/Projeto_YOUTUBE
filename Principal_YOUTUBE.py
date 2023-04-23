@@ -62,13 +62,14 @@ def janela_principal():
             tk.mainloop()
 
         def banco_dados_opcao(self):
-            opcao_bd_enter = self.opcao_db.get()
-            if opcao_bd_enter == 1:
-                self.servidor_banco_dados = 'db4free.net'
-            elif opcao_bd_enter == 2:
-                self.servidor_banco_dados = 'localhost'
-            else:
-                messagebox.showwarning('ERRO', 'Ocorreu um ERRO na seleção da opção')
+            try:
+                opcao_bd_enter = self.opcao_db.get()
+                if opcao_bd_enter == 1:
+                    self.servidor_banco_dados = 'db4free.net'
+                elif opcao_bd_enter == 2:
+                    self.servidor_banco_dados = 'localhost'
+            except:
+                messagebox.showerror('Aviso urgente!', 'Escolha uma opção de banco de dados')
             usuario = self.login_caixa_txt.get()
             senha = self.pass_caixa_txt.get()
             try:
@@ -122,23 +123,27 @@ def janela_principal():
 
         def add_link_db(self):
             link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em numa variável.
-            titulo_arq = YouTube(link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
-            cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
-            print(titulo_arq)
-            try:
-                # Comando em SQL para adicionar no DB
-                comando_SQL = 'INSERT INTO youtube (' \
-                              'link_youtube, titulo_yt) ' \
-                              'VALUES (%s, %s)'
-                valores_sql_lnk = (link_yt, titulo_arq)  # atribui os valores na variável
-                cursor.execute(comando_SQL, valores_sql_lnk)  # Executa o comando e adicionar literalmente no db
-                messagebox.showinfo('Aviso!', f'Vídeo adicionado com sucesso! \n{titulo_arq}')
-                self.limpar_caixa_addlink()  # Limpa a caixa de texto para poder adicionar outro link
-                sleep(0.5)
-                self.listagem_arq_bd_view()
-            except db.Error as falha:
-                messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
-                                              f'{falha}')
+            if link_yt == 'https://www.youtube.com/':
+                titulo_arq = YouTube(link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
+                cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
+                try:
+                    # Comando em SQL para adicionar no DB
+                    comando_SQL = 'INSERT INTO youtube (' \
+                                  'link_youtube, titulo_yt) ' \
+                                  'VALUES (%s, %s)'
+                    valores_sql_lnk = (link_yt, titulo_arq)  # atribui os valores na variável
+                    cursor.execute(comando_SQL, valores_sql_lnk)  # Executa o comando e adicionar literalmente no db
+                    messagebox.showinfo('Aviso!', f'Vídeo adicionado com sucesso! \n{titulo_arq}')
+                    self.limpar_caixa_addlink()  # Limpa a caixa de texto para poder adicionar outro link
+                    sleep(0.5)
+                    self.listagem_arq_bd_view()
+                except db.Error as falha:
+                    messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
+                                                  f'{falha}')
+            else:
+                self.limpar_caixa_addlink()
+                messagebox.showwarning('AVISO IMPORTANTE', 'Esse não é um link valido. '
+                                                           '\nEntre com um link de conteúdo do YOUTUBE')
 
         def janela_principal_tk(self):
 
