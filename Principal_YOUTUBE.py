@@ -37,6 +37,9 @@ def janela_principal():
             self.radio_bd_2 = tk.Radiobutton(self.frame_3, text='Banco de Dados Interno (localhost)', bg='#C0C0C0',
                                              padx=5, pady=5, variable=self.opcao_db, value=2)
             self.radio_bd_2.pack(anchor='w')
+            self.radio_bd_3 = tk.Radiobutton(self.frame_3, text='teste', bg='#C0C0C0',
+                                             padx=5, pady=5, variable=self.opcao_db, value=3)
+            self.radio_bd_3.pack(anchor='w')
 
             #  Caixa de Texto
             self.lb_caixa_txt_login = tk.Label(self.frame_1, text='Login', bg='#C0C0C0')
