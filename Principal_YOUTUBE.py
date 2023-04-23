@@ -186,8 +186,7 @@ def janela_principal():
             self.radio_addLink.pack(side='left')
             #
             self.radio_princp = tk.Radiobutton(self.frame_view_3, text='Downloads', bg='#C0C0C0', bd=5, width=10,
-                                               padx=5, pady=5, variable=self.var_opcao, value=2,
-                                               command=lambda: self.save())
+                                               padx=5, pady=5, variable=self.var_opcao, value=2)
             self.radio_princp.pack(side='left')
             #
             self.radio_atualizar = tk.Radiobutton(self.frame_view_3, text='Atualizar', bg='#C0C0C0', bd=5, width=10,
@@ -277,9 +276,6 @@ def janela_principal():
             except:
                 messagebox.showerror('AVISO!', 'Não foi possível fazer o downloads do Audio!')
 
-        def save(self):
-            tp_arquivos = [('Todos Arquivos', '*.*'), ('Audio', '*.mp3'), ('Video', '*.mp4')]
-            self.path = asksaveasfile(filetypes=tp_arquivos, defaultextension=tp_arquivos).name
     iniciando = YouTube_v3()
 
 
