@@ -152,6 +152,8 @@ def janela_principal():
                     messagebox.showerror('ERROR', f'Não foi possível obter o link da imagem \n{falha_youtube}')
                     self.link_img = '<desconhecido>'
                 try:
+                    messagebox.showinfo('AVISO!'f'Itens que serão adicionados',
+                                        f'\n{link_yt} \n{self.titulo_link} \n{self.link_img}')
                     # Comando em SQL para adicionar no DB
                     comando_SQL = 'INSERT INTO youtube (' \
                                   'link_youtube, titulo_youtube, imagem_link) ' \
