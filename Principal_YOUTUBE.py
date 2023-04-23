@@ -4,7 +4,6 @@ from tkinter import messagebox, simpledialog
 import mysql.connector as db
 from time import sleep
 
-
 import pytube.exceptions
 from pytube import YouTube
 from tkinter.filedialog import asksaveasfile
@@ -134,7 +133,6 @@ def janela_principal():
                                                            '\nEntre com um link de conteúdo do YOUTUBE')
             else:
                 link_youtube = YouTube(link_yt)  # Prepara o link e apenas o titulo é adiciona na variável.
-
                 try:
                     self.titulo_link = link_youtube.title  # Adiciona o titulo do link, o mesmo que aparece no youtube
                 except pytube.exceptions.PytubeError as falha_tube:
@@ -148,7 +146,6 @@ def janela_principal():
                         self.titulo_link = ''
                 if len(self.titulo_link) == 0:
                     self.titulo_link = '<desconhecido>'  # Quando não tem nenhuma informação, add sem valor.
-
                 try:
                     self.link_img = link_youtube.thumbnail_url  # Adiciona o link da imagem em miniatura.
                 except pytube.exceptions.PytubeError as falha_youtube:
