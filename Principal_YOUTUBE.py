@@ -254,18 +254,23 @@ def janela_principal():
             self.frame_down_3.pack(anchor='s')
 
             # Variável
-            self.var_down_opc_radio = tk.IntVar()
-            self.var_down_opc_radio.set(int)
+            self.var_down_opc_radio_1 = tk.IntVar()
+            self.var_down_opc_radio_1.set(int)
+            self.var_down_opc_radio_2 = tk.IntVar()
+            self.var_down_opc_radio_2.set(int)
 
             # Primeira escolha
-            self.label_down_opc = tk.Label(self.frame_down_1, text='Escolha uma opcao', padx=5, pady=5, bg='#6495ED')
+            self.label_down_opc = tk.LabelFrame(self.frame_down_1, text='|- Escolha uma opcao de downloads -|',
+                                                padx=5, pady=5, bg='#6495ED')
             self.label_down_opc.pack(side='top')
-            self.radio_down_opc_video = tk.Radiobutton(self.frame_down_2, text='Vídeo', pady=5, padx=5, bd=2, bg='#6495ED',
-                                                       variable=self.var_down_opc_radio, value=1)
+            self.radio_down_opc_video = tk.Radiobutton(self.label_down_opc, text='Vídeo', pady=5, padx=5, bd=2,
+                                                       bg='#6495ED', variable=self.var_down_opc_radio_1, value=1)
             self.radio_down_opc_video.pack(side='bottom')
-            self.radio_down_opc_audio = tk.Radiobutton(self.frame_down_2, text='Audio', pady=5, padx=5, bd=2, bg='#6495ED',
-                                                       variable=self.var_down_opc_radio, value=2)
+            self.radio_down_opc_audio = tk.Radiobutton(self.label_down_opc, text='Audio', pady=5, padx=5, bd=2, bg='#6495ED',
+                                                       variable=self.var_down_opc_radio_1, value=2)
             self.radio_down_opc_audio.pack(side='bottom')
+            self.label_rasol = tk.LabelFrame(self.frame_down_2, text='|- Escolha uma Resolução para o vídeo -|')
+            self.radio_resol = tk.Radiobutton()
 
             links_lista_1 = []
             selecao_titulo = self.lista_titulos.curselection()
