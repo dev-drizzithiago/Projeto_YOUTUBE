@@ -122,9 +122,15 @@ def janela_principal():
             # Função responsável por adicionar o link no banco de dados.
 
         def add_link_db(self):
-            link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em numa variável.
-            if link_yt[:23] == 'https://www.youtube.com':
-                titulo_arq = YouTube(link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
+            link_yt = self.caixa_txt_1.get()  # Pega o link na caixa de texto e coloca em numa variável.
+            print(link_yt)
+            if link_yt[:25] != 'https://www.youtube.com/':
+                self.limpar_caixa_addlink()
+                messagebox.showwarning('AVISO IMPORTANTE', 'Esse não é um link valido. '
+                                                           '\nEntre com um link de conteúdo do YOUTUBE')
+            else:
+                titulo_arq = YouTube(link_yt)  # Prepara o link e apenas o titulo é adiciona na variável.
+                titulo_link = titulo_arq.title  # Adiciona o titulo do link, o mesmo que aparece no youtube
                 cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
                 try:
                     # Comando em SQL para adicionar no DB
@@ -138,12 +144,7 @@ def janela_principal():
                     sleep(0.5)
                     self.listagem_arq_bd_view()
                 except db.Error as falha:
-                    messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
-                                                  f'{falha}')
-            else:
-                self.limpar_caixa_addlink()
-                messagebox.showwarning('AVISO IMPORTANTE', 'Esse não é um link valido. '
-                                                           '\nEntre com um link de conteúdo do YOUTUBE')
+                    messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n{falha}')
 
         def janela_principal_tk(self):
 
@@ -211,21 +212,27 @@ def janela_principal():
             self.listagem_arq_bd_view()
 
         def opcao_radio(self):
-            opcao = self.var_opcao.get()
-            if opcao == 1:  # Abrir janela para adicionar links.
-                self.janela_add_lnk_tk()
-            elif opcao == 2:  # Abre janela de opção para downloads
-                self.downloads()
-            elif opcao == 3:  # atualiza a caixa do 'ListBox'
-                self.listagem_arq_bd_view()
-            elif opcao == 4:  # Limpa a caixa do 'ListBox'
-                self.limpar_caixa_lista_links()
+            try:
+                opcao = self.var_opcao.get()
+                if opcao == 1:  # Abrir janela para adicionar links.
+                    self.janela_add_lnk_tk()
+                elif opcao == 2:  # Abre janela de opção para downloads
+                    self.downloads()
+                elif opcao == 3:  # atualiza a caixa do 'ListBox'
+                    self.listagem_arq_bd_view()
+                elif opcao == 4:  # Limpa a caixa do 'ListBox'
+                    self.limpar_caixa_lista_links()
+            except:
+                messagebox.showwarning('AVISO', 'Escolha uma OPÇÃO')
 
         def listagem_arq_bd_view(self):
             # BUSCANDO AS INFORMAÇÕES NO BANCO DE DADOS
-            self.bd_view = self.conexao_banco.cursor()  # Conecta com o bando de dados.
-            self.comando_sql = 'SELECT * FROM youtube'  # Comando para listar os arquivos no bd
-            self.bd_view.execute(self.comando_sql)  # Executando o comando
+            try:
+                self.bd_view = self.conexao_banco.cursor()  # Conecta com o bando de dados.
+                self.comando_sql = 'SELECT * FROM youtube'  # Comando para listar os arquivos no bd
+                self.bd_view.execute(self.comando_sql)  # Executando o comando
+            except mysql.connector.Error as falha:
+                messagebox.showerror('ERROR', f'Ocorreu o seguinte erro: \n{falha}')
             self.titulos = list()  # Cria uma lista para colocar os dados.
             for id_link, link_yt, titulos_yt in self.bd_view:
                 self.titulos.append(titulos_yt)
