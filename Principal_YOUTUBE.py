@@ -4,6 +4,7 @@ from tkinter import messagebox
 import mysql.connector as db
 from time import sleep
 from pytube import YouTube
+from tkinter.filedialog import asksaveasfile
 
 
 def janela_principal():
@@ -37,9 +38,6 @@ def janela_principal():
             self.radio_bd_2 = tk.Radiobutton(self.frame_3, text='Banco de Dados Interno (localhost)', bg='#C0C0C0',
                                              padx=5, pady=5, variable=self.opcao_db, value=2)
             self.radio_bd_2.pack(anchor='w')
-            self.radio_bd_3 = tk.Radiobutton(self.frame_3, text='teste', bg='#C0C0C0',
-                                             padx=5, pady=5, variable=self.opcao_db, value=3)
-            self.radio_bd_3.pack(anchor='w')
 
             #  Caixa de Texto
             self.lb_caixa_txt_login = tk.Label(self.frame_1, text='Login', bg='#C0C0C0')
@@ -178,7 +176,7 @@ def janela_principal():
             self.barra_rolagem = tk.Scrollbar(self.frame_view_2, orient='vertical')
             self.barra_rolagem.pack(side='right', fill=tk.Y)
 
-            self.lista_titulos = tk.Listbox(self.frame_view_2, bg='#C0C0C0', selectmode='extended', width=100,
+            self.lista_titulos = tk.Listbox(self.frame_view_2, bg='#C0C0C0', selectmode='single', width=100,
                                             height=20, yscrollcommand=self.barra_rolagem.set)
             self.lista_titulos.pack(padx=10, pady=10, expand='YES', anchor='center')
 
@@ -188,7 +186,8 @@ def janela_principal():
             self.radio_addLink.pack(side='left')
             #
             self.radio_princp = tk.Radiobutton(self.frame_view_3, text='Downloads', bg='#C0C0C0', bd=5, width=10,
-                                               padx=5, pady=5, variable=self.var_opcao, value=2)
+                                               padx=5, pady=5, variable=self.var_opcao, value=2,
+                                               command=lambda: self.save())
             self.radio_princp.pack(side='left')
             #
             self.radio_atualizar = tk.Radiobutton(self.frame_view_3, text='Atualizar', bg='#C0C0C0', bd=5, width=10,
@@ -230,7 +229,7 @@ def janela_principal():
             # LISTANDO COM OBJETO 'tk.ListBox'
             for lista_titulos_bd in range(len(self.titulos)):
                 self.lista_titulos.insert('end', self.titulos[lista_titulos_bd])
-                self.lista_titulos.itemconfig(lista_titulos_bd, bg="#DEB887")
+                self.lista_titulos.itemconfig(lista_titulos_bd, bg="#C0C0C0")
 
         def barra_progresso(self):
             self.progresso_wd = tk.Tk()
@@ -264,8 +263,23 @@ def janela_principal():
             for id, link, titulo in cursor_down:
                 self.link_video = str(link)
                 self.titulo_inf = str(titulo)
-            print(f'Titulo: {self.titulo_inf} \n Link: {self.link_video}')
 
+            link = YouTube(self.link_video)
+            try:
+
+                link.streams.filter(adaptive=True).first().download('C:/YouTube/Videos')
+                messagebox.showinfo('AVIDO', f'Downloads Vídeo, Realizado com Sucesso! \n{self.titulo_inf}')
+            except:
+                messagebox.showerror('AVISO!', 'Não foi possível fazer o downloads do Video!')
+            try:
+                link.streams.filter(only_audio=True).first().download('C:/YouTube/Audios')
+                messagebox.showinfo('AVISO', f'Downloads Audio, Realizado com Sucesso! \n{self.titulo_inf}')
+            except:
+                messagebox.showerror('AVISO!', 'Não foi possível fazer o downloads do Audio!')
+
+        def save(self):
+            tp_arquivos = [('Todos Arquivos', '*.*'), ('Audio', '*.mp3'), ('Video', '*.mp4')]
+            self.path = asksaveasfile(filetypes=tp_arquivos, defaultextension=tp_arquivos).name
     iniciando = YouTube_v3()
 
 
