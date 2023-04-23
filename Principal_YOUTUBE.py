@@ -1,8 +1,10 @@
 import mysql.connector
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, simpledialog
 import mysql.connector as db
 from time import sleep
+
+import pytube.exceptions
 from pytube import YouTube
 from tkinter.filedialog import asksaveasfile
 
@@ -122,24 +124,43 @@ def janela_principal():
             # Função responsável por adicionar o link no banco de dados.
 
         def add_link_db(self):
+            cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
             link_yt = self.caixa_txt_1.get()  # Pega o link na caixa de texto e coloca em numa variável.
             print(link_yt)
-            if link_yt[:25] != 'https://www.youtube.com/':
+            if link_yt[:23] != 'https://www.youtube.com':
                 self.limpar_caixa_addlink()
                 messagebox.showwarning('AVISO IMPORTANTE', 'Esse não é um link valido. '
                                                            '\nEntre com um link de conteúdo do YOUTUBE')
             else:
-                titulo_arq = YouTube(link_yt)  # Prepara o link e apenas o titulo é adiciona na variável.
-                titulo_link = titulo_arq.title  # Adiciona o titulo do link, o mesmo que aparece no youtube
-                cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
+                link_youtube = YouTube(link_yt)  # Prepara o link e apenas o titulo é adiciona na variável.
+
+                try:
+                    self.titulo_link = link_youtube.title  # Adiciona o titulo do link, o mesmo que aparece no youtube
+                except pytube.exceptions.PytubeError as falha_tube:
+                    messagebox.showwarning('ERROR', f'Ocorreu um erro relacionado ao TITULO \n{falha_tube}')
+                    resp = messagebox.askyesno('ERROR', 'Não foi possível "pegar" o titulo no link. \nDeseja adicionar outro?')
+                    if resp:
+                        # Gera uma possibilidade para adicionar titulo.
+                        self.titulo_link = simpledialog.askstring('Entrada', 'Digite o Titulo')
+                        messagebox.showinfo('AVISO!', f'Novo titulo adicionado {self.titulo_link}')
+                    else:
+                        self.titulo_link = ''
+                if len(self.titulo_link) == 0:
+                    self.titulo_link = '<desconhecido>'  # Quando não tem nenhuma informação, add sem valor.
+
+                try:
+                    self.link_img = link_youtube.thumbnail_url  # Adiciona o link da imagem em miniatura.
+                except pytube.exceptions.PytubeError as falha_youtube:
+                    messagebox.showerror('ERROR', f'Não foi possível obter o link da imagem \n{falha_youtube}')
+                    self.link_img = '<desconhecido>'
                 try:
                     # Comando em SQL para adicionar no DB
                     comando_SQL = 'INSERT INTO youtube (' \
-                                  'link_youtube, titulo_yt) ' \
-                                  'VALUES (%s, %s)'
-                    valores_sql_lnk = (link_yt, titulo_arq)  # atribui os valores na variável
+                                  'link_youtube, titulo_youtube, imagem_link) ' \
+                                  'VALUES (%s, %s, %s)'
+                    valores_sql_lnk = (link_yt, self.titulo_link, self.link_img)  # atribui os valores na variável
                     cursor.execute(comando_SQL, valores_sql_lnk)  # Executa o comando e adicionar literalmente no db
-                    messagebox.showinfo('Aviso!', f'Vídeo adicionado com sucesso! \n{titulo_arq}')
+                    messagebox.showinfo('Aviso!', f'Vídeo adicionado com sucesso! \n{self.titulo_link}')
                     self.limpar_caixa_addlink()  # Limpa a caixa de texto para poder adicionar outro link
                     sleep(0.5)
                     self.listagem_arq_bd_view()
