@@ -1,6 +1,6 @@
 import mysql.connector
 import tkinter as tk
-from tkinter import messagebox, simpledialog
+from tkinter import messagebox, simpledialog, ttk
 import mysql.connector as db
 from time import sleep
 
@@ -259,6 +259,7 @@ def janela_principal():
                     self.limpar_caixa_addlink()  # Limpa a caixa de texto para poder adicionar outro link
                     sleep(0.5)
                     self.listagem_arq_bd_view()
+                    self.janela_add_link.destroy()
                 except db.Error as falha:
                     messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n{falha}')
 
