@@ -152,8 +152,7 @@ def janela_principal():
                     messagebox.showerror('ERROR', f'Não foi possível obter o link da imagem \n{falha_youtube}')
                     self.link_img = '<desconhecido>'
                 try:
-                    messagebox.showinfo('AVISO!'f'Itens que serão adicionados',
-                                        f'\n{link_yt} \n{self.titulo_link} \n{self.link_img}')
+                    print('AVISO!'f'Itens que serão adicionados', f'\n{link_yt} \n{self.titulo_link} \n{self.link_img}')
                     # Comando em SQL para adicionar no DB
                     comando_SQL = 'INSERT INTO youtube (' \
                                   'link_youtube, titulo_youtube, imagem_link) ' \
@@ -255,7 +254,7 @@ def janela_principal():
             except mysql.connector.Error as falha:
                 messagebox.showerror('ERROR', f'Ocorreu o seguinte erro: \n{falha}')
             self.titulos = list()  # Cria uma lista para colocar os dados.
-            for id_link, link_yt, titulos_yt in self.bd_view:
+            for id_link, link_yt, titulos_yt, img_yt in self.bd_view:
                 self.titulos.append(titulos_yt)
             self.limpar_caixa_lista_links()
             # LISTANDO COM OBJETO 'tk.ListBox'
@@ -286,15 +285,17 @@ def janela_principal():
                 titulo_down = str(dados_down)
                 try:
                     convertendo_down_sql = str("SELECT * FROM youtube "
-                                               "WHERE titulo_yt LIKE " + '"' + titulo_down + '"')
+                                               "WHERE titulo_youtube LIKE " + '"' + titulo_down + '"')
                     comando_sql_down = convertendo_down_sql
                     cursor_down.execute(comando_sql_down)
                 except mysql.connector.Error as falha:
                     messagebox.showerror('ERROR', f' Ocorreu um erro: \n{falha}')
 
-            for id, link, titulo in cursor_down:
+            for id, link, titulo, img_yt in cursor_down:
+                self.id_youtube = int(id)
                 self.link_video = str(link)
                 self.titulo_inf = str(titulo)
+                self.img_youtube = str(img_yt)
 
             link = YouTube(self.link_video)
             try:
