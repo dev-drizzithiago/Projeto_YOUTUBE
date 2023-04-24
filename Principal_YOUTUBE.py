@@ -87,85 +87,6 @@ def janela_principal():
                 if not resp:
                     self.janela_login.destroy()
 
-        def janela_add_lnk_tk(self):
-            # JANELA ADD_LINK
-            self.janela_add_link = tk.Tk()
-            self.janela_add_link.geometry('700x200')
-            self.janela_add_link.title('Adicione um LINK')
-            self.janela_add_link.configure(bg='#A9A9A9')
-
-            # FRAME
-            self.frame_1_add_lnk = tk.Frame(self.janela_add_link, padx=5, pady=5, bg='#A9A9A9')
-            self.frame_1_add_lnk.pack(fill=tk.Y)
-            self.frame_2_add_lnk = tk.Frame(self.janela_add_link, padx=5, pady=5, bg='#A9A9A9')
-            self.frame_2_add_lnk.pack(fill=tk.Y)
-            self.frame_3_add_lnk = tk.Frame(self.janela_add_link, padx=5, pady=5, bg='#A9A9A9')
-            self.frame_3_add_lnk.pack(fill=tk.Y)
-
-            # LABEL_1
-            self.label1 = tk.Label(self.frame_1_add_lnk, text='Adicione um link do Youtube', bd=3, padx=10, pady=10,
-                                   height=2, bg='#A9A9A9')
-            self.label1.pack(fill='both', expand='yes')
-
-            # Caixa de entrada
-            self.caixa_txt_1 = tk.Entry(self.frame_1_add_lnk, bd=2, width=100, bg='#A9A9A9')
-            self.caixa_txt_1.pack(anchor='center')
-
-            # BOTÕES
-            self.botao_add_link = tk.Button(self.frame_3_add_lnk, text='Adicionar', bd=4, width=10, height=1, padx=3,
-                                            pady=3,
-                                            bg='#D3D3D3', relief='groove', command=self.add_link_db)
-            self.botao_add_link.pack(anchor='center')
-
-            self.botao_fechar = tk.Button(self.janela_add_link, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
-                                          bg='#D3D3D3', relief='groove', command=self.janela_add_link.destroy)
-            self.botao_fechar.pack(side='right')
-
-            # Função responsável por adicionar o link no banco de dados.
-
-        def add_link_db(self):
-            cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
-            link_yt = self.caixa_txt_1.get()  # Pega o link na caixa de texto e coloca em numa variável.
-            print(link_yt)
-            if link_yt[:23] != 'https://www.youtube.com':
-                self.limpar_caixa_addlink()
-                messagebox.showwarning('AVISO IMPORTANTE', 'Esse não é um link valido. '
-                                                           '\nEntre com um link de conteúdo do YOUTUBE')
-            else:
-                link_youtube = YouTube(link_yt)  # Prepara o link e apenas o titulo é adiciona na variável.
-                try:
-                    self.titulo_link = link_youtube.title  # Adiciona o titulo do link, o mesmo que aparece no youtube
-                except pytube.exceptions.PytubeError as falha_tube:
-                    messagebox.showwarning('ERROR', f'Ocorreu um erro relacionado ao TITULO \n{falha_tube}')
-                    resp = messagebox.askyesno('ERROR', 'Não foi possível "pegar" o titulo no link. \nDeseja adicionar outro?')
-                    if resp:
-                        # Gera uma possibilidade para adicionar titulo.
-                        self.titulo_link = simpledialog.askstring('Entrada', 'Digite o Titulo')
-                        messagebox.showinfo('AVISO!', f'Novo titulo adicionado {self.titulo_link}')
-                    else:
-                        self.titulo_link = ''
-                if len(self.titulo_link) == 0:
-                    self.titulo_link = '<desconhecido>'  # Quando não tem nenhuma informação, add sem valor.
-                try:
-                    self.link_img = link_youtube.thumbnail_url  # Adiciona o link da imagem em miniatura.
-                except pytube.exceptions.PytubeError as falha_youtube:
-                    messagebox.showerror('ERROR', f'Não foi possível obter o link da imagem \n{falha_youtube}')
-                    self.link_img = '<desconhecido>'
-                try:
-                    print('AVISO!'f'Itens que serão adicionados', f'\n{link_yt} \n{self.titulo_link} \n{self.link_img}')
-                    # Comando em SQL para adicionar no DB
-                    comando_SQL = 'INSERT INTO youtube (' \
-                                  'link_youtube, titulo_youtube, imagem_link) ' \
-                                  'VALUES (%s, %s, %s)'
-                    valores_sql_lnk = (link_yt, self.titulo_link, self.link_img)  # atribui os valores na variável
-                    cursor.execute(comando_SQL, valores_sql_lnk)  # Executa o comando e adicionar literalmente no db
-                    messagebox.showinfo('Aviso!', f'Vídeo adicionado com sucesso! \n{self.titulo_link}')
-                    self.limpar_caixa_addlink()  # Limpa a caixa de texto para poder adicionar outro link
-                    sleep(0.5)
-                    self.listagem_arq_bd_view()
-                except db.Error as falha:
-                    messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n{falha}')
-
         def janela_principal_tk(self):
 
             # JANELA PRINCIPAL
@@ -231,20 +152,6 @@ def janela_principal():
             # lISTA OS DADOS QUANDO ABRE A JANELA
             self.listagem_arq_bd_view()
 
-        def opcao_radio(self):
-            try:
-                opcao = self.var_opcao.get()
-                if opcao == 1:  # Abrir janela para adicionar links.
-                    self.janela_add_lnk_tk()
-                elif opcao == 2:  # Abre janela de opção para downloads
-                    self.downloads()
-                elif opcao == 3:  # atualiza a caixa do 'ListBox'
-                    self.listagem_arq_bd_view()
-                elif opcao == 4:  # Limpa a caixa do 'ListBox'
-                    self.limpar_caixa_lista_links()
-            except:
-                messagebox.showwarning('AVISO', 'Escolha uma OPÇÃO')
-
         def listagem_arq_bd_view(self):
             # BUSCANDO AS INFORMAÇÕES NO BANCO DE DADOS
             try:
@@ -261,6 +168,99 @@ def janela_principal():
             for lista_titulos_bd in range(len(self.titulos)):
                 self.lista_titulos.insert('end', self.titulos[lista_titulos_bd])
                 self.lista_titulos.itemconfig(lista_titulos_bd, bg="#C0C0C0")
+
+        def opcao_radio(self):
+            try:
+                opcao = self.var_opcao.get()
+                if opcao == 1:  # Abrir janela para adicionar links.
+                    self.janela_add_lnk_tk()
+                elif opcao == 2:  # Abre janela de opção para downloads
+                    self.downloads()
+                elif opcao == 3:  # atualiza a caixa do 'ListBox'
+                    self.listagem_arq_bd_view()
+                elif opcao == 4:  # Limpa a caixa do 'ListBox'
+                    self.limpar_caixa_lista_links()
+            except:
+                messagebox.showwarning('AVISO', 'Escolha uma OPÇÃO')
+
+        def janela_add_lnk_tk(self):
+            # JANELA ADD_LINK
+            self.janela_add_link = tk.Tk()
+            self.janela_add_link.geometry('700x200')
+            self.janela_add_link.title('Adicione um LINK')
+            self.janela_add_link.configure(bg='#C0C0C0')
+
+            # FRAME
+            self.frame_1_add_lnk = tk.Frame(self.janela_add_link, padx=5, pady=5, bg='#C0C0C0')
+            self.frame_1_add_lnk.pack(fill=tk.Y)
+            self.frame_2_add_lnk = tk.Frame(self.janela_add_link, padx=5, pady=5, bg='#C0C0C0')
+            self.frame_2_add_lnk.pack(fill=tk.Y)
+            self.frame_3_add_lnk = tk.Frame(self.janela_add_link, padx=5, pady=5, bg='#C0C0C0')
+            self.frame_3_add_lnk.pack(fill=tk.Y)
+
+            # LABEL_1
+            self.label1 = tk.Label(self.frame_1_add_lnk, text='Adicione um link do Youtube', bd=3, padx=10, pady=10,
+                                   height=2, bg='#C0C0C0')
+            self.label1.pack(fill='both', expand='yes')
+
+            # Caixa de entrada
+            self.caixa_txt_1 = tk.Entry(self.frame_1_add_lnk, bd=2, width=100, bg='#C0C0C0')
+            self.caixa_txt_1.pack(anchor='center')
+
+            # BOTÕES
+            self.botao_add_link = tk.Button(self.frame_3_add_lnk, text='Adicionar', bd=4, width=10, height=1, padx=3,
+                                            pady=3, bg='#C0C0C0', relief='groove', command=self.add_link_db)
+            self.botao_add_link.pack(anchor='center')
+
+            self.botao_fechar = tk.Button(self.janela_add_link, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
+                                          bg='#C0C0C0', relief='groove', command=self.janela_add_link.destroy)
+            self.botao_fechar.pack(side='right')
+
+            # Função responsável por adicionar o link no banco de dados.
+
+        def add_link_db(self):
+            cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
+            link_yt = self.caixa_txt_1.get()  # Pega o link na caixa de texto e coloca em numa variável.
+            print(link_yt)
+            if link_yt[:23] != 'https://www.youtube.com':
+                self.limpar_caixa_addlink()
+                messagebox.showwarning('AVISO IMPORTANTE', 'Esse não é um link valido. '
+                                                           '\nEntre com um link de conteúdo do YOUTUBE')
+            else:
+                link_youtube = YouTube(link_yt)  # Prepara o link e apenas o titulo é adiciona na variável.
+                try:
+                    self.titulo_link = link_youtube.title  # Adiciona o titulo do link, o mesmo que aparece no youtube
+                except pytube.exceptions.PytubeError as falha_tube:
+                    messagebox.showwarning('ERROR', f'Ocorreu um erro relacionado ao TITULO \n{falha_tube}')
+                    resp = messagebox.askyesno('ERROR',
+                                               'Não foi possível "pegar" o titulo no link. \nDeseja adicionar outro?')
+                    if resp:
+                        # Gera uma possibilidade para adicionar titulo.
+                        self.titulo_link = simpledialog.askstring('Entrada', 'Digite o Titulo')
+                        messagebox.showinfo('AVISO!', f'Novo titulo adicionado {self.titulo_link}')
+                    else:
+                        self.titulo_link = ''
+                if len(self.titulo_link) == 0:
+                    self.titulo_link = '<desconhecido>'  # Quando não tem nenhuma informação, add sem valor.
+                try:
+                    self.link_img = link_youtube.thumbnail_url  # Adiciona o link da imagem em miniatura.
+                except pytube.exceptions.PytubeError as falha_youtube:
+                    messagebox.showerror('ERROR', f'Não foi possível obter o link da imagem \n{falha_youtube}')
+                    self.link_img = '<desconhecido>'
+                try:
+                    print('AVISO!'f'Itens que serão adicionados', f'\n{link_yt} \n{self.titulo_link} \n{self.link_img}')
+                    # Comando em SQL para adicionar no DB
+                    comando_SQL = 'INSERT INTO youtube (' \
+                                  'link_youtube, titulo_youtube, imagem_link) ' \
+                                  'VALUES (%s, %s, %s)'
+                    valores_sql_lnk = (link_yt, self.titulo_link, self.link_img)  # atribui os valores na variável
+                    cursor.execute(comando_SQL, valores_sql_lnk)  # Executa o comando e adicionar literalmente no db
+                    messagebox.showinfo('Aviso!', f'Vídeo adicionado com sucesso! \n{self.titulo_link}')
+                    self.limpar_caixa_addlink()  # Limpa a caixa de texto para poder adicionar outro link
+                    sleep(0.5)
+                    self.listagem_arq_bd_view()
+                except db.Error as falha:
+                    messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n{falha}')
 
         def barra_progresso(self):
             self.progresso_wd = tk.Tk()
