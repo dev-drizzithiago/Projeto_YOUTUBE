@@ -143,10 +143,13 @@ def janela_principal():
                                                pady=5, variable=self.var_opcao, value=4)
             self.radio_limpar.pack(side='left')
 
-            # Bottão Entrar
+            # Botão Entrar
             self.botao_enter = tk.Button(self.frame_view_4, text='Entrar', bg='#C0C0C0', bd=5, width=10, pady=5, padx=5,
                                          command=self.opcao_radio)
             self.botao_enter.pack(anchor='center')
+            self.botao_sair = tk.Button(self.frame_view_4, text='Sair', bg='#C0C0C0', bd=5, width=10, pady=5, padx=5,
+                                        command=self.janela_view_link.destroy)
+            self.botao_sair.pack(side='right')
 
             # lISTA OS DADOS QUANDO ABRE A JANELA
             self.listagem_arq_bd_view()
