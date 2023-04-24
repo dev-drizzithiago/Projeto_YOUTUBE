@@ -5,6 +5,7 @@ import mysql.connector as db
 from time import sleep
 import pytube.exceptions
 from pytube import YouTube
+import threading
 from tkinter.filedialog import asksaveasfile
 
 
@@ -91,7 +92,7 @@ def janela_principal():
             # JANELA PRINCIPAL
             self.janela_view_link = tk.Tk()
             self.janela_view_link.title('VIEW MENU')
-            self.janela_view_link.geometry('900x600')
+            self.janela_view_link.geometry('900x650')
             self.janela_view_link.configure(padx=10, pady=10, bg='#C0C0C0')
 
             # FRAME_VIEW
@@ -177,7 +178,7 @@ def janela_principal():
                 if opcao == 1:  # Abrir janela para adicionar links.
                     self.janela_add_lnk_tk()
                 elif opcao == 2:  # Abre janela de opção para downloads
-                    self.downloads()
+                    threading.Thread(self.downloads())
                 elif opcao == 3:  # atualiza a caixa do 'ListBox'
                     self.listagem_arq_bd_view()
                 elif opcao == 4:  # Limpa a caixa do 'ListBox'
@@ -269,15 +270,15 @@ def janela_principal():
             from tkinter.ttk import Progressbar
             self.progresso_wd = tk.Tk()
             self.progresso_wd.geometry('200x100')
-            self.progresso_bar = Progressbar(self.progresso_wd, length=100, mode='indeterminate')
+            self.progresso_bar = Progressbar(self.progresso_wd, length=100, mode='determinate')
             self.progresso_bar.pack(expand=True)
-            self.botao_bar = tk.Button(self.progresso_wd, text='Iniciar', command=self.step)
-            self.botao_bar.pack()
+            self.step()
 
         def step(self):
-            self.progresso_wd.update_idletasks()
-            self.progresso_bar['value'] += 10
-            sleep(1)
+            for i in range(10):
+                self.progresso_wd.update_idletasks()
+                self.progresso_bar['value'] += 10
+                sleep(0.5)
 
         def limpar_caixa_addlink(self):
             self.caixa_txt_1.delete('0', 'end')
@@ -311,7 +312,7 @@ def janela_principal():
                 self.img_youtube = str(img_yt)
 
             link = YouTube(self.link_video)
-
+            self.barra_progresso()
             # DOWNLOADS VÍDEOS
             try:
                 link.streams.filter(adaptive=True).first().download('C:/YouTube/Videos')
@@ -325,7 +326,7 @@ def janela_principal():
                 messagebox.showinfo('AVISO', f'Downloads Audio, Realizado com Sucesso! \n{self.titulo_inf}')
             except:
                 messagebox.showerror('AVISO!', 'Não foi possível fazer o downloads do Audio!')
-
+            self.progresso_wd.destroy()
     iniciando = YouTube_v3()
 
 
