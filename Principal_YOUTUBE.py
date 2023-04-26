@@ -178,13 +178,26 @@ def janela_principal():
                 if opcao == 1:  # Abrir janela para adicionar links.
                     self.janela_add_lnk_tk()
                 elif opcao == 2:  # Abre janela de opção para downloads
-                    threading.Thread(self.downloads())
+                    threading.Thread(target=self.start_downloads).start()
                 elif opcao == 3:  # atualiza a caixa do 'ListBox'
                     self.listagem_arq_bd_view()
                 elif opcao == 4:  # Limpa a caixa do 'ListBox'
                     self.limpar_caixa_lista_links()
             except:
                 messagebox.showwarning('AVISO', 'Escolha uma OPÇÃO')
+
+        def start_downloads(self):
+            sleep(5)
+            self.barra_progresso()
+            self.downloads()
+
+        def barra_progresso(self):
+            from tkinter.ttk import Progressbar
+            self.progresso_wd = tk.Tk()
+            self.progresso_wd.geometry('200x100')
+            self.progresso_bar = Progressbar(self.progresso_wd, orient='horizontal', length=100, mode='indeterminate')
+            self.progresso_bar.pack(expand=True)
+            self.step()
 
         def janela_add_lnk_tk(self):
             # JANELA ADD_LINK
@@ -266,13 +279,6 @@ def janela_principal():
                 except db.Error as falha:
                     messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n{falha}')
 
-        def barra_progresso(self):
-            from tkinter.ttk import Progressbar
-            self.progresso_wd = tk.Tk()
-            self.progresso_wd.geometry('200x100')
-            self.progresso_bar = Progressbar(self.progresso_wd, length=100, mode='determinate')
-            self.progresso_bar.pack(expand=True)
-            self.step()
 
         def step(self):
             for i in range(10):
@@ -312,7 +318,6 @@ def janela_principal():
                 self.img_youtube = str(img_yt)
 
             link = YouTube(self.link_video)
-            self.barra_progresso()
             # DOWNLOADS VÍDEOS
             try:
                 link.streams.filter(adaptive=True).first().download('C:/YouTube/Videos')
