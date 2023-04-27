@@ -178,7 +178,7 @@ def janela_principal():
                 if opcao == 1:  # Abrir janela para adicionar links.
                     self.janela_add_lnk_tk()
                 elif opcao == 2:  # Abre janela de opção para downloads
-                    threading.Thread(target=self.start_downloads).start()
+                    threading.Thread(target=self.downloads).start()
                 elif opcao == 3:  # atualiza a caixa do 'ListBox'
                     self.listagem_arq_bd_view()
                 elif opcao == 4:  # Limpa a caixa do 'ListBox'
@@ -186,10 +186,9 @@ def janela_principal():
             except:
                 messagebox.showwarning('AVISO', 'Escolha uma OPÇÃO')
 
-        def start_downloads(self):
+        def start_bar(self):
             sleep(1)
             self.barra_progresso()
-            self.downloads()
 
         def barra_progresso(self):
             from tkinter.ttk import Progressbar
@@ -240,7 +239,6 @@ def janela_principal():
         def add_link_db(self):
             cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
             link_yt = self.caixa_txt_1.get()  # Pega o link na caixa de texto e coloca em numa variável.
-            print(link_yt)
             if link_yt[:23] != 'https://www.youtube.com':
                 self.limpar_caixa_addlink()
                 messagebox.showwarning('AVISO IMPORTANTE', 'Esse não é um link valido. '
@@ -268,6 +266,7 @@ def janela_principal():
                     self.link_img = '<desconhecido>'
                 try:
                     print('AVISO!'f'Itens que serão adicionados', f'\n{link_yt} \n{self.titulo_link} \n{self.link_img}')
+
                     # Comando em SQL para adicionar no DB
                     comando_SQL = 'INSERT INTO youtube (' \
                                   'link_youtube, titulo_youtube, imagem_link) ' \
@@ -281,7 +280,6 @@ def janela_principal():
                     self.janela_add_link.destroy()
                 except db.Error as falha:
                     messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n{falha}')
-
 
         def limpar_caixa_addlink(self):
             self.caixa_txt_1.delete('0', 'end')
@@ -312,8 +310,9 @@ def janela_principal():
                 self.id_youtube = int(id)
                 self.link_video = str(link)
                 self.titulo_inf = str(titulo)
-                self.img_youtube = str(img_yt)
-
+                # self.img_youtube = str(img_yt)
+            sleep(1)
+            self.start_bar()
             link = YouTube(self.link_video)
             # DOWNLOADS VÍDEOS
             try:
