@@ -178,28 +178,13 @@ def janela_principal():
                 if opcao == 1:  # Abrir janela para adicionar links.
                     self.janela_add_lnk_tk()
                 elif opcao == 2:  # Abre janela de opção para downloads
-                    threading.Thread(target=self.downloads).start()
+                    self.downloads()
                 elif opcao == 3:  # atualiza a caixa do 'ListBox'
                     self.listagem_arq_bd_view()
                 elif opcao == 4:  # Limpa a caixa do 'ListBox'
                     self.limpar_caixa_lista_links()
             except:
                 messagebox.showwarning('AVISO', 'Escolha uma OPÇÃO')
-
-        def start_bar(self):
-            sleep(1)
-            self.barra_progresso()
-
-        def barra_progresso(self):
-            from tkinter.ttk import Progressbar
-            self.progresso_wd = tk.Tk()
-            self.progresso_wd.geometry('200x100')
-            self.progresso_bar = Progressbar(self.progresso_wd, orient='horizontal', length=100, mode='indeterminate')
-            self.progresso_bar.pack(expand=True)
-            for i in range(10):
-                self.progresso_wd.update_idletasks()
-                self.progresso_bar['value'] += 10
-                sleep(0.5)
 
         def janela_add_lnk_tk(self):
             # JANELA ADD_LINK
@@ -239,41 +224,40 @@ def janela_principal():
         def add_link_db(self):
             cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
             link_yt = self.caixa_txt_1.get()  # Pega o link na caixa de texto e coloca em numa variável.
+            self.link_youtube = YouTube(link_yt)  # Prepara o link e apenas o titulo é adiciona na variável.
             if link_yt[:23] != 'https://www.youtube.com':
                 self.limpar_caixa_addlink()
                 messagebox.showwarning('AVISO IMPORTANTE', 'Esse não é um link valido. '
                                                            '\nEntre com um link de conteúdo do YOUTUBE')
             else:
                 try:
-                    self.link_youtube = YouTube(link_yt)  # Prepara o link e apenas o titulo é adiciona na variável.
-                    self.titulo_link = self.link_youtube.title  # Adiciona o titulo do link, o mesmo que aparece no youtube
+                    titulo_link = self.link_youtube.title  # Adiciona o titulo do link, o mesmo que aparece no youtube
                 except pytube.exceptions.PytubeError as falha_tube:
-                    messagebox.showwarning('ERROR', f'Ocorreu um erro relacionado ao TITULO \n{falha_tube}')
-                    resp = messagebox.askyesno('ERROR',
-                                               'Não foi possível "pegar" o titulo no link. \nDeseja adicionar outro?')
+                    messagebox.showwarning('ERROR', f'Não foi possível adicionar o titulo do video \n{falha_tube}')
+                    resp = messagebox.askyesno('ERROR', '\nDeseja adicionar outro?')
                     if resp:
                         # Gera uma possibilidade para adicionar titulo.
-                        self.titulo_link = simpledialog.askstring('Entrada', 'Digite o Titulo')
-                        messagebox.showinfo('AVISO!', f'Novo titulo adicionado {self.titulo_link}')
+                        titulo_link = simpledialog.askstring('Entrada', 'Digite o Titulo')
+                        messagebox.showinfo('AVISO!', f'Novo titulo adicionado {titulo_link}')
                     else:
-                        self.titulo_link = ''
-                if len(self.titulo_link) == 0:
-                    self.titulo_link = '<desconhecido>'  # Quando não tem nenhuma informação, add sem valor.
+                        titulo_link = ''
+                if len(titulo_link) == 0:
+                    titulo_link = '<desconhecido>'  # Quando não tem nenhuma informação, add sem valor.
                 try:
                     self.link_img = self.link_youtube.thumbnail_url  # Adiciona o link da imagem em miniatura.
                 except pytube.exceptions.PytubeError as falha_youtube:
                     messagebox.showerror('ERROR', f'Não foi possível obter o link da imagem \n{falha_youtube}')
                     self.link_img = '<desconhecido>'
                 try:
-                    print('AVISO!'f'Itens que serão adicionados', f'\n{link_yt} \n{self.titulo_link} \n{self.link_img}')
+                    print('AVISO!'f'Itens que serão adicionados', f'\n{link_yt} \n{titulo_link} \n{self.link_img}')
 
                     # Comando em SQL para adicionar no DB
                     comando_SQL = 'INSERT INTO youtube (' \
                                   'link_youtube, titulo_youtube, imagem_link) ' \
                                   'VALUES (%s, %s, %s)'
-                    valores_sql_lnk = (link_yt, self.titulo_link, self.link_img)  # atribui os valores na variável
+                    valores_sql_lnk = (link_yt, titulo_link, self.link_img)  # atribui os valores na variável
                     cursor.execute(comando_SQL, valores_sql_lnk)  # Executa o comando e adicionar literalmente no db
-                    messagebox.showinfo('Aviso!', f'Vídeo adicionado com sucesso! \n{self.titulo_link}')
+                    messagebox.showinfo('Aviso!', f'Vídeo adicionado com sucesso! \n{titulo_link}')
                     self.limpar_caixa_addlink()  # Limpa a caixa de texto para poder adicionar outro link
                     sleep(0.5)
                     self.listagem_arq_bd_view()
@@ -312,7 +296,6 @@ def janela_principal():
                 self.titulo_inf = str(titulo)
                 # self.img_youtube = str(img_yt)
             sleep(1)
-            self.start_bar()
             link = YouTube(self.link_video)
             # DOWNLOADS VÍDEOS
             try:
@@ -327,7 +310,7 @@ def janela_principal():
                 messagebox.showinfo('AVISO', f'Downloads Audio, Realizado com Sucesso! \n{self.titulo_inf}')
             except:
                 messagebox.showerror('AVISO!', 'Não foi possível fazer o downloads do Audio!')
-            self.progresso_wd.destroy()
+
     iniciando = YouTube_v3()
 
 
