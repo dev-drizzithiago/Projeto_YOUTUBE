@@ -3,7 +3,6 @@ import tkinter as tk
 from tkinter import messagebox, simpledialog, ttk
 import mysql.connector as db
 from time import sleep
-import pytube.exceptions
 from pytube import YouTube
 import threading
 from tkinter.filedialog import asksaveasfile
