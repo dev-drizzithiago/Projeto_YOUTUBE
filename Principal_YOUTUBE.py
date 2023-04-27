@@ -187,7 +187,7 @@ def janela_principal():
                 messagebox.showwarning('AVISO', 'Escolha uma OPÇÃO')
 
         def start_downloads(self):
-            sleep(5)
+            sleep(1)
             self.barra_progresso()
             self.downloads()
 
@@ -197,7 +197,10 @@ def janela_principal():
             self.progresso_wd.geometry('200x100')
             self.progresso_bar = Progressbar(self.progresso_wd, orient='horizontal', length=100, mode='indeterminate')
             self.progresso_bar.pack(expand=True)
-            self.step()
+            for i in range(10):
+                self.progresso_wd.update_idletasks()
+                self.progresso_bar['value'] += 10
+                sleep(0.5)
 
         def janela_add_lnk_tk(self):
             # JANELA ADD_LINK
@@ -279,12 +282,6 @@ def janela_principal():
                 except db.Error as falha:
                     messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n{falha}')
 
-
-        def step(self):
-            for i in range(10):
-                self.progresso_wd.update_idletasks()
-                self.progresso_bar['value'] += 10
-                sleep(0.5)
 
         def limpar_caixa_addlink(self):
             self.caixa_txt_1.delete('0', 'end')
