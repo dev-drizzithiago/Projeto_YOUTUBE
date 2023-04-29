@@ -7,14 +7,14 @@ def janela_principal():
     class YouTube_v3:
         def __init__(self):
             # JANELA DE LOGIN
-            self.login_banco = tk.Tk()
-            self.login_banco.focus_displayof()
-            self.login_banco.title('DownTube')
-            self.login_banco.geometry('350x200')
-            self.login_banco.configure(pady=5, padx=5, bd=5)
-            self.frame_1 = tk.Frame(self.login_banco, width=20, height=20, pady=10, padx=10)
+            self.janela_login = tk.Tk()
+            self.janela_login.focus_displayof()
+            self.janela_login.title('DownTube')
+            self.janela_login.geometry('350x200')
+            self.janela_login.configure(pady=5, padx=5, bd=5)
+            self.frame_1 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10)
             self.frame_1.pack(fill=tk.Y)
-            self.frame_2 = tk.Frame(self.login_banco, width=20, height=20, pady=10, padx=10)
+            self.frame_2 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10)
             self.frame_2.pack(fill=tk.Y)
             self.frame_3 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10, bg='#C0C0C0')
             self.frame_3.pack(fill=tk.Y)
