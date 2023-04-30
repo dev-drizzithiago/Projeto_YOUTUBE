@@ -10,11 +10,11 @@ def janela_principal():
             self.janela_login = tk.Tk()
             self.janela_login.focus_displayof()
             self.janela_login.title('DownTube')
-            self.janela_login.geometry('350x200')
-            self.janela_login.configure(pady=5, padx=5, bd=5)
-            self.frame_1 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10)
+            self.janela_login.geometry('400x320')
+            self.janela_login.configure(pady=5, padx=5, bd=5, bg='#C0C0C0')
+            self.frame_1 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10, bg='#C0C0C0')
             self.frame_1.pack(fill=tk.Y)
-            self.frame_2 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10)
+            self.frame_2 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10, bg='#C0C0C0')
             self.frame_2.pack(fill=tk.Y)
             self.frame_3 = tk.Frame(self.janela_login, width=20, height=20, pady=10, padx=10, bg='#C0C0C0')
             self.frame_3.pack(fill=tk.Y)
@@ -46,11 +46,11 @@ def janela_principal():
             self.pass_caixa_txt.pack(anchor='center')
             #
             self.botao_entrar = tk.Button(self.frame_2, text='Conectar', width=15, height=1, relief='ridge',
-                                          command=self.banco_dados)
+                                          command=self.banco_dados_opcao)
             self.botao_entrar.pack(anchor='center')
 
-            self.sair_janela = tk.Button(self.login_banco, text='Sair', width=5, height=1, padx=5, pady=5,
-                                         command=self.login_banco.destroy)
+            self.sair_janela = tk.Button(self.janela_login, text='Sair', width=5, height=1, padx=5, pady=5,
+                                         command=self.janela_login.destroy)
             self.sair_janela.pack(anchor='se')
 
             tk.mainloop()
@@ -71,10 +71,8 @@ def janela_principal():
                                                 user=usuario,
                                                 password=senha,
                                                 database='drizzithiago_sql')
-                messagebox.showinfo('AVISO!', 'Abrindo o programa \n'
-                                              'Aperte "ok" para continuar!')
-                self.login_banco.destroy()
-                self.janela_menu_tk()
+                self.janela_login.destroy()
+                self.janela_principal_tk
             except db.Error as erro:
                 messagebox.showerror('AVISO', F' ==> {erro}')
                 resp = messagebox.askyesno('ERRO!', 'Deseja continuar??')
