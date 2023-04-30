@@ -7,6 +7,7 @@ def janela_principal():
     class YouTube_v3:
         def __init__(self):
             # JANELA DE LOGIN
+            
             self.janela_login = tk.Tk()
             self.janela_login.focus_displayof()
             self.janela_login.title('DownTube')
@@ -72,7 +73,7 @@ def janela_principal():
                                                 password=senha,
                                                 database='drizzithiago_sql')
                 self.janela_login.destroy()
-                self.janela_principal_tk
+                self.janela_principal_tk()
             except db.Error as erro:
                 messagebox.showerror('AVISO', F' ==> {erro}')
                 resp = messagebox.askyesno('ERRO!', 'Deseja continuar??')
@@ -176,7 +177,7 @@ def janela_principal():
 
             # LABEL
             self.label_view_1 = tk.Label(self.frame_view_1, text='Escolha um titulo e selecione uma opção abaixo',
-                                         font=fonte_Times, padx=10, pady=10)
+                                         padx=10, pady=10)
             self.label_view_1.pack(side='top')
 
             # LISTBOX
@@ -327,20 +328,7 @@ def janela_principal():
                 except db.Error as falha:
                     messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n{falha}')
 
-        def barra_progresso(self):
-            from tkinter.ttk import Progressbar
-            self.progresso_wd = tk.Tk()
-            self.progresso_wd.geometry('200x100')
-            self.progresso_bar = Progressbar(self.progresso_wd, length=100, mode='determinate')
-            self.progresso_bar.pack(expand=True)
-            self.step()
-
-        def step(self):
-            for i in range(10):
-                self.progresso_wd.update_idletasks()
-                self.progresso_bar['value'] += 10
-                sleep(0.5)
-
+        
         def limpar_caixa_addlink(self):
             self.caixa_txt_1.delete('0', 'end')
 
