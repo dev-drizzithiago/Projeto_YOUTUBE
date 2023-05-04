@@ -3,6 +3,8 @@ def janela_principal():
     import tkinter as tk
     from tkinter import messagebox
     import mysql.connector as db
+    from time import sleep
+    import threading
 
     class YouTube_v3:
         def __init__(self):
@@ -129,26 +131,6 @@ def janela_principal():
 
             # Função responsável por adicionar o link no banco de dados.
 
-        def add_link_db(self):
-            link_yt = str([self.caixa_txt_1.get()])  # Pega o link na caixa de texto e coloca em numa variável.
-            titulo_arq = YouTube(link_yt).title  # Prepara o link e apenas o titulo é adiciona na variável.
-            cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
-            print(titulo_arq)
-            try:
-                # Comando em SQL para adicionar no DB
-                comando_SQL = 'INSERT INTO youtube (' \
-                              'link_youtube, titulo_yt) ' \
-                              'VALUES (%s, %s)'
-                valores_sql_lnk = (link_yt, titulo_arq)  # atribui os valores na variável
-                cursor.execute(comando_SQL, valores_sql_lnk)  # Executa o comando e adicionar literalmente no db
-                messagebox.showinfo('Aviso!', f'Vídeo adicionado com sucesso! \n{titulo_arq}')
-                self.limpar_caixa_addlink()  # Limpa a caixa de texto para poder adicionar outro link
-                sleep(0.5)
-                self.listagem_arq_bd_view()
-            except db.Error as falha:
-                messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n'
-                                              f'{falha}')
-
         def janela_principal_tk(self):
 
             # JANELA PRINCIPAL
@@ -215,38 +197,7 @@ def janela_principal():
             self.botao_sair.pack(side='right')
 
             # lISTA OS DADOS QUANDO ABRE A JANELA
-            self.listagem_arq_bd_view()
-
-        def listagem_arq_bd_view(self):
-            # BUSCANDO AS INFORMAÇÕES NO BANCO DE DADOS
-            try:
-                self.bd_view = self.conexao_banco.cursor()  # Conecta com o bando de dados.
-                self.comando_sql = 'SELECT * FROM youtube'  # Comando para listar os arquivos no bd
-                self.bd_view.execute(self.comando_sql)  # Executando o comando
-            except mysql.connector.Error as falha:
-                messagebox.showerror('ERROR', f'Ocorreu o seguinte erro: \n{falha}')
-            self.titulos = list()  # Cria uma lista para colocar os dados.
-            for id_link, link_yt, titulos_yt, img_yt in self.bd_view:
-                self.titulos.append(titulos_yt)
-            self.limpar_caixa_lista_links()
-            # LISTANDO COM OBJETO 'tk.ListBox'
-            for lista_titulos_bd in range(len(self.titulos)):
-                self.lista_titulos.insert('end', self.titulos[lista_titulos_bd])
-                self.lista_titulos.itemconfig(lista_titulos_bd, bg="#C0C0C0")
-
-        def opcao_radio(self):
-            try:
-                opcao = self.var_opcao.get()
-                if opcao == 1:  # Abrir janela para adicionar links.
-                    self.janela_add_lnk_tk()
-                elif opcao == 2:  # Abre janela de opção para downloads
-                    threading.Thread(self.downloads())
-                elif opcao == 3:  # atualiza a caixa do 'ListBox'
-                    self.listagem_arq_bd_view()
-                elif opcao == 4:  # Limpa a caixa do 'ListBox'
-                    self.limpar_caixa_lista_links()
-            except:
-                messagebox.showwarning('AVISO', 'Escolha uma OPÇÃO')
+            self.listagem_arq_bd_view()        
 
         def janela_add_lnk_tk(self):
             # JANELA ADD_LINK
@@ -282,6 +233,41 @@ def janela_principal():
             self.botao_fechar.pack(side='right')
 
             # Função responsável por adicionar o link no banco de dados.
+
+        def listagem_arq_bd_view(self):
+            # BUSCANDO AS INFORMAÇÕES NO BANCO DE DADOS
+            try:
+                self.bd_view = self.conexao_banco.cursor()  # Conecta com o bando de dados.
+                self.comando_sql = 'SELECT * FROM youtube'  # Comando para listar os arquivos no bd
+                self.bd_view.execute(self.comando_sql)  # Executando o comando
+            except mysql.connector.Error as falha:
+                messagebox.showerror('ERROR', f'Ocorreu o seguinte erro: \n{falha}')
+            self.titulos = list()  # Cria uma lista para colocar os dados.
+            for id_link, link_yt, titulos_yt, img_yt in self.bd_view:
+                self.titulos.append(titulos_yt)
+            self.limpar_caixa_lista_links()
+            # LISTANDO COM OBJETO 'tk.ListBox'
+            for lista_titulos_bd in range(len(self.titulos)):
+                self.lista_titulos.insert('end', self.titulos[lista_titulos_bd])
+                self.lista_titulos.itemconfig(lista_titulos_bd, bg="#C0C0C0")
+
+        def opcao_radio(self):
+            try:
+                opcao = self.var_opcao.get()
+                if opcao == 1:  # Abrir janela para adicionar links.
+                    self.janela_add_lnk_tk()
+
+                elif opcao == 2:  # Abre janela de opção para downloads
+                    threading.Thread(target=self.iniciando_downloads).start()
+
+                elif opcao == 3:  # atualiza a caixa do 'ListBox'
+                    self.listagem_arq_bd_view()
+
+                elif opcao == 4:  # Limpa a caixa do 'ListBox'
+                    self.limpar_caixa_lista_links()
+
+            except:
+                messagebox.showwarning('AVISO', 'Escolha uma OPÇÃO')
 
         def add_link_db(self):
             cursor = self.conexao_banco.cursor()  # Busca a conexão com o DB e joga instruções numa variável.
@@ -328,7 +314,13 @@ def janela_principal():
                 except db.Error as falha:
                     messagebox.showerror('AVISO', f'Ocorreu um erro ao adicionar o link \n{falha}')
 
+        def iniciando_downloads(self):
+            sleep(0.5)
+            self.downloads()
         
+        def iniciando_adicionar_link():
+            sleep(0.5)
+
         def limpar_caixa_addlink(self):
             self.caixa_txt_1.delete('0', 'end')
 
@@ -376,6 +368,7 @@ def janela_principal():
             except:
                 messagebox.showerror('AVISO!', 'Não foi possível fazer o downloads do Audio!')
             self.progresso_wd.destroy()
+            
     iniciando = YouTube_v3()
 
 
