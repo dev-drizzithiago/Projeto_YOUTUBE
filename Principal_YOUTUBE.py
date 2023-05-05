@@ -1,10 +1,12 @@
 def janela_principal():
     from pytube import YouTube
+    import pytube
     import tkinter as tk
-    from tkinter import messagebox
+    from tkinter import messagebox, simpledialog
     import mysql.connector as db
     from time import sleep
     import threading
+    import mysql
 
     class YouTube_v3:
         def __init__(self):
@@ -107,9 +109,6 @@ def janela_principal():
             self.botao_add_link = tk.Button(self.frame_2_add_link, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
                                             relief='groove', command=self.add_link_db)
             self.botao_add_link.pack(anchor='center')
-            self.botao_voltar = tk.Button(self.frame_2_add_link, text='Voltar', bd=4, width=10, height=1, pady=3, padx=3,
-                                          relief='groove', command=self.voltar_menu)
-            self.botao_voltar.pack(anchor='se')
             self.botao_fechar = tk.Button(self.frame_2_add_link, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
                                           relief='groove', command=self.janela_add_link.destroy)
             self.botao_fechar.pack(anchor='se')
@@ -217,7 +216,7 @@ def janela_principal():
             # LABEL_1
             self.label1 = tk.Label(self.frame_1_add_lnk, text='Adicione um link do Youtube', bd=3, padx=10, pady=10,
                                    height=2, bg='#C0C0C0')
-            self.label1.pack(fill='both', expand='yes')
+            self.label1.pack(fill='both')
 
             # Caixa de entrada
             self.caixa_txt_1 = tk.Entry(self.frame_1_add_lnk, bd=2, width=100, bg='#C0C0C0')
