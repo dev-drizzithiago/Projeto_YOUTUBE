@@ -318,7 +318,7 @@ def janela_principal():
             sleep(0.5)
             self.downloads()
         
-        def iniciando_adicionar_link():
+        def iniciando_adicionar_link(self):
             sleep(0.5)
 
         def limpar_caixa_addlink(self):
