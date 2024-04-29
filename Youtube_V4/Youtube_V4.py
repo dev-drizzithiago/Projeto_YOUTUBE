@@ -23,8 +23,9 @@ class Youtube_v4:
 
         # ##############################################################################################################
         """#### Lista dos links que estão salvos no computador"""
+        self.var_lista_cache_links_add = tk.StringVar()
         self.lista_cache_links_add = tk.Listbox(self.frame_label_lista_cache, selectmode=tk.SINGLE)
-        self.lista_cache_links_add.config(height=5, width=142)
+        self.lista_cache_links_add.config(height=10, width=142, justify=tk.CENTER)
         self.lista_cache_links_add.pack(anchor='center', fill=tk.BOTH, pady=5, padx=5)
         # --------------------------------------------------------------------------------------------------------------
         """#### Barra de rolagem Vertical da lista de cache"""
@@ -33,15 +34,15 @@ class Youtube_v4:
         self.lista_cache_links_add.config(yscrollcommand=self.barra_rolagem_lista_cache_Y.set)
         self.barra_rolagem_lista_cache_Y.place(in_=self.lista_cache_links_add)
         self.barra_rolagem_lista_cache_Y.place(relx=1, relheight=1, bordermode='outside')
+        # ##############################################################################################################
+        """#### Frame caixa de entrada """
+        self.frame_label_caixa_entrada = Labelframe(self.janela_principal, text='Caixa de entrada:')
+        self.frame_label_caixa_entrada.place(y=220, x=12)
         # --------------------------------------------------------------------------------------------------------------
-        """#### Barra de rolagem Horizontal da lista de cache"""
-        self.barra_rolagem_lista_cache_X = Scrollbar(self.frame_label_principal, orient=tk.HORIZONTAL)
-        self.barra_rolagem_lista_cache_X.config(command=self.lista_cache_links_add.xview)
-        self.lista_cache_links_add.config(xscrollcommand=self.barra_rolagem_lista_cache_X.set)
-        self.barra_rolagem_lista_cache_X.place(in_=self.lista_cache_links_add)
-        self.barra_rolagem_lista_cache_X.place(relx=0.0, rely=1.0, relheight=1, bordermode='outside')
-
-        self.caixa_de_entrada_link = Entry(None)
+        self.var_caixa_de_entrada = tk.StringVar()
+        self.caixa_de_entrada_link = Entry(self.frame_label_caixa_entrada, textvariable=self.var_caixa_de_entrada)
+        self.caixa_de_entrada_link.config(width=143, justify=tk.CENTER)
+        self.caixa_de_entrada_link.pack(anchor='center', pady=5, padx=5)
 
         """#### Declarações de variaveis"""
         self.ativar_ = False
