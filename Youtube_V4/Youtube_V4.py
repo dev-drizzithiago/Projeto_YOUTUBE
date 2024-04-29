@@ -28,12 +28,20 @@ class Youtube_v4:
         self.lista_cache_links_add.config(height=5, width=142)
         self.lista_cache_links_add.pack(anchor='center', fill=tk.BOTH, pady=5, padx=5)
         # --------------------------------------------------------------------------------------------------------------
-        """#### Barra de rolagem da lista de cache"""
+        """#### Barra de rolagem Vertical da lista de cache"""
         self.barra_rolagem_lista_cache_Y = Scrollbar(self.frame_label_principal, orient=tk.VERTICAL)
-        self.barra_rolagem_lista_cache_Y.place(in_=self.lista_cache_links_add)
-        self.barra_rolagem_lista_cache_Y.place(relx=1, relheight=1, bordermode='outside')
         self.barra_rolagem_lista_cache_Y.config(command=self.lista_cache_links_add.yview)
         self.lista_cache_links_add.config(yscrollcommand=self.barra_rolagem_lista_cache_Y.set)
+        self.barra_rolagem_lista_cache_Y.place(in_=self.lista_cache_links_add)
+        self.barra_rolagem_lista_cache_Y.place(relx=1, relheight=1, bordermode='outside')
+        # --------------------------------------------------------------------------------------------------------------
+        """#### Barra de rolagem Horizontal da lista de cache"""
+        self.barra_rolagem_lista_cache_X = Scrollbar(self.frame_label_principal, orient=tk.HORIZONTAL)
+        self.barra_rolagem_lista_cache_X.config(command=self.lista_cache_links_add.xview)
+        self.lista_cache_links_add.config(xscrollcommand=self.barra_rolagem_lista_cache_X.set)
+        self.barra_rolagem_lista_cache_X.place(in_=self.lista_cache_links_add)
+        self.barra_rolagem_lista_cache_X.place(relx=0, relheight=1, bordermode='outside')
+
 
         self.caixa_de_entrada_link = Entry(None)
 
