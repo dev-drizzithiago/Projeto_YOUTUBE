@@ -1,13 +1,11 @@
-import wx
+import tkinter as tk
+from tkinter.ttk import *
 
 
 class Youtube_v4:
     def __init__(self):
-        self.app = wx.App()
-        self.janela_principal = wx.Frame(None, title='Youtube_V4', size=(400, 200))
-        self.janela_principal.Show()
-
-        self.app.MainLoop()
+        self.janela_principal = tk.Tk()
+        self.janela_principal.mainloop()
 
 
 iniciando_obj = Youtube_v4()
