@@ -5,12 +5,11 @@ from threading import Thread
 
 class Youtube_v4:
     def __init__(self):
-
         """ Janela principal"""
         self.janela_principal = tk.Tk()
         self.janela_principal.geometry('900x500+250+100')
         self.janela_principal.title('Projeto_YouTube_V4')
-        self.janela_principal.resizable(0,0)
+        self.janela_principal.resizable(0, 0)
 
         # ##############################################################################################################
         """#### Frames Label's diversos"""
@@ -40,8 +39,7 @@ class Youtube_v4:
         self.barra_rolagem_lista_cache_X.config(command=self.lista_cache_links_add.xview)
         self.lista_cache_links_add.config(xscrollcommand=self.barra_rolagem_lista_cache_X.set)
         self.barra_rolagem_lista_cache_X.place(in_=self.lista_cache_links_add)
-        self.barra_rolagem_lista_cache_X.place(relx=0, relheight=1, bordermode='outside')
-
+        self.barra_rolagem_lista_cache_X.place(relx=0.0, rely=1.0, relheight=1, bordermode='outside')
 
         self.caixa_de_entrada_link = Entry(None)
 
