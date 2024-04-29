@@ -1,4 +1,3 @@
-
 from pytube import YouTube
 import pytube
 import tkinter as tk
@@ -7,6 +6,7 @@ import mysql.connector as db
 from time import sleep
 import threading
 import mysql
+
 
 class YouTube_v3:
     def __init__(self):
@@ -106,7 +106,8 @@ class YouTube_v3:
         self.caixa_txt_1.pack(anchor='center')
 
         # Botões de comando
-        self.botao_add_link = tk.Button(self.frame_2_add_link, text='Adicionar', bd=4, width=10, height=1, padx=3, pady=3,
+        self.botao_add_link = tk.Button(self.frame_2_add_link, text='Adicionar', bd=4, width=10, height=1, padx=3,
+                                        pady=3,
                                         relief='groove', command=self.add_link_db)
         self.botao_add_link.pack(anchor='center')
         self.botao_fechar = tk.Button(self.frame_2_add_link, text='Sair', bd=4, width=10, height=1, pady=3, padx=3,
@@ -114,7 +115,8 @@ class YouTube_v3:
         self.botao_fechar.pack(anchor='se')
 
         # Label de visualizador titulo adicionado no banco de dados.
-        self.label_add_titulo = tk.Label(self.frame_3_add_link, textvariable=self._var_titulo_view_add, width=60, height=4,
+        self.label_add_titulo = tk.Label(self.frame_3_add_link, textvariable=self._var_titulo_view_add, width=60,
+                                         height=4,
                                          padx=5, pady=5, bd=5)
         self.label_add_titulo.pack(anchor='center')
 
@@ -368,5 +370,5 @@ class YouTube_v3:
             messagebox.showerror('AVISO!', 'Não foi possível fazer o downloads do Audio!')
         self.progresso_wd.destroy()
 
-iniciando = YouTube_v3()
 
+iniciando = YouTube_v3()
