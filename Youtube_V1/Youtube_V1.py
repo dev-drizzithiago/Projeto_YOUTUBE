@@ -12,38 +12,40 @@ def leiaInt(valor_recebido):
             return valor_inteiro
         except ValueError:
             print('Você digitou um valor incorreto')
+# ----------------------------------------------------------------------------------------------------------------------
+def logo_menus(valor_recebido):
+    linha = '----' * 10
 
+    print(f'{linha}{valor_recebido}{linha}')
 
 # ######################################################################################################################
 """#### Funções de threads"""
 def thread_adicionar_link():
     print('thread_adicionar_link')
-    pass
+    Thread(target=adicionar_link()).start()
 
 
 def thread_baixar_links():
     print('thread_baixar_links')
-    pass
+    Thread(target=baixar_links()).start()
 
 
 def thread_ver_links():
     print('thread_ver_links')
-    pass
+    Thread(target=ver_links()).start()
 
 # ######################################################################################################################
 """#### Funções de processo"""
 def adicionar_link():
-    print('adicionar_link')
+    logo_menus('adicionar_link')
     pass
-
 
 def baixar_links():
-    print('baixar_links')
+    logo_menus('baixar_links')
     pass
 
-
 def ver_links():
-    print('ver_links')
+    logo_menus('Opção desativada!')
     pass
 
 # ######################################################################################################################
