@@ -1,11 +1,17 @@
 from threading import Thread
+from time import sleep
 
 lista_menu = ['Adicionar link', 'Baixar links', 'Ver links', 'Sair']
 
 # ######################################################################################################################
 """#### Funções basicas"""
-def LeiaInt(valor_recebido):
-    pass
+def leiaInt(valor_recebido):
+    while True:
+        try:
+            valor_inteiro = int(input(valor_recebido))
+            return valor_inteiro
+        except ValueError:
+            print('Você digitou um valor incorreto')
 
 
 # ######################################################################################################################
@@ -47,5 +53,19 @@ def menu():
         print(f'[{indice + 1}] - {lista_menu[indice]}')
 
     opc_menu_principal = leiaInt('Escolha uma opcão: ')
+
+    if opc_menu_principal == 1:
+        thread_adicionar_link()
+
+    elif opc_menu_principal == 2:
+        thread_baixar_links()
+
+    elif opc_menu_principal == 3:
+        thread_ver_links()
+
+    elif opc_menu_principal == 4:
+        print('Fechando...')
+        sleep(2)
+
 
 menu()
