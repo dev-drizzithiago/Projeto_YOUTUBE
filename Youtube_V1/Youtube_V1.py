@@ -4,11 +4,9 @@ from pathlib import Path
 from time import sleep
 from os import mkdir
 
-
 # ######################################################################################################################
 """ Declaração de variaveis"""
 lista_menu = ['Adicionar link', 'Baixar links', 'Ver links', 'Sair']
-
 
 """ declaração das pastas que serão usadas para realizar os processos."""
 home_path = Path.home()
@@ -31,6 +29,8 @@ print(f'Arquivos de texto: {arquivo_txt_links}')
 
 # ######################################################################################################################
 """#### Funções basicas"""
+
+
 def leiaInt(valor_recebido):
     while True:
         try:
@@ -38,6 +38,8 @@ def leiaInt(valor_recebido):
             return valor_inteiro
         except ValueError:
             print('Você digitou um valor incorreto')
+
+
 # ----------------------------------------------------------------------------------------------------------------------
 def logo_menus(valor_recebido):
     linha = '----' * 10
@@ -46,6 +48,8 @@ def logo_menus(valor_recebido):
 
 # ######################################################################################################################
 """#### Funções de threads"""
+
+
 def thread_adicionar_link():
     print('thread_adicionar_link')
     Thread(target=adicionar_link()).start()
@@ -60,8 +64,11 @@ def thread_ver_links():
     print('thread_ver_links')
     Thread(target=ver_links()).start()
 
+
 # ######################################################################################################################
 """#### Funções de processo"""
+
+
 def adicionar_link():
     """
 
@@ -85,6 +92,7 @@ def adicionar_link():
         print('Arquivo "links_youtube.txt" foi criado com sucesso!')
         save_link = open(arquivo_txt_links, 'w')
 
+
 def baixar_links():
     """
 
@@ -96,23 +104,28 @@ def baixar_links():
         valor_links = open(arquivo_txt_links, 'r')
         open_link = valor_links.readlines()
 
-
         """# Mostra as links disponiveis para downloads"""
         for indice, links in enumerate(open_link):
             """ Mantando obj youtube"""
             obj_youtube_title = YouTube(links).title
             print(f'[{indice + 1}] -> {obj_youtube_title}')
 
-        selecao_link = leiaInt('Escolha uma opção: ')
+        selecao_link = leiaInt('Escolha uma opção: ') - 1
         link_download = str(open_link[selecao_link])
 
         obj_youtube_downloads = YouTube(link_download)
-        print(obj_youtube_downloads)
-        # obj_youtube_downloads.streams.filter(only_audio=True).first().download(path_temp)
 
+        try:
+            print(f'Realizando donwload do link: {link_download}, aguarde...!')
+            sleep(1)
+            # obj_youtube_downloads.streams.filter(only_audio=True).first().download(path_temp)
+            print(f'Download realizado com sucesso!')
+        except:
+            print(f'Não foi possível realizar o downloads do link {link_download}')
 
     except FileNotFoundError:
         print(f'Não existe link salvos')
+
 
 def ver_links():
     """
@@ -122,8 +135,11 @@ def ver_links():
     logo_menus('Opção desativada!')
     pass
 
+
 # ######################################################################################################################
 """#### Menu principal"""
+
+
 def menu():
     for indice in range(len(lista_menu)):
         print(f'[{indice + 1}] - {lista_menu[indice]}')
@@ -144,10 +160,10 @@ def menu():
         sleep(2)
         return False
 
+
 while True:
     fechar_programa = menu()
     if fechar_programa:
         break
     else:
         menu()
-
