@@ -5,8 +5,11 @@ from pathlib import Path
 # ######################################################################################################################
 """ Declaração de variaveis"""
 lista_menu = ['Adicionar link', 'Baixar links', 'Ver links', 'Sair']
+
+""" declaração das pastas que serão usadas para realizar os processos."""
 home_path = Path.home()
 path_temp = Path(home_path, 'AppData', 'Local', 'Temp')
+path_move = Path(home_path, 'Videos')
 
 # ######################################################################################################################
 """#### Funções basicas"""
