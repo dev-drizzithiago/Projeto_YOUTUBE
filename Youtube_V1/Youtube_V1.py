@@ -79,7 +79,10 @@ def adicionar_link():
 
 def baixar_links():
     logo_menus('baixar_links')
-    pass
+    try:
+        open_link = open(arquivo_txt_links, 'r')
+    except FileNotFoundError:
+        print(f'Não existe link salvos')
 
 def ver_links():
     logo_menus('Opção desativada!')
