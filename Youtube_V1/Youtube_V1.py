@@ -106,6 +106,7 @@ def baixar_links():
         open_link = valor_links.readlines()
 
         """# Mostra as links disponiveis para downloads"""
+        print()
         for indice, links in enumerate(open_link):
             """ Mantando obj youtube"""
             obj_youtube_title = YouTube(links).title
@@ -118,16 +119,15 @@ def baixar_links():
         obj_title_verificacao = str(YouTube(link_download).title)
         print(obj_title_verificacao)
 
-        for valor in listdir(path_move):
-            try:
-                print(f'Realizando donwload do link: [{obj_youtube_downloads.title}] aguarde!')
-                sleep(1)
-                obj_youtube_downloads.streams.filter(adaptive=True).first().download(path_move)
-                print(f'Download realizado com sucesso!')
-            except:
-                print(f'Não foi possível realizar o downloads do link {link_download}')
-        else:
-            print(f'Já existe um arquivo com o mesmo nome: {obj_title_verificacao}')
+        """ Processo de downloads do arquivo em MP4"""
+        try:
+            print(f'Realizando donwload do link: [{obj_youtube_downloads.title}] aguarde!')
+            sleep(1)
+            obj_youtube_downloads.streams.filter(adaptive=True).first().download(path_temp)
+            print(f'Download realizado ucesso!')
+            print()
+        except:
+            print(f'Não foi possível realizar o downloads do link {link_download}')
 
     except FileNotFoundError:
         print(f'Não existe link salvos')
