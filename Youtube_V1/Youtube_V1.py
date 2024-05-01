@@ -13,6 +13,7 @@ home_path = Path.home()
 path_temp = Path(home_path, 'AppData', 'Local', 'Temp')
 path_link = Path(home_path, 'AppData', 'LocalLow')
 path_move = Path(home_path, 'Videos')
+file_links = 'links_youtube.txt'
 
 """ Criando pasta que ficara o arquivo de link"""
 try:
@@ -20,8 +21,11 @@ try:
 except FileExistsError:
     pass
 except FileNotFoundError:
-    path_link = Path(home_path, 'AppData', 'LocalLow')
+    path_link = Path(home_path, 'AppData', 'LocalLow', 'Youtube_V1')
     mkdir(path_link)
+
+arquivo_txt_links = f'{path_link}\\{file_links}'
+print(f'Arquivos de texto: {arquivo_txt_links}')
 
 # ######################################################################################################################
 """#### Funções basicas"""
@@ -60,7 +64,12 @@ def adicionar_link():
     logo_menus('adicionar_link')
     link_add = str(input('Copie aqui: '))
     try:
-        save_link = open(path)
+        save_link = open(arquivo_txt_links, 'a')
+    except FileExistsError:
+        pass
+    except FileNotFoundError:
+        print('Arquivo "links_youtube.txt" foi criado com sucesso!')
+        save_link = open(arquivo_txt_links, 'w')
 
 
 def baixar_links():
