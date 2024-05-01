@@ -116,15 +116,9 @@ def baixar_links():
 
         obj_youtube_downloads = YouTube(link_download)
         obj_title_verificacao = str(YouTube(link_download).title)
+        print(obj_title_verificacao)
 
         for valor in listdir(path_move):
-            print(valor)
-            valor = obj_title_verificacao + '.mp4'
-            print(valor)
-            if search(obj_title_verificacao, valor):
-                verificacao_item = True
-
-        if not verificacao_item:
             try:
                 print(f'Realizando donwload do link: [{obj_youtube_downloads.title}] aguarde!')
                 sleep(1)
@@ -133,7 +127,7 @@ def baixar_links():
             except:
                 print(f'Não foi possível realizar o downloads do link {link_download}')
         else:
-            print(f'Já existe um arquivo com o mesmo nome {obj_title_verificacao}')
+            print(f'Já existe um arquivo com o mesmo nome: {obj_title_verificacao}')
 
     except FileNotFoundError:
         print(f'Não existe link salvos')
