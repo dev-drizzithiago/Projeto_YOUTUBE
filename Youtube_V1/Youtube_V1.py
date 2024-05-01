@@ -99,11 +99,16 @@ def baixar_links():
 
         for links in open_link:
             """ Mantando obj youtube"""
-            obj_youtube_downloads = YouTube(links)
-            print(f'{indice}-> {obj_youtube_downloads.title}')
+            obj_youtube_title = YouTube(links).title
+            print(f'{indice}-> {obj_youtube_title}')
+            indice += 1
 
         selecao_link = leiaInt('Escolha uma opção: ')
-        obj_youtube_downloads.streams.filter(only_audio=True).first().download(path_temp)
+        link_download = str(open_link[selecao_link])
+        obj_youtube_downloads = YouTube(link_download)
+        print(obj_youtube_downloads)
+        # obj_youtube_downloads.streams.filter(only_audio=True).first().download(path_temp)
+
 
     except FileNotFoundError:
         print(f'Não existe link salvos')
