@@ -103,6 +103,7 @@ def baixar_links():
             print(f'{indice}-> {obj_youtube_downloads.title}')
 
         selecao_link = leiaInt('Escolha uma opção: ')
+        obj_youtube_downloads.streams.filter(only_audio=True).first().download(path_temp)
 
     except FileNotFoundError:
         print(f'Não existe link salvos')
