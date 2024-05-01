@@ -60,12 +60,17 @@ def thread_ver_links():
 
 # ######################################################################################################################
 """#### Funções de processo"""
-def adicionar_link(valor_link):
+def adicionar_link():
     logo_menus('adicionar_link')
-    link_add = str(input('Copie aqui: '))
+    while True:
+        link_add = str(input('Copie aqui: '))
+        if link_add[:11] != 'www.youtube.com/':
+            print(f'Link não é youtube!')
+        else:
+            break
     try:
         save_link = open(arquivo_txt_links, 'a')
-        save_link.write(f'{valor_link}\n')
+        save_link.write(f'{link_add}\n')
     except FileExistsError:
         pass
     except FileNotFoundError:
