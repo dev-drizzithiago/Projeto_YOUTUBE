@@ -77,7 +77,7 @@ def adicionar_link():
     """
     logo_menus('adicionar_link')
     while True:
-        link_add = str(input('Copie aqui: '))
+        link_add = str(input('Link youtube aqui: '))
         if link_add[:23] != 'https://www.youtube.com':
             print(f'Link não é youtube!')
         else:
@@ -86,6 +86,7 @@ def adicionar_link():
         save_link = open(arquivo_txt_links, 'a')
         save_link.write(f'{link_add}\n')
         print('Link adicionado com sucesso!')
+        print()
         sleep(2)
     except FileExistsError:
         pass
