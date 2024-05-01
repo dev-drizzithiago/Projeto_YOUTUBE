@@ -29,6 +29,8 @@ arquivo_txt_links = f'{path_link}\\{file_links}'
 print(f'Arquivos de texto: {arquivo_txt_links}')
 
 """ Mantando obj youtube"""
+obj_youtube_downloads = YouTube()
+
 
 # ######################################################################################################################
 """#### Funções basicas"""
