@@ -105,6 +105,7 @@ def baixar_links():
 
         selecao_link = leiaInt('Escolha uma opção: ')
         link_download = str(open_link[selecao_link])
+
         obj_youtube_downloads = YouTube(link_download)
         print(obj_youtube_downloads)
         # obj_youtube_downloads.streams.filter(only_audio=True).first().download(path_temp)
