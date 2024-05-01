@@ -63,6 +63,10 @@ def thread_ver_links():
 # ######################################################################################################################
 """#### Funções de processo"""
 def adicionar_link():
+    """
+
+    :return:
+    """
     logo_menus('adicionar_link')
     while True:
         link_add = str(input('Copie aqui: '))
@@ -82,6 +86,10 @@ def adicionar_link():
         save_link = open(arquivo_txt_links, 'w')
 
 def baixar_links():
+    """
+
+    :return:
+    """
     logo_menus('baixar_links')
     try:
         open_link = open(arquivo_txt_links, 'r')
@@ -95,6 +103,10 @@ def baixar_links():
         print(f'Não existe link salvos')
 
 def ver_links():
+    """
+
+    :return:
+    """
     logo_menus('Opção desativada!')
     pass
 
@@ -121,8 +133,8 @@ def menu():
         return False
 
 while True:
-    ativar_programa = menu()
-    if not ativar_programa:
+    fechar_programa = menu()
+    if fechar_programa:
         break
     else:
         menu()
