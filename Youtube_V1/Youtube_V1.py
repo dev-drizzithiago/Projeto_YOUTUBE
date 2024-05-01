@@ -8,7 +8,6 @@ from os import mkdir
 # ######################################################################################################################
 """ Declaração de variaveis"""
 lista_menu = ['Adicionar link', 'Baixar links', 'Ver links', 'Sair']
-ativar_programa = True
 
 
 """ declaração das pastas que serão usadas para realizar os processos."""
@@ -74,6 +73,8 @@ def adicionar_link():
     try:
         save_link = open(arquivo_txt_links, 'a')
         save_link.write(f'{link_add}\n')
+        print('Link adicionado com sucesso!')
+        sleep(2)
     except FileExistsError:
         pass
     except FileNotFoundError:
@@ -85,10 +86,10 @@ def baixar_links():
     try:
         open_link = open(arquivo_txt_links, 'r')
 
-        for indice in range(len(open_link)):
+        for links in open_link:
             """ Mantando obj youtube"""
-            obj_youtube_downloads = YouTube(open_link)
-            print(f'{indice + 1} -> {open_link[indice].title()}')
+            obj_youtube_downloads = YouTube(links)
+            print(f'-> {obj_youtube_downloads.title}')
 
     except FileNotFoundError:
         print(f'Não existe link salvos')
@@ -117,9 +118,10 @@ def menu():
     elif opc_menu_principal == 4:
         print('Fechando...')
         sleep(2)
-        ativar_programa = False
+        return False
 
 while True:
+    ativar_programa = menu()
     if not ativar_programa:
         break
     else:
