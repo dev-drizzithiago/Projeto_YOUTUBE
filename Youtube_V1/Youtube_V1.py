@@ -8,6 +8,8 @@ from os import mkdir
 # ######################################################################################################################
 """ Declaração de variaveis"""
 lista_menu = ['Adicionar link', 'Baixar links', 'Ver links', 'Sair']
+ativar_programa = True
+
 
 """ declaração das pastas que serão usadas para realizar os processos."""
 home_path = Path.home()
@@ -27,10 +29,6 @@ except FileNotFoundError:
 print(path_link)
 arquivo_txt_links = f'{path_link}\\{file_links}'
 print(f'Arquivos de texto: {arquivo_txt_links}')
-
-""" Mantando obj youtube"""
-obj_youtube_downloads = YouTube()
-
 
 # ######################################################################################################################
 """#### Funções basicas"""
@@ -69,7 +67,7 @@ def adicionar_link():
     logo_menus('adicionar_link')
     while True:
         link_add = str(input('Copie aqui: '))
-        if link_add[:17] != 'www.youtube.com':
+        if link_add[:23] != 'https://www.youtube.com':
             print(f'Link não é youtube!')
         else:
             break
@@ -86,8 +84,11 @@ def baixar_links():
     logo_menus('baixar_links')
     try:
         open_link = open(arquivo_txt_links, 'r')
+
         for indice in range(len(open_link)):
-            print(f'{indice + 1} -> {open_link.title()}')
+            """ Mantando obj youtube"""
+            obj_youtube_downloads = YouTube(open_link)
+            print(f'{indice + 1} -> {open_link[indice].title()}')
 
     except FileNotFoundError:
         print(f'Não existe link salvos')
@@ -116,6 +117,11 @@ def menu():
     elif opc_menu_principal == 4:
         print('Fechando...')
         sleep(2)
+        ativar_programa = False
 
+while True:
+    if not ativar_programa:
+        break
+    else:
+        menu()
 
-menu()
