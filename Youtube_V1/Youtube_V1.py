@@ -60,17 +60,17 @@ def thread_ver_links():
 
 # ######################################################################################################################
 """#### Funções de processo"""
-def adicionar_link():
+def adicionar_link(valor_link):
     logo_menus('adicionar_link')
     link_add = str(input('Copie aqui: '))
     try:
         save_link = open(arquivo_txt_links, 'a')
+        save_link.write(f'{valor_link}\n')
     except FileExistsError:
         pass
     except FileNotFoundError:
         print('Arquivo "links_youtube.txt" foi criado com sucesso!')
         save_link = open(arquivo_txt_links, 'w')
-
 
 def baixar_links():
     logo_menus('baixar_links')
