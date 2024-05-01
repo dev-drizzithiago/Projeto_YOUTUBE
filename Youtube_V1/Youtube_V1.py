@@ -2,7 +2,8 @@ from threading import Thread
 from pytube import YouTube
 from pathlib import Path
 from time import sleep
-from os import mkdir
+from os import mkdir, listdir
+from re import search
 
 # ######################################################################################################################
 """ Declaração de variaveis"""
@@ -114,14 +115,22 @@ def baixar_links():
         link_download = str(open_link[selecao_link])
 
         obj_youtube_downloads = YouTube(link_download)
+        obj_title_verificacao = YouTube(link_download).title
 
-        try:
-            print(f'Realizando donwload do link: [{obj_youtube_downloads.title}] aguarde!')
-            sleep(1)
-            obj_youtube_downloads.streams.filter(adaptive=True).first().download(path_move)
-            print(f'Download realizado com sucesso!')
-        except:
-            print(f'Não foi possível realizar o downloads do link {link_download}')
+        for valor in listdir(path_move):
+            if search(obj_title_verificacao):
+                verificacao_item = True
+
+        if not verificacao_item:
+            try:
+                print(f'Realizando donwload do link: [{obj_youtube_downloads.title}] aguarde!')
+                sleep(1)
+                obj_youtube_downloads.streams.filter(adaptive=True).first().download(path_move)
+                print(f'Download realizado com sucesso!')
+            except:
+                print(f'Não foi possível realizar o downloads do link {link_download}')
+        else:
+            print(f'Já existe um arquivo com o mesmo nome {obj_title_verificacao}')
 
     except FileNotFoundError:
         print(f'Não existe link salvos')
