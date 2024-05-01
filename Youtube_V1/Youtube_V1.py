@@ -90,14 +90,19 @@ def baixar_links():
 
     :return:
     """
+    indice = 1
+
     logo_menus('baixar_links')
     try:
         open_link = open(arquivo_txt_links, 'r')
+        """# Mostra as links disponiveis para downloads"""
 
         for links in open_link:
             """ Mantando obj youtube"""
             obj_youtube_downloads = YouTube(links)
-            print(f'-> {obj_youtube_downloads.title}')
+            print(f'{indice}-> {obj_youtube_downloads.title}')
+
+        selecao_link = leiaInt('Escolha uma opção: ')
 
     except FileNotFoundError:
         print(f'Não existe link salvos')
