@@ -115,11 +115,11 @@ def baixar_links():
         link_download = str(open_link[selecao_link])
 
         obj_youtube_downloads = YouTube(link_download)
-        obj_title_verificacao = YouTube(link_download).title
+        obj_title_verificacao = str(YouTube(link_download).title)
 
         for valor in listdir(path_move):
             print(valor)
-            valor = obj_title_verificacao + ' .mp4'
+            valor = obj_title_verificacao + '.mp4'
             print(valor)
             if search(obj_title_verificacao, valor):
                 verificacao_item = True
