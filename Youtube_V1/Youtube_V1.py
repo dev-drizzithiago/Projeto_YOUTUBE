@@ -1,6 +1,8 @@
 from threading import Thread
-from time import sleep
 from pathlib import Path
+from time import sleep
+from os import mkdir
+
 
 # ######################################################################################################################
 """ Declaração de variaveis"""
@@ -9,7 +11,17 @@ lista_menu = ['Adicionar link', 'Baixar links', 'Ver links', 'Sair']
 """ declaração das pastas que serão usadas para realizar os processos."""
 home_path = Path.home()
 path_temp = Path(home_path, 'AppData', 'Local', 'Temp')
+path_link = Path(home_path, 'AppData', 'LocalLow')
 path_move = Path(home_path, 'Videos')
+
+""" Criando pasta que ficara o arquivo de link"""
+try:
+    mkdir(path_link)
+except FileExistsError:
+    pass
+except FileNotFoundError:
+    path_link = Path(home_path, 'AppData', 'LocalLow')
+    mkdir(path_link)
 
 # ######################################################################################################################
 """#### Funções basicas"""
@@ -46,7 +58,10 @@ def thread_ver_links():
 """#### Funções de processo"""
 def adicionar_link():
     logo_menus('adicionar_link')
-    pass
+    link_add = str(input('Copie aqui: '))
+    try:
+        save_link = open(path)
+
 
 def baixar_links():
     logo_menus('baixar_links')
