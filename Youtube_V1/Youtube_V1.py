@@ -1,4 +1,5 @@
 from threading import Thread
+from pytube import YouTube
 from pathlib import Path
 from time import sleep
 from os import mkdir
@@ -26,6 +27,8 @@ except FileNotFoundError:
 print(path_link)
 arquivo_txt_links = f'{path_link}\\{file_links}'
 print(f'Arquivos de texto: {arquivo_txt_links}')
+
+""" Mantando obj youtube"""
 
 # ######################################################################################################################
 """#### Funções basicas"""
@@ -81,6 +84,9 @@ def baixar_links():
     logo_menus('baixar_links')
     try:
         open_link = open(arquivo_txt_links, 'r')
+        for indice in range(len(open_link)):
+            print(f'{indice + 1} -> {open_link.title()}')
+
     except FileNotFoundError:
         print(f'Não existe link salvos')
 
