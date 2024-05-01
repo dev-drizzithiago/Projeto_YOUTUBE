@@ -1,7 +1,12 @@
 from threading import Thread
 from time import sleep
+from pathlib import Path
 
+# ######################################################################################################################
+""" Declaração de variaveis"""
 lista_menu = ['Adicionar link', 'Baixar links', 'Ver links', 'Sair']
+home_path = Path.home()
+path_temp = Path(home_path, 'AppData', 'Local', 'Temp')
 
 # ######################################################################################################################
 """#### Funções basicas"""
@@ -15,8 +20,8 @@ def leiaInt(valor_recebido):
 # ----------------------------------------------------------------------------------------------------------------------
 def logo_menus(valor_recebido):
     linha = '----' * 10
-
     print(f'{linha}{valor_recebido}{linha}')
+
 
 # ######################################################################################################################
 """#### Funções de threads"""
