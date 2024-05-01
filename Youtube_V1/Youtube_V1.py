@@ -21,9 +21,9 @@ try:
 except FileExistsError:
     pass
 except FileNotFoundError:
-    path_link = Path(home_path, 'AppData', 'LocalLow', 'Youtube_V1')
-    mkdir(path_link)
-
+    path_link = Path(home_path, 'AppData', 'LocalLow')
+    mkdir(path_link + 'Youtube_V1')
+print(path_link)
 arquivo_txt_links = f'{path_link}\\{file_links}'
 print(f'Arquivos de texto: {arquivo_txt_links}')
 
