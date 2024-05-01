@@ -64,7 +64,7 @@ def adicionar_link():
     logo_menus('adicionar_link')
     while True:
         link_add = str(input('Copie aqui: '))
-        if link_add[:11] != 'www.youtube.com/':
+        if link_add[:17] != 'www.youtube.com/':
             print(f'Link não é youtube!')
         else:
             break
