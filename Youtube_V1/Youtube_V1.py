@@ -90,18 +90,18 @@ def baixar_links():
 
     :return:
     """
-    indice = 1
 
     logo_menus('baixar_links')
     try:
-        open_link = open(arquivo_txt_links, 'r')
-        """# Mostra as links disponiveis para downloads"""
+        valor_links = open(arquivo_txt_links, 'r')
+        open_link = valor_links.readlines()
 
-        for links in open_link:
+
+        """# Mostra as links disponiveis para downloads"""
+        for indice, links in enumerate(open_link):
             """ Mantando obj youtube"""
             obj_youtube_title = YouTube(links).title
-            print(f'{indice}-> {obj_youtube_title}')
-            indice += 1
+            print(f'[{indice + 1}] -> {obj_youtube_title}')
 
         selecao_link = leiaInt('Escolha uma opção: ')
         link_download = str(open_link[selecao_link])
