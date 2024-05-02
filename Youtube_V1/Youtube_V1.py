@@ -11,9 +11,9 @@ lista_menu = ['Adicionar link', 'Baixar links', 'Ver links', 'Sair']
 
 """ declaração das pastas que serão usadas para realizar os processos."""
 home_path = Path.home()
-path_temp = Path(home_path, 'AppData', 'Local', 'Temp')
-path_link = Path(home_path, 'AppData', 'LocalLow')
-path_move = Path(home_path, 'Videos')
+path_temp = str(Path(home_path, 'AppData', 'Local', 'Temp'))
+path_link = str(Path(home_path, 'AppData', 'LocalLow'))
+path_move = str(Path(home_path, 'Videos'))
 file_links = 'links_youtube.txt'
 
 """ Criando pasta que ficara o arquivo de link"""
@@ -22,7 +22,7 @@ try:
 except FileExistsError:
     pass
 except FileNotFoundError:
-    path_link = Path(home_path, 'AppData', 'LocalLow')
+    path_link = str(Path(home_path, 'AppData', 'LocalLow'))
     mkdir(path_link + 'Youtube_V1')
 print(path_link)
 arquivo_txt_links = f'{path_link}\\{file_links}'
