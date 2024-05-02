@@ -11,7 +11,7 @@ import subprocess
 
 # ######################################################################################################################
 """ Declaração de variaveis"""
-lista_menu = ['Adicionar link', 'Baixar links', 'Ver links', 'Sair']
+lista_menu = ['Adicionar link', 'Baixar links', 'Sair']
 
 """ declaração das pastas que serão usadas para realizar os processos."""
 home_path = Path.home()
@@ -60,20 +60,9 @@ def thread_adicionar_link():
     print('thread_adicionar_link')
     Thread(target=adicionar_link()).start()
 
-
 def thread_baixar_links():
     print('thread_baixar_links')
     Thread(target=baixar_links()).start()
-
-
-def thread_ver_links():
-    print('thread_ver_links')
-    Thread(target=ver_links()).start()
-
-def thread_mp4_to_mp3():
-    print('thread_mp4_to_mp3')
-    Thread(target=mp4_to_mp3).start()
-
 
 # ######################################################################################################################
 """#### Funções de processo"""
@@ -152,7 +141,10 @@ def baixar_links():
                     print(f'Realizando donwload do link: [{obj_youtube_downloads.title}] aguarde!')
                     sleep(1)
                     obj_youtube_downloads.streams.filter(only_audio=True).first().download(path_temp)
-                    mp4_to_mp3()
+
+                    """### Chama a função para converter o video em mp3"""
+                    FF_conversor()
+                    # mp4_to_mp3()
                 except:
                     print(f'Não foi possível realizar o downloads do link {link_download}')
 
@@ -164,14 +156,6 @@ def baixar_links():
         except FileNotFoundError:
             print(f'Não existe link salvos')
             break
-
-def ver_links():
-    """
-
-    :return:
-    """
-    logo_menus('Opção desativada!')
-    pass
 
 def mp4_to_mp3():
 
@@ -221,9 +205,6 @@ def menu():
         thread_baixar_links()
 
     elif opc_menu_principal == 3:
-        thread_ver_links()
-
-    elif opc_menu_principal == 4:
         print('Fechando...')
         sleep(2)
         return True
