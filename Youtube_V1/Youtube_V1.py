@@ -74,24 +74,30 @@ def adicionar_link():
 
     :return:
     """
-    logo_menus('adicionar_link')
     while True:
-        link_add = str(input('Link youtube aqui: '))
-        if link_add[:23] != 'https://www.youtube.com':
-            print(f'Link não é youtube!')
-        else:
-            break
-    try:
-        save_link = open(arquivo_txt_links, 'a')
-        save_link.write(f'{link_add}\n')
-        print('Link adicionado com sucesso!')
-        print()
-        sleep(2)
-    except FileExistsError:
-        pass
-    except FileNotFoundError:
-        print('Arquivo "links_youtube.txt" foi criado com sucesso!')
-        save_link = open(arquivo_txt_links, 'w')
+        logo_menus('adicionar_link')
+        while True:
+            link_add = str(input('Link youtube aqui(voltar:999): '))
+            if link_add != '999':
+                if link_add[:23] != 'https://www.youtube.com':
+                    print(f'Link não é youtube!')
+                else:
+                    break
+            try:
+                save_link = open(arquivo_txt_links, 'a')
+                save_link.write(f'{link_add}\n')
+                print('Link adicionado com sucesso!')
+                print()
+                sleep(2)
+            except FileExistsError:
+                pass
+            except FileNotFoundError:
+                print('Arquivo "links_youtube.txt" foi criado com sucesso!')
+                save_link = open(arquivo_txt_links, 'w')
+            else:
+                print('Voltando ao menu principal!')
+                sleep(2)
+                break
 
 
 def baixar_links():
@@ -131,6 +137,7 @@ def baixar_links():
                     print(f'Não foi possível realizar o downloads do link {link_download}')
             else:
                 print('Voltando ao menu principal!')
+                sleep(2)
         except FileNotFoundError:
             print(f'Não existe link salvos')
 
