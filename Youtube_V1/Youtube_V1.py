@@ -118,6 +118,7 @@ def baixar_links():
 
     :return:
     """
+    import moviepy.editor as mp
     while True:
         print()
         logo_menus('baixar_links')
@@ -146,11 +147,13 @@ def baixar_links():
                 try:
                     print(f'Realizando donwload do link: [{obj_youtube_downloads.title}] aguarde!')
                     sleep(1)
-                    obj_youtube_downloads.streams.filter(adaptive=True).first().download(path_down)
+                    link_url = obj_youtube_downloads.streams.filter(adaptive=True).first()
+                    mp3 = mp.AudioFileClip(link_url.url)
+                    mp3.write_audiofile(obj_youtube_title + '.mp3')
                 except:
                     print(f'Não foi possível realizar o downloads do link {link_download}')
 
-                mp4_to_mp3()
+                # mp4_to_mp3(mp3)
                 print(f'Download realizado Sucesso!')
                 print()
             else:
@@ -172,7 +175,7 @@ def ver_links():
 
 def mp4_to_mp3():
 
-    import moviepy.editor as mp
+
     """# Modificando mp4 para mp3"""
 
     """#### Procura todos os arquivos MP4"""
@@ -181,7 +184,8 @@ def mp4_to_mp3():
 
             """#### Junta o diretorio e o nomes e coloca em uma váriavel"""
             mp4_file = path.join(path_down, file)
-
+            mp4 = mp.VideoFileClip(mp4_file)
+            mp3 = mp4.audio
             """#### Renomeia o arquivo para MP3"""
             mp3_file = path.join(path_down, path.splitext(file)[0] + '.mp3')
 
@@ -189,7 +193,7 @@ def mp4_to_mp3():
             novo_mp3 = mp.AudioFileClip(mp4_file)
 
             """#### Trnasforma os dados da variavel mp3 em arquivo de audio da mesma extensão"""
-            novo_mp3.write_audiofile(mp3_file)
+            mp3.write_audiofile(mp3_file)
 
             print(novo_mp3)
 
