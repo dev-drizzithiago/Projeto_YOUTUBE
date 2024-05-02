@@ -78,11 +78,13 @@ def adicionar_link():
         logo_menus('adicionar_link')
         while True:
             link_add = str(input('Link youtube aqui(voltar:999): '))
-            if link_add != '999':
-                if link_add[:23] != 'https://www.youtube.com':
-                    print(f'Link não é youtube!')
-                else:
-                    break
+            if link_add[:23] != 'https://www.youtube.com':
+                print(f'Link não é youtube!')
+            elif link_add == '999':
+                break
+            else:
+                break
+        if link_add != '999':
             try:
                 save_link = open(arquivo_txt_links, 'a')
                 save_link.write(f'{link_add}\n')
@@ -94,10 +96,10 @@ def adicionar_link():
             except FileNotFoundError:
                 print('Arquivo "links_youtube.txt" foi criado com sucesso!')
                 save_link = open(arquivo_txt_links, 'w')
-            else:
-                print('Voltando ao menu principal!')
-                sleep(2)
-                break
+        else:
+            print('Voltando ao menu principal!')
+            sleep(2)
+            break
 
 
 def baixar_links():
