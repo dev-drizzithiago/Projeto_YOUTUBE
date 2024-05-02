@@ -128,7 +128,7 @@ def baixar_links():
             print()
             logo_menus('Links disponiveis')
             for indice, links in enumerate(open_link):
-                """ Mantando obj youtube"""
+                """ Montando obj youtube"""
                 obj_youtube_title = YouTube(links).title
                 print(f'[{indice + 1}] -> {obj_youtube_title}')
 
@@ -159,6 +159,7 @@ def baixar_links():
                 sleep(2)
         except FileNotFoundError:
             print(f'Não existe link salvos')
+            break
 
 def ver_links():
     """
@@ -205,7 +206,7 @@ def menu():
     elif opc_menu_principal == 4:
         print('Fechando...')
         sleep(2)
-        return False
+        return True
 
 
 while True:
