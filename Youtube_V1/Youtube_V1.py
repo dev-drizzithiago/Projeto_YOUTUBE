@@ -150,7 +150,7 @@ def baixar_links():
                     print(f'Realizando donwload do link: [{obj_youtube_downloads.title}] aguarde!')
                     sleep(1)
                     obj_youtube_downloads.streams.filter(only_audio=True).first().download(path_temp)
-                    thread_mp4_to_mp3()
+                    mp4_to_mp3()
                 except:
                     print(f'Não foi possível realizar o downloads do link {link_download}')
 
