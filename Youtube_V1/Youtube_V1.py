@@ -150,7 +150,7 @@ def baixar_links():
                     print(f'Realizando donwload do link: [{obj_youtube_downloads.title}] aguarde!')
                     sleep(1)
                     obj_youtube_downloads.streams.filter(only_audio=True).first().download(path_temp)
-                    mp4_to_mp3()
+                    thread_mp4_to_mp3()
                 except:
                     print(f'Não foi possível realizar o downloads do link {link_download}')
 
@@ -178,10 +178,13 @@ def mp4_to_mp3():
     """#### Procura todos os arquivos MP4"""
     for file in listdir(path_temp):
         if search('mp4', file):
+            "#### Renomeia o arquivo"
             mp4_file = path.join(path_temp, file)
             mp3_file = path.join(path_down, path.splitext(file)[0] + '.mp3')
+            """#### Processa o MP4 para MP3"""
             novo_mp3 = AudioFileClip(mp4_file)
             novo_mp3.write_audiofile(mp3_file)
+            """#### Remove o arquivo MP4 para liberar espaço"""
             remove(mp4_file)
 
     print(f'Download realizado Sucesso!')
