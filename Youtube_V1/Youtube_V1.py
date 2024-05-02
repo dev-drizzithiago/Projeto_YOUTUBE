@@ -64,6 +64,10 @@ def thread_ver_links():
     print('thread_ver_links')
     Thread(target=ver_links()).start()
 
+def thread_mp4_mp3():
+    print('thread_mp4_mp3')
+    Thread(target=mp4_mp3()).start()
+
 
 # ######################################################################################################################
 """#### Funções de processo"""
@@ -75,12 +79,14 @@ def adicionar_link():
     :return:
     """
     while True:
+        print()
         logo_menus('adicionar_link')
         while True:
             link_add = str(input('Link youtube aqui(voltar:999): '))
             if link_add == '999':
                 break
             elif link_add[:23] != 'https://www.youtube.com':
+                print('---' * 14)
                 print(f'Link não é youtube!')
             else:
                 break
@@ -94,10 +100,14 @@ def adicionar_link():
             except FileExistsError:
                 pass
             except FileNotFoundError:
+                print('---' * 14)
                 print('Arquivo "links_youtube.txt" foi criado com sucesso!')
+                print()
                 save_link = open(arquivo_txt_links, 'w')
         else:
+            print('---' * 14)
             print('Voltando ao menu principal!')
+            print()
             sleep(2)
             break
 
@@ -108,6 +118,7 @@ def baixar_links():
     :return:
     """
     while True:
+        print()
         logo_menus('baixar_links')
         try:
             valor_links = open(arquivo_txt_links, 'r')
@@ -115,11 +126,13 @@ def baixar_links():
 
             """# Mostra as links disponiveis para downloads"""
             print()
+            logo_menus('Links disponiveis')
             for indice, links in enumerate(open_link):
                 """ Mantando obj youtube"""
                 obj_youtube_title = YouTube(links).title
                 print(f'[{indice + 1}] -> {obj_youtube_title}')
 
+            print('---' * 14)
             selecao_link = leiaInt('Escolha uma opção(Voltar:999): ') - 1
             if selecao_link != 999:
                 link_download = str(open_link[selecao_link])
@@ -138,7 +151,9 @@ def baixar_links():
                 except:
                     print(f'Não foi possível realizar o downloads do link {link_download}')
             else:
+                print('---' * 14)
                 print('Voltando ao menu principal!')
+                print()
                 sleep(2)
         except FileNotFoundError:
             print(f'Não existe link salvos')
@@ -152,12 +167,17 @@ def ver_links():
     logo_menus('Opção desativada!')
     pass
 
+def mp4_mp3():
+    pass
+
 
 # ######################################################################################################################
 """#### Menu principal"""
 
 
 def menu():
+    print()
+    logo_menus('Menu Principal')
     for indice in range(len(lista_menu)):
         print(f'[{indice + 1}] - {lista_menu[indice]}')
 
