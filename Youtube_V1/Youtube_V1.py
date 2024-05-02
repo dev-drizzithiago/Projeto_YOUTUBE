@@ -5,7 +5,7 @@ from pytube import YouTube
 from pathlib import Path
 from time import sleep
 from re import search
-import ffmpeg as ff
+import ffmpeg
 import subprocess
 
 
@@ -143,8 +143,7 @@ def baixar_links():
                     obj_youtube_downloads.streams.filter(only_audio=True).first().download(path_temp)
 
                     """### Chama a função para converter o video em mp3"""
-                    FF_conversor()
-                    # mp4_to_mp3()
+                    mp4_to_mp3()
                 except:
                     print(f'Não foi possível realizar o downloads do link {link_download}')
 
@@ -176,17 +175,6 @@ def mp4_to_mp3():
     print(f'Download realizado Sucesso!')
     print()
 
-def FF_conversor():
-    for file in listdir(path_temp):
-        if search('mp4', file):
-            "#### Renomeia o arquivo"
-            mp4_file = path.join(path_temp, file)
-            mp3_file = path.join(path_down, path.splitext(file)[0] + '.mp3')
-    comando = f"ff -i {mp4_file} -vn -ar 44100 -ac 2 -b:a 192k {mp3_file}"
-    subprocess.call(comando, shell=True)
-
-    """#### Remove o arquivo MP4 para liberar espaço"""
-    remove(mp4_file)
 
 # ######################################################################################################################
 """#### Menu principal"""
