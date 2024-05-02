@@ -24,9 +24,8 @@ except FileExistsError:
 except FileNotFoundError:
     path_link = str(Path(home_path, 'AppData', 'LocalLow', 'Youtube_V1'))
     mkdir(path_link)
-print(path_link)
+
 arquivo_txt_links = f'{path_link}\\{file_links}'
-print(f'Arquivos de texto: {arquivo_txt_links}')
 
 # ######################################################################################################################
 """#### Funções basicas"""
@@ -100,38 +99,40 @@ def baixar_links():
 
     :return:
     """
-
-    logo_menus('baixar_links')
-    try:
-        valor_links = open(arquivo_txt_links, 'r')
-        open_link = valor_links.readlines()
-
-        """# Mostra as links disponiveis para downloads"""
-        print()
-        for indice, links in enumerate(open_link):
-            """ Mantando obj youtube"""
-            obj_youtube_title = YouTube(links).title
-            print(f'[{indice + 1}] -> {obj_youtube_title}')
-
-        selecao_link = leiaInt('Escolha uma opção: ') - 1
-        link_download = str(open_link[selecao_link])
-
-        obj_youtube_downloads = YouTube(link_download)
-        obj_title_verificacao = str(YouTube(link_download).title)
-        print(obj_title_verificacao)
-
-        """ Processo de downloads do arquivo em MP4"""
+    while True:
+        logo_menus('baixar_links')
         try:
-            print(f'Realizando donwload do link: [{obj_youtube_downloads.title}] aguarde!')
-            sleep(1)
-            obj_youtube_downloads.streams.filter(adaptive=True).first().download(path_temp)
-            print(f'Download realizado ucesso!')
-            print()
-        except:
-            print(f'Não foi possível realizar o downloads do link {link_download}')
+            valor_links = open(arquivo_txt_links, 'r')
+            open_link = valor_links.readlines()
 
-    except FileNotFoundError:
-        print(f'Não existe link salvos')
+            """# Mostra as links disponiveis para downloads"""
+            print()
+            for indice, links in enumerate(open_link):
+                """ Mantando obj youtube"""
+                obj_youtube_title = YouTube(links).title
+                print(f'[{indice + 1}] -> {obj_youtube_title}')
+
+            selecao_link = leiaInt('Escolha uma opção(Voltar:999): ') - 1
+            if selecao_link != 999:
+                link_download = str(open_link[selecao_link])
+
+                obj_youtube_downloads = YouTube(link_download)
+                obj_title_verificacao = str(YouTube(link_download).title)
+                print(obj_title_verificacao)
+
+                """ Processo de downloads do arquivo em MP4"""
+                try:
+                    print(f'Realizando donwload do link: [{obj_youtube_downloads.title}] aguarde!')
+                    sleep(1)
+                    obj_youtube_downloads.streams.filter(adaptive=True).first().download(path_temp)
+                    print(f'Download realizado ucesso!')
+                    print()
+                except:
+                    print(f'Não foi possível realizar o downloads do link {link_download}')
+            else:
+                print('Voltando ao menu principal!')
+        except FileNotFoundError:
+            print(f'Não existe link salvos')
 
 
 def ver_links():
