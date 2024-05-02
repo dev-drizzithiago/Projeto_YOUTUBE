@@ -78,10 +78,10 @@ def adicionar_link():
         logo_menus('adicionar_link')
         while True:
             link_add = str(input('Link youtube aqui(voltar:999): '))
-            if link_add[:23] != 'https://www.youtube.com':
-                print(f'Link não é youtube!')
-            elif link_add == '999':
+            if link_add == '999':
                 break
+            elif link_add[:23] != 'https://www.youtube.com':
+                print(f'Link não é youtube!')
             else:
                 break
         if link_add != '999':
