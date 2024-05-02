@@ -147,15 +147,13 @@ def baixar_links():
                 try:
                     print(f'Realizando donwload do link: [{obj_youtube_downloads.title}] aguarde!')
                     sleep(1)
-                    link_url = obj_youtube_downloads.streams.filter(only_audio=True).first()
-                    mp3 = mp.AudioFileClip(link_url.url)
-                    mp3.write_audiofile(path_down + '\\' + obj_youtube_title + '.mp3')
-                    print(f'Download realizado Sucesso!')
-                    print()
+                    obj_youtube_downloads.streams.filter(only_audio=True).first().download(path_down)
+                    mp4_to_mp3()
+
                 except:
                     print(f'Não foi possível realizar o downloads do link {link_download}')
 
-                # mp4_to_mp3(mp3)
+
 
             else:
                 print('---' * 14)
@@ -180,27 +178,18 @@ def mp4_to_mp3():
     """# Modificando mp4 para mp3"""
 
     """#### Procura todos os arquivos MP4"""
+    from re import search
+    import moviepy.editor as mp
     for file in listdir(path_down):
         if search('mp4', file):
-
-            """#### Junta o diretorio e o nomes e coloca em uma váriavel"""
             mp4_file = path.join(path_down, file)
-            mp4 = mp.VideoFileClip(mp4_file)
-            mp3 = mp4.audio
-            """#### Renomeia o arquivo para MP3"""
             mp3_file = path.join(path_down, path.splitext(file)[0] + '.mp3')
-
-            "#### Prepara o objeto para que seja colocado na variavel mp3"
             novo_mp3 = mp.AudioFileClip(mp4_file)
-
-            """#### Trnasforma os dados da variavel mp3 em arquivo de audio da mesma extensão"""
-            mp3.write_audiofile(mp3_file)
-
-            print(novo_mp3)
-
-            """#### Remove o arquivo mp4, para que não ocupme muito espaço. """
+            novo_mp3.write_audiofile(mp3_file)
             remove(mp4_file)
 
+        print(f'Download realizado Sucesso!')
+        print()
 # ######################################################################################################################
 """#### Menu principal"""
 
