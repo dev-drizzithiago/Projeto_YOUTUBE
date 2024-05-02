@@ -1,9 +1,11 @@
 from os import mkdir, listdir, path, remove
+from moviepy.editor import AudioFileClip
 from threading import Thread
 from pytube import YouTube
 from pathlib import Path
 from time import sleep
 from re import search
+
 
 # ######################################################################################################################
 """ Declaração de variaveis"""
@@ -147,13 +149,10 @@ def baixar_links():
                 try:
                     print(f'Realizando donwload do link: [{obj_youtube_downloads.title}] aguarde!')
                     sleep(1)
-                    obj_youtube_downloads.streams.filter(only_audio=True).first().download(path_down)
+                    obj_youtube_downloads.streams.filter(only_audio=True).first().download(path_temp)
                     mp4_to_mp3()
-
                 except:
                     print(f'Não foi possível realizar o downloads do link {link_download}')
-
-
 
             else:
                 print('---' * 14)
@@ -174,22 +173,19 @@ def ver_links():
 
 def mp4_to_mp3():
 
-
     """# Modificando mp4 para mp3"""
 
     """#### Procura todos os arquivos MP4"""
-    from re import search
-    import moviepy.editor as mp
-    for file in listdir(path_down):
+    for file in listdir(path_temp):
         if search('mp4', file):
-            mp4_file = path.join(path_down, file)
+            mp4_file = path.join(path_temp, file)
             mp3_file = path.join(path_down, path.splitext(file)[0] + '.mp3')
-            novo_mp3 = mp.AudioFileClip(mp4_file)
+            novo_mp3 = AudioFileClip(mp4_file)
             novo_mp3.write_audiofile(mp3_file)
             remove(mp4_file)
 
-        print(f'Download realizado Sucesso!')
-        print()
+    print(f'Download realizado Sucesso!')
+    print()
 # ######################################################################################################################
 """#### Menu principal"""
 
