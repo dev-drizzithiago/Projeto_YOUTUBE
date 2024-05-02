@@ -1,8 +1,8 @@
+from os import mkdir, listdir, path, remove
 from threading import Thread
 from pytube import YouTube
 from pathlib import Path
 from time import sleep
-from os import mkdir, listdir
 from re import search
 
 # ######################################################################################################################
@@ -14,6 +14,7 @@ home_path = Path.home()
 path_temp = str(Path(home_path, 'AppData', 'Local', 'Temp'))
 path_link = str(Path(home_path, 'AppData', 'LocalLow', 'Youtube_V1'))
 path_move = str(Path(home_path, 'Videos'))
+path_audi = str(Path(home_path, 'Músicas'))
 file_links = 'links_youtube.txt'
 
 """ Criando pasta que ficara o arquivo de link"""
@@ -65,8 +66,8 @@ def thread_ver_links():
     Thread(target=ver_links()).start()
 
 def thread_mp4_mp3():
-    print('thread_mp4_mp3')
-    Thread(target=mp4_mp3()).start()
+    print('thread_mp4_to_mp3')
+    Thread(target=mp4_to_mp3).start()
 
 
 # ######################################################################################################################
@@ -111,7 +112,6 @@ def adicionar_link():
             sleep(2)
             break
 
-
 def baixar_links():
     """
 
@@ -146,7 +146,9 @@ def baixar_links():
                     print(f'Realizando donwload do link: [{obj_youtube_downloads.title}] aguarde!')
                     sleep(1)
                     obj_youtube_downloads.streams.filter(adaptive=True).first().download(path_temp)
-                    print(f'Download realizado ucesso!')
+                    thread_mp4_mp3()
+
+                    print(f'Download realizado Sucesso!')
                     print()
                 except:
                     print(f'Não foi possível realizar o downloads do link {link_download}')
@@ -158,7 +160,6 @@ def baixar_links():
         except FileNotFoundError:
             print(f'Não existe link salvos')
 
-
 def ver_links():
     """
 
@@ -167,9 +168,18 @@ def ver_links():
     logo_menus('Opção desativada!')
     pass
 
-def mp4_mp3():
-    pass
+def mp4_to_mp3():
 
+    import moviepy.editor as mp
+    """# Modificando mp4 para mp3"""
+
+    for file in listdir(path_temp):
+        if search('mp4', file):
+            mp4_file = path.join(path_temp, file)
+            mp3_file = path.join(path_audi, path.splitext(file)[0] + '.mp3')
+            novo_mp3 = mp.AudioFileClip(mp4_file)
+            novo_mp3.write_audiofile(mp3_file)
+            remove(mp4_file)
 
 # ######################################################################################################################
 """#### Menu principal"""
