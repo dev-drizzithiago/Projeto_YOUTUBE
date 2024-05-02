@@ -5,8 +5,6 @@ from pytube import YouTube
 from pathlib import Path
 from time import sleep
 from re import search
-import ffmpeg
-import subprocess
 
 
 # ######################################################################################################################
