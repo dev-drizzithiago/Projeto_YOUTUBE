@@ -5,6 +5,8 @@ from pytube import YouTube
 from pathlib import Path
 from time import sleep
 from re import search
+import ffmpeg as ff
+import subprocess
 
 
 # ######################################################################################################################
@@ -189,10 +191,12 @@ def mp4_to_mp3():
 
     print(f'Download realizado Sucesso!')
     print()
+
+def FF_conversor():
+    comando = "ffmpeg -i {} -vn -ar 44100 -ac 2 -b:a 192k {}".format()
+
 # ######################################################################################################################
 """#### Menu principal"""
-
-
 def menu():
     print()
     logo_menus('Menu Principal')
