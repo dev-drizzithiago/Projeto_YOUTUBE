@@ -66,7 +66,7 @@ def thread_ver_links():
     print('thread_ver_links')
     Thread(target=ver_links()).start()
 
-def thread_mp4_mp3():
+def thread_mp4_to_mp3():
     print('thread_mp4_to_mp3')
     Thread(target=mp4_to_mp3).start()
 
@@ -147,12 +147,12 @@ def baixar_links():
                     print(f'Realizando donwload do link: [{obj_youtube_downloads.title}] aguarde!')
                     sleep(1)
                     obj_youtube_downloads.streams.filter(adaptive=True).first().download(path_down)
-                    # thread_mp4_mp3()
-
-                    print(f'Download realizado Sucesso!')
-                    print()
                 except:
                     print(f'Não foi possível realizar o downloads do link {link_download}')
+
+                mp4_to_mp3()
+                print(f'Download realizado Sucesso!')
+                print()
             else:
                 print('---' * 14)
                 print('Voltando ao menu principal!')
@@ -175,19 +175,25 @@ def mp4_to_mp3():
     import moviepy.editor as mp
     """# Modificando mp4 para mp3"""
 
-    for file in listdir(path_audi):
+    """#### Procura todos os arquivos MP4"""
+    for file in listdir(path_down):
         if search('mp4', file):
-            print(file)
-            mp4_file = path.join(path_audi, file)
-            print(mp4_file)
 
-            mp3_file = path.join(path_audi, path.splitext(file)[0] + '.mp3')
-            print(mp3_file)
+            """#### Junta o diretorio e o nomes e coloca em uma váriavel"""
+            mp4_file = path.join(path_down, file)
 
+            """#### Renomeia o arquivo para MP3"""
+            mp3_file = path.join(path_down, path.splitext(file)[0] + '.mp3')
+
+            "#### Prepara o objeto para que seja colocado na variavel mp3"
             novo_mp3 = mp.AudioFileClip(mp4_file)
+
+            """#### Trnasforma os dados da variavel mp3 em arquivo de audio da mesma extensão"""
             novo_mp3.write_audiofile(mp3_file)
+
             print(novo_mp3)
 
+            """#### Remove o arquivo mp4, para que não ocupme muito espaço. """
             remove(mp4_file)
 
 # ######################################################################################################################
