@@ -15,6 +15,7 @@ path_temp = str(Path(home_path, 'AppData', 'Local', 'Temp'))
 path_link = str(Path(home_path, 'AppData', 'LocalLow', 'Youtube_V1'))
 path_move = str(Path(home_path, 'Videos'))
 path_audi = str(Path(home_path, 'Músicas'))
+path_down = Path(home_path, 'Downloads')
 file_links = 'links_youtube.txt'
 
 """ Criando pasta que ficara o arquivo de link"""
@@ -145,8 +146,8 @@ def baixar_links():
                 try:
                     print(f'Realizando donwload do link: [{obj_youtube_downloads.title}] aguarde!')
                     sleep(1)
-                    obj_youtube_downloads.streams.filter(adaptive=True).first().download(path_temp)
-                    thread_mp4_mp3()
+                    obj_youtube_downloads.streams.filter(adaptive=True).first().download(path_down)
+                    # thread_mp4_mp3()
 
                     print(f'Download realizado Sucesso!')
                     print()
@@ -174,12 +175,19 @@ def mp4_to_mp3():
     import moviepy.editor as mp
     """# Modificando mp4 para mp3"""
 
-    for file in listdir(path_temp):
+    for file in listdir(path_audi):
         if search('mp4', file):
-            mp4_file = path.join(path_temp, file)
+            print(file)
+            mp4_file = path.join(path_audi, file)
+            print(mp4_file)
+
             mp3_file = path.join(path_audi, path.splitext(file)[0] + '.mp3')
+            print(mp3_file)
+
             novo_mp3 = mp.AudioFileClip(mp4_file)
             novo_mp3.write_audiofile(mp3_file)
+            print(novo_mp3)
+
             remove(mp4_file)
 
 # ######################################################################################################################
