@@ -198,8 +198,11 @@ def FF_conversor():
             "#### Renomeia o arquivo"
             mp4_file = path.join(path_temp, file)
             mp3_file = path.join(path_down, path.splitext(file)[0] + '.mp3')
-    comando = f"ffmpeg -i {mp4_file} -vn -ar 44100 -ac 2 -b:a 192k {mp3_file}"
+    comando = f"ff -i {mp4_file} -vn -ar 44100 -ac 2 -b:a 192k {mp3_file}"
     subprocess.call(comando, shell=True)
+
+    """#### Remove o arquivo MP4 para liberar espaço"""
+    remove(mp4_file)
 
 # ######################################################################################################################
 """#### Menu principal"""
