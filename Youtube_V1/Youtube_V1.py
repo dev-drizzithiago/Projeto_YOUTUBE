@@ -193,7 +193,13 @@ def mp4_to_mp3():
     print()
 
 def FF_conversor():
-    comando = "ffmpeg -i {} -vn -ar 44100 -ac 2 -b:a 192k {}".format()
+    for file in listdir(path_temp):
+        if search('mp4', file):
+            "#### Renomeia o arquivo"
+            mp4_file = path.join(path_temp, file)
+            mp3_file = path.join(path_down, path.splitext(file)[0] + '.mp3')
+    comando = f"ffmpeg -i {mp4_file} -vn -ar 44100 -ac 2 -b:a 192k {mp3_file}"
+    subprocess.call(comando, shell=True)
 
 # ######################################################################################################################
 """#### Menu principal"""
