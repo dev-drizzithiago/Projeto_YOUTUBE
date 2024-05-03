@@ -127,7 +127,7 @@ def baixar_links():
 
             print('---' * 14)
             selecao_link = leiaInt('Escolha uma opção(Voltar:999): ') - 1
-            if selecao_link != 999:
+            if selecao_link != 998:
                 link_download = str(open_link[selecao_link])
 
                 obj_youtube_downloads = YouTube(link_download)
