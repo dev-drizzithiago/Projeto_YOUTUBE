@@ -119,7 +119,7 @@ def baixar_links():
 
             """# Mostra as links disponiveis para downloads"""
             print()
-            logo_menus('Links disponiveis')
+            logo_menus('Links disponiveis:')
             for indice, links in enumerate(open_link):
                 """ Montando obj youtube"""
                 obj_youtube_title = YouTube(links).title
@@ -171,7 +171,7 @@ def mp4_to_mp3():
             """#### Remove o arquivo MP4 para liberar espaço"""
             remove(mp4_file)
 
-    print(f'Download realizado Sucesso!')
+    print(f'Download realizado Sucesso! Arquivo dentro da Pasta "Downloads".')
     print()
 
 
