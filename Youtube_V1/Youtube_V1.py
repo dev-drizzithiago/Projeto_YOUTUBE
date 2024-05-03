@@ -150,6 +150,7 @@ def baixar_links():
                 print('Voltando ao menu principal!')
                 print()
                 sleep(2)
+                break
         except FileNotFoundError:
             print(f'Não existe link salvos')
             break
