@@ -55,11 +55,11 @@ def logo_menus(valor_recebido):
 
 
 def thread_adicionar_link():
-    print('thread_adicionar_link')
+    # print('thread_adicionar_link')
     Thread(target=adicionar_link()).start()
 
 def thread_baixar_links():
-    print('thread_baixar_links')
+    # print('thread_baixar_links')
     Thread(target=baixar_links()).start()
 
 # ######################################################################################################################
@@ -178,8 +178,13 @@ def mp4_to_mp3():
 # ######################################################################################################################
 """#### Menu principal"""
 def menu():
-    print()
-    logo_menus('Menu Principal')
+    print('----' * 24)
+    print('                                    github.com/dev-drizzithiago ')
+    print('                                          @drizzithiago ')
+    print('----' * 24)
+
+    logo_menus(' Menu Principal ')
+
     for indice in range(len(lista_menu)):
         print(f'[{indice + 1}] - {lista_menu[indice]}')
 
