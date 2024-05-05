@@ -10,6 +10,13 @@ lista_menu_principal = ['Adicionar link', 'Downloads', 'View Links adicionados',
 lista_menu_downloads = []
 
 
+"""#### Criando pasta HOME"""
+path_home = Path.home()
+path_arqu = Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2')
+path_temp = Path(path_home, 'AppData', 'Local', 'Temp')
+path_move = Path(path_home, 'Vídeos')
+path_musc = Path(path_home, 'Músicas')
+
 """#### Função simples"""
 def logo_tube(valor_entrada):
     linhas = '---' * 10
@@ -40,16 +47,15 @@ def thread_barra_progresso():
     Thread(target=barra_progresso()).start()
 
 """#### Funções simples"""
-def criar_arq_links():
-    pass
 
 def criar_pasta_arq_link():
-    """#### Criando pasta HOME"""
-    path_home = Path.home()
-    path_arqu = Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2')
-    path_temp = Path(path_home, 'AppData', 'Local', 'Temp')
-    path_move = Path(path_home, 'Vídeos')
-    path_mosi = Path(path_home, 'Músicas')
+
+    """#### Cria a pasta dentro do APPDATA"""
+    mkdir(path_arqu)
+
+def adicionar_link_arq():
+    try:
+        gravando_link = open()
 
 """#### Funções de processo"""
 def adicionar_link():
