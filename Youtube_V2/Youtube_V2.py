@@ -1,6 +1,8 @@
 from pytube import YouTube
+from threading import Thread
 
-lista_menu_principal = ['Adicionar link', 'Downloads', 'Links adicionados', 'Abrir arquivo', 'Sair']
+
+lista_menu_principal = ['Adicionar link', 'Downloads', 'View Links adicionados', 'Abrir arquivo', 'Sair']
 lista_menu_downloads = []
 
 
@@ -18,8 +20,36 @@ def leiaInt(valor_entrada):
             print(f'Você digitou um valor errado!')
 
 """#### Funções threads"""
-def thread_adicionar_link 
+def thread_adicionar_link():
+    pass
 
+def thread_donwloads():
+    pass
+
+def thread_view_links_add():
+    pass
+
+def thread_abrir_arq():
+    pass
+
+def thread_barra_progresso():
+    pass
+
+"""#### Funções de processo"""
+def adicionar_link():
+    pass
+
+def donwloads():
+    pass
+
+def view_links_add():
+    pass
+
+def abrir_arq():
+    pass
+
+def barra_progresso():
+    pass
 
 """#### Menu principal"""
 def menu_principal():
