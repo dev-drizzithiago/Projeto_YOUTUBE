@@ -55,9 +55,15 @@ def criar_pasta_arq_link():
     except FileExistsError:
         pass
 
-def adicionar_link_arq():
+def adicionar_link_arq(valor_entrada):
     try:
-        gravando_link = open()
+        gravando_link = open(path_arqu, 'a')
+        gravando_link.write(f'{valor_entrada} \n')
+    except FileExistsError:
+        pass
+    except FileNotFoundError:
+        gravando_link = open(path_arqu, 'w')
+        gravando_link.write(f'{valor_entrada} \n')
 
 """#### Funções de processo"""
 def adicionar_link():
