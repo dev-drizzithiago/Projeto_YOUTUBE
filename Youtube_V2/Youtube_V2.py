@@ -59,6 +59,7 @@ def adicionar_link_arq(valor_entrada):
     try:
         gravando_link = open(path_arqu, 'a')
         gravando_link.write(f'{valor_entrada} \n')
+        print('Link adicionado com sucesso!')
     except FileExistsError:
         pass
     except FileNotFoundError:
@@ -68,8 +69,14 @@ def adicionar_link_arq(valor_entrada):
 """#### Funções de processo"""
 def adicionar_link():
     logo_tube('Adicionar link')
-    link_tube = str(input('Link aqui: ')).lower()
-
+    while True:
+        link_tube = str(input('Link aqui (voltar=999): ')).lower()
+        if link_tube == '999':
+            print('voltando ao menu principal')
+        elif link_tube[:23] != 'https://www.youtube.com/':
+            print('Não é um link YouTube!')
+        else:
+            adicionar_link_arq(link_tube)
 
 def downloads():
     pass
