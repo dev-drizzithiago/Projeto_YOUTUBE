@@ -3,6 +3,7 @@ from pytube import YouTube
 from pathlib import Path
 from time import sleep
 from tqdm import tqdm
+from os import mkdir
 
 
 lista_menu_principal = ['Adicionar link', 'Downloads', 'View Links adicionados', 'Abrir arquivo', 'Sair']
@@ -45,6 +46,8 @@ def criar_arq_links():
 def criar_pasta_arq_link():
     """#### Criando pasta HOME"""
     path_home = Path.home()
+    path_arqu = Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2')
+    path_temp = Path(path_home, 'AppData', 'Local', 'Temp')
     pass
 
 """#### Funções de processo"""
