@@ -49,9 +49,11 @@ def thread_barra_progresso():
 """#### Funções simples"""
 
 def criar_pasta_arq_link():
-
     """#### Cria a pasta dentro do APPDATA"""
-    mkdir(path_arqu)
+    try:
+        mkdir(path_arqu)
+    except FileExistsError:
+        pass
 
 def adicionar_link_arq():
     try:
