@@ -1,5 +1,7 @@
 from pytube import YouTube
 from threading import Thread
+from tqdm import tqdm
+from time import sleep
 
 
 lista_menu_principal = ['Adicionar link', 'Downloads', 'View Links adicionados', 'Abrir arquivo', 'Sair']
@@ -23,7 +25,7 @@ def leiaInt(valor_entrada):
 def thread_adicionar_link():
     pass
 
-def thread_donwloads():
+def thread_downloads():
     pass
 
 def thread_view_links_add():
@@ -33,13 +35,13 @@ def thread_abrir_arq():
     pass
 
 def thread_barra_progresso():
-    pass
+    Thread(target=barra_progresso()).start()
 
 """#### Funções de processo"""
 def adicionar_link():
     pass
 
-def donwloads():
+def downloads():
     pass
 
 def view_links_add():
@@ -49,7 +51,8 @@ def abrir_arq():
     pass
 
 def barra_progresso():
-    pass
+    for i in tqdm(range(10)):
+        sleep(1)
 
 """#### Menu principal"""
 def menu_principal():
@@ -66,4 +69,4 @@ def menu_principal():
 
 
 
-menu_principal()
+thread_barra_progresso()
