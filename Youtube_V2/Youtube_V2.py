@@ -93,17 +93,28 @@ def barra_progresso():
 
 """#### Menu principal"""
 def menu_principal():
-    print('----' * 24)
-    print('                                    github.com/dev-drizzithiago ')
-    print('                                          @drizzithiago ')
-    print('----' * 24)
+    while True:
+        print('----' * 24)
+        print('                                    github.com/dev-drizzithiago ')
+        print('                                          @drizzithiago ')
+        print('----' * 24)
 
-    logo_tube('Menu Principal')
-    for valor_menu in range(len(lista_menu_principal)):
-        print(f'{valor_menu + 1} ==> {lista_menu_principal[valor_menu]}')
+        logo_tube('Menu Principal')
+        for valor_menu in range(len(lista_menu_principal)):
+            print(f'{valor_menu + 1} ==> {lista_menu_principal[valor_menu]}')
 
-    valor_opc = leiaInt('Escolha uma opção: ')
+        valor_opc = leiaInt('Escolha uma opção: ')
 
+        if valor_opc == 1:
+            thread_adicionar_link()
 
+        elif valor_opc == 2:
+            pass
 
-thread_barra_progresso()
+        elif valor_opc == 3:
+            pass
+
+        elif valor_opc == 4:
+            pass
+
+menu_principal()
