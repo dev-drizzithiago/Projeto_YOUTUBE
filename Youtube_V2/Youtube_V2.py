@@ -5,9 +5,6 @@ from time import sleep
 from tqdm import tqdm
 
 
-"""#### Criando pasta HOME"""
-path_home = Path.home()
-
 lista_menu_principal = ['Adicionar link', 'Downloads', 'View Links adicionados', 'Abrir arquivo', 'Sair']
 lista_menu_downloads = []
 
@@ -46,7 +43,8 @@ def criar_arq_links():
     pass
 
 def criar_pasta_arq_link():
-    
+    """#### Criando pasta HOME"""
+    path_home = Path.home()
     pass
 
 """#### Funções de processo"""
