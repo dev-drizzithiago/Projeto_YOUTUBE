@@ -39,7 +39,9 @@ def thread_barra_progresso():
 
 """#### Funções de processo"""
 def adicionar_link():
-    pass
+    logo_tube('Adicionar link')
+    link_tube = str(input('Link aqui: ')).lower()
+    
 
 def downloads():
     pass
