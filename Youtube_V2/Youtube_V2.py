@@ -1,8 +1,12 @@
-from pytube import YouTube
 from threading import Thread
-from tqdm import tqdm
+from pytube import YouTube
+from pathlib import Path
 from time import sleep
+from tqdm import tqdm
 
+
+"""#### Criando pasta HOME"""
+path_home = Path.home()
 
 lista_menu_principal = ['Adicionar link', 'Downloads', 'View Links adicionados', 'Abrir arquivo', 'Sair']
 lista_menu_downloads = []
@@ -42,6 +46,7 @@ def criar_arq_links():
     pass
 
 def criar_pasta_arq_link():
+    
     pass
 
 """#### Funções de processo"""
