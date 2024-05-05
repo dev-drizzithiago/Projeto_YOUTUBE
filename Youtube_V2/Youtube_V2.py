@@ -48,7 +48,8 @@ def criar_pasta_arq_link():
     path_home = Path.home()
     path_arqu = Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2')
     path_temp = Path(path_home, 'AppData', 'Local', 'Temp')
-    pass
+    path_move = Path(path_home, 'Vídeos')
+    path_mosi = Path(path_home, 'Músicas')
 
 """#### Funções de processo"""
 def adicionar_link():
