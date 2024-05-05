@@ -37,11 +37,18 @@ def thread_abrir_arq():
 def thread_barra_progresso():
     Thread(target=barra_progresso()).start()
 
+"""#### Funções simples"""
+def criar_arq_links():
+    pass
+
+def criar_pasta_arq_link():
+    pass
+
 """#### Funções de processo"""
 def adicionar_link():
     logo_tube('Adicionar link')
     link_tube = str(input('Link aqui: ')).lower()
-    
+
 
 def downloads():
     pass
