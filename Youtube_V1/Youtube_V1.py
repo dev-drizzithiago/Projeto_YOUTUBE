@@ -52,20 +52,18 @@ def logo_menus(valor_recebido):
 
 # ######################################################################################################################
 """#### Funções de threads"""
-
-
 def thread_adicionar_link():
     # print('thread_adicionar_link')
     Thread(target=adicionar_link()).start()
+
 
 def thread_baixar_links():
     # print('thread_baixar_links')
     Thread(target=baixar_links()).start()
 
+
 # ######################################################################################################################
 """#### Funções de processo"""
-
-
 def adicionar_link():
     """
 
