@@ -105,8 +105,10 @@ def view_links_add():
     try:
         valor_arq_tube = open(arq_youtube, 'r')
         abrindo_arq_tube = valor_arq_tube.readlines()
+        print(abrindo_arq_tube)
 
         for valor_link in abrindo_arq_tube:
+            print(valor_link)
             tube_titulo = YouTube(valor_link).title
             tube_link = valor_link
             print(f'[{tube_titulo}] \n {tube_link}')
