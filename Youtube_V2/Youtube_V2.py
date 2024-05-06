@@ -36,11 +36,11 @@ def leiaInt(valor_entrada):
 
 """#### Funções threads"""
 def thread_adicionar_link():
-    Thread(target=adicionar_link()).start()
+    Thread(target=adicionar_link).start()
 
 
 def thread_downloads():
-    Thread(target=downloads()).start()
+    Thread(target=downloads).start()
 
 
 def thread_view_links_add():
