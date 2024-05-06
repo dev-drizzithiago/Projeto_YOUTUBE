@@ -7,7 +7,7 @@ from os import mkdir
 
 
 lista_menu_principal = ['Adicionar link', 'Downloads', 'View Links adicionados', 'Abrir arquivo', 'Sair']
-lista_menu_downloads = []
+lista_menu_downloads = ['Vídeo(MP4)', 'Música(MP3)']
 
 
 """#### Criando pasta HOME"""
@@ -17,10 +17,12 @@ path_temp = Path(path_home, 'AppData', 'Local', 'Temp')
 path_move = Path(path_home, 'Vídeos')
 path_musc = Path(path_home, 'Músicas')
 
+
 """#### Função simples"""
 def logo_tube(valor_entrada):
     linhas = '---' * 10
     print(f'{linhas}{valor_entrada}{linhas}')
+
 
 def leiaInt(valor_entrada):
     while True:
@@ -30,6 +32,7 @@ def leiaInt(valor_entrada):
         except TypeError:
             print(f'Você digitou um valor errado!')
 
+
 """#### Funções threads"""
 def thread_adicionar_link():
     pass
@@ -37,23 +40,27 @@ def thread_adicionar_link():
 def thread_downloads():
     pass
 
+
 def thread_view_links_add():
     pass
+
 
 def thread_abrir_arq():
     pass
 
+
 def thread_barra_progresso():
     Thread(target=barra_progresso()).start()
 
-"""#### Funções simples"""
 
+"""#### Funções simples"""
 def criar_pasta_arq_link():
     """#### Cria a pasta dentro do APPDATA"""
     try:
         mkdir(path_arqu)
     except FileExistsError:
         pass
+
 
 def adicionar_link_arq(valor_entrada):
     try:
@@ -65,6 +72,7 @@ def adicionar_link_arq(valor_entrada):
     except FileNotFoundError:
         gravando_link = open(path_arqu, 'w')
         gravando_link.write(f'{valor_entrada} \n')
+
 
 """#### Funções de processo"""
 def adicionar_link():
@@ -78,18 +86,23 @@ def adicionar_link():
         else:
             adicionar_link_arq(link_tube)
 
+
 def downloads():
     pass
+
 
 def view_links_add():
     pass
 
+
 def abrir_arq():
     pass
+
 
 def barra_progresso():
     for i in tqdm(range(10)):
         sleep(1)
+
 
 """#### Menu principal"""
 def menu_principal():
@@ -116,5 +129,6 @@ def menu_principal():
 
         elif valor_opc == 4:
             pass
+
 
 menu_principal()
