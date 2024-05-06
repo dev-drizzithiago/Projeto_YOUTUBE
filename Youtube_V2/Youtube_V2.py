@@ -122,7 +122,7 @@ def view_links_add():
 
 
 def abrir_arq():
-    pass
+    logo_tube(' Abra um arquivos')
 
 
 def barra_progresso():
@@ -157,6 +157,9 @@ def menu_principal():
             view_links_add()
 
         elif valor_opc == 4:
+            thread_abrir_arq()
+
+        elif valor_opc == 5:
             print(linha)
             print('Saindo do programa!')
             sleep(1)
