@@ -106,7 +106,7 @@ def downloads():
         print('Arquivo não existe!')
     except FileExistsError:
         pass
-    
+
     print(type(link_down_tube))
     for indice in enumerate(link_down_tube):
         print(f'{link_down_tube[indice]}')
