@@ -44,7 +44,7 @@ def thread_downloads():
 
 
 def thread_view_links_add():
-    Thread(target=view_links_add()).start()
+    Thread(target=view_links_add).start()
 
 
 def thread_abrir_arq():
@@ -110,18 +110,20 @@ def downloads():
 def view_links_add():
     logo_tube('Visualizando links salvos')
     try:
-        abrindo_arq_tube = open(arq_youtube, 'r')
+        valor_arq_tube = open(arq_youtube, 'r')
+        abrindo_arq_tube = valor_arq_tube.readlines()
+        if len(abrindo_arq_tube) == 0:
+            print('Não existem links adicionados!')
+        else:
+            for valor_link in abrindo_arq_tube:
+                tube_titulo = YouTube(valor_link).title
+                tube_link = valor_link
+                print(f'[{tube_titulo}] \n {tube_link}')
 
     except FileNotFoundError:
         print(linha)
         print('Arquivos não exite!')
-    if len(abrindo_arq_tube) == 0:
-        print('Não existem links adicionados!')
-    else:
-        for valor_link in abrindo_arq_tube:
-            tube_titulo = YouTube(valor_link).title
-            tube_link = valor_link
-            print(f'[{tube_titulo}] \n {tube_link}')
+
 
 def abrir_arq():
     pass
