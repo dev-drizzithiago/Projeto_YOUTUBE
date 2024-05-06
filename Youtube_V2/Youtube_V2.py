@@ -40,11 +40,11 @@ def thread_adicionar_link():
 
 
 def thread_downloads():
-    pass
+    Thread(target=downloads()).start()
 
 
 def thread_view_links_add():
-    pass
+    Thread(target=view_links_add()).start()
 
 
 def thread_abrir_arq():
@@ -142,6 +142,8 @@ def menu_principal():
         for valor_menu in range(len(lista_menu_principal)):
             print(f'[ {valor_menu + 1} ] ==> {lista_menu_principal[valor_menu]}')
 
+        print()
+        print(linha)
         valor_opc = leiaInt('Escolha uma opção: ')
 
         if valor_opc == 1:
@@ -151,7 +153,7 @@ def menu_principal():
             pass
 
         elif valor_opc == 3:
-            pass
+            thread_view_links_add()
 
         elif valor_opc == 4:
             print(linha)
