@@ -8,7 +8,7 @@ from os import mkdir
 lista_menu_principal = ['Adicionar link', 'Downloads', 'View Links adicionados', 'Abrir arquivo', 'Sair']
 lista_menu_downloads = ['Vídeo(MP4)', 'Música(MP3)']
 
-"""#### Criando pasta HOME"""
+"""#### Criando pastas """
 path_home = Path.home()
 path_arqu = Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2')
 path_temp = Path(path_home, 'AppData', 'Local', 'Temp')
@@ -33,7 +33,7 @@ def leiaInt(valor_entrada):
 
 """#### Funções threads"""
 def thread_adicionar_link():
-    pass
+    Thread(target=adicionar_link()).start()
 
 
 def thread_downloads():
@@ -61,7 +61,7 @@ def criar_pasta_arq_link():
         pass
 
 
-def adicionar_link_arq(valor_entrada):
+def registrar_link(valor_entrada):
     try:
         gravando_link = open(path_arqu, 'a')
         gravando_link.write(f'{valor_entrada} \n')
@@ -80,10 +80,12 @@ def adicionar_link():
         link_tube = str(input('Link aqui (voltar=999): ')).lower()
         if link_tube == '999':
             print('voltando ao menu principal')
+            sleep(1)
+            break
         elif link_tube[:23] != 'https://www.youtube.com/':
             print('Não é um link YouTube!')
         else:
-            adicionar_link_arq(link_tube)
+            registrar_link(link_tube)
 
 
 def downloads():
@@ -127,7 +129,9 @@ def menu_principal():
             pass
 
         elif valor_opc == 4:
-            pass
+            print('Saindo do programa!')
+            sleep(1)
+            break
 
 
 menu_principal()
