@@ -112,6 +112,7 @@ def view_links_add():
     try:
         valor_arq_tube = open(arq_youtube, 'r')
         abrindo_arq_tube = valor_arq_tube.readlines()
+        
         if len(abrindo_arq_tube) == 0:
             print('Não existem links adicionados!')
         else:
