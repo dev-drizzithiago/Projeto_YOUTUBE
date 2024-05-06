@@ -15,7 +15,6 @@ path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
 path_move = str(Path(path_home, 'Vídeos'))
 path_musc = str(Path(path_home, 'Músicas'))
 arq_youtube = str(path_arqu + '\\Link_Youtube_V2.txt')
-print(arq_youtube)
 
 """Declarando variaveis"""
 linha = '----' * 24
@@ -97,17 +96,20 @@ def adicionar_link():
 
 
 def downloads():
-    """
-
-    :return:
-    """
     logo_tube(' Downloads ')
 
     """#### abrindo arquivo de texto"""
-    valor_links = open(arq_youtube, 'r')
-    link_down_tube = valor_links.readlines()
-    for links in link_down_tube:
-        print(f'{links}')
+    try:
+        valor_links = open(arq_youtube, 'r')
+        link_down_tube = valor_links.readlines()
+    except FileNotFoundError:
+        print('Arquivo não existe!')
+    except FileExistsError:
+        pass
+    
+    print(type(link_down_tube))
+    for indice in enumerate(link_down_tube):
+        print(f'{link_down_tube[indice]}')
 
 
 def view_links_add():
