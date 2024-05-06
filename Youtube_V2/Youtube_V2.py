@@ -21,7 +21,7 @@ linha = '----' * 24
 
 """#### Função simples"""
 def logo_tube(valor_entrada):
-    linhas = '---' * 10
+    linhas = '----' * 10
     print(f'{linhas}{valor_entrada}{linhas}')
 
 
@@ -108,22 +108,20 @@ def downloads():
 
 
 def view_links_add():
-    logo_tube('Visualizando links salvos')
+    print()
+    logo_tube(' Visualizando links salvos ')
     try:
         valor_arq_tube = open(arq_youtube, 'r')
         abrindo_arq_tube = valor_arq_tube.readlines()
-        
-        if len(abrindo_arq_tube) == 0:
-            print('Não existem links adicionados!')
-        else:
-            for valor_link in abrindo_arq_tube:
-                tube_titulo = YouTube(valor_link).title
-                tube_link = valor_link
-                print(f'[{tube_titulo}] \n {tube_link}')
+
+        for valor_link in abrindo_arq_tube:
+            tube_titulo = YouTube(valor_link).title
+            tube_link = valor_link
+            print(f'[{tube_titulo}] \n {tube_link}')
 
     except FileNotFoundError:
         print(linha)
-        print('Arquivos não exite!')
+        print(' Arquivos com os links não exite! ')
 
 
 def abrir_arq():
@@ -144,7 +142,7 @@ def menu_principal():
         print('                                          @drizzithiago ')
         print('----' * 24)
         print()
-        logo_tube('Menu Principal')
+        logo_tube(' Menu Principal ')
         for valor_menu in range(len(lista_menu_principal)):
             print(f'[ {valor_menu + 1} ] ==> {lista_menu_principal[valor_menu]}')
 
