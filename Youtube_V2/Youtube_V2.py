@@ -101,6 +101,12 @@ def downloads():
     :return:
     """
 
+    """#### abrindo arquivo de texto"""
+    valor_links = open(arq_youtube, 'r')
+    link_down_tube = valor_links.readlines()
+    for links in link_down_tube:
+        print(f'{links}')
+
 
 def view_links_add():
     print()
@@ -117,7 +123,6 @@ def view_links_add():
         print(linha)
         print(' Arquivos com os links não exite! ')
         sleep(5)
-
 
 
 def abrir_arq():
