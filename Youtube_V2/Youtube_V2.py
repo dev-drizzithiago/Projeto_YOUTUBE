@@ -110,15 +110,18 @@ def downloads():
 def view_links_add():
     logo_tube('Visualizando links salvos')
     try:
-        open_arq_tube = open(arq_youtube, 'r')
+        abrindo_arq_tube = open(arq_youtube, 'r')
+
     except FileNotFoundError:
         print(linha)
         print('Arquivos não exite!')
-
-    for valor_link in open_arq_tube:
-        tube_titulo = YouTube(valor_link).title
-        tube_link = valor_link
-        print(f'[{tube_titulo}] \n {tube_link}')
+    if len(abrindo_arq_tube) == 0:
+        print('Não existem links adicionados!')
+    else:
+        for valor_link in abrindo_arq_tube:
+            tube_titulo = YouTube(valor_link).title
+            tube_link = valor_link
+            print(f'[{tube_titulo}] \n {tube_link}')
 
 def abrir_arq():
     pass
