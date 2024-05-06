@@ -121,6 +121,7 @@ def baixar_links():
             for indice, links in enumerate(open_link):
                 """ Montando obj youtube"""
                 obj_youtube_title = YouTube(links).title
+                print(YouTube(links))
                 print(f'[{indice + 1}] -> {obj_youtube_title}')
 
             print('---' * 14)
