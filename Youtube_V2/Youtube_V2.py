@@ -101,7 +101,7 @@ def menu_principal():
 
         logo_tube('Menu Principal')
         for valor_menu in range(len(lista_menu_principal)):
-            print(f'{valor_menu + 1} ==> {lista_menu_principal[valor_menu]}')
+            print(f'[ {valor_menu + 1} ] ==> {lista_menu_principal[valor_menu]}')
 
         valor_opc = leiaInt('Escolha uma opção: ')
 
