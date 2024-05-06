@@ -14,7 +14,7 @@ path_arqu = str(Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2'))
 path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
 path_move = str(Path(path_home, 'Vídeos'))
 path_musc = str(Path(path_home, 'Músicas'))
-arq_youtube = str(path_arqu + 'Link_Youtube_V3')
+arq_youtube = str(path_arqu + '\\Link_Youtube_V3')
 
 """#### Função simples"""
 def logo_tube(valor_entrada):
@@ -70,12 +70,12 @@ def registrar_link(valor_entrada):
         gravando_link.write(f'{valor_entrada} \n')
         print('Link adicionado com sucesso!')
 
-    except FileExistsError:
-        pass
-
     except FileNotFoundError:
         gravando_link = open(arq_youtube, 'w')
         gravando_link.write(f'{valor_entrada} \n')
+
+    except FileExistsError:
+        pass
 
 
 """#### Funções de processo"""
@@ -94,6 +94,8 @@ def adicionar_link():
             print('Não é um link YouTube!')
 
         else:
+            print('Registrando...!')
+            sleep(1)
             registrar_link(link_tube)
 
 
