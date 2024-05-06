@@ -107,12 +107,11 @@ def view_links_add():
     logo_tube(' Links salvos ')
     try:
         valor_arq_tube = open(arq_youtube, 'r')
-        abrindo_arq_tube = valor_arq_tube.readlines()
+        abrindo_arq_tube = str(valor_arq_tube.readlines())
 
         for valor_link in abrindo_arq_tube:
             obj_tube_titulo = YouTube(valor_link).title
-            obj_tube_link = valor_link
-            print(f'[{obj_tube_titulo}] \n{obj_tube_link}')
+            print(f'[{obj_tube_titulo}]')
 
     except FileNotFoundError:
         print(linha)
