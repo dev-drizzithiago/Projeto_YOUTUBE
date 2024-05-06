@@ -14,7 +14,7 @@ path_arqu = str(Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2'))
 path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
 path_move = str(Path(path_home, 'Vídeos'))
 path_musc = str(Path(path_home, 'Músicas'))
-arq_youtube = str(path_arqu + '\\Link_Youtube_V3')
+arq_youtube = str(path_arqu + '\\Link_Youtube_V2.txt')
 
 """Declarando variaveis"""
 linha = '----' * 24
@@ -96,7 +96,7 @@ def adicionar_link():
 
 
 def downloads():
-    pass
+    """"""
 
 
 def view_links_add():
@@ -105,12 +105,11 @@ def view_links_add():
     try:
         valor_arq_tube = open(arq_youtube, 'r')
         abrindo_arq_tube = valor_arq_tube.readlines()
-        print(abrindo_arq_tube)
 
         for valor_link in abrindo_arq_tube:
-            obj_tube_titulo = YouTube(valor_link).title
+            obj_tube_titulo = YouTube(valor_link)
             obj_tube_link = valor_link
-            print(f'[{obj_tube_titulo}] \n{obj_tube_link}')
+            print(f'[{'obj_tube_titulo'}] \n{obj_tube_link}')
 
     except FileNotFoundError:
         print(linha)
