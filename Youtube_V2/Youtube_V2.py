@@ -5,10 +5,8 @@ from time import sleep
 from tqdm import tqdm
 from os import mkdir
 
-
 lista_menu_principal = ['Adicionar link', 'Downloads', 'View Links adicionados', 'Abrir arquivo', 'Sair']
 lista_menu_downloads = ['Vídeo(MP4)', 'Música(MP3)']
-
 
 """#### Criando pasta HOME"""
 path_home = Path.home()
@@ -36,6 +34,7 @@ def leiaInt(valor_entrada):
 """#### Funções threads"""
 def thread_adicionar_link():
     pass
+
 
 def thread_downloads():
     pass
