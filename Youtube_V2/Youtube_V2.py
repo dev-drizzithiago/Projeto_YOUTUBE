@@ -10,10 +10,10 @@ lista_menu_downloads = ['Vídeo(MP4)', 'Música(MP3)']
 
 """#### Criando pastas """
 path_home = Path.home()
-path_arqu = Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2')
-path_temp = Path(path_home, 'AppData', 'Local', 'Temp')
-path_move = Path(path_home, 'Vídeos')
-path_musc = Path(path_home, 'Músicas')
+path_arqu = str(Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2'))
+path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
+path_move = str(Path(path_home, 'Vídeos'))
+path_musc = str(Path(path_home, 'Músicas'))
 
 
 """#### Função simples"""
@@ -59,6 +59,8 @@ def criar_pasta_arq_link():
         mkdir(path_arqu)
     except FileExistsError:
         pass
+    except FileNotFoundError:
+        mkdir(path_arqu)
 
 
 def registrar_link(valor_entrada):
