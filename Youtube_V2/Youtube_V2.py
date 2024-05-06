@@ -105,7 +105,7 @@ def downloads():
 
 def view_links_add():
     print()
-    logo_tube('\n Links salvos ')
+    logo_tube(' Links salvos ')
     try:
         valor_arq_tube = open(arq_youtube, 'r')
         abrindo_arq_tube = valor_arq_tube.readlines()
@@ -117,7 +117,8 @@ def view_links_add():
 
     except FileNotFoundError:
         print(linha)
-        print('\n Arquivos com os links não exite! ')
+        print(' Arquivos com os links não exite! ')
+        sleep(5)
 
 
 def abrir_arq():
