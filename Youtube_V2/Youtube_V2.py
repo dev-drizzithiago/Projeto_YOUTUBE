@@ -109,7 +109,7 @@ def downloads():
 
 def view_links_add():
     print()
-    logo_tube(' Visualizando links salvos ')
+    logo_tube(' Links salvos ')
     try:
         valor_arq_tube = open(arq_youtube, 'r')
         abrindo_arq_tube = valor_arq_tube.readlines()
