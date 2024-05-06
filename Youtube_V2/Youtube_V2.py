@@ -109,12 +109,13 @@ def view_links_add():
         for valor_link in abrindo_arq_tube:
             obj_tube_titulo = YouTube(valor_link)
             obj_tube_link = valor_link
-            print(f'[{'obj_tube_titulo'}] \n{obj_tube_link}')
+            print(f'[{obj_tube_titulo.title}] \n{obj_tube_link}')
 
     except FileNotFoundError:
         print(linha)
         print(' Arquivos com os links não exite! ')
         sleep(5)
+
 
 
 def abrir_arq():
