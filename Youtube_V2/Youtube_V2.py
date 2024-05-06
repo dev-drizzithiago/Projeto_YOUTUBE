@@ -62,12 +62,12 @@ def registrar_link(valor_entrada):
     criar_pasta_arq_link()
     try:
         gravando_link = open(arq_youtube, 'a')
-        gravando_link.write(f'{valor_entrada} \n')
+        gravando_link.write(f'{valor_entrada}\n')
         print('Link adicionado com sucesso!')
 
     except FileNotFoundError:
         gravando_link = open(arq_youtube, 'w')
-        gravando_link.write(f'{valor_entrada} \n')
+        gravando_link.write(f'{valor_entrada}\n')
 
     except FileExistsError:
         pass
@@ -96,7 +96,10 @@ def adicionar_link():
 
 
 def downloads():
-    """"""
+    """
+
+    :return:
+    """
 
 
 def view_links_add():
