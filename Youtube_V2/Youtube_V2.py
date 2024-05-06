@@ -16,6 +16,9 @@ path_move = str(Path(path_home, 'Vídeos'))
 path_musc = str(Path(path_home, 'Músicas'))
 arq_youtube = str(path_arqu + '\\Link_Youtube_V3')
 
+"""Declarando variaveis"""
+linha = '----' * 24
+
 """#### Função simples"""
 def logo_tube(valor_entrada):
     linhas = '---' * 10
@@ -83,6 +86,7 @@ def adicionar_link():
     logo_tube('Adicionar link')
 
     while True:
+        print(linha)
         link_tube = str(input('Link aqui (voltar=999): ')).lower()
 
         if link_tube == '999':
@@ -119,11 +123,12 @@ def barra_progresso():
 """#### Menu principal"""
 def menu_principal():
     while True:
+        print()
         print('----' * 24)
         print('                                    github.com/dev-drizzithiago ')
         print('                                          @drizzithiago ')
         print('----' * 24)
-
+        print()
         logo_tube('Menu Principal')
         for valor_menu in range(len(lista_menu_principal)):
             print(f'[ {valor_menu + 1} ] ==> {lista_menu_principal[valor_menu]}')
@@ -140,6 +145,7 @@ def menu_principal():
             pass
 
         elif valor_opc == 4:
+            print(linha)
             print('Saindo do programa!')
             sleep(1)
             break
