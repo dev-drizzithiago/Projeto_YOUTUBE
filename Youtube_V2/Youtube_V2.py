@@ -62,12 +62,15 @@ def criar_pasta_arq_link():
 
 
 def registrar_link(valor_entrada):
+    criar_pasta_arq_link()
     try:
         gravando_link = open(path_arqu, 'a')
         gravando_link.write(f'{valor_entrada} \n')
         print('Link adicionado com sucesso!')
+
     except FileExistsError:
         pass
+
     except FileNotFoundError:
         gravando_link = open(path_arqu, 'w')
         gravando_link.write(f'{valor_entrada} \n')
@@ -76,14 +79,18 @@ def registrar_link(valor_entrada):
 """#### Funções de processo"""
 def adicionar_link():
     logo_tube('Adicionar link')
+
     while True:
         link_tube = str(input('Link aqui (voltar=999): ')).lower()
+
         if link_tube == '999':
             print('voltando ao menu principal')
             sleep(1)
             break
-        elif link_tube[:23] != 'https://www.youtube.com/':
+
+        elif link_tube[:24] != 'https://www.youtube.com/':
             print('Não é um link YouTube!')
+
         else:
             registrar_link(link_tube)
 
