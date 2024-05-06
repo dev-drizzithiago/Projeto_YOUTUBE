@@ -35,10 +35,6 @@ def leiaInt(valor_entrada):
 
 
 """#### Funções threads"""
-def thread_adicionar_link():
-    Thread(target=adicionar_link).start()
-
-
 def thread_downloads():
     Thread(target=downloads).start()
 
@@ -148,7 +144,7 @@ def menu_principal():
         valor_opc = leiaInt('Escolha uma opção: ')
 
         if valor_opc == 1:
-            thread_adicionar_link()
+            adicionar_link()
 
         elif valor_opc == 2:
             pass
