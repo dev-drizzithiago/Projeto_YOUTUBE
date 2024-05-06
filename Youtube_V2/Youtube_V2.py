@@ -43,10 +43,6 @@ def thread_downloads():
     Thread(target=downloads).start()
 
 
-def thread_view_links_add():
-    Thread(target=view_links_add).start()
-
-
 def thread_abrir_arq():
     pass
 
@@ -109,7 +105,7 @@ def downloads():
 
 def view_links_add():
     print()
-    logo_tube(' Links salvos ')
+    logo_tube('\n Links salvos ')
     try:
         valor_arq_tube = open(arq_youtube, 'r')
         abrindo_arq_tube = valor_arq_tube.readlines()
@@ -121,7 +117,7 @@ def view_links_add():
 
     except FileNotFoundError:
         print(linha)
-        print(' Arquivos com os links não exite! ')
+        print('\n Arquivos com os links não exite! ')
 
 
 def abrir_arq():
@@ -141,7 +137,7 @@ def menu_principal():
         print('                                    github.com/dev-drizzithiago ')
         print('                                          @drizzithiago ')
         print('----' * 24)
-        print()
+
         logo_tube(' Menu Principal ')
         for valor_menu in range(len(lista_menu_principal)):
             print(f'[ {valor_menu + 1} ] ==> {lista_menu_principal[valor_menu]}')
@@ -157,7 +153,7 @@ def menu_principal():
             pass
 
         elif valor_opc == 3:
-            thread_view_links_add()
+            view_links_add()
 
         elif valor_opc == 4:
             print(linha)
