@@ -14,7 +14,7 @@ path_arqu = str(Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2'))
 path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
 path_move = str(Path(path_home, 'Vídeos'))
 path_musc = str(Path(path_home, 'Músicas'))
-
+arq_youtube = str(path_arqu + 'Link_Youtube_V3')
 
 """#### Função simples"""
 def logo_tube(valor_entrada):
@@ -66,7 +66,7 @@ def criar_pasta_arq_link():
 def registrar_link(valor_entrada):
     criar_pasta_arq_link()
     try:
-        gravando_link = open(path_arqu, 'a')
+        gravando_link = open(arq_youtube, 'a')
         gravando_link.write(f'{valor_entrada} \n')
         print('Link adicionado com sucesso!')
 
@@ -74,7 +74,7 @@ def registrar_link(valor_entrada):
         pass
 
     except FileNotFoundError:
-        gravando_link = open(path_arqu, 'w')
+        gravando_link = open(arq_youtube, 'w')
         gravando_link.write(f'{valor_entrada} \n')
 
 
