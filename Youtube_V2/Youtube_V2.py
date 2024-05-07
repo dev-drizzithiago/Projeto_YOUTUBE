@@ -105,7 +105,7 @@ def downloads():
             link_down_tube = valor_links.readlines()
             for indice, valor_link in enumerate(link_down_tube):
                 valor_titulo = YouTube(valor_link).title
-                print(f'{indice + 1} {valor_titulo} - {valor_link}')
+                print(f'[{indice + 1}] {valor_titulo}: \n{valor_link}')
 
         except FileNotFoundError:
             print('\nArquivo não existe!')
@@ -113,7 +113,6 @@ def downloads():
         except FileExistsError:
             pass
         input()
-
         """#### Menu downloads: aqui voce vai escolher qual extensão ira baixar, o mp3 ou mp4"""
         print()
         for indice, valor in enumerate(lista_menu_downloads):
