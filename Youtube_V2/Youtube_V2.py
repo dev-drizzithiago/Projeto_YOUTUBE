@@ -94,6 +94,9 @@ def adicionar_link():
             sleep(1)
             registrar_link(link_tube)
 
+def mp3_to_mp4(valor_entrada):
+    pass
+
 
 def downloads():
     while True:
@@ -124,6 +127,7 @@ def downloads():
             print()
             print(linha)
             logo_tube('Downloads em MP3')
+
 
         elif opc_downloads == 2:
             print()
