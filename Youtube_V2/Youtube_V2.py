@@ -99,10 +99,25 @@ def downloads():
     while True:
         logo_tube(' Downloads ')
 
+        """#### abrindo arquivo de texto"""
+        try:
+            valor_links = open(arq_youtube, 'r')
+            link_down_tube = valor_links.readlines()
+            for indice, valor_link in enumerate(link_down_tube):
+                valor_titulo = YouTube(valor_link).title
+                print(f'{indice + 1} {valor_titulo} - {valor_link}')
+
+        except FileNotFoundError:
+            print('\nArquivo não existe!')
+            sleep(5)
+        except FileExistsError:
+            pass
+        input()
+
         """#### Menu downloads: aqui voce vai escolher qual extensão ira baixar, o mp3 ou mp4"""
         print()
         for indice, valor in enumerate(lista_menu_downloads):
-            print(f'{indice + 1} - {valor}')
+            print(f'[{indice + 1}] - {valor}')
 
         print(linha)
         opc_downloads = leiaInt('Escolha uma opção (voltar=999): ')
@@ -118,20 +133,7 @@ def downloads():
 
         else:
             print(f'Voltando ao menu principal')
-        """#### abrindo arquivo de texto"""
-        try:
-            valor_links = open(arq_youtube, 'r')
-            link_down_tube = valor_links.readlines()
-            for indice, valor_link in enumerate(link_down_tube):
-                valor_titulo = YouTube(valor_link).title
-                print(f'{indice + 1} {valor_titulo} - {valor_link}')
 
-        except FileNotFoundError:
-            print('\nArquivo não existe!')
-            sleep(5)
-        except FileExistsError:
-            pass
-        input()
 
 def abrir_arq():
     logo_tube(' Excecute um arquivos ')
