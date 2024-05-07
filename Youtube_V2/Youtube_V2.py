@@ -96,20 +96,22 @@ def adicionar_link():
 
 
 def downloads():
-    logo_tube(' Downloads ')
+    while True:
+        logo_tube(' Downloads ')
 
-    """#### abrindo arquivo de texto"""
-    try:
-        valor_links = open(arq_youtube, 'r')
-        link_down_tube = valor_links.readlines()
-        for valor in link_down_tube:
-            print(valor)
+        """#### abrindo arquivo de texto"""
+        try:
+            valor_links = open(arq_youtube, 'r')
+            link_down_tube = valor_links.readlines()
+            for valor in link_down_tube:
+                print(valor)
 
-    except FileNotFoundError:
-        print('\nArquivo não existe!')
-        sleep(5)
-    except FileExistsError:
-        pass
+        except FileNotFoundError:
+            print('\nArquivo não existe!')
+            sleep(5)
+        except FileExistsError:
+            pass
+        input()
 
 
 def view_links_add():
