@@ -118,27 +118,9 @@ def downloads():
             pass
         input()
 
-
-def view_links_add():
-    print()
-    logo_tube(' Links salvos ')
-    try:
-        valor_arq_tube = open(arq_youtube, 'r')
-        abrindo_arq_tube = valor_arq_tube.readlines()
-
-        for valor_link in abrindo_arq_tube:
-            obj_tube_titulo = YouTube(valor_link).title
-            print(f'[{obj_tube_titulo}]')
-
-    except FileNotFoundError:
-        print(linha)
-        print(' Arquivos com os links não exite! ')
-        sleep(5)
-
-
 def abrir_arq():
     logo_tube(' Excecute um arquivos ')
-
+    
 
 def barra_progresso():
     for i in tqdm(range(10)):
