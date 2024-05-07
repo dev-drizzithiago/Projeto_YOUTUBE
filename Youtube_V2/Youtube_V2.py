@@ -123,11 +123,11 @@ def downloads():
 
         print(linha)
         opc_downloads = leiaInt('Escolha uma opção (voltar=999): ')
+        link_downloads = lista_menu_downloads[opc_downloads] - 1
         if opc_downloads == 1:
             print()
             print(linha)
             logo_tube('Downloads em MP3')
-
 
         elif opc_downloads == 2:
             print()
