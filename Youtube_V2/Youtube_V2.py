@@ -107,10 +107,14 @@ def downloads():
         print(linha)
         opc_downloads = leiaInt('Escolha uma opção (voltar=999): ')
         if opc_downloads == 1:
-            pass
+            print()
+            print(linha)
+            logo_tube('Downloads em MP3')
 
         elif opc_downloads == 2:
-            pass
+            print()
+            print(linha)
+            logo_tube('Downloads em MP4')
 
         else:
             print(f'Voltando ao menu principal')
