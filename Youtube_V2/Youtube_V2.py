@@ -30,7 +30,7 @@ def leiaInt(valor_entrada):
         try:
             valor_inteiro = int(input(valor_entrada))
             return valor_inteiro
-        except TypeError:
+        except:
             print(f'Você digitou um valor errado!')
 
 
@@ -100,9 +100,20 @@ def downloads():
         logo_tube(' Downloads ')
 
         """#### Menu downloads: aqui voce vai escolher qual extensão ira baixar, o mp3 ou mp4"""
+        print()
         for indice, valor in enumerate(lista_menu_downloads):
             print(f'{indice + 1} - {valor}')
 
+        print(linha)
+        opc_downloads = leiaInt('Escolha uma opção (voltar=999): ')
+        if opc_downloads == 1:
+            pass
+
+        elif opc_downloads == 2:
+            pass
+
+        else:
+            print(f'Voltando ao menu principal')
         """#### abrindo arquivo de texto"""
         try:
             valor_links = open(arq_youtube, 'r')
@@ -120,7 +131,7 @@ def downloads():
 
 def abrir_arq():
     logo_tube(' Excecute um arquivos ')
-    
+
 
 def barra_progresso():
     for i in tqdm(range(10)):
