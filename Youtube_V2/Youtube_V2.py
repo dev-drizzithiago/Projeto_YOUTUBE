@@ -109,7 +109,7 @@ def downloads():
             link_down_tube = valor_links.readlines()
             for indice, valor_link in enumerate(link_down_tube):
                 valor_titulo = YouTube(valor_link).title
-                print(f'{indice + 1} {valor_titulo}')
+                print(f'{indice + 1} {valor_titulo} - {valor_link}')
 
         except FileNotFoundError:
             print('\nArquivo não existe!')
