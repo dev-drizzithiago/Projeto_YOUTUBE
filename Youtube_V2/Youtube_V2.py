@@ -102,8 +102,9 @@ def downloads():
     try:
         valor_links = open(arq_youtube, 'r')
         link_down_tube = valor_links.readlines()
-        for indice in enumerate(len(link_down_tube)):
-            print(f'{link_down_tube[indice]}')
+        for valor in link_down_tube:
+            print(valor)
+
     except FileNotFoundError:
         print('\nArquivo não existe!')
         sleep(5)
