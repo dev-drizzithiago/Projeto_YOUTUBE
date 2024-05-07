@@ -99,13 +99,15 @@ def downloads():
     while True:
         logo_tube(' Downloads ')
 
+        for indice, valor in enumerate(lista_menu_downloads):
+            print(f'{indice} - {valor}')
+
         """#### abrindo arquivo de texto"""
         try:
             valor_links = open(arq_youtube, 'r')
             link_down_tube = valor_links.readlines()
-            for indicio in enumerate(link_down_tube):
-
-                print(link_down_tube[indicio])
+            for indice, valor_link in enumerate(link_down_tube):
+                print(link_down_tube[indice])
 
         except FileNotFoundError:
             print('\nArquivo não existe!')
