@@ -79,14 +79,14 @@ def adicionar_link():
 
     while True:
         print(linha)
-        link_tube = str(input('Link aqui (voltar=999): ')).lower()
+        link_tube = str(input('Link aqui (voltar=999): '))
 
         if link_tube == '999':
             print('voltando ao menu principal')
             sleep(1)
             break
 
-        elif link_tube[:24] != 'https://www.youtube.com/':
+        elif link_tube[:23] != 'https://www.youtube.com':
             print('Não é um link YouTube!')
 
         else:
@@ -102,14 +102,13 @@ def downloads():
     try:
         valor_links = open(arq_youtube, 'r')
         link_down_tube = valor_links.readlines()
+        for indice in enumerate(len(link_down_tube)):
+            print(f'{link_down_tube[indice]}')
     except FileNotFoundError:
-        print('Arquivo não existe!')
+        print('\nArquivo não existe!')
+        sleep(5)
     except FileExistsError:
         pass
-
-    print(type(link_down_tube))
-    for indice in enumerate(link_down_tube):
-        print(f'{link_down_tube[indice]}')
 
 
 def view_links_add():
@@ -117,7 +116,7 @@ def view_links_add():
     logo_tube(' Links salvos ')
     try:
         valor_arq_tube = open(arq_youtube, 'r')
-        abrindo_arq_tube = str(valor_arq_tube.readlines())
+        abrindo_arq_tube = valor_arq_tube.readlines()
 
         for valor_link in abrindo_arq_tube:
             obj_tube_titulo = YouTube(valor_link).title
@@ -130,7 +129,7 @@ def view_links_add():
 
 
 def abrir_arq():
-    logo_tube(' Abra um arquivos')
+    logo_tube(' Excecute um arquivos ')
 
 
 def barra_progresso():
