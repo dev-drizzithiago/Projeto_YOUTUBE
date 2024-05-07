@@ -94,7 +94,7 @@ def adicionar_link():
             sleep(1)
             registrar_link(link_tube)
 
-def mp3_to_mp4(valor_entrada):
+def mp3_to_mp4():
     pass
 
 
@@ -124,10 +124,24 @@ def downloads():
         print(linha)
         opc_downloads = leiaInt('Escolha uma opção (voltar=999): ')
         link_downloads = lista_menu_downloads[opc_downloads] - 1
+        obj_youtube = YouTube(link_downloads)
+
         if opc_downloads == 1:
             print()
             print(linha)
             logo_tube('Downloads em MP3')
+
+            print()
+            print(linha)
+            print(f'Downloads em andamento, aguarde!')
+            try:
+                """#### Realiza o downloads do vídeo apenas com o audio"""
+                obj_youtube.streams.filter(only_audio=True).first().download(path_temp)
+
+                """# Chama a função para tranformar o videm em MP3"""
+                mp3_to_mp4()
+            except:
+                print('Erro ao realizar o downloads do MP3')
 
         elif opc_downloads == 2:
             print()
