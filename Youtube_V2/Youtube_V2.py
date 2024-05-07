@@ -103,8 +103,9 @@ def downloads():
         try:
             valor_links = open(arq_youtube, 'r')
             link_down_tube = valor_links.readlines()
-            for valor in link_down_tube:
-                print(valor)
+            for indicio in enumerate(link_down_tube):
+
+                print(link_down_tube[indicio])
 
         except FileNotFoundError:
             print('\nArquivo não existe!')
@@ -161,15 +162,12 @@ def menu_principal():
             adicionar_link()
 
         elif valor_opc == 2:
-            thread_downloads()
+            downloads()
 
         elif valor_opc == 3:
-            view_links_add()
-
-        elif valor_opc == 4:
             thread_abrir_arq()
 
-        elif valor_opc == 5:
+        elif valor_opc == 4:
             print(linha)
             print('Saindo do programa!')
             sleep(1)
