@@ -1,9 +1,12 @@
+
+from os import mkdir, listdir
 from threading import Thread
 from pytube import YouTube
 from pathlib import Path
 from time import sleep
 from tqdm import tqdm
-from os import mkdir
+from re import search
+
 
 lista_menu_principal = ['Adicionar link', 'Downloads', 'View Links adicionados', 'Abrir arquivo', 'Sair']
 lista_menu_downloads = ['Vídeo(MP4)', 'Música(MP3)']
