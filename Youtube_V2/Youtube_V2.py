@@ -99,15 +99,17 @@ def downloads():
     while True:
         logo_tube(' Downloads ')
 
+        """#### Menu downloads: aqui voce vai escolher qual extensão ira baixar, o mp3 ou mp4"""
         for indice, valor in enumerate(lista_menu_downloads):
-            print(f'{indice} - {valor}')
+            print(f'{indice + 1} - {valor}')
 
         """#### abrindo arquivo de texto"""
         try:
             valor_links = open(arq_youtube, 'r')
             link_down_tube = valor_links.readlines()
             for indice, valor_link in enumerate(link_down_tube):
-                print(link_down_tube[indice])
+                print(f'{indice + 1}')
+
 
         except FileNotFoundError:
             print('\nArquivo não existe!')
