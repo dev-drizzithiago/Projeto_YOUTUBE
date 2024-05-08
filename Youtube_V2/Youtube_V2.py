@@ -8,7 +8,7 @@ from tqdm import tqdm
 from re import search
 
 
-lista_menu_principal = ['Adicionar link', 'Downloads', 'View Links adicionados', 'Abrir arquivo', 'Sair']
+lista_menu_principal = ['Adicionar link', 'Downloads', 'Abrir arquivo', 'Sair']
 lista_menu_downloads = ['Vídeo(MP4)', 'Música(MP3)']
 
 """#### Criando pastas """
