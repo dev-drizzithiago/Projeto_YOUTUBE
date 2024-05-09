@@ -125,9 +125,7 @@ def downloads():
                 print()
             for indice, valor in enumerate(lista_menu_downloads):
                 print(f'[{indice + 1}] - {valor}')
-            else:
-                print(f'Voltando ao menu principal')
-                
+
             # Processo de downloads em MP3
             if opc_downloads == 1:
                 print()
@@ -149,10 +147,12 @@ def downloads():
 
             # Processo de downloads de vídeo"""
             elif opc_downloads == 2:
-
                 print()
                 print(linha)
                 logo_tube('Downloads em MP4')
+                
+            else:
+                print(f'Voltando ao menu principal')
 
         except FileNotFoundError:
             print('\nArquivo não existe!')
