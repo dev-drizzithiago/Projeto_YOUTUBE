@@ -22,6 +22,11 @@ path_move = str(Path(path_home, 'Vídeos', 'Youtube_V2'))
 path_down = str(Path(path_home, 'Downloads'))
 arq_youtube = str(path_arqu + '\\Link_Youtube_V2.txt')
 
+try:
+    mkdir(path_move)
+except FileExistsError:
+    pass
+
 # ----------------------------------------------------------------------------------------------------------------------
 """Declarando variaveis"""
 linha = '----' * 24
