@@ -127,7 +127,8 @@ def downloads():
                 print(f'[{indice + 1}] - {valor}')
             else:
                 print(f'Voltando ao menu principal')
-
+                
+            # Processo de downloads em MP3
             if opc_downloads == 1:
                 print()
                 print(linha)
@@ -136,6 +137,7 @@ def downloads():
                 print()
                 print(linha)
                 print(f'Downloads em andamento, aguarde!')
+
                 try:
                     """#### Realiza o downloads do vídeo apenas com o audio"""
                     obj_youtube.streams.filter(only_audio=True).first().download(path_temp)
@@ -145,10 +147,12 @@ def downloads():
                 except:
                     print('Erro ao realizar o downloads do MP3')
 
-                elif opc_downloads == 2:
-                    print()
-                    print(linha)
-                    logo_tube('Downloads em MP4')
+            # Processo de downloads de vídeo"""
+            elif opc_downloads == 2:
+
+                print()
+                print(linha)
+                logo_tube('Downloads em MP4')
 
         except FileNotFoundError:
             print('\nArquivo não existe!')
