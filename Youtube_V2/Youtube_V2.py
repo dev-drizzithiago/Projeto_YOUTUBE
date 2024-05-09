@@ -1,7 +1,7 @@
 import os.path
 
 from moviepy.editor import AudioFileClip
-from os import mkdir, listdir, path, remove
+from os import mkdir, listdir, path, remove, makedirs
 from threading import Thread
 from pytube import YouTube
 from pathlib import Path
@@ -56,10 +56,13 @@ def thread_abrir_arq():
 # ----------------------------------------------------------------------------------------------------------------------
 def criando_pastas_midias():
     try:
-        mkdir(path_down_mp3)
-        mkdir(path_down_mp4)
+        makedirs(path_down_mp3)
+        makedirs(path_down_mp4)
     except FileExistsError:
         pass
+    except FileNotFoundError:
+        makedirs(path_down_mp3)
+        makedirs(path_down_mp4)
 
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -123,6 +126,7 @@ def mp3_to_mp4():
             """#### Processa o MP4 para MP3"""
             novo_mp3 = AudioFileClip(mp4_file)
             novo_mp3.write_audiofile(mp3_file)
+            remove(mp4_file)
 
 # ----------------------------------------------------------------------------------------------------------------------
 def downloads():
