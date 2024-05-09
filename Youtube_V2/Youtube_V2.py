@@ -59,6 +59,10 @@ def thread_abrir_arq():
 
 def thread_barra_progresso():
     Thread(target=barra_progresso()).start()
+
+
+def thread_mp4_mp3():
+    Thread(target=mp3_to_mp4()).start()
 # ----------------------------------------------------------------------------------------------------------------------
 
 
@@ -120,8 +124,11 @@ def mp3_to_mp4():
     """
     for valor_mp4 in listdir(path_temp):
         if search('mp4', valor_mp4):
-            arq_mp4 = AudioFileClip(os.path.join(path_temp, valor_mp4))
-            arq_mp4.write_audiofile(os.path.join(path_down_mp3))
+            arq_mp4 = os.path.join(path_temp, valor_mp4)
+            arq_mp3 = os.path.join(path_down_mp3, os.path.splitext()[0] + '.mp3')
+            teste = os.path.join(path_down_mp3, os.path.splitext()[0])
+            print(teste)
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 def downloads():
@@ -164,8 +171,9 @@ def downloads():
                 try:
                     """#### Realiza o downloads do vídeo apenas com o audio"""
                     obj_youtube.streams.filter(only_audio=True).first().download(path_temp)
+                    
                     """# Chama a função para tranformar o videm em MP3"""
-                    mp3_to_mp4()
+                    thread_mp4_mp3()
                 except:
                     print('Erro ao realizar o downloads do MP3')
 
