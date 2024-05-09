@@ -74,8 +74,9 @@ def criando_pastas_midias():
 def criar_pasta_arq_link():
     """
     Função responsável em criar a pasta aonde ficarão os links que os usuários salvam
-    :return: Cria a pasta: C:\Users\Thiago\AppData\LocalLow\Youtube_V2
+    :return: Cria a pasta: 'C:\Users\Thiago\AppData\LocalLow\Youtube_V2'
     """
+
     try:
         mkdir(path_arqu)
     except FileExistsError:
