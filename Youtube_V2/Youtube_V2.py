@@ -168,9 +168,7 @@ def downloads():
                 logo_tube('Downloads em MP4')
                 try:
                     print('Downloads em andamento, aguarde!!')
-
                     obj_youtube.streams.filter(adaptive=True).first().download(path_down_mp4)
-                    
 
                     print()
                     print(linha)
