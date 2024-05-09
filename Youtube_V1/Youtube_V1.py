@@ -163,9 +163,11 @@ def mp4_to_mp3():
             "#### Renomeia o arquivo"
             mp4_file = path.join(path_temp, file)
             mp3_file = path.join(path_down, path.splitext(file)[0] + '.mp3')
+
             """#### Processa o MP4 para MP3"""
             novo_mp3 = AudioFileClip(mp4_file)
             novo_mp3.write_audiofile(mp3_file)
+            
             """#### Remove o arquivo MP4 para liberar espaço"""
             remove(mp4_file)
 
