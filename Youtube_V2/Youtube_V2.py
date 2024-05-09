@@ -23,10 +23,11 @@ path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
 
 """##### Foi preciso colocar um encoding para corrigir a acentuação"""
 valor_correcao_path_video = str(Path(path_home, 'Vídeos'))
+print(valor_correcao_path_video)
 path_move = correcao_str.encode(valor_correcao_path_video)
 
 valor_correcao_path_musica = str(Path(path_home, 'Músicas'))
-path_musc = correcao_str.encode(valor_correcao_path_video)
+path_musc = correcao_str.encode(valor_correcao_path_musica)
 # ----------------------------------------------------------------------------------------------------------------------
 path_down = str(Path(path_home, 'Downloads'))
 arq_youtube = str(path_arqu + '\\Link_Youtube_V2.txt')
