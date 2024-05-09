@@ -140,7 +140,7 @@ def downloads():
                 try:
                     """#### Realiza o downloads do vídeo apenas com o audio"""
                     obj_youtube.streams.filter(only_audio=True).first().download(path_temp)
-
+                    thread_barra_progresso()
                     """# Chama a função para tranformar o videm em MP3"""
                     mp3_to_mp4()
                 except:
@@ -160,8 +160,6 @@ def downloads():
             sleep(5)
         except FileExistsError:
             pass
-
-
 
 def abrir_arq():
     logo_tube(' Excecute um arquivos ')
