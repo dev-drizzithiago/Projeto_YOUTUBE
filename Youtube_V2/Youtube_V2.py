@@ -118,7 +118,7 @@ def downloads():
             """### Abre para o usuário escolher o link"""
             print(linha)
             opc_downloads = leiaInt('Escolha uma opção (voltar=999): ') - 1
-            link_downloads = lista_menu_downloads[opc_downloads]
+            link_downloads = link_down_tube[opc_downloads]
             obj_youtube = YouTube(link_downloads)
 
             input()
