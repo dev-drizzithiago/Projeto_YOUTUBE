@@ -161,8 +161,10 @@ def downloads():
                 sleep(2)
                 break
             else:
+                """#### Com as informações de de entrada, escolhe-se o link para o downloads"""
                 link_downloads = link_down_tube[opc_downloads]
                 obj_youtube = YouTube(link_downloads)
+
                 """#### Menu downloads: aqui voce vai escolher qual extensão ira baixar, o mp3 ou mp4"""
                 print(linha)
                 for indice, valor in enumerate(lista_menu_downloads):
