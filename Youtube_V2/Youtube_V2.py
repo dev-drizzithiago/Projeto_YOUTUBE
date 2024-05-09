@@ -62,6 +62,7 @@ def thread_barra_progresso():
 
 
 def thread_mp4_mp3():
+    print('Chamando a função "mp3_to_mp4"')
     Thread(target=mp3_to_mp4()).start()
 # ----------------------------------------------------------------------------------------------------------------------
 
@@ -118,14 +119,12 @@ def adicionar_link():
 
 # ----------------------------------------------------------------------------------------------------------------------
 def mp3_to_mp4():
-    """
+    print('Função "mp3_to_mp4"')
 
-    :return:
-    """
     for valor_mp4 in listdir(path_temp):
         if search('mp4', valor_mp4):
             arq_mp4 = os.path.join(path_temp, valor_mp4)
-            arq_mp3 = os.path.join(path_down_mp3, os.path.splitext()[0] + '.mp3')
+#            arq_mp3 = os.path.join(path_down_mp3, os.path.splitext()[0] + '.mp3')
             teste = os.path.join(path_down_mp3, os.path.splitext()[0])
             print(teste)
 
@@ -168,14 +167,14 @@ def downloads():
                 print(linha)
                 print(f'Downloads em andamento, aguarde!')
 
-                try:
-                    """#### Realiza o downloads do vídeo apenas com o audio"""
-                    obj_youtube.streams.filter(only_audio=True).first().download(path_temp)
+               # try:
+                """#### Realiza o downloads do vídeo apenas com o audio"""
+                obj_youtube.streams.filter(only_audio=True).first().download(path_temp)
 
-                    """# Chama a função para tranformar o videm em MP3"""
-                    thread_mp4_mp3()
-                except:
-                    print('Erro ao realizar o downloads do MP3')
+                """# Chama a função para tranformar o videm em MP3"""
+                thread_mp4_mp3()
+                #except:
+                #    print('Erro ao realizar o downloads do MP3')
 
             # Processo de downloads de vídeo"""
             elif opc_menu_down == 2:
