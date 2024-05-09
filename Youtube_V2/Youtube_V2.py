@@ -170,7 +170,7 @@ def downloads():
                     print('Downloads em andamento, aguarde!!')
                     thread_barra_progresso()
                     obj_youtube.streams.filter(adaptive=True).first().download(path_down_mp4)
-
+                    
                     print()
                     print(linha)
                     print(f'Downloads finalizado! \nVejá na pasta {path_down_mp4}')
@@ -192,7 +192,7 @@ def abrir_arq():
 # ----------------------------------------------------------------------------------------------------------------------
 
 def barra_progresso():
-    for i in tqdm(range(10)):
+    for i in tqdm():
         sleep(1)
 # ----------------------------------------------------------------------------------------------------------------------
 
