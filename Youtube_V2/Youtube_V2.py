@@ -171,7 +171,7 @@ def downloads():
                 try:
                     """#### Realiza o downloads do vídeo apenas com o audio"""
                     obj_youtube.streams.filter(only_audio=True).first().download(path_temp)
-                    
+
                     """# Chama a função para tranformar o videm em MP3"""
                     thread_mp4_mp3()
                 except:
