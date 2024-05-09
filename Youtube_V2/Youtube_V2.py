@@ -1,4 +1,6 @@
+import os.path
 
+from moviepy.editor import AudioFileClip
 from os import mkdir, listdir
 from threading import Thread
 from pytube import YouTube
@@ -6,7 +8,7 @@ from pathlib import Path
 from time import sleep
 from tqdm import tqdm
 from re import search
-from moviepy.editor import VideoFileClip
+
 
 lista_menu_principal = [' Adicionar link ', ' Downloads ', ' Abrir arquivo ', ' Sair ']
 lista_menu_downloads = [' Música(MP3) ', ' Vídeo(MP4) ']
@@ -118,8 +120,8 @@ def mp3_to_mp4():
     """
     for valor_mp4 in listdir(path_temp):
         if search('mp4', valor_mp4):
-            arq_mp4 = VideoFileClip(r'{valor_mp4}')
-            arq_mp4.audio.write_audiofile(r'{path_down_mp3}')
+            arq_mp4 = AudioFileClip(os.path.join(path_temp, valor_mp4))
+            arq_mp4.write_audiofile(os.path.join(path_down_mp3))
 
 # ----------------------------------------------------------------------------------------------------------------------
 def downloads():
