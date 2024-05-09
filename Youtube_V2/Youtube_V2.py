@@ -112,7 +112,15 @@ def adicionar_link():
 
 # ----------------------------------------------------------------------------------------------------------------------
 def mp3_to_mp4():
-    pass
+    """
+
+    :return:
+    """
+    for valor_mp4 in listdir(path_temp):
+        if search('mp4', valor_mp4):
+            arq_mp4 = VideoFileClip(valor_mp4)
+            arq_mp3 = (path_down_mp3 + arq_mp4 + '.mp3')
+            arq_mp4.audio.write_audiofile(arq_mp3)
 
 # ----------------------------------------------------------------------------------------------------------------------
 def downloads():
@@ -155,7 +163,6 @@ def downloads():
                 try:
                     """#### Realiza o downloads do vídeo apenas com o audio"""
                     obj_youtube.streams.filter(only_audio=True).first().download(path_temp)
-                    thread_barra_progresso()
                     """# Chama a função para tranformar o videm em MP3"""
                     mp3_to_mp4()
                 except:
@@ -185,7 +192,6 @@ def downloads():
 
 
 # ----------------------------------------------------------------------------------------------------------------------
-
 def abrir_arq():
     logo_tube(' Excecute um arquivos ')
 # ----------------------------------------------------------------------------------------------------------------------
