@@ -1,7 +1,7 @@
 import os.path
 
 from moviepy.editor import AudioFileClip
-from os import mkdir, listdir
+from os import mkdir, listdir, path, remove
 from threading import Thread
 from pytube import YouTube
 from pathlib import Path
@@ -123,10 +123,13 @@ def mp3_to_mp4():
 
     for valor_mp4 in listdir(path_temp):
         if search('mp4', valor_mp4):
-            arq_mp4 = os.path.join(path_temp, valor_mp4)
-#            arq_mp3 = os.path.join(path_down_mp3, os.path.splitext()[0] + '.mp3')
-            teste = os.path.join(path_down_mp3, os.path.splitext()[0])
-            print(teste)
+            "#### Renomeia o arquivo"
+            mp4_file = path.join(path_temp, valor_mp4)
+            mp3_file = path.join(path_down_mp3, path.splitext(valor_mp4)[0] + '.mp3')
+
+            """#### Processa o MP4 para MP3"""
+            novo_mp3 = AudioFileClip(mp4_file)
+            novo_mp3.write_audiofile(mp3_file)
 
 
 # ----------------------------------------------------------------------------------------------------------------------
