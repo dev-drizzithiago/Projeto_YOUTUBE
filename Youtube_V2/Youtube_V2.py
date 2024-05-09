@@ -51,21 +51,9 @@ def thread_downloads():
     Thread(target=downloads).start()
 # ----------------------------------------------------------------------------------------------------------------------
 
-
 def thread_abrir_arq():
     pass
 # ----------------------------------------------------------------------------------------------------------------------
-
-
-def thread_barra_progresso():
-    Thread(target=barra_progresso()).start()
-
-
-def thread_mp4_mp3():
-    print('Chamando a função "mp3_to_mp4"')
-    Thread(target=mp3_to_mp4()).start()
-# ----------------------------------------------------------------------------------------------------------------------
-
 
 """#### Funções simples"""
 def criar_pasta_arq_link():
@@ -77,7 +65,6 @@ def criar_pasta_arq_link():
     except FileNotFoundError:
         mkdir(path_arqu)
 # ----------------------------------------------------------------------------------------------------------------------
-
 
 def registrar_link(valor_entrada):
     criar_pasta_arq_link()
@@ -93,7 +80,6 @@ def registrar_link(valor_entrada):
     except FileExistsError:
         pass
 # ----------------------------------------------------------------------------------------------------------------------
-
 
 """#### Funções de processo"""
 def adicionar_link():
@@ -116,7 +102,6 @@ def adicionar_link():
             sleep(1)
             registrar_link(link_tube)
 
-
 # ----------------------------------------------------------------------------------------------------------------------
 def mp3_to_mp4():
     print('Função "mp3_to_mp4"')
@@ -131,7 +116,6 @@ def mp3_to_mp4():
             """#### Processa o MP4 para MP3"""
             novo_mp3 = AudioFileClip(mp4_file)
             novo_mp3.write_audiofile(mp3_file)
-
 
 # ----------------------------------------------------------------------------------------------------------------------
 def downloads():
@@ -176,7 +160,7 @@ def downloads():
                 obj_youtube.streams.filter(only_audio=True).first().download(path_temp)
 
                 """# Chama a função para tranformar o videm em MP3"""
-                thread_mp4_mp3()
+                mp3_to_mp4()
                 #except:
                 #    print('Erro ao realizar o downloads do MP3')
 
