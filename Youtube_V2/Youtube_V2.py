@@ -127,8 +127,10 @@ def downloads():
             for indice, valor in enumerate(lista_menu_downloads):
                 print(f'[{indice + 1}] - {valor}')
 
+            opc_menu_down = leiaInt('Escolha uma opção(999): ')
+
             # Processo de downloads em MP3
-            if opc_downloads == 1:
+            if opc_menu_down == 1:
                 print()
                 print(linha)
                 logo_tube('Downloads em MP3')
@@ -147,7 +149,7 @@ def downloads():
                     print('Erro ao realizar o downloads do MP3')
 
             # Processo de downloads de vídeo"""
-            elif opc_downloads == 2:
+            elif opc_menu_down == 2:
                 print()
                 print(linha)
                 logo_tube('Downloads em MP4')
@@ -160,8 +162,9 @@ def downloads():
                 except:
                     print('Erro ao realizar o downloads!!')
 
-            else:
+            elif opc_menu_down == 999:
                 print(f'Voltando ao menu principal')
+                break
 
         except FileNotFoundError:
             print('\nArquivo não existe!')
