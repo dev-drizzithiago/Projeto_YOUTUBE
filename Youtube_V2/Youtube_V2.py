@@ -115,14 +115,15 @@ def downloads():
                 valor_titulo = YouTube(valor_link).title
                 print(f'[{indice + 1}] {valor_titulo}: \n{valor_link}')
 
-                print(linha)
-                opc_downloads = leiaInt('Escolha uma opção (voltar=999): ')
-                link_downloads = lista_menu_downloads[opc_downloads] - 1
-                obj_youtube = YouTube(link_downloads)
+            """### Abre para o usuário escolher o link"""
+            print(linha)
+            opc_downloads = leiaInt('Escolha uma opção (voltar=999): ') - 1
+            link_downloads = lista_menu_downloads[opc_downloads]
+            obj_youtube = YouTube(link_downloads)
 
-                input()
-                """#### Menu downloads: aqui voce vai escolher qual extensão ira baixar, o mp3 ou mp4"""
-                print()
+            input()
+            """#### Menu downloads: aqui voce vai escolher qual extensão ira baixar, o mp3 ou mp4"""
+            print()
             for indice, valor in enumerate(lista_menu_downloads):
                 print(f'[{indice + 1}] - {valor}')
 
@@ -150,7 +151,7 @@ def downloads():
                 print()
                 print(linha)
                 logo_tube('Downloads em MP4')
-                
+
             else:
                 print(f'Voltando ao menu principal')
 
