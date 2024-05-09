@@ -8,8 +8,8 @@ from tqdm import tqdm
 from re import search
 
 
-lista_menu_principal = ['Adicionar link', 'Downloads', 'Abrir arquivo', 'Sair']
-lista_menu_downloads = ['Vídeo(MP4)', 'Música(MP3)']
+lista_menu_principal = [' Adicionar link ', ' Downloads ', ' Abrir arquivo ', ' Sair ']
+lista_menu_downloads = [' Música(MP3) ', ' Vídeo(MP4) ']
 
 """#### Criando pastas """
 path_home = Path.home()
@@ -121,9 +121,8 @@ def downloads():
             link_downloads = link_down_tube[opc_downloads]
             obj_youtube = YouTube(link_downloads)
 
-            input()
             """#### Menu downloads: aqui voce vai escolher qual extensão ira baixar, o mp3 ou mp4"""
-            print()
+            print(linha)
             for indice, valor in enumerate(lista_menu_downloads):
                 print(f'[{indice + 1}] - {valor}')
 
