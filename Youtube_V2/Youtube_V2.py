@@ -19,6 +19,7 @@ correcao_str = stdout.encoding
 path_home = Path.home()
 path_arqu = str(Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2'))
 path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
+path_docs = str(Path(path_home, 'Documentos'))
 # ----------------------------------------------------------------------------------------------------------------------
 
 """##### Foi preciso colocar um encoding para corrigir a acentuação"""
@@ -177,7 +178,7 @@ def downloads():
                 print(linha)
                 logo_tube('Downloads em MP4')
                 try:
-                    obj_youtube.streams.filter(adaptive=True).first().download(path_move)
+                    obj_youtube.streams.filter(adaptive=True).first().download(path_docs)
                     print()
                     print(linha)
                     print('Downloads finalizado!')
