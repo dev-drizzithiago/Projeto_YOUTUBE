@@ -54,6 +54,14 @@ def thread_downloads():
 def thread_abrir_arq():
     pass
 # ----------------------------------------------------------------------------------------------------------------------
+def criando_pastas_midias():
+    try:
+        mkdir(path_down_mp3)
+        mkdir(path_down_mp4)
+    except FileExistsError:
+        pass
+
+# ----------------------------------------------------------------------------------------------------------------------
 
 """#### Funções simples"""
 def criar_pasta_arq_link():
@@ -110,7 +118,7 @@ def mp3_to_mp4():
         if search('mp4', valor_mp4):
             "#### Renomeia o arquivo"
             mp4_file = path.join(path_temp, valor_mp4)
-            mp3_file = path.join('C:\\Users\\Thiago\\Downloads\\YouTube_V2\\Vídeos(MP4)', path.splitext(valor_mp4)[0] + '.mp3')
+            mp3_file = path.join(path_down_mp3, path.splitext(valor_mp4)[0] + '.mp3')
 
             """#### Processa o MP4 para MP3"""
             novo_mp3 = AudioFileClip(mp4_file)
@@ -118,6 +126,7 @@ def mp3_to_mp4():
 
 # ----------------------------------------------------------------------------------------------------------------------
 def downloads():
+    criando_pastas_midias()
     while True:
         logo_tube(' Downloads ')
 
