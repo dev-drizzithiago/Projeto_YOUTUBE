@@ -72,11 +72,7 @@ def criando_pastas_midias():
 
 """#### Funções simples"""
 def criar_pasta_arq_link():
-    """
-    Função responsável em criar a pasta aonde ficarão os links que os usuários salvam
-    :return: Cria a pasta: 'C:\Users\Thiago\AppData\LocalLow\Youtube_V2'
-    """
-
+    """#### Função responsável em criar pasta por armazenas o arquivo que ficar os links"""
     try:
         mkdir(path_arqu)
     except FileExistsError:
@@ -86,12 +82,9 @@ def criar_pasta_arq_link():
 # ----------------------------------------------------------------------------------------------------------------------
 
 def registrar_link(valor_entrada):
-    """
-    Todos os links adicionados pelo usuário, essa função tem como objetico em grava no arquivo correto.
-    :param valor_entrada: link adicionado
-    :return: grava os dados no arquivo: C:\Users\Thiago\AppData\LocalLow\Youtube_V2\Link_Youtube_V2.txt
-    """
     criar_pasta_arq_link()
+
+    """#### Grava os dados do link no arquivo de texto; a função acima é responsável em criar """
     try:
         gravando_link = open(arq_youtube, 'a')
         gravando_link.write(f'{valor_entrada}\n')
