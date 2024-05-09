@@ -3,6 +3,7 @@ from os import mkdir, listdir
 from threading import Thread
 from pytube import YouTube
 from pathlib import Path
+from sys import stdout
 from time import sleep
 from tqdm import tqdm
 from re import search
@@ -11,21 +12,35 @@ from re import search
 lista_menu_principal = [' Adicionar link ', ' Downloads ', ' Abrir arquivo ', ' Sair ']
 lista_menu_downloads = [' Música(MP3) ', ' Vídeo(MP4) ']
 
+"""#### Chamo a função para correção de str em utf8"""
+correcao_str = stdout.encoding
+# ----------------------------------------------------------------------------------------------------------------------
 """#### Criando pastas """
 path_home = Path.home()
 path_arqu = str(Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2'))
 path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
-path_move = str(Path(path_home, 'Vídeos'))
-path_musc = str(Path(path_home, 'Músicas'))
+# ----------------------------------------------------------------------------------------------------------------------
+
+"""##### Foi preciso colocar um encoding para corrigir a acentuação"""
+valor_correcao_path_video = str(Path(path_home, 'Vídeos'))
+path_move = correcao_str.encode(valor_correcao_path_video)
+
+valor_correcao_path_musica = str(Path(path_home, 'Músicas'))
+path_musc = correcao_str.encode(valor_correcao_path_video)
+# ----------------------------------------------------------------------------------------------------------------------
+path_down = str(Path(path_home, 'Downloads'))
 arq_youtube = str(path_arqu + '\\Link_Youtube_V2.txt')
 
+# ----------------------------------------------------------------------------------------------------------------------
 """Declarando variaveis"""
 linha = '----' * 24
 
+# ----------------------------------------------------------------------------------------------------------------------
 """#### Função simples"""
 def logo_tube(valor_entrada):
     linhas = '----' * 10
     print(f'{linhas}{valor_entrada}{linhas}')
+# ----------------------------------------------------------------------------------------------------------------------
 
 
 def leiaInt(valor_entrada):
@@ -35,19 +50,23 @@ def leiaInt(valor_entrada):
             return valor_inteiro
         except:
             print(f'Você digitou um valor errado!')
+# ----------------------------------------------------------------------------------------------------------------------
 
 
 """#### Funções threads"""
 def thread_downloads():
     Thread(target=downloads).start()
+# ----------------------------------------------------------------------------------------------------------------------
 
 
 def thread_abrir_arq():
     pass
+# ----------------------------------------------------------------------------------------------------------------------
 
 
 def thread_barra_progresso():
     Thread(target=barra_progresso()).start()
+# ----------------------------------------------------------------------------------------------------------------------
 
 
 """#### Funções simples"""
@@ -59,6 +78,7 @@ def criar_pasta_arq_link():
         pass
     except FileNotFoundError:
         mkdir(path_arqu)
+# ----------------------------------------------------------------------------------------------------------------------
 
 
 def registrar_link(valor_entrada):
@@ -74,6 +94,7 @@ def registrar_link(valor_entrada):
 
     except FileExistsError:
         pass
+# ----------------------------------------------------------------------------------------------------------------------
 
 
 """#### Funções de processo"""
@@ -97,10 +118,12 @@ def adicionar_link():
             sleep(1)
             registrar_link(link_tube)
 
+
+# ----------------------------------------------------------------------------------------------------------------------
 def mp3_to_mp4():
     pass
 
-
+# ----------------------------------------------------------------------------------------------------------------------
 def downloads():
     while True:
         logo_tube(' Downloads ')
@@ -126,7 +149,7 @@ def downloads():
             for indice, valor in enumerate(lista_menu_downloads):
                 print(f'[{indice + 1}] - {valor}')
 
-            opc_menu_down = leiaInt('Escolha uma opção(999): ')
+            opc_menu_down = leiaInt('Escolha uma opção: ')
 
             # Processo de downloads em MP3
             if opc_menu_down == 1:
@@ -153,7 +176,7 @@ def downloads():
                 print(linha)
                 logo_tube('Downloads em MP4')
                 try:
-                    obj_youtube.streams.filter(adaptive=True).first().download(path_move)
+                    obj_youtube.streams.filter(adaptive=True).first().download(path_down)
                     print()
                     print(linha)
                     print('Downloads finalizado!')
@@ -161,24 +184,23 @@ def downloads():
                 except:
                     print('Erro ao realizar o downloads!!')
 
-            elif opc_menu_down == 999:
-                print(f'Voltando ao menu principal')
-                break
-
         except FileNotFoundError:
             print('\nArquivo não existe!')
             sleep(5)
         except FileExistsError:
             pass
 
+
+# ----------------------------------------------------------------------------------------------------------------------
+
 def abrir_arq():
     logo_tube(' Excecute um arquivos ')
-
+# ----------------------------------------------------------------------------------------------------------------------
 
 def barra_progresso():
     for i in tqdm(range(10)):
         sleep(1)
-
+# ----------------------------------------------------------------------------------------------------------------------
 
 """#### Menu principal"""
 def menu_principal():
