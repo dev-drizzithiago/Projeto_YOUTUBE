@@ -3,11 +3,10 @@ from os import mkdir, listdir
 from threading import Thread
 from pytube import YouTube
 from pathlib import Path
-from sys import stdout
 from time import sleep
 from tqdm import tqdm
 from re import search
-
+from moviepy.editor import VideoFileClip
 
 lista_menu_principal = [' Adicionar link ', ' Downloads ', ' Abrir arquivo ', ' Sair ']
 lista_menu_downloads = [' Música(MP3) ', ' Vídeo(MP4) ']
