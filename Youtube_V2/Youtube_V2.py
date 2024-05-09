@@ -186,7 +186,6 @@ def downloads():
         except FileExistsError:
             pass
 
-
 # ----------------------------------------------------------------------------------------------------------------------
 def abrir_arq():
     logo_tube(' Excecute um arquivos ')
