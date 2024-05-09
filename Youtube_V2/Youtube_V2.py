@@ -82,6 +82,8 @@ def criar_pasta_arq_link():
 # ----------------------------------------------------------------------------------------------------------------------
 
 def registrar_link(valor_entrada):
+
+    """#### Verifica se a pasta foi criada"""
     criar_pasta_arq_link()
 
     """#### Grava os dados do link no arquivo de texto; a função acima é responsável em criar """
@@ -155,6 +157,11 @@ def downloads():
             opc_downloads = leiaInt('Escolha uma opção (voltar=999): ') - 1
             link_downloads = link_down_tube[opc_downloads]
             obj_youtube = YouTube(link_downloads)
+
+            """#### """
+            if opc_downloads == 998:
+                print('Voltando ao menu principal')
+                sleep(2)
 
             """#### Menu downloads: aqui voce vai escolher qual extensão ira baixar, o mp3 ou mp4"""
             print(linha)
