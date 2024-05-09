@@ -168,13 +168,16 @@ def downloads():
                 print(linha)
                 logo_tube('Downloads em MP4')
                 try:
+                    print('Downloads em andamento, aguarde!!')
+                    thread_barra_progresso()
                     obj_youtube.streams.filter(adaptive=True).first().download(path_down_mp4)
+
                     print()
                     print(linha)
-                    print('Downloads finalizado!')
+                    print(f'Downloads finalizado! \nVejá na pasta {path_down_mp4}')
                     sleep(2)
                 except:
-                    print('Erro ao realizar o downloads!!')
+                    print('Não foi possível realizado o downloads')
 
         except FileNotFoundError:
             print('\nArquivo não existe!')
