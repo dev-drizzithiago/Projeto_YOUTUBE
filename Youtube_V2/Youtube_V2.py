@@ -151,6 +151,14 @@ def downloads():
                 print()
                 print(linha)
                 logo_tube('Downloads em MP4')
+                try:
+                    obj_youtube.streams.filter(adaptive=True).first().download(path_move)
+                    print()
+                    print(linha)
+                    print('Downloads finalizado!')
+                    sleep(2)
+                except:
+                    print('Erro ao realizar o downloads!!')
 
             else:
                 print(f'Voltando ao menu principal')
