@@ -155,14 +155,14 @@ def downloads():
             """### Abre para o usuário escolher o link"""
             print(linha)
             opc_downloads = leiaInt('Escolha uma opção (voltar=999): ') - 1
-            link_downloads = link_down_tube[opc_downloads]
-            obj_youtube = YouTube(link_downloads)
-
             """#### """
             if opc_downloads == 998:
                 print('Voltando ao menu principal')
                 sleep(2)
+                break
             else:
+                link_downloads = link_down_tube[opc_downloads]
+                obj_youtube = YouTube(link_downloads)
                 """#### Menu downloads: aqui voce vai escolher qual extensão ira baixar, o mp3 ou mp4"""
                 print(linha)
                 for indice, valor in enumerate(lista_menu_downloads):
@@ -184,8 +184,8 @@ def downloads():
                         """#### Realiza o downloads do vídeo apenas com o audio"""
                         obj_youtube.streams.filter(only_audio=True).first().download(path_temp)
 
-                    """# Chama a função para tranformar o videm em MP3"""
-                    mp3_to_mp4()
+                        """# Chama a função para tranformar o videm em MP3"""
+                        mp3_to_mp4()
                     except:
                         print('Erro ao realizar o downloads do MP3')
 
