@@ -12,24 +12,13 @@ from re import search
 lista_menu_principal = [' Adicionar link ', ' Downloads ', ' Abrir arquivo ', ' Sair ']
 lista_menu_downloads = [' Música(MP3) ', ' Vídeo(MP4) ']
 
-"""#### Chamo a função para correção de str em utf8"""
-correcao_str = stdout.encoding
+
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Criando pastas """
 path_home = Path.home()
 path_arqu = str(Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2'))
 path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
-path_docs = str(Path(path_home, 'Documentos'))
-# ----------------------------------------------------------------------------------------------------------------------
-
-"""##### Foi preciso colocar um encoding para corrigir a acentuação"""
-valor_correcao_path_video = str(Path(path_home, 'Vídeos'))
-print(valor_correcao_path_video)
-path_move = correcao_str.encode(correcao_str)
-
-valor_correcao_path_musica = str(Path(path_home, 'Músicas'))
-path_musc = correcao_str.encode(correcao_str)
-# ----------------------------------------------------------------------------------------------------------------------
+path_move = str(Path(path_home, 'Vídeos', 'Youtube_V2'))
 path_down = str(Path(path_home, 'Downloads'))
 arq_youtube = str(path_arqu + '\\Link_Youtube_V2.txt')
 
@@ -178,7 +167,7 @@ def downloads():
                 print(linha)
                 logo_tube('Downloads em MP4')
                 try:
-                    obj_youtube.streams.filter(adaptive=True).first().download(path_docs)
+                    obj_youtube.streams.filter(adaptive=True).first().download(path_move)
                     print()
                     print(linha)
                     print('Downloads finalizado!')
