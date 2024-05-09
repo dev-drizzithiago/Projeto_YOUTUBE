@@ -118,9 +118,8 @@ def mp3_to_mp4():
     """
     for valor_mp4 in listdir(path_temp):
         if search('mp4', valor_mp4):
-            arq_mp4 = VideoFileClip(valor_mp4)
-            arq_mp3 = (path_down_mp3 + arq_mp4 + '.mp3')
-            arq_mp4.audio.write_audiofile(arq_mp3)
+            arq_mp4 = VideoFileClip(r'{valor_mp4}')
+            arq_mp4.audio.write_audiofile(r'{path_down_mp3}')
 
 # ----------------------------------------------------------------------------------------------------------------------
 def downloads():
