@@ -223,6 +223,14 @@ def downloads():
 # ----------------------------------------------------------------------------------------------------------------------
 def abrir_arq():
     logo_tube(' Excecute um arquivos ')
+    lista_mp3 = []
+    lista_mp4 = []
+    
+    for valor_midia in listdir(path_down_mp3):
+        lista_mp3.append(valor_midia)
+    for valor_midia in listdir(path_down_mp4):
+        lista_mp4.append(valor_midia)
+
 # ----------------------------------------------------------------------------------------------------------------------
 
 def barra_progresso():
