@@ -318,7 +318,7 @@ def abrir_arq():
 
                 print()
                 print(linha)
-                print(f'Iniciando: {caminho_mp3}')
+                print(f'Iniciando: {caminho_mp4}')
                 sleep(2)
 
                 """### Iniciando o vídeo no play padrão do windows"""
