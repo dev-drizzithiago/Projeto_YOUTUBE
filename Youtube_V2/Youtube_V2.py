@@ -252,6 +252,9 @@ def abrir_arq():
 
                 for indice, valor_mp3 in enumerate(lista_mp3):
                     print(f'{indice + 1} - {valor_mp3}')
+
+                print()
+                print(linha)
                 opc_mp3 = leiaInt('Escolha uma opção(voltar=999): ') - 1
                 caminho_mp3 = str(path_down_mp3 + '\\' + lista_mp3[opc_mp3])
 
@@ -260,7 +263,7 @@ def abrir_arq():
                 print(f'Iniciando: {caminho_mp3}')
                 sleep(2)
 
-                """#### Inicia a músico no play padrão do windows"""
+                """#### Inicia a música no play padrão do windows"""
                 Thread(target=os.startfile(caminho_mp3)).start()
 
                 """Função que volta o menu"""
