@@ -85,12 +85,12 @@ def registrar_link(valor_entrada):
 
     """#### Verifica se a pasta foi criada"""
     criar_pasta_arq_link()
-
+    titulo_link = YouTube(valor_entrada).title
     """#### Grava os dados do link no arquivo de texto; a função acima é responsável em criar """
     try:
         gravando_link = open(arq_youtube, 'a')
         gravando_link.write(f'{valor_entrada}\n')
-        print('Link adicionado com sucesso!')
+        print(f'Link adicionado com sucesso! \n{linha}\nTitulo: {titulo_link}')
 
     except FileNotFoundError:
         gravando_link = open(arq_youtube, 'w')
@@ -105,6 +105,7 @@ def adicionar_link():
     logo_tube('Adicionar link')
 
     while True:
+
         print(linha)
         link_tube = str(input('Link aqui (voltar=999): '))
 
@@ -188,6 +189,8 @@ def downloads():
 
                         """# Chama a função para tranformar o videm em MP3"""
                         mp3_to_mp4()
+                        print(f'Downloads finalizado... Verifique na pasta {path_down_mp3}')
+                        sleep(2)
                     except:
                         print('Erro ao realizar o downloads do MP3')
 
