@@ -51,9 +51,6 @@ def thread_downloads():
     Thread(target=downloads).start()
 # ----------------------------------------------------------------------------------------------------------------------
 
-def thread_abrir_arq():
-    pass
-# ----------------------------------------------------------------------------------------------------------------------
 def criando_pastas_midias():
     """
     Função responsável em criar os diretorios responsavel por receber os arquivos de downloads
@@ -226,14 +223,20 @@ def abrir_arq():
     lista_mp3 = []
     lista_mp4 = []
 
+    print()
+    print(linha)
     for valor_midia in listdir(path_down_mp3):
         lista_mp3.append(valor_midia)
     for valor_midia in listdir(path_down_mp4):
         lista_mp4.append(valor_midia)
 
+    print()
+    print(linha)
     for indice, menu in enumerate(lista_menu_downloads):
-        print(f'[{indice}] - {menu}')
+        print(f'[{indice + 1}] - {menu}')
 
+    print()
+    print(linha)
     opc_midia = leiaInt('Escolha uma opção: ') - 1
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -267,7 +270,7 @@ def menu_principal():
             downloads()
 
         elif valor_opc == 3:
-            thread_abrir_arq()
+            abrir_arq()
 
         elif valor_opc == 4:
             print(linha)
