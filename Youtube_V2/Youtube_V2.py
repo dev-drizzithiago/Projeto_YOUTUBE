@@ -1,7 +1,6 @@
-import os.path
-
+import os
+from os import mkdir, listdir, path, remove, makedirs, startfile
 from moviepy.editor import AudioFileClip
-from os import mkdir, listdir, path, remove, makedirs
 from threading import Thread
 from pytube import YouTube
 from pathlib import Path
@@ -254,6 +253,17 @@ def abrir_arq():
                 for indice, valor_mp3 in enumerate(lista_mp3):
                     print(f'{indice + 1} - {valor_mp3}')
                 opc_mp3 = leiaInt('Escolha uma opção(voltar=999): ') - 1
+                caminho_mp3 = str(path_down_mp3 + '\\' + lista_mp3[opc_mp3])
+
+                print()
+                print(linha)
+                print(f'Iniciando: {caminho_mp3}')
+                sleep(2)
+
+                """#### Inicia a músico no play padrão do windows"""
+                Thread(target=os.startfile(caminho_mp3)).start()
+
+                """Função que volta o menu"""
                 if opc_mp3 == 998:
                     print('Voltando ao menu!')
 
