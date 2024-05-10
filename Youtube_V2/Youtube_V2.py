@@ -230,7 +230,7 @@ def abrir_arq():
         for valor_midia in listdir(path_down_mp3):
             lista_mp3.append(valor_midia)
 
-        print('Vídeos') 
+        print('Vídeos')
         print(linha)
         for valor_midia in listdir(path_down_mp4):
             lista_mp4.append(valor_midia)
@@ -242,15 +242,17 @@ def abrir_arq():
 
         print()
         print(linha)
-        opc_midia = leiaInt('Escolha uma opção(Voltar=999: ') - 1
+        opc_midia = leiaInt('Escolha uma opção(Voltar=999): ') - 1
 
-        if opc_midia == 999:
+        if opc_midia == 998:
             print('Voltando ao menu principal!')
             sleep(2)
             break
 
         elif opc_midia == 1:
-            pass
+            for indice, valor_mp3 in enumerate(len(lista_mp3)):
+                titulo_link_mp3 = YouTube(lista_mp3[indice]).title
+                print(f'{indice} - {titulo_link_mp3}')
         elif opc_midia == 2:
             pass
 
