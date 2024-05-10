@@ -219,25 +219,35 @@ def downloads():
 
 # ----------------------------------------------------------------------------------------------------------------------
 def abrir_arq():
-    logo_tube(' Excecute um arquivos ')
-    lista_mp3 = []
-    lista_mp4 = []
+    while True:
+        logo_tube(' Excecute um arquivos ')
+        lista_mp3 = []
+        lista_mp4 = []
 
-    print()
-    print(linha)
-    for valor_midia in listdir(path_down_mp3):
-        lista_mp3.append(valor_midia)
-    for valor_midia in listdir(path_down_mp4):
-        lista_mp4.append(valor_midia)
+        print()
+        print(linha)
+        for valor_midia in listdir(path_down_mp3):
+            lista_mp3.append(valor_midia)
+        for valor_midia in listdir(path_down_mp4):
+            lista_mp4.append(valor_midia)
 
-    print()
-    print(linha)
-    for indice, menu in enumerate(lista_menu_downloads):
-        print(f'[{indice + 1}] - {menu}')
+        print()
+        print(linha)
+        for indice, menu in enumerate(lista_menu_downloads):
+            print(f'[{indice + 1}] - {menu}')
 
-    print()
-    print(linha)
-    opc_midia = leiaInt('Escolha uma opção: ') - 1
+        print()
+        print(linha)
+        opc_midia = leiaInt('Escolha uma opção: ') - 1
+
+        if opc_midia == 999:
+            print('Voltando ao menu principal!')
+            sleep(2)
+            break
+        elif opc_midia == 1:
+            pass
+        elif opc_midia == 2:
+            pass
 
 # ----------------------------------------------------------------------------------------------------------------------
 
