@@ -242,7 +242,7 @@ def abrir_arq():
 
         print()
         print(linha)
-        opc_midia = leiaInt('Escolha uma opção: ') - 1
+        opc_midia = leiaInt('Escolha uma opção(Voltar=999: ') - 1
 
         if opc_midia == 999:
             print('Voltando ao menu principal!')
