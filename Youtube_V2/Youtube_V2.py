@@ -253,8 +253,10 @@ def abrir_arq():
             while True:
                 for indice, valor_mp3 in enumerate(len(lista_mp3)):
                     titulo_link_mp3 = YouTube(lista_mp3[indice]).title
-                    print(f'{indice} - {titulo_link_mp3}')
-                opc_mp3 = leiaInt('Escolha uma opção(voltar=999): ')
+                    print(f'{indice + 1} - {titulo_link_mp3}')
+                opc_mp3 = leiaInt('Escolha uma opção(voltar=999): ') - 1
+                if opc_mp3 == 999:
+                    print('Voltando ao menu!')
         elif opc_midia == 2:
             pass
 
