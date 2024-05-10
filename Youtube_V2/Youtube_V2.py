@@ -275,6 +275,22 @@ def abrir_arq():
             print('Vídeos')
             print(linha)
 
+            for indice, valor_mp4 in enumerate(lista_mp4):
+                print(f'{indice + 1 } - {valor_mp4}')
+
+            print()
+            print(linha)
+            opc_mp4 = leiaInt('Escolha uma opção(voltar=999): ') - 1
+
+            caminho_mp4 = str(path_down_mp4 + '\\' + lista_mp4[opc_mp4])
+
+            print()
+            print(linha)
+            print(f'Iniciando: {caminho_mp3}')
+            sleep(2)
+
+
+
         else:
             print('Opção invalida!')
             sleep(5)
