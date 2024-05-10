@@ -85,12 +85,16 @@ def registrar_link(valor_entrada):
 
     """#### Verifica se a pasta foi criada"""
     criar_pasta_arq_link()
+
+    """#### cria o obj para o titulo do video"""
     titulo_link = YouTube(valor_entrada).title
+
     """#### Grava os dados do link no arquivo de texto; a função acima é responsável em criar """
     try:
         gravando_link = open(arq_youtube, 'a')
         gravando_link.write(f'{valor_entrada}\n')
         print(f'Link adicionado com sucesso! \n{linha}\nTitulo: {titulo_link}')
+        sleep(2)
 
     except FileNotFoundError:
         gravando_link = open(arq_youtube, 'w')
