@@ -1,4 +1,3 @@
-import os
 from os import mkdir, listdir, path, remove, makedirs, startfile
 from moviepy.editor import AudioFileClip
 from threading import Thread
@@ -289,6 +288,8 @@ def abrir_arq():
             print(f'Iniciando: {caminho_mp3}')
             sleep(2)
 
+            """### Iniciando o vídeo no play padrão do windows"""
+            Thread(target=os.startfile(caminho_mp4)).start()
 
 
         else:
