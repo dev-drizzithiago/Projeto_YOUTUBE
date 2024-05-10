@@ -255,7 +255,10 @@ def abrir_arq():
                 print()
                 print(linha)
                 opc_mp3 = leiaInt('Escolha uma Música(voltar=999): ') - 1
-                caminho_mp3 = str(path_down_mp3 + '\\' + lista_mp3[opc_mp3])
+                try:
+                    caminho_mp3 = str(path_down_mp3 + '\\' + lista_mp3[opc_mp3])
+                except FileNotFoundError:
+                    print('Não existe nenhuma música na pasta')
 
                 print()
                 print(linha)
@@ -281,7 +284,10 @@ def abrir_arq():
             print(linha)
             opc_mp4 = leiaInt('Escolha uma opção(voltar=999): ') - 1
 
-            caminho_mp4 = str(path_down_mp4 + '\\' + lista_mp4[opc_mp4])
+            try:
+                caminho_mp4 = str(path_down_mp4 + '\\' + lista_mp4[opc_mp4])
+            except FileNotFoundError:
+                print('Não existem nenhum vídeo na pasta')
 
             print()
             print(linha)
@@ -290,6 +296,10 @@ def abrir_arq():
 
             """### Iniciando o vídeo no play padrão do windows"""
             Thread(target=os.startfile(caminho_mp4)).start()
+
+            """Função que volta o menu"""
+            if opc_mp4 == 998:
+                print('Voltando ao menu!')
 
 
         else:
