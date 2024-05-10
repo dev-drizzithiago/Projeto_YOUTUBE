@@ -249,16 +249,21 @@ def abrir_arq():
                 print('Músicas')
                 print(linha)
 
-                for indice, valor_mp3 in enumerate(lista_mp3):
-                    print(f'{indice + 1} - {valor_mp3}')
+                if len(lista_mp3) == 0:
+                    print('Não existe nenhuma música na pasta')
+                else:
+                    for indice, valor_mp3 in enumerate(lista_mp3):
+                        print(f'{indice + 1} - {valor_mp3}')
 
                 print()
                 print(linha)
                 opc_mp3 = leiaInt('Escolha uma Música(voltar=999): ') - 1
-                try:
-                    caminho_mp3 = str(path_down_mp3 + '\\' + lista_mp3[opc_mp3])
-                except FileNotFoundError:
-                    print('Não existe nenhuma música na pasta')
+                """Função que volta o menu"""
+                if opc_mp3 == 998:
+                    print('Voltando ao menu!')
+                    break
+
+                caminho_mp3 = str(path_down_mp3 + '\\' + lista_mp3[opc_mp3])
 
                 print()
                 print(linha)
@@ -268,26 +273,28 @@ def abrir_arq():
                 """#### Inicia a música no play padrão do windows"""
                 Thread(target=os.startfile(caminho_mp3)).start()
 
-                """Função que volta o menu"""
-                if opc_mp3 == 998:
-                    print('Voltando ao menu!')
 
         elif opc_midia == 2:
             print()
             print('Vídeos')
             print(linha)
 
-            for indice, valor_mp4 in enumerate(lista_mp4):
-                print(f'{indice + 1 } - {valor_mp4}')
+            if len(lista_mp4) == 0:
+                print('Não existe nenhuma música na pasta')
+            else:
+                for indice, valor_mp4 in enumerate(lista_mp4):
+                    print(f'{indice + 1 } - {valor_mp4}')
 
             print()
             print(linha)
             opc_mp4 = leiaInt('Escolha uma opção(voltar=999): ') - 1
+            """Função que volta o menu"""
+            if opc_mp4 == 998:
+                print('Voltando ao menu!')
+                break
 
-            try:
-                caminho_mp4 = str(path_down_mp4 + '\\' + lista_mp4[opc_mp4])
-            except FileNotFoundError:
-                print('Não existem nenhum vídeo na pasta')
+            caminho_mp4 = str(path_down_mp4 + '\\' + lista_mp4[opc_mp4])
+
 
             print()
             print(linha)
@@ -297,9 +304,7 @@ def abrir_arq():
             """### Iniciando o vídeo no play padrão do windows"""
             Thread(target=os.startfile(caminho_mp4)).start()
 
-            """Função que volta o menu"""
-            if opc_mp4 == 998:
-                print('Voltando ao menu!')
+
 
 
         else:
