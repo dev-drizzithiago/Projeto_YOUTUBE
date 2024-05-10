@@ -225,9 +225,13 @@ def abrir_arq():
         lista_mp4 = []
 
         print()
+        print('Músicas')
         print(linha)
         for valor_midia in listdir(path_down_mp3):
             lista_mp3.append(valor_midia)
+
+        print('Vídeos')
+        print(linha)
         for valor_midia in listdir(path_down_mp4):
             lista_mp4.append(valor_midia)
 
@@ -244,6 +248,7 @@ def abrir_arq():
             print('Voltando ao menu principal!')
             sleep(2)
             break
+
         elif opc_midia == 1:
             pass
         elif opc_midia == 2:
