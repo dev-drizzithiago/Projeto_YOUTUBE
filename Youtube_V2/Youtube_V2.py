@@ -230,7 +230,7 @@ def abrir_arq():
         for valor_midia in listdir(path_down_mp3):
             lista_mp3.append(valor_midia)
 
-        print('Vídeos')
+        print('Vídeos') 
         print(linha)
         for valor_midia in listdir(path_down_mp4):
             lista_mp4.append(valor_midia)
