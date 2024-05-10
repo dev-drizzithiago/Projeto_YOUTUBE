@@ -1,3 +1,4 @@
+
 from os import mkdir, listdir, path, remove, makedirs, startfile
 from moviepy.editor import AudioFileClip
 from threading import Thread
@@ -6,7 +7,6 @@ from pathlib import Path
 from time import sleep
 from tqdm import tqdm
 from re import search
-
 
 lista_menu_principal = [' Adicionar link ', ' Downloads ', ' Abrir arquivo ', ' Sair ']
 lista_menu_downloads = [' Música(MP3) ', ' Vídeo(MP4) ']
@@ -242,8 +242,8 @@ def abrir_arq():
             sleep(2)
             break
 
+        """#### Opção de músicas"""
         elif opc_midia == 1:
-
             while True:
                 print()
                 print('Músicas')
@@ -263,6 +263,7 @@ def abrir_arq():
                     print('Voltando ao menu!')
                     break
 
+                """#### Realiza a junção do caminha e arquivo para que seja lido pela Thread"""
                 caminho_mp3 = str(path_down_mp3 + '\\' + lista_mp3[opc_mp3])
 
                 print()
@@ -273,52 +274,43 @@ def abrir_arq():
                 """#### Inicia a música no play padrão do windows"""
                 Thread(target=os.startfile(caminho_mp3)).start()
 
-
+        """#### Opão de vídeos"""
         elif opc_midia == 2:
-            print()
-            print('Vídeos')
-            print(linha)
+            while True:
+                print()
+                print('Vídeos')
+                print(linha)
 
-            if len(lista_mp4) == 0:
-                print('Não existe nenhuma música na pasta')
+                if len(lista_mp4) == 0:
+                    print('Não existe nenhuma música na pasta')
+                else:
+                    for indice, valor_mp4 in enumerate(lista_mp4):
+                        print(f'{indice + 1 } - {valor_mp4}')
+
+                print()
+                print(linha)
+                opc_mp4 = leiaInt('Escolha uma opção(voltar=999): ') - 1
+                """Função que volta o menu"""
+                if opc_mp4 == 998:
+                    print('Voltando ao menu!')
+                    break
+
+                """#### Realiza a junção do caminha e arquivo para que seja lido pela Thread"""
+                caminho_mp4 = str(path_down_mp4 + '\\' + lista_mp4[opc_mp4])
+
+                print()
+                print(linha)
+                print(f'Iniciando: {caminho_mp3}')
+                sleep(2)
+
+                """### Iniciando o vídeo no play padrão do windows"""
+                Thread(target=os.startfile(caminho_mp4)).start()
+
             else:
-                for indice, valor_mp4 in enumerate(lista_mp4):
-                    print(f'{indice + 1 } - {valor_mp4}')
-
-            print()
-            print(linha)
-            opc_mp4 = leiaInt('Escolha uma opção(voltar=999): ') - 1
-            """Função que volta o menu"""
-            if opc_mp4 == 998:
-                print('Voltando ao menu!')
-                break
-
-            caminho_mp4 = str(path_down_mp4 + '\\' + lista_mp4[opc_mp4])
-
-
-            print()
-            print(linha)
-            print(f'Iniciando: {caminho_mp3}')
-            sleep(2)
-
-            """### Iniciando o vídeo no play padrão do windows"""
-            Thread(target=os.startfile(caminho_mp4)).start()
-
-
-
-
-        else:
-            print('Opção invalida!')
-            sleep(5)
-
+                print('Opção invalida!')
+                sleep(5)
 
 # ----------------------------------------------------------------------------------------------------------------------
-
-def barra_progresso():
-    for i in tqdm():
-        sleep(1)
-# ----------------------------------------------------------------------------------------------------------------------
-
 """#### Menu principal"""
 def menu_principal():
     while True:
@@ -350,6 +342,10 @@ def menu_principal():
             print('Saindo do programa!')
             sleep(1)
             break
+
+        else:
+            print('Opção incorreta!!')
+            sleep(5)
 
 
 menu_principal()
