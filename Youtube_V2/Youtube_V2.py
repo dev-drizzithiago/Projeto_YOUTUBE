@@ -225,11 +225,16 @@ def abrir_arq():
     logo_tube(' Excecute um arquivos ')
     lista_mp3 = []
     lista_mp4 = []
-    
+
     for valor_midia in listdir(path_down_mp3):
         lista_mp3.append(valor_midia)
     for valor_midia in listdir(path_down_mp4):
         lista_mp4.append(valor_midia)
+
+    for indice, menu in enumerate(lista_menu_downloads):
+        print(f'[{indice}] - {menu}')
+
+    opc_midia = leiaInt('Escolha uma opção: ') - 1
 
 # ----------------------------------------------------------------------------------------------------------------------
 
