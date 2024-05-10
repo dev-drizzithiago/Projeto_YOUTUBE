@@ -1,16 +1,13 @@
-
 from os import mkdir, listdir, path, remove, makedirs, startfile
 from moviepy.editor import AudioFileClip
 from threading import Thread
 from pytube import YouTube
 from pathlib import Path
 from time import sleep
-from tqdm import tqdm
 from re import search
 
 lista_menu_principal = [' Adicionar link ', ' Downloads ', ' Abrir arquivo ', ' Sair ']
 lista_menu_downloads = [' Música(MP3) ', ' Vídeo(MP4) ']
-
 
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Criando pastas """
@@ -28,9 +25,13 @@ linha = '----' * 24
 
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Função simples"""
+
+
 def logo_tube(valor_entrada):
     linhas = '----' * 10
     print(f'{linhas}{valor_entrada}{linhas}')
+
+
 # ----------------------------------------------------------------------------------------------------------------------
 
 
@@ -41,12 +42,18 @@ def leiaInt(valor_entrada):
             return valor_inteiro
         except:
             print(f'Você digitou um valor errado!')
+
+
 # ----------------------------------------------------------------------------------------------------------------------
 
 
 """#### Funções threads"""
+
+
 def thread_downloads():
     Thread(target=downloads).start()
+
+
 # ----------------------------------------------------------------------------------------------------------------------
 
 def criando_pastas_midias():
@@ -63,9 +70,12 @@ def criando_pastas_midias():
         makedirs(path_down_mp3)
         makedirs(path_down_mp4)
 
+
 # ----------------------------------------------------------------------------------------------------------------------
 
 """#### Funções simples"""
+
+
 def criar_pasta_arq_link():
     """#### Função responsável em criar pasta por armazenas o arquivo que ficar os links"""
     try:
@@ -74,10 +84,11 @@ def criar_pasta_arq_link():
         pass
     except FileNotFoundError:
         mkdir(path_arqu)
+
+
 # ----------------------------------------------------------------------------------------------------------------------
 
 def registrar_link(valor_entrada):
-
     """#### Verifica se a pasta foi criada"""
     criar_pasta_arq_link()
 
@@ -97,9 +108,13 @@ def registrar_link(valor_entrada):
 
     except FileExistsError:
         pass
+
+
 # ----------------------------------------------------------------------------------------------------------------------
 
 """#### Funções de processo"""
+
+
 def adicionar_link():
     logo_tube('Adicionar link')
 
@@ -121,6 +136,7 @@ def adicionar_link():
             sleep(1)
             registrar_link(link_tube)
 
+
 # ----------------------------------------------------------------------------------------------------------------------
 def mp3_to_mp4():
     print('Função "mp3_to_mp4"')
@@ -135,6 +151,7 @@ def mp3_to_mp4():
             novo_mp3 = AudioFileClip(mp4_file)
             novo_mp3.write_audiofile(mp3_file)
             remove(mp4_file)
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 def downloads():
@@ -215,6 +232,7 @@ def downloads():
         except FileExistsError:
             pass
 
+
 # ----------------------------------------------------------------------------------------------------------------------
 def abrir_arq():
     while True:
@@ -242,7 +260,7 @@ def abrir_arq():
             sleep(2)
             break
 
-        """#### Opção de músicas"""
+        # Opção de músicas
         elif opc_midia == 1:
             while True:
                 print()
@@ -272,9 +290,9 @@ def abrir_arq():
                 sleep(2)
 
                 """#### Inicia a música no play padrão do windows"""
-                Thread(target=os.startfile(caminho_mp3)).start()
+                Thread(target=startfile(caminho_mp3)).start()
 
-        """#### Opão de vídeos"""
+        # Opão de vídeos
         elif opc_midia == 2:
             while True:
                 print()
@@ -285,7 +303,7 @@ def abrir_arq():
                     print('Não existe nenhuma música na pasta')
                 else:
                     for indice, valor_mp4 in enumerate(lista_mp4):
-                        print(f'{indice + 1 } - {valor_mp4}')
+                        print(f'{indice + 1} - {valor_mp4}')
 
                 print()
                 print(linha)
@@ -304,14 +322,17 @@ def abrir_arq():
                 sleep(2)
 
                 """### Iniciando o vídeo no play padrão do windows"""
-                Thread(target=os.startfile(caminho_mp4)).start()
+                Thread(target=startfile(caminho_mp4)).start()
 
-            else:
-                print('Opção invalida!')
-                sleep(5)
+        else:
+            print('Opção invalida!')
+            sleep(5)
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Menu principal"""
+
+
 def menu_principal():
     while True:
         print()
