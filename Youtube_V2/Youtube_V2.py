@@ -237,7 +237,7 @@ def abrir_arq():
         print(linha)
         opc_midia = leiaInt('Escolha uma opção(Voltar=999): ')
 
-        if opc_midia == 998:
+        if opc_midia == 999:
             print('Voltando ao menu principal!')
             sleep(2)
             break
@@ -254,7 +254,7 @@ def abrir_arq():
 
                 print()
                 print(linha)
-                opc_mp3 = leiaInt('Escolha uma opção(voltar=999): ') - 1
+                opc_mp3 = leiaInt('Escolha uma Música(voltar=999): ') - 1
                 caminho_mp3 = str(path_down_mp3 + '\\' + lista_mp3[opc_mp3])
 
                 print()
