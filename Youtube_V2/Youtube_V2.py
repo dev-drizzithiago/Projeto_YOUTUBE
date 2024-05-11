@@ -295,6 +295,8 @@ def abrir_arq():
 
                 if len(lista_mp3) == 0:
                     print('Não existe nenhuma música na pasta')
+                    sleep(2)
+                    break
                 else:
                     for indice, valor_mp3 in enumerate(lista_mp3):
                         print(f'{indice + 1} - {valor_mp3}')
@@ -327,6 +329,8 @@ def abrir_arq():
 
                 if len(lista_mp4) == 0:
                     print('Não existe nenhuma música na pasta')
+                    sleep(2)
+                    break
                 else:
                     for indice, valor_mp4 in enumerate(lista_mp4):
                         print(f'{indice + 1} - {valor_mp4}')
