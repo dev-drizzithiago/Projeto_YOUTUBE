@@ -239,6 +239,8 @@ def downloads():
         except FileNotFoundError:
             print('\nO arquivo que contém os links não existe! \nAdicione um link para criar')
             sleep(5)
+            system('cls')
+            break
         except FileExistsError:
             pass
 
