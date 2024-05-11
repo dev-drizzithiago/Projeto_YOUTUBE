@@ -77,7 +77,6 @@ def registrar_link(valor_entrada):
     preparada para criar um;
     2) Com o link do YouTube, é colocando o título do link na variavel "titulo_link";
     3) Se tudo estiver correto, é aberto o arquivo de texto, logo depois é registrado o link e fechado o arquivo;
-
     :return:
     """
     criar_pasta_arq_link()
@@ -238,6 +237,15 @@ def downloads():
 def abrir_arq():
     """
     Essa função utiliza as configurações padrão do windows.
+    1) Criado duas listas para receber as mídias que forem encontradas nas pastas padrão do aplicativo;
+    2) é realizado a listagem nas pastas, encontrando as mídias, os valores vão inseridos nas suas listas;
+    3) mostra o menu de mídias para o usuário escolher, entre músicas e videos;
+    4) escolhendo uma opção é apresentado a lista de mídias da categoria selecionada;
+    5) o usuário escolhendo a mídia, existe uma função que vai buscar a mídia selecionada e deixar preparada para que a
+    função "startfile" receba os valores corretos; eu usei o modulo "os.startfile" para abrir a mídia, usando ao
+    player padrão do windows.
+    6) Após selecionar a mídia, vai carregar o audio/video; eu usei um threading para que o programa não trave quando
+    for aberto o player.
     :return:
     """
     while True:
