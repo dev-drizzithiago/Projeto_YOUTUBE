@@ -197,7 +197,7 @@ def downloads():
                 print(linha)
                 for indice, valor in enumerate(lista_menu_downloads):
                     print(f'[{indice + 1}] - {valor}')
-                print()
+                
                 print(linha)
                 opc_menu_down = leiaInt('Escolha uma opção: ')
 
