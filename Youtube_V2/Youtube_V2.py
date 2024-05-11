@@ -1,4 +1,4 @@
-from os import mkdir, listdir, path, remove, makedirs, startfile
+from os import mkdir, listdir, path, remove, makedirs, startfile, system
 from moviepy.editor import AudioFileClip
 from threading import Thread
 from pytube import YouTube
@@ -25,37 +25,25 @@ linha = '----' * 24
 
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Função simples"""
-
-
 def logo_tube(valor_entrada):
     linhas = '----' * 10
     print(f'{linhas}{valor_entrada}{linhas}')
 
-
 # ----------------------------------------------------------------------------------------------------------------------
-
-
 def leiaInt(valor_entrada):
     while True:
         try:
             valor_inteiro = int(input(valor_entrada))
             return valor_inteiro
         except:
-            print(f'Você digitou um valor errado!')
-
+            print(f'Você digitou um valor incorreto!')
 
 # ----------------------------------------------------------------------------------------------------------------------
-
-
 """#### Funções threads"""
-
-
 def thread_downloads():
     Thread(target=downloads).start()
 
-
 # ----------------------------------------------------------------------------------------------------------------------
-
 def criando_pastas_midias():
     """
     Função responsável em criar os diretorios responsavel por receber os arquivos de downloads
@@ -70,14 +58,10 @@ def criando_pastas_midias():
         makedirs(path_down_mp3)
         makedirs(path_down_mp4)
 
-
 # ----------------------------------------------------------------------------------------------------------------------
-
 """#### Funções simples"""
-
-
 def criar_pasta_arq_link():
-    """#### Função responsável em criar pasta por armazenas o arquivo que ficar os links"""
+    """#### Função responsável em criar pasta para armazenar o arquivo que fica salvo os links"""
     try:
         mkdir(path_arqu)
     except FileExistsError:
@@ -85,9 +69,7 @@ def criar_pasta_arq_link():
     except FileNotFoundError:
         mkdir(path_arqu)
 
-
 # ----------------------------------------------------------------------------------------------------------------------
-
 def registrar_link(valor_entrada):
     """#### Verifica se a pasta foi criada"""
     criar_pasta_arq_link()
@@ -109,33 +91,29 @@ def registrar_link(valor_entrada):
     except FileExistsError:
         pass
 
-
 # ----------------------------------------------------------------------------------------------------------------------
-
 """#### Funções de processo"""
-
-
 def adicionar_link():
     logo_tube('Adicionar link')
 
     while True:
 
         print(linha)
-        link_tube = str(input('Link aqui (voltar=999): '))
+        link_tube = str(input('Cole o link aqui(voltar=999): '))
 
         if link_tube == '999':
-            print('voltando ao menu principal')
+            print('Voltando ao menu principal')
             sleep(1)
+            system('cls')
             break
 
         elif link_tube[:23] != 'https://www.youtube.com':
-            print('Não é um link YouTube!')
+            print('Você não colocou um link YouTube!')
 
         else:
             print('Registrando...!')
             sleep(1)
             registrar_link(link_tube)
-
 
 # ----------------------------------------------------------------------------------------------------------------------
 def mp3_to_mp4():
@@ -151,7 +129,6 @@ def mp3_to_mp4():
             novo_mp3 = AudioFileClip(mp4_file)
             novo_mp3.write_audiofile(mp3_file)
             remove(mp4_file)
-
 
 # ----------------------------------------------------------------------------------------------------------------------
 def downloads():
@@ -176,6 +153,7 @@ def downloads():
             if opc_downloads == 998:
                 print('Voltando ao menu principal')
                 sleep(2)
+                system('cls')
                 break
             else:
                 """#### Com as informações de de entrada, escolhe-se o link para o downloads"""
@@ -205,10 +183,10 @@ def downloads():
 
                         """# Chama a função para tranformar o videm em MP3"""
                         mp3_to_mp4()
-                        print(f'Downloads finalizado... Verifique na pasta {path_down_mp3}')
+                        print(f'Download finalizado... \nVerifique o MP3 na pasta [{path_down_mp3}]')
                         sleep(2)
                     except:
-                        print('Erro ao realizar o downloads do MP3')
+                        print('Não foi possível realizar o download')
 
                 # Processo de downloads de vídeo"""
                 elif opc_menu_down == 2:
@@ -216,12 +194,12 @@ def downloads():
                     print(linha)
                     logo_tube('Downloads em MP4')
                     try:
-                        print('Downloads em andamento, aguarde!!')
-                        obj_youtube.streams.filter(adaptive=True).first().download(path_down_mp4)
+                        print('Download em andamento, aguarde!!')
+                        (obj_youtube.streams.get_highest_resolution().download(path_down_mp4))
 
                         print()
                         print(linha)
-                        print(f'Downloads finalizado! \nVejá na pasta {path_down_mp4}')
+                        print(f'Download finalizado! \nVerifique o MP4 na pasta  [{path_down_mp4}]')
                         sleep(2)
                     except:
                         print('Não foi possível realizado o downloads')
@@ -231,7 +209,6 @@ def downloads():
             sleep(5)
         except FileExistsError:
             pass
-
 
 # ----------------------------------------------------------------------------------------------------------------------
 def abrir_arq():
@@ -258,6 +235,7 @@ def abrir_arq():
         if opc_midia == 999:
             print('Voltando ao menu principal!')
             sleep(2)
+            system('cls')
             break
 
         # Opção de músicas
@@ -328,10 +306,8 @@ def abrir_arq():
             print('Opção invalida!')
             sleep(5)
 
-
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Menu principal"""
-
 
 def menu_principal():
     while True:
@@ -359,6 +335,7 @@ def menu_principal():
             abrir_arq()
 
         elif valor_opc == 4:
+            system('cls')
             print(linha)
             print('Saindo do programa!')
             sleep(1)
