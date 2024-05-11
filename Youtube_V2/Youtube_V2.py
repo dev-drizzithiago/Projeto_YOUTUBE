@@ -193,11 +193,12 @@ def downloads():
                 obj_youtube = YouTube(link_downloads)
 
                 """#### Menu downloads: aqui voce vai escolher qual extensão ira baixar, o mp3 ou mp4"""
-                
+                print()
                 print(linha)
                 for indice, valor in enumerate(lista_menu_downloads):
                     print(f'[{indice + 1}] - {valor}')
-
+                print()
+                print(linha)
                 opc_menu_down = leiaInt('Escolha uma opção: ')
 
                 # Processo de downloads em MP3
