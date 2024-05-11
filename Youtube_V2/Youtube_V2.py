@@ -194,10 +194,11 @@ def downloads():
 
                 """#### Menu downloads: aqui voce vai escolher qual extensão ira baixar, o mp3 ou mp4"""
                 print()
+                logo_tube('MP3/MP4')
                 print(linha)
                 for indice, valor in enumerate(lista_menu_downloads):
                     print(f'[{indice + 1}] - {valor}')
-                
+
                 print(linha)
                 opc_menu_down = leiaInt('Escolha uma opção: ')
 
