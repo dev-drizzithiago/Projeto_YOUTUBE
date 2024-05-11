@@ -117,7 +117,13 @@ def adicionar_link():
 
 # ----------------------------------------------------------------------------------------------------------------------
 def mp3_to_mp4():
-    print('Função "mp3_to_mp4"')
+    """
+    - Aqui, é realizado uma listage na pasta Temp, aonde fica alocado o arquivo mp4;
+    - após localizar o arquivo mp4, é realizado a junção do local, para ser processado;
+    - O mesmo procedimento é realizado para o arquivo mp3, mas nessa opção é dado o mesmo nome, mas muda apenas
+    a extensão;
+    - Logo depois é precessado o arquivo para transformar em mp3;
+    """
 
     for valor_mp4 in listdir(path_temp):
         if search('mp4', valor_mp4):
@@ -211,7 +217,12 @@ def downloads():
             pass
 
 # ----------------------------------------------------------------------------------------------------------------------
+"""#### Funçao responsável em excultar as mídias do usuário."""
 def abrir_arq():
+    """
+    Essa função utiliza as configurações padrão do windows.
+    :return:
+    """
     while True:
         logo_tube(' Excecute um arquivos ')
         lista_mp3 = []
@@ -308,7 +319,6 @@ def abrir_arq():
 
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Menu principal"""
-
 def menu_principal():
     while True:
         print()
