@@ -26,11 +26,21 @@ linha = '----' * 24
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Função simples"""
 def logo_tube(valor_entrada):
+    """
+    Deixa a aparencia de casa função melhor
+    :param valor_entrada: Recebe o valor com o nome de casa função;
+    :return:
+    """
     linhas = '----' * 10
     print(f'{linhas}{valor_entrada}{linhas}')
 
 # ----------------------------------------------------------------------------------------------------------------------
 def leiaInt(valor_entrada):
+    """
+    Reponsável em analisar se o valor que entrar, é um número inteiro;
+    :param valor_entrada:  Recebe o valor em número de cada opção que o usuário escolheu;
+    :return: Se estiver correto, retorna o valor para função de destino;
+    """
     while True:
         try:
             valor_inteiro = int(input(valor_entrada))
@@ -227,7 +237,7 @@ def downloads():
                         print('Não foi possível realizado o downloads')
 
         except FileNotFoundError:
-            print('\nArquivo não existe!')
+            print('\nO arquivo que contém os links não existe! \nAdicione um link para criar')
             sleep(5)
         except FileExistsError:
             pass
