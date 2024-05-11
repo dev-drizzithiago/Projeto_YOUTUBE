@@ -71,7 +71,15 @@ def criar_pasta_arq_link():
 
 # ----------------------------------------------------------------------------------------------------------------------
 def registrar_link(valor_entrada):
-    """#### Verifica se a pasta foi criada"""
+    """
+    :param valor_entrada: Recebe o valor do link
+    1) Verifica se o arquivo de texto que vai receber o link está criada, caso não esteja, a funçção já está
+    preparada para criar um;
+    2) Com o link do YouTube, é colocando o título do link na variavel "titulo_link";
+    3) Se tudo estiver correto, é aberto o arquivo de texto, logo depois é registrado o link e fechado o arquivo;
+
+    :return:
+    """
     criar_pasta_arq_link()
 
     """#### cria o obj para o titulo do video"""
@@ -81,6 +89,7 @@ def registrar_link(valor_entrada):
     try:
         gravando_link = open(arq_youtube, 'a')
         gravando_link.write(f'{valor_entrada}\n')
+        gravando_link.close()
         print(f'Link adicionado com sucesso! \n{linha}\nTitulo: {titulo_link}')
         sleep(2)
 
@@ -94,6 +103,13 @@ def registrar_link(valor_entrada):
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Funções de processo"""
 def adicionar_link():
+    """
+    - Função responsável em receber o link, para que posteriormente ser registrado
+    1) solicita ao usuário o link do YouTube;
+    2) verifica se o link realmente é do YouTube, caso seja, a função "registro_link" é registrado
+    no arquivo responsãvel;
+    :return:
+    """
     logo_tube('Adicionar link')
 
     while True:
@@ -123,6 +139,7 @@ def mp3_to_mp4():
     - O mesmo procedimento é realizado para o arquivo mp3, mas nessa opção é dado o mesmo nome, mas muda apenas
     a extensão;
     - Logo depois é precessado o arquivo para transformar em mp3;
+    - Depois que finaliza o processo, o arquivo mp4 é removido da pasta temp
     """
 
     for valor_mp4 in listdir(path_temp):
