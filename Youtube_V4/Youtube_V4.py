@@ -55,8 +55,13 @@ class Youtube_v4:
         self.botao_add_link.config(width=15, state=tk.DISABLED)
         self.botao_add_link.pack(anchor='center')
         # --------------------------------------------------------------------------------------------------------------
+        """#### Botão downloads """
+        self.frame_botao_down = LabelFrame(self.frame_label_principal, text='Baixar o link')
+        self.frame_botao_down.place(y=250, x=120)
 
-
+        self.botao_down_link = Button(self.frame_botao_down, text='Aplicar')
+        self.botao_down_link.config(width=15, state=tk.DISABLED)
+        self.botao_down_link.pack(anchor='center')
 
         """#### Declarações de variaveis"""
         self.ativar_ = False
@@ -65,3 +70,4 @@ class Youtube_v4:
 
 
 iniciando_obj = Youtube_v4()
+
