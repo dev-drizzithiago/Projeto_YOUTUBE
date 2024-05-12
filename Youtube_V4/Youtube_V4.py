@@ -44,7 +44,8 @@ class Youtube_v4:
         # --------------------------------------------------------------------------------------------------------------
         self.var_caixa_de_entrada = tk.StringVar()
         self.caixa_de_entrada_link = Entry(self.frame_label_caixa_entrada, textvariable=self.var_caixa_de_entrada)
-        self.caixa_de_entrada_link.config('<KeyRelease>', self.ativar_botao_adicionar_link)
+        # self.caixa_de_entrada_link.config('<KeyRelease>', self.ativar_botao_adicionar_link)
+        # self.caixa_de_entrada_link.bind_class('Entry', '<Control-V>', 'paste')
         self.caixa_de_entrada_link.config(width=143, justify=tk.CENTER)
         self.caixa_de_entrada_link.pack(anchor='center', pady=5, padx=5)
         # ##############################################################################################################
