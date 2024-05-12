@@ -43,6 +43,16 @@ class Youtube_v4:
         self.caixa_de_entrada_link = Entry(self.frame_label_caixa_entrada, textvariable=self.var_caixa_de_entrada)
         self.caixa_de_entrada_link.config(width=143, justify=tk.CENTER)
         self.caixa_de_entrada_link.pack(anchor='center', pady=5, padx=5)
+        # ##############################################################################################################
+        """ Frame Botões"""
+        # --------------------------------------------------------------------------------------------------------------
+        """#### Botão adicionar """
+        self.frame_botao_adicionar = LabelFrame(self.janela_principal, 'Adicionar o link')
+        self.frame_botao_adicionar.place(y=300, x=5)
+
+        self.botao_add_link = Button(self.frame_botao_adicionar, text='Aplicar')
+        self.botao_add_link.config(width=)
+
 
         """#### Declarações de variaveis"""
         self.ativar_ = False
