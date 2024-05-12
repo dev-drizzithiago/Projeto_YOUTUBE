@@ -47,11 +47,12 @@ class Youtube_v4:
         """ Frame Botões"""
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão adicionar """
-        self.frame_botao_adicionar = LabelFrame(self.janela_principal, 'Adicionar o link')
+        self.frame_botao_adicionar = LabelFrame(self.frame_label_principal, text='Adicionar o link')
         self.frame_botao_adicionar.place(y=300, x=5)
 
         self.botao_add_link = Button(self.frame_botao_adicionar, text='Aplicar')
-        self.botao_add_link.config(width=)
+        self.botao_add_link.config(width=15)
+        self.botao_add_link.pack(anchor='center')
 
 
         """#### Declarações de variaveis"""
