@@ -18,7 +18,8 @@ class Youtube_v4:
         self.frame_label_principal.pack(fill=tk.BOTH, pady=5, padx=5)
         # --------------------------------------------------------------------------------------------------------------
         """#### Frame Lista cache"""
-        self.frame_label_lista_cache = Labelframe(self.frame_label_principal, text='Links Salvos')
+        self.frame_label_lista_cache = Labelframe(self.frame_label_principal, text='Links Salvos - '
+                                                                                   'Selecione um título para baixar')
         self.frame_label_lista_cache.place(y=5, x=5)
 
         # ##############################################################################################################
@@ -47,12 +48,14 @@ class Youtube_v4:
         """ Frame Botões"""
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão adicionar """
-        self.frame_botao_adicionar = LabelFrame(self.frame_label_principal, text='Adicionar o link')
-        self.frame_botao_adicionar.place(y=300, x=5)
+        self.frame_botao_adicionar = LabelFrame(self.frame_label_principal, text='Adicione o link')
+        self.frame_botao_adicionar.place(y=250, x=5)
 
         self.botao_add_link = Button(self.frame_botao_adicionar, text='Aplicar')
-        self.botao_add_link.config(width=15)
+        self.botao_add_link.config(width=15, state=tk.DISABLED)
         self.botao_add_link.pack(anchor='center')
+        # --------------------------------------------------------------------------------------------------------------
+
 
 
         """#### Declarações de variaveis"""
