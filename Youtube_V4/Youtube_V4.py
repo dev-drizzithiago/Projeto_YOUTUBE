@@ -26,7 +26,9 @@ class Youtube_v4:
         """#### Lista dos links que estão salvos no computador"""
         self.var_lista_cache_links_add = tk.StringVar()
         self.lista_cache_links_add = tk.Listbox(self.frame_label_lista_cache, selectmode=tk.SINGLE)
-        self.lista_cache_links_add.config(height=10, width=142, justify=tk.CENTER)
+        self.lista_cache_links_add.config(height=10, width=142, justify=tk.LEFT)
+        self.lista_cache_links_add.insert(0, 'teste')
+        self.lista_cache_links_add.bind('<Button-1>', self.ativar_botao_downloads)
         self.lista_cache_links_add.pack(anchor='center', fill=tk.BOTH, pady=5, padx=5)
         # --------------------------------------------------------------------------------------------------------------
         """#### Barra de rolagem Vertical da lista de cache"""
@@ -42,6 +44,7 @@ class Youtube_v4:
         # --------------------------------------------------------------------------------------------------------------
         self.var_caixa_de_entrada = tk.StringVar()
         self.caixa_de_entrada_link = Entry(self.frame_label_caixa_entrada, textvariable=self.var_caixa_de_entrada)
+        self.caixa_de_entrada_link.config()
         self.caixa_de_entrada_link.config(width=143, justify=tk.CENTER)
         self.caixa_de_entrada_link.pack(anchor='center', pady=5, padx=5)
         # ##############################################################################################################
@@ -62,11 +65,15 @@ class Youtube_v4:
         self.botao_down_link = Button(self.frame_botao_down, text='Aplicar')
         self.botao_down_link.config(width=15, state=tk.DISABLED)
         self.botao_down_link.pack(anchor='center')
+        # --------------------------------------------------------------------------------------------------------------
 
         """#### Declarações de variaveis"""
         self.ativar_ = False
 
         self.janela_principal.mainloop()
+
+    def ativar_botao_downloads(self, *args):
+        self.botao_down_link.config(state=tk.NORMAL)
 
 
 iniciando_obj = Youtube_v4()
