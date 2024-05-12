@@ -44,7 +44,7 @@ class Youtube_v4:
         # --------------------------------------------------------------------------------------------------------------
         self.var_caixa_de_entrada = tk.StringVar()
         self.caixa_de_entrada_link = Entry(self.frame_label_caixa_entrada, textvariable=self.var_caixa_de_entrada)
-        # self.caixa_de_entrada_link.config('<KeyRelease>', self.ativar_botao_adicionar_link)
+        self.caixa_de_entrada_link.config('<KeyRelease>', self.ativar_botao_adicionar_link)
         self.caixa_de_entrada_link.config(width=143, justify=tk.CENTER)
         self.caixa_de_entrada_link.pack(anchor='center', pady=5, padx=5)
         # ##############################################################################################################
@@ -74,7 +74,7 @@ class Youtube_v4:
     def ativar_botao_downloads(self, *args):
         self.botao_down_link.config(state=tk.NORMAL)
 
-    def ativar_botao_adicionar_link(self, *args):
+    def ativar_botao_adicionar_link(self):
         valor_texto = self.var_caixa_de_entrada.get()
         self.botao_add_link.config(state=tk.NORMAL)
 
