@@ -53,7 +53,6 @@ class Youtube_v4:
         self.var_lista_cache_links_add = tk.StringVar()
         self.lista_cache_links_add = tk.Listbox(self.frame_label_lista_cache, selectmode=tk.SINGLE)
         self.lista_cache_links_add.config(height=10, width=142, justify=tk.LEFT)
-        self.lista_cache_links_add.insert(0, 'teste')
         self.lista_cache_links_add.bind('<Button-1>', self.ativar_botao_downloads)
         self.lista_cache_links_add.pack(anchor='center', fill=tk.BOTH, pady=5, padx=5)
         # --------------------------------------------------------------------------------------------------------------
