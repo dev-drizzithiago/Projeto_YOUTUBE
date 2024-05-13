@@ -31,6 +31,9 @@ except FileExistsError:
 
 class Youtube_v4:
     def __init__(self):
+        """#### Chamando a thread para listar os links adicionados"""
+        self.thread_leitura_link()
+
         """ Janela principal"""
         self.janela_principal = tk.Tk()
         self.janela_principal.geometry('900x500+250+100')
@@ -111,6 +114,9 @@ class Youtube_v4:
 
     def thread_add_link(self):
         Thread(target=self.registrando_link_youtube).start()
+
+    def thread_leitura_link(self):
+        Thread(target=self.leitura_arq_links).start()
 
     def registrando_link_youtube(self):
         """
