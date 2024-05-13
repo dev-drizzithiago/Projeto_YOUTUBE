@@ -106,8 +106,13 @@ class Youtube_v4:
         if link[:24] == 'https://www.youtube.com/':
             print(f'Validação do link: \n{link}')
             self.botao_add_link.config(state=tk.NORMAL)
+            self.botao_add_link.config(command=thread_add_link)
 
     """#### Processo diversos"""
+
+    def thread_add_link(self):
+        Thread(target=self.registrando_link_youtube).start()
+        
     def registrando_link_youtube(self):
         """
 
