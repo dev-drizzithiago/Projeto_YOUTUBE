@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter.ttk import *
 from threading import Thread
+from tkinter.messagebox import showwarning
+
 
 
 class Youtube_v4:
@@ -74,8 +76,14 @@ class Youtube_v4:
     def ativar_botao_downloads(self, *args):
         self.botao_down_link.config(state=tk.NORMAL)
 
-    def ativar_botao_adicionar_link(self, *args):
-        self.botao_add_link.config(state=tk.NORMAL)
+    def ativar_botao_adicionar_link(self, evento):
+        link = self.var_caixa_de_entrada.get()
+        if link[:23] == 'https://www.youtube.com':
+            print(f'Validação do link com sucesso: \n{link}')
+            self.botao_add_link.config(state=tk.NORMAL)
+        else:
+            showwarning('AVISO', 'Você não link do YouTube')
+
 
 iniciando_obj = Youtube_v4()
 
