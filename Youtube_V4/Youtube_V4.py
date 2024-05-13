@@ -106,13 +106,13 @@ class Youtube_v4:
         if link[:24] == 'https://www.youtube.com/':
             print(f'Validação do link: \n{link}')
             self.botao_add_link.config(state=tk.NORMAL)
-            self.botao_add_link.config(command=thread_add_link)
+            self.botao_add_link.config(command=self.thread_add_link)
 
     """#### Processo diversos"""
 
     def thread_add_link(self):
         Thread(target=self.registrando_link_youtube).start()
-        
+
     def registrando_link_youtube(self):
         """
 
@@ -131,6 +131,13 @@ class Youtube_v4:
 
         except FileExistsError:
             pass
+
+    def leitura_arq_links(self):
+        valor_arq_txt_link = open(caminho_arq_txt, 'r')
+        lendo_arq_txt_lnk = valor_arq_txt_link.readlines()
+        for valor_link in lendo_arq_txt_lnk:
+            indice = 1
+            self.lista_cache_links_add.insert('end', f'{indice} - {valor_link}')
 
 iniciando_obj = Youtube_v4()
 
