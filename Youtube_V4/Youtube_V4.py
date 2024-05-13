@@ -1,7 +1,20 @@
+from os import makedirs
+from pathlib import Path
 import tkinter as tk
 from tkinter.ttk import *
 from threading import Thread
 from tkinter.messagebox import showwarning
+
+
+"""Criando pasta home"""
+try:
+    path_home_ = Path.home()
+except:
+    showwarning('AVISO!', 'Função para criara caminho da pasta home não foi criada')
+
+"""Declarando as pastas de destino diversas"""
+path_musicas = str(Path(path_home_, 'Downloads', 'Youtube_V4', 'Músicas(MP3)'))
+path_videos_ = str(Path(path_home_, 'Downloads', 'Youtube_V4', 'Vídeos(MP4)'))
 
 
 
@@ -73,6 +86,7 @@ class Youtube_v4:
 
         self.janela_principal.mainloop()
 
+    """#### Eventos diversos """
     def ativar_botao_downloads(self, *args):
         self.botao_down_link.config(state=tk.NORMAL)
 
@@ -84,6 +98,14 @@ class Youtube_v4:
         else:
             print('AVISO!! \nVocê copiou um link do YouTube')
 
+    def registrando_link_youtube(self):
+        pass
+
+    def criando_pastas_youtube(self):
+        pass
+
+    def criando_arquivo_registro_youtube(self):
+        pass
 
 iniciando_obj = Youtube_v4()
 
