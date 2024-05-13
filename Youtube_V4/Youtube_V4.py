@@ -78,11 +78,11 @@ class Youtube_v4:
 
     def ativar_botao_adicionar_link(self, evento):
         link = self.var_caixa_de_entrada.get()
-        if link[:23] == 'https://www.youtube.com':
+        if link[:26] == 'https://www.youtube.com\\':
             print(f'Validação do link com sucesso: \n{link}')
             self.botao_add_link.config(state=tk.NORMAL)
         else:
-            showwarning('AVISO', 'Você não link do YouTube')
+            print('AVISO!! \nVocê copiou um link do YouTube')
 
 
 iniciando_obj = Youtube_v4()
