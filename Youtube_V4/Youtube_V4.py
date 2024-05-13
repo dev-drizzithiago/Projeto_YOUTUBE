@@ -19,7 +19,8 @@ path_arq_yt_ = str(Path(path_home_, 'AppData', 'LocalLow', 'Youtube_V4'))
 path_temp_yt = str(Path(path_home_, 'AppData', 'Local', 'Temp'))
 
 """Declarando criação de arquivo"""
-registro_ty_txt = '\\Youtube_V4.txt'
+registro_yt_txt = '\\Youtube_V4.txt'
+caminho_arq_txt = f'{path_arq_yt_}{registro_yt_txt}'
 
 class Youtube_v4:
     def __init__(self):
@@ -99,8 +100,18 @@ class Youtube_v4:
             print(f'Validação do link: \n{link}')
             self.botao_add_link.config(state=tk.NORMAL)
 
+
+    """#### Processo diversos"""
     def registrando_link_youtube(self):
-        pass
+        valor_link_entrada = self.var_caixa_de_entrada.get()
+        try:
+            registro_lnk_yt = open(caminho_arq_txt, 'a')
+            registro_lnk_yt.write(f'{valor_link_entrada}\n')
+        except FileNotFoundError:
+            registro_lnk_yt = open((caminho_arq_txt, 'w'))
+            registro_lnk_yt.write(f'{valor_link_entrada}\n')
+        except FileExistsError:
+            pass
 
     def criando_pastas_youtube(self):
         pass
