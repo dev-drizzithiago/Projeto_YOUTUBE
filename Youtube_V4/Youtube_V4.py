@@ -107,7 +107,6 @@ class Youtube_v4:
             print(f'Validação do link: \n{link}')
             self.botao_add_link.config(state=tk.NORMAL)
 
-
     """#### Processo diversos"""
     def registrando_link_youtube(self):
         """
@@ -123,12 +122,6 @@ class Youtube_v4:
             registro_lnk_yt.write(f'{valor_link_entrada}\n')
         except FileExistsError:
             pass
-
-    def criando_pastas_youtube(self):
-        pass
-
-    def criando_arquivo_registro_youtube(self):
-        pass
 
 iniciando_obj = Youtube_v4()
 
