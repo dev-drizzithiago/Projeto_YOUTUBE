@@ -117,9 +117,13 @@ class Youtube_v4:
         try:
             registro_lnk_yt = open(caminho_arq_txt, 'a')
             registro_lnk_yt.write(f'{valor_link_entrada}\n')
+            print('Arquivo registrado com sucesso!')
+
         except FileNotFoundError:
             registro_lnk_yt = open((caminho_arq_txt, 'w'))
             registro_lnk_yt.write(f'{valor_link_entrada}\n')
+            print('Arquivo registrado com sucesso!')
+
         except FileExistsError:
             pass
 
