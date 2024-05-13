@@ -22,6 +22,13 @@ path_temp_yt = str(Path(path_home_, 'AppData', 'Local', 'Temp'))
 registro_yt_txt = '\\Youtube_V4.txt'
 caminho_arq_txt = f'{path_arq_yt_}{registro_yt_txt}'
 
+try:
+    makedirs(path_musicas)
+    makedirs(path_videos_)
+    makedirs(path_arq_yt_)
+except FileExistsError:
+    pass
+
 class Youtube_v4:
     def __init__(self):
         """ Janela principal"""
@@ -103,6 +110,10 @@ class Youtube_v4:
 
     """#### Processo diversos"""
     def registrando_link_youtube(self):
+        """
+
+        :return:
+        """
         valor_link_entrada = self.var_caixa_de_entrada.get()
         try:
             registro_lnk_yt = open(caminho_arq_txt, 'a')
