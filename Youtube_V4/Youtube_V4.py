@@ -15,8 +15,11 @@ except:
 """Declarando as pastas de destino diversas"""
 path_musicas = str(Path(path_home_, 'Downloads', 'Youtube_V4', 'Músicas(MP3)'))
 path_videos_ = str(Path(path_home_, 'Downloads', 'Youtube_V4', 'Vídeos(MP4)'))
+path_arq_yt_ = str(Path(path_home_, 'AppData', 'LocalLow', 'Youtube_V4'))
+path_temp_yt = str(Path(path_home_, 'AppData', 'Local', 'Temp'))
 
-
+"""Declarando criação de arquivo"""
+registro_ty_txt = '\\Youtube_V4.txt'
 
 class Youtube_v4:
     def __init__(self):
