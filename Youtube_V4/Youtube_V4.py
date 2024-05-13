@@ -31,8 +31,6 @@ except FileExistsError:
 
 class Youtube_v4:
     def __init__(self):
-        """#### Chamando a thread para listar os links adicionados"""
-        self.thread_leitura_link()
 
         """ Janela principal"""
         self.janela_principal = tk.Tk()
@@ -97,6 +95,9 @@ class Youtube_v4:
         """#### Declarações de variaveis"""
         self.ativar_ = False
 
+        """#### Chamando a thread para listar os links adicionados"""
+        self.thread_leitura_link()
+        
         self.janela_principal.mainloop()
 
     """#### Eventos diversos """
