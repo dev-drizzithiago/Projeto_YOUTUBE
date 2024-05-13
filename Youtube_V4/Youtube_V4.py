@@ -98,8 +98,6 @@ class Youtube_v4:
         if link[:24] == 'https://www.youtube.com/':
             print(f'Validação do link: \n{link}')
             self.botao_add_link.config(state=tk.NORMAL)
-        else:
-            print('AVISO!! \nVocê copiou um link que não é do YouTube')
 
     def registrando_link_youtube(self):
         pass
