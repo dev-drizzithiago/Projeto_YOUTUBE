@@ -130,7 +130,6 @@ class Youtube_v4:
         self.botao_limpar_lista.config(state=tk.NORMAL)
 
     """#### Processo diversos"""
-
     """### Threads"""
     def thread_add_link(self):
         Thread(target=self.registrando_link_youtube).start()
