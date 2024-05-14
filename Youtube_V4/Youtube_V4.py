@@ -149,6 +149,7 @@ class Youtube_v4:
             self.botao_add_link.config(state=tk.DISABLED)
             self.caixa_de_entrada_link.delete(0, 'end')
             self.thread_leitura_link()
+            registro_lnk_yt.close()
 
         except FileNotFoundError:
             registro_lnk_yt = open((caminho_arq_txt, 'w'))
@@ -157,13 +158,16 @@ class Youtube_v4:
             self.botao_add_link.config(state=tk.DISABLED)
             self.caixa_de_entrada_link.delete(0, 'end')
             self.thread_leitura_link()
+            registro_lnk_yt.close()
+
         except FileExistsError:
             pass
 
     def leitura_arq_links(self):
         valor_arq_txt_link = open(caminho_arq_txt, 'r')
-        lendo_arq_txt_lnk = valor_arq_txt_link.readlines()
-        for indice, valor_link in enumerate(lendo_arq_txt_lnk):
+        self.lendo_arq_txt_lnk = valor_arq_txt_link.readlines()
+
+        for indice, valor_link in enumerate(self.lendo_arq_txt_lnk):
             valor_link = YouTube(valor_link).title
             self.lista_cache_links_add.insert('end', f'{indice + 1} - {valor_link}')
 
@@ -171,9 +175,16 @@ class Youtube_v4:
     def limpar_lista_cache(self):
         self.lista_cache_links_add.delete(0, 'end')
         self.botao_down_link.config(state=tk.DISABLED)
+        self.caixa_de_entrada_link.delete(0, 'end')
 
     def downloads_link(self):
-        print(self.lista_cache_links_add.get(self.lista_cache_links_add.curselection()))
+        try:
+            for valor_cursor in self.lista_cache_links_add.curselection():
+                dados_selecionados = self.lendo_arq_txt_lnk[valor_cursor]
+                print(dados_selecionados)
+        except:
+            showwarning('AVISO!', 'Não existem links para downloads')
+
 
 
 
