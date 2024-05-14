@@ -133,22 +133,27 @@ class Youtube_v4:
             registro_lnk_yt = open(caminho_arq_txt, 'a')
             registro_lnk_yt.write(f'{valor_link_entrada}\n')
             print('Arquivo registrado com sucesso!')
+            self.botao_add_link.config(state=tk.DISABLED)
+            self.caixa_de_entrada_link.delete(0, 'end')
+            self.thread_leitura_link()
 
         except FileNotFoundError:
             registro_lnk_yt = open((caminho_arq_txt, 'w'))
             registro_lnk_yt.write(f'{valor_link_entrada}\n')
             print('Arquivo registrado com sucesso!')
-
+            self.botao_add_link.config(state=tk.DISABLED)
+            self.caixa_de_entrada_link.delete(0, 'end')
+            self.thread_leitura_link()
         except FileExistsError:
             pass
 
     def leitura_arq_links(self):
         valor_arq_txt_link = open(caminho_arq_txt, 'r')
         lendo_arq_txt_lnk = valor_arq_txt_link.readlines()
-        for valor_link in lendo_arq_txt_lnk:
-            indice = 1
+        for indice, in enumerate(lendo_arq_txt_lnk):
             valor_link = YouTube(valor_link).title
             self.lista_cache_links_add.insert('end', f'{indice} - {valor_link}')
+
 
 iniciando_obj = Youtube_v4()
 
