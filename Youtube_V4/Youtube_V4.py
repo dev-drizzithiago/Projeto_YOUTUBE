@@ -95,6 +95,15 @@ class Youtube_v4:
         self.botao_down_link.config(width=15, state=tk.DISABLED)
         self.botao_down_link.pack(anchor='center')
         # --------------------------------------------------------------------------------------------------------------
+        """#### Botão limpar tudo"""
+        frame_lbl_botao_limpar = LabelFrame(self.frame_label_principal, text='Limpar')
+        frame_lbl_botao_limpar.place(y=250, x=779)
+
+        self.botao_limpar_lista = Button(frame_lbl_botao_limpar, text='Aplicar')
+        self.botao_limpar_lista.config(width=15, state=tk.DISABLED)
+        self.botao_limpar_lista.bind('<>')
+        self.botao_limpar_lista.pack(anchor='center')
+        # --------------------------------------------------------------------------------------------------------------
 
         """#### Declarações de variaveis"""
         self.ativar_ = False
@@ -114,6 +123,9 @@ class Youtube_v4:
             print(f'Validação do link: \n{link}')
             self.botao_add_link.config(state=tk.NORMAL)
             self.botao_add_link.config(command=self.thread_add_link)
+
+    def ativar_botao_limpar(self, evento):
+        pass
 
     """#### Processo diversos"""
 
@@ -158,7 +170,8 @@ class Youtube_v4:
 
     """# Funções básicas"""
     def limpar_lista_cache(self):
-        pass
+        self.lista_cache_links_add.delete(0, 'end')
+        self.botao_down_link.config(state=tk.DISABLED)
 
 
 iniciando_obj = Youtube_v4()
