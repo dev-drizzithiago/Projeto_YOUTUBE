@@ -100,6 +100,7 @@ class Youtube_v4:
         frame_lbl_botao_limpar.place(y=250, x=779)
 
         self.botao_limpar_lista = Button(frame_lbl_botao_limpar, text='Aplicar')
+        self.botao_limpar_lista.config(width=15)
         self.botao_limpar_lista.config(command=self.limpar_lista_cache)
         self.botao_limpar_lista.pack(anchor='center')
         # --------------------------------------------------------------------------------------------------------------
