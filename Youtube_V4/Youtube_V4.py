@@ -115,7 +115,7 @@ class Youtube_v4:
 
     """#### Eventos diversos """
     def ativar_botao_downloads(self, *args):
-        print(self.lista_cache_links_add.curselection(self.lista_cache_links_add.get()))
+        print(self.lista_cache_links_add.get(self.lista_cache_links_add.curselection()))
         self.botao_down_link.config(state=tk.NORMAL)
         self.ativar_botao_limpar()
 
