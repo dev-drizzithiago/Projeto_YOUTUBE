@@ -97,7 +97,7 @@ class Youtube_v4:
 
         """#### Chamando a thread para listar os links adicionados"""
         self.thread_leitura_link()
-        
+
         self.janela_principal.mainloop()
 
     """#### Eventos diversos """
