@@ -100,7 +100,6 @@ class Youtube_v4:
         frame_lbl_botao_limpar.place(y=250, x=779)
 
         self.botao_limpar_lista = Button(frame_lbl_botao_limpar, text='Aplicar')
-        self.botao_limpar_lista.config(width=15, state=tk.DISABLED)
         self.botao_limpar_lista.config(command=self.limpar_lista_cache)
         self.botao_limpar_lista.pack(anchor='center')
         # --------------------------------------------------------------------------------------------------------------
@@ -115,9 +114,8 @@ class Youtube_v4:
 
     """#### Eventos diversos """
     def ativar_botao_downloads(self, *args):
-        print(self.lista_cache_links_add.get(self.lista_cache_links_add.curselection()))
         self.botao_down_link.config(state=tk.NORMAL)
-        self.ativar_botao_limpar()
+        self.botao_down_link.config(command=self.thread_download_link)
 
     def ativar_botao_adicionar_link(self, evento):
         link = self.var_caixa_de_entrada.get()
@@ -126,9 +124,6 @@ class Youtube_v4:
             self.botao_add_link.config(state=tk.NORMAL)
             self.botao_add_link.config(command=self.thread_add_link)
 
-    def ativar_botao_limpar(self):
-        self.botao_limpar_lista.config(state=tk.NORMAL)
-
     """#### Processo diversos"""
     """### Threads"""
     def thread_add_link(self):
@@ -136,6 +131,9 @@ class Youtube_v4:
 
     def thread_leitura_link(self):
         Thread(target=self.leitura_arq_links).start()
+
+    def thread_download_link(self):
+        Thread(target=self.downloads_link).start()
 
     """### Manipulação do arquivo de texto"""
     def registrando_link_youtube(self):
@@ -173,6 +171,10 @@ class Youtube_v4:
     def limpar_lista_cache(self):
         self.lista_cache_links_add.delete(0, 'end')
         self.botao_down_link.config(state=tk.DISABLED)
+
+    def downloads_link(self):
+        print(self.lista_cache_links_add.get(self.lista_cache_links_add.curselection()))
+
 
 
 iniciando_obj = Youtube_v4()
