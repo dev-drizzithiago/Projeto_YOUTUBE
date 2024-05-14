@@ -117,12 +117,14 @@ class Youtube_v4:
 
     """#### Processo diversos"""
 
+    """### Threads"""
     def thread_add_link(self):
         Thread(target=self.registrando_link_youtube).start()
 
     def thread_leitura_link(self):
         Thread(target=self.leitura_arq_links).start()
 
+    """### Manipulação do arquivo de texto"""
     def registrando_link_youtube(self):
         """
 
@@ -150,9 +152,13 @@ class Youtube_v4:
     def leitura_arq_links(self):
         valor_arq_txt_link = open(caminho_arq_txt, 'r')
         lendo_arq_txt_lnk = valor_arq_txt_link.readlines()
-        for indice, in enumerate(lendo_arq_txt_lnk):
+        for indice, valor_link in enumerate(lendo_arq_txt_lnk):
             valor_link = YouTube(valor_link).title
-            self.lista_cache_links_add.insert('end', f'{indice} - {valor_link}')
+            self.lista_cache_links_add.insert('end', f'{indice + 1} - {valor_link}')
+
+    """# Funções básicas"""
+    def limpar_lista_cache(self):
+        pass
 
 
 iniciando_obj = Youtube_v4()
