@@ -1,9 +1,13 @@
-from os import makedirs
-from pathlib import Path
-import tkinter as tk
-from tkinter.ttk import *
-from threading import Thread
 from tkinter.messagebox import showwarning
+from threading import Thread
+from pytube import YouTube
+from tkinter.ttk import *
+from pathlib import Path
+from os import makedirs
+import tkinter as tk
+
+
+
 
 
 """Criando pasta home"""
@@ -143,6 +147,7 @@ class Youtube_v4:
         lendo_arq_txt_lnk = valor_arq_txt_link.readlines()
         for valor_link in lendo_arq_txt_lnk:
             indice = 1
+            valor_link = YouTube(valor_link).title
             self.lista_cache_links_add.insert('end', f'{indice} - {valor_link}')
 
 iniciando_obj = Youtube_v4()
