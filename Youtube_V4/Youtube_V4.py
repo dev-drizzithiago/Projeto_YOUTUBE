@@ -58,7 +58,7 @@ class Youtube_v4:
         self.var_lista_cache_links_add = tk.StringVar()
         self.lista_cache_links_add = tk.Listbox(self.frame_label_lista_cache, selectmode=tk.SINGLE)
         self.lista_cache_links_add.config(height=10, width=142, justify=tk.LEFT)
-        self.lista_cache_links_add.bind('<Button-1>', self.ativar_botao_downloads, self.ativar_botao_limpar)
+        self.lista_cache_links_add.bind('<Button-1>', self.ativar_botao_downloads)
         self.lista_cache_links_add.pack(anchor='center', fill=tk.BOTH, pady=5, padx=5)
         # --------------------------------------------------------------------------------------------------------------
         """#### Barra de rolagem Vertical da lista de cache"""
@@ -101,6 +101,7 @@ class Youtube_v4:
 
         self.botao_limpar_lista = Button(frame_lbl_botao_limpar, text='Aplicar')
         self.botao_limpar_lista.config(width=15, state=tk.DISABLED)
+        self.botao_limpar_lista.config(command=self.limpar_lista_cache)
         self.botao_limpar_lista.pack(anchor='center')
         # --------------------------------------------------------------------------------------------------------------
 
@@ -114,7 +115,9 @@ class Youtube_v4:
 
     """#### Eventos diversos """
     def ativar_botao_downloads(self, *args):
+        print(self.lista_cache_links_add.curselection(self.lista_cache_links_add.get()))
         self.botao_down_link.config(state=tk.NORMAL)
+        self.ativar_botao_limpar()
 
     def ativar_botao_adicionar_link(self, evento):
         link = self.var_caixa_de_entrada.get()
@@ -123,7 +126,7 @@ class Youtube_v4:
             self.botao_add_link.config(state=tk.NORMAL)
             self.botao_add_link.config(command=self.thread_add_link)
 
-    def ativar_botao_limpar(self, evento):
+    def ativar_botao_limpar(self):
         self.botao_limpar_lista.config(state=tk.NORMAL)
 
     """#### Processo diversos"""
@@ -171,7 +174,6 @@ class Youtube_v4:
     def limpar_lista_cache(self):
         self.lista_cache_links_add.delete(0, 'end')
         self.botao_down_link.config(state=tk.DISABLED)
-        self.botao_limpar_lista.config(state=tk.DISABLED)
 
 
 iniciando_obj = Youtube_v4()
