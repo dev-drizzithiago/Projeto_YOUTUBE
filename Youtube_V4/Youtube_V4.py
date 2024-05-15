@@ -106,8 +106,10 @@ class Youtube_v4:
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão radio mp3/mp4"""
         self.frame_lbl_botao_radio_opc_midia = LabelFrame(self.frame_label_principal, text='Escolha uma opção:')
-        self.frame_lbl_botao_radio_opc_midia.config(width=250, height=50)
+        self.frame_lbl_botao_radio_opc_midia.config(width=220, height=70)
         self.frame_lbl_botao_radio_opc_midia.place(y=300, x=5)
+
+        self.radio_mp3_midia = Radiobutton(self.frame_lbl_botao_radio_opc_midia, text='Downloads(MP3)')
         # --------------------------------------------------------------------------------------------------------------
 
 
