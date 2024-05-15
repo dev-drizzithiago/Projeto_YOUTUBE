@@ -109,7 +109,10 @@ class Youtube_v4:
         self.frame_lbl_botao_radio_opc_midia.config(width=220, height=70)
         self.frame_lbl_botao_radio_opc_midia.place(y=300, x=5)
 
-        self.radio_mp3_midia = Radiobutton(self.frame_lbl_botao_radio_opc_midia, text='Downloads(MP3)')
+        self.radio_mp3_midia = Radiobutton(self.frame_lbl_botao_radio_opc_midia, text='Downloads (MP3)')
+        self.radio_mp3_midia.place(y=5, x=50)
+        self.radio_mp4_midia = Radiobutton(self.frame_lbl_botao_radio_opc_midia, text='Downloads (MP4)')
+        self.radio_mp4_midia.place(y=25, x=50)
         # --------------------------------------------------------------------------------------------------------------
 
 
