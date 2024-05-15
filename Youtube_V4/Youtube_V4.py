@@ -96,14 +96,20 @@ class Youtube_v4:
         self.botao_down_link.pack(anchor='center')
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão limpar tudo"""
-        frame_lbl_botao_limpar = LabelFrame(self.frame_label_principal, text='Limpar')
-        frame_lbl_botao_limpar.place(y=250, x=779)
+        self.frame_lbl_botao_limpar = LabelFrame(self.frame_label_principal, text='Limpar')
+        self.frame_lbl_botao_limpar.place(y=250, x=779)
 
-        self.botao_limpar_lista = Button(frame_lbl_botao_limpar, text='Aplicar')
+        self.botao_limpar_lista = Button(self.frame_lbl_botao_limpar, text='Aplicar')
         self.botao_limpar_lista.config(width=15)
         self.botao_limpar_lista.config(command=self.limpar_lista_cache)
         self.botao_limpar_lista.pack(anchor='center')
         # --------------------------------------------------------------------------------------------------------------
+        """#### Botão radio mp3/mp4"""
+        self.frame_lbl_botao_radio_opc_midia = LabelFrame(self.frame_label_principal, text='Escolha uma opção:')
+        self.frame_lbl_botao_radio_opc_midia.config(width=250, height=50)
+        self.frame_lbl_botao_radio_opc_midia.place(y=300, x=5)
+        # --------------------------------------------------------------------------------------------------------------
+
 
         """#### Declarações de variaveis"""
         self.ativar_ = False
@@ -171,7 +177,8 @@ class Youtube_v4:
         for indice, valor_link in enumerate(self.lendo_arq_txt_lnk):
             valor_link = YouTube(valor_link).title
             self.lista_cache_links_add.insert('end', f'{indice + 1} - {valor_link}')
-        self.botao_limpar_lista.config(text='Limpar')
+
+        self.frame_lbl_botao_limpar.config(text='Limpar')
         self.botao_limpar_lista.config(command=self.limpar_lista_cache)
 
     """# Funções básicas"""
@@ -179,7 +186,7 @@ class Youtube_v4:
         self.botao_down_link.config(state=tk.DISABLED)
         self.lista_cache_links_add.delete(0, 'end')
         self.caixa_de_entrada_link.delete(0, 'end')
-        self.botao_limpar_lista.config(text='Atualizar')
+        self.frame_lbl_botao_limpar.config(text='Atualizar')
         self.botao_limpar_lista.config(command=self.thread_leitura_link)
 
     def downloads_link(self):
@@ -191,7 +198,6 @@ class Youtube_v4:
                 print('Downloads realizado com sucesso!')
         except:
             showwarning('AVISO!', 'Não existem links para downloads')
-
 
 
 iniciando_obj = Youtube_v4()
