@@ -179,13 +179,14 @@ class Youtube_v4:
         self.caixa_de_entrada_link.delete(0, 'end')
 
     def downloads_link(self):
-
-        for valor_cursor in self.lista_cache_links_add.curselection():
-            dados_selecionados = self.lendo_arq_txt_lnk[valor_cursor]
-            download = YouTube(dados_selecionados).streams.get_highest_resolution()
-            Thread(download.download(path_videos_)).start()
-            print('Downloads realizado com sucesso!')
-
+        try:
+            for valor_cursor in self.lista_cache_links_add.curselection():
+                dados_selecionados = self.lendo_arq_txt_lnk[valor_cursor]
+                download = YouTube(dados_selecionados).streams.get_highest_resolution()
+                download.download(path_videos_)
+                print('Downloads realizado com sucesso!')
+        except:
+            showwarning('AVISO!', 'Não existem links para downloads')
 
 
 
