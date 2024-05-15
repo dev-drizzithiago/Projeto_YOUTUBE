@@ -115,7 +115,6 @@ class Youtube_v4:
         self.radio_mp4_midia.place(y=25, x=50)
         # --------------------------------------------------------------------------------------------------------------
 
-
         """#### Declarações de variaveis"""
         self.ativar_ = False
 
