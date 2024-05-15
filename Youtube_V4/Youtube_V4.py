@@ -171,6 +171,8 @@ class Youtube_v4:
         for indice, valor_link in enumerate(self.lendo_arq_txt_lnk):
             valor_link = YouTube(valor_link).title
             self.lista_cache_links_add.insert('end', f'{indice + 1} - {valor_link}')
+        self.botao_limpar_lista.config(text='Limpar')
+        self.botao_limpar_lista.config(command=self.limpar_lista_cache)
 
     """# Funções básicas"""
     def limpar_lista_cache(self):
@@ -178,6 +180,7 @@ class Youtube_v4:
         self.lista_cache_links_add.delete(0, 'end')
         self.caixa_de_entrada_link.delete(0, 'end')
         self.botao_limpar_lista.config(text='Atualizar')
+        self.botao_limpar_lista.config(command=self.thread_leitura_link)
 
     def downloads_link(self):
         try:
