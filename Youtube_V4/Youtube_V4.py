@@ -182,10 +182,10 @@ class Youtube_v4:
         try:
             for valor_cursor in self.lista_cache_links_add.curselection():
                 dados_selecionados = self.lendo_arq_txt_lnk[valor_cursor]
-                print(dados_selecionados)
+                download = YouTube(dados_selecionados)
+                download.streams.get_highest_resolution().download(path_videos_)
         except:
             showwarning('AVISO!', 'Não existem links para downloads')
-
 
 
 
