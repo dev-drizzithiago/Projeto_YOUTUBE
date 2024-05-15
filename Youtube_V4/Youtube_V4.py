@@ -174,9 +174,10 @@ class Youtube_v4:
 
     """# Funções básicas"""
     def limpar_lista_cache(self):
-        self.lista_cache_links_add.delete(0, 'end')
         self.botao_down_link.config(state=tk.DISABLED)
+        self.lista_cache_links_add.delete(0, 'end')
         self.caixa_de_entrada_link.delete(0, 'end')
+        self.botao_limpar_lista.config(text='Atualizar')
 
     def downloads_link(self):
         try:
