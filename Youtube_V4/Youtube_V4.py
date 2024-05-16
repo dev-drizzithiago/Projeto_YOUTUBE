@@ -33,6 +33,9 @@ try:
 except FileExistsError:
     pass
 
+"""#### Declaração de variaveis"""
+linha = '---' * 20
+
 class Youtube_v4:
     def __init__(self):
 
@@ -191,18 +194,28 @@ class Youtube_v4:
 
     """# Funções básicas"""
     def limpar_lista_cache(self):
+
+        """#### Limpando as variaveis"""
         self.botao_down_link.config(state=tk.DISABLED)
         self.lista_cache_links_add.delete(0, 'end')
-        self.caixa_de_entrada_link.delete(0, 'end')
+        self.caixa_de_entrada_link.delete(0, 'end')        
+
+        """#### Declarando o botão para atualizar a lista com os novos dados"""
         self.frame_lbl_botao_limpar.config(text='Atualizar')
         self.botao_limpar_lista.config(command=self.thread_leitura_link)
 
     def downloads_link(self):
-
         valor_radio = self.var_radio_.get()
+
         if valor_radio == 'MP3':
+            print()
+            print(linha)
+            print('Baixando em MP3')
             pass
-        elif valor_radio == 'MP4':            
+        elif valor_radio == 'MP4':
+            print()
+            print(linha)
+            print('Baixando em MP4')
             try:
                 for valor_cursor in self.lista_cache_links_add.curselection():
                     dados_selecionados = self.lendo_arq_txt_lnk[valor_cursor]
