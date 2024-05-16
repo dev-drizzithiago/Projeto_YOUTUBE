@@ -229,7 +229,15 @@ class Youtube_v4:
                 print()
                 print(linha)
                 print('Baixando em MP3')
-                pass
+                for valor_cursor in self.lista_cache_links_add.curselection():
+                    dados_selecionados = self.lendo_arq_txt_lnk[valor_cursor]
+                """#### Processo de downloads do Audio """
+                """### Inicia a barra de progresso"""
+                self.barra_progresso_geral.start()
+                downloads = YouTube(dados_selecionados).streams.get_audio_only()
+                downloads.download(path_musicas)
+                
+
             elif valor_radio == 'MP4':
                 print()
                 print(linha)
