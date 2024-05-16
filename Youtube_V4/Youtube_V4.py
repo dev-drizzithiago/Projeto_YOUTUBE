@@ -124,9 +124,12 @@ class Youtube_v4:
         # --------------------------------------------------------------------------------------------------------------
         """Barra de progresso"""
         self.frame_lbl_progresso = LabelFrame(self.frame_label_principal, text='Progresso!')
-        self.frame_lbl_progresso.config(height=50, width=880)
+        self.frame_lbl_progresso.config(height=50, width=875)
         self.frame_lbl_progresso.place(y=300, x=5)
+
         self.barra_progresso_geral = Progressbar(self.frame_lbl_progresso)
+        self.barra_progresso_geral.config(mode='determinate', length=500)
+        self.barra_progresso_geral.place(y=1, x=1)
 
         # --------------------------------------------------------------------------------------------------------------
 
