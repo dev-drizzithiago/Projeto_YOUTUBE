@@ -72,7 +72,8 @@ class Youtube_v4:
         self.barra_rolagem_lista_cache_Y.place(relx=1, relheight=1, bordermode='outside')
         # ##############################################################################################################
         """#### Frame caixa de entrada """
-        self.frame_label_caixa_entrada = Labelframe(self.janela_principal, text='Caixa de entrada:')
+        self.frame_label_caixa_entrada = Labelframe(self.janela_principal)
+        self.frame_label_caixa_entrada.config(text='Caixa de entrada | Copie um link para adicionar no banco de dados:')
         self.frame_label_caixa_entrada.place(y=220, x=12)
         # --------------------------------------------------------------------------------------------------------------
         self.var_caixa_de_entrada = tk.StringVar()
@@ -121,6 +122,12 @@ class Youtube_v4:
         self.radio_mp4_midia.config(variable=self.var_radio_, value='MP4')
         self.radio_mp4_midia.place(y=-2, x=140)
         # --------------------------------------------------------------------------------------------------------------
+        """Barra de progresso"""
+        self.frame_lbl_progresso = LabelFrame(self.frame_label_principal, text='Progresso!')
+        self.frame_lbl_progresso.config(height=50, width=880)
+        self.frame_lbl_progresso.place(y=300, x=5)
+        self.barra_progresso_geral = Progressbar(self.frame_lbl_progresso)
+
         # --------------------------------------------------------------------------------------------------------------
 
         """#### Declarações de variaveis"""
@@ -183,6 +190,8 @@ class Youtube_v4:
             pass
 
     def leitura_arq_links(self):
+        """#### A linha descrita abaixo, serve para quando clicar em atualizar, limpa a lista de reponhe os dados"""
+        self.lista_cache_links_add.delete(0, 'end')
         valor_arq_txt_link = open(caminho_arq_txt, 'r')
         self.lendo_arq_txt_lnk = valor_arq_txt_link.readlines()
 
