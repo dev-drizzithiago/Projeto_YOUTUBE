@@ -198,7 +198,8 @@ class Youtube_v4:
         """#### Limpando as variaveis"""
         self.botao_down_link.config(state=tk.DISABLED)
         self.lista_cache_links_add.delete(0, 'end')
-        self.caixa_de_entrada_link.delete(0, 'end')        
+        self.caixa_de_entrada_link.delete(0, 'end')
+        self.var_radio_.set(0)
 
         """#### Declarando o botão para atualizar a lista com os novos dados"""
         self.frame_lbl_botao_limpar.config(text='Atualizar')
@@ -206,25 +207,27 @@ class Youtube_v4:
 
     def downloads_link(self):
         valor_radio = self.var_radio_.get()
+        if len(valor_radio) > 0:
 
-        if valor_radio == 'MP3':
-            print()
-            print(linha)
-            print('Baixando em MP3')
-            pass
-        elif valor_radio == 'MP4':
-            print()
-            print(linha)
-            print('Baixando em MP4')
-            try:
-                for valor_cursor in self.lista_cache_links_add.curselection():
-                    dados_selecionados = self.lendo_arq_txt_lnk[valor_cursor]
-                    download = YouTube(dados_selecionados).streams.get_highest_resolution()
-                    download.download(path_videos_)
-                    print('Downloads realizado com sucesso!')
-            except:
-                showwarning('AVISO!', 'Não existem links para downloads')
-
+            if valor_radio == 'MP3':
+                print()
+                print(linha)
+                print('Baixando em MP3')
+                pass
+            elif valor_radio == 'MP4':
+                print()
+                print(linha)
+                print('Baixando em MP4')
+                try:
+                    for valor_cursor in self.lista_cache_links_add.curselection():
+                        dados_selecionados = self.lendo_arq_txt_lnk[valor_cursor]
+                        download = YouTube(dados_selecionados).streams.get_highest_resolution()
+                        download.download(path_videos_)
+                        print('Downloads realizado com sucesso!')
+                except:
+                    showwarning('AVISO!', 'Não existem links para downloads')
+        else:
+            showwarning('AVISO', 'Selecione uma extensão!')
 
 iniciando_obj = Youtube_v4()
 
