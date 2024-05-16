@@ -109,7 +109,7 @@ class Youtube_v4:
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão radio mp3/mp4"""
         self.frame_lbl_botao_radio_opc_midia = LabelFrame(self.frame_label_principal, text='Escolha uma opção:')
-        self.frame_lbl_botao_radio_opc_midia.config(width=220, height=70)
+        self.frame_lbl_botao_radio_opc_midia.config(height=70, width=220)
         self.frame_lbl_botao_radio_opc_midia.place(y=300, x=5)
 
         self.var_radio_ = tk.StringVar()
@@ -121,6 +121,13 @@ class Youtube_v4:
         self.radio_mp4_midia.config(variable=self.var_radio_, value='MP4')
         self.radio_mp4_midia.place(y=25, x=50)
         # --------------------------------------------------------------------------------------------------------------
+        """#### Botão de checagem"""
+        self.frame_lbl_check_button = LabelFrame(self.frame_label_principal, text='Opção de mídia')
+        self.frame_lbl_check_button.config(height=120, width=220)
+        self.frame_lbl_check_button.place(y=250, x=230)
+
+        # --------------------------------------------------------------------------------------------------------------
+
 
         """#### Declarações de variaveis"""
         self.ativar_ = False
