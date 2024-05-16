@@ -100,7 +100,7 @@ class Youtube_v4:
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão limpar tudo"""
         self.frame_lbl_botao_limpar = LabelFrame(self.frame_label_principal, text='Limpar')
-        self.frame_lbl_botao_limpar.place(y=250, x=200)
+        self.frame_lbl_botao_limpar.place(y=250, x=235)
 
         self.botao_limpar_lista = Button(self.frame_lbl_botao_limpar, text='Aplicar')
         self.botao_limpar_lista.config(width=15)
