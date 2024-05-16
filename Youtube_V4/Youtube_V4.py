@@ -100,7 +100,7 @@ class Youtube_v4:
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão limpar tudo"""
         self.frame_lbl_botao_limpar = LabelFrame(self.frame_label_principal, text='Limpar')
-        self.frame_lbl_botao_limpar.place(y=250, x=779)
+        self.frame_lbl_botao_limpar.place(y=270, x=5)
 
         self.botao_limpar_lista = Button(self.frame_lbl_botao_limpar, text='Aplicar')
         self.botao_limpar_lista.config(width=15)
@@ -110,7 +110,7 @@ class Youtube_v4:
         """#### Botão radio mp3/mp4"""
         self.frame_lbl_botao_radio_opc_midia = LabelFrame(self.frame_label_principal, text='Escolha uma opção:')
         self.frame_lbl_botao_radio_opc_midia.config(height=70, width=220)
-        self.frame_lbl_botao_radio_opc_midia.place(y=300, x=5)
+        self.frame_lbl_botao_radio_opc_midia.place(y=250, x=300)
 
         self.var_radio_ = tk.StringVar()
         self.radio_mp3_midia = Radiobutton(self.frame_lbl_botao_radio_opc_midia, text='Downloads (MP3)')
@@ -121,25 +121,6 @@ class Youtube_v4:
         self.radio_mp4_midia.config(variable=self.var_radio_, value='MP4')
         self.radio_mp4_midia.place(y=25, x=50)
         # --------------------------------------------------------------------------------------------------------------
-        """#### Botão de checagem"""
-        self.frame_lbl_check_button = LabelFrame(self.frame_label_principal, text='Opção de mídia')
-        self.frame_lbl_check_button.config(height=120, width=220)
-        self.frame_lbl_check_button.place(y=250, x=230)
-        # --------------------------------------------------------------------------------------------------------------
-        self.var_chk_bto_opc_midias_360p = tk.StringVar()
-        self.chk_botao__resolucao_360p = Checkbutton(self.frame_lbl_check_button, text='Res=360p')
-        self.chk_botao__resolucao_360p.config(variable=self.var_chk_bto_opc_midias_360p)
-        self.chk_botao__resolucao_360p.place(y=2, x=2)
-        # --------------------------------------------------------------------------------------------------------------
-        self.var_chk_bto_opc_midias_720p = tk.StringVar()
-        self.chk_botao__resolucao_720p = Checkbutton(self.frame_lbl_check_button, text='Res=720p')
-        self.chk_botao__resolucao_720p.config(variable=self.var_chk_bto_opc_midias_720p)
-        self.chk_botao__resolucao_720p.place(y=22, x=2)
-        # --------------------------------------------------------------------------------------------------------------
-        self.var_chk_bto_opc_midias_1080p = tk.StringVar()
-        self.chk_botao__resolucao_1080p = Checkbutton(self.frame_lbl_check_button, text='Res=1080p')
-        self.chk_botao__resolucao_1080p.config(variable=self.var_chk_bto_opc_midias_1080p)
-        self.chk_botao__resolucao_1080p.place(y=44, x=2)
         # --------------------------------------------------------------------------------------------------------------
 
         """#### Declarações de variaveis"""
