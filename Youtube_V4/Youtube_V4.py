@@ -93,15 +93,15 @@ class Youtube_v4:
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão downloads """
         self.frame_botao_down = LabelFrame(self.frame_label_principal, text='Baixar o link')
-        self.frame_botao_down.place(y=250, x=120)
+        self.frame_botao_down.place(y=250, x=330)
 
         self.botao_down_link = Button(self.frame_botao_down, text='Aplicar')
-        self.botao_down_link.config(width=15, state=tk.DISABLED)
+        self.botao_down_link.config(width=30, state=tk.DISABLED)
         self.botao_down_link.pack(anchor='center')
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão limpar tudo"""
         self.frame_lbl_botao_limpar = LabelFrame(self.frame_label_principal, text='Limpar')
-        self.frame_lbl_botao_limpar.place(y=250, x=235)
+        self.frame_lbl_botao_limpar.place(y=250, x=120)
 
         self.botao_limpar_lista = Button(self.frame_lbl_botao_limpar, text='Aplicar')
         self.botao_limpar_lista.config(width=15)
@@ -111,7 +111,7 @@ class Youtube_v4:
         """#### Botão radio mp3/mp4"""
         self.frame_lbl_botao_radio_opc_midia = LabelFrame(self.frame_label_principal, text='Escolha uma opção:')
         self.frame_lbl_botao_radio_opc_midia.config(height=44, width=270)
-        self.frame_lbl_botao_radio_opc_midia.place(y=250, x=350)
+        self.frame_lbl_botao_radio_opc_midia.place(y=250, x=610)
 
         self.var_radio_ = tk.StringVar()
         self.radio_mp3_midia = Radiobutton(self.frame_lbl_botao_radio_opc_midia, text='Downloads (MP3)')
@@ -217,6 +217,10 @@ class Youtube_v4:
         self.frame_lbl_botao_limpar.config(text='Atualizar')
         self.botao_limpar_lista.config(command=self.thread_leitura_link)
 
+    def info_midias(self):
+        pass
+
+    """#### Downloads dos links"""
     def downloads_link(self):
         valor_radio = self.var_radio_.get()
         if len(valor_radio) > 0:
@@ -235,11 +239,12 @@ class Youtube_v4:
                         dados_selecionados = self.lendo_arq_txt_lnk[valor_cursor]
 
                         """#### Processo de downloads de videos """
+                        """### Inicia a barra de progresso"""
                         self.barra_progresso_geral.start()
                         download = YouTube(dados_selecionados).streams.get_highest_resolution()
                         download.download(path_videos_)
 
-                        """#### Desativa a barra de progresso e """
+                        """#### Desativa a barra de progresso e deixa com o valor de 100%"""
                         self.barra_progresso_geral.stop()
                         self.barra_progresso_geral.config(value=100)
                         print('Downloads realizado com sucesso!')
