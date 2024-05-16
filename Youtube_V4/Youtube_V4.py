@@ -130,7 +130,6 @@ class Youtube_v4:
         self.barra_progresso_geral = Progressbar(self.frame_lbl_progresso)
         self.barra_progresso_geral.config(mode='determinate', length=868)
         self.barra_progresso_geral.place(y=1, x=1)
-
         # --------------------------------------------------------------------------------------------------------------
 
         """#### Declarações de variaveis"""
@@ -234,8 +233,15 @@ class Youtube_v4:
                 try:
                     for valor_cursor in self.lista_cache_links_add.curselection():
                         dados_selecionados = self.lendo_arq_txt_lnk[valor_cursor]
+
+                        """#### Processo de downloads de videos """
+                        self.barra_progresso_geral.start()
                         download = YouTube(dados_selecionados).streams.get_highest_resolution()
                         download.download(path_videos_)
+
+                        """#### Desativa a barra de progresso e """
+                        self.barra_progresso_geral.stop()
+                        self.barra_progresso_geral.config(value=100)
                         print('Downloads realizado com sucesso!')
                 except:
                     showwarning('AVISO!', 'Não existem links para downloads')
