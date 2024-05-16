@@ -109,7 +109,7 @@ class Youtube_v4:
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão radio mp3/mp4"""
         self.frame_lbl_botao_radio_opc_midia = LabelFrame(self.frame_label_principal, text='Escolha uma opção:')
-        self.frame_lbl_botao_radio_opc_midia.config(height=44, width=300)
+        self.frame_lbl_botao_radio_opc_midia.config(height=44, width=270)
         self.frame_lbl_botao_radio_opc_midia.place(y=250, x=350)
 
         self.var_radio_ = tk.StringVar()
@@ -119,7 +119,7 @@ class Youtube_v4:
 
         self.radio_mp4_midia = Radiobutton(self.frame_lbl_botao_radio_opc_midia, text='Downloads (MP4)')
         self.radio_mp4_midia.config(variable=self.var_radio_, value='MP4')
-        self.radio_mp4_midia.place(y=-2, x=135)
+        self.radio_mp4_midia.place(y=-2, x=140)
         # --------------------------------------------------------------------------------------------------------------
         # --------------------------------------------------------------------------------------------------------------
 
