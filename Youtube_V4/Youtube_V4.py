@@ -162,7 +162,20 @@ class Youtube_v4:
         self.janela_principal.mainloop()
 
     """#### Eventos diversos """
-    def ativar_botao_downloads(self, *args):
+    def ativar_botao_downloads(self, **kwargs):
+
+        selecao_titulo = self.lista_cache_links_add.curselection()
+        abrindo_arq_link = open(caminho_arq_txt, 'r')
+        urls_youtube = abrindo_arq_link.readlines()
+        for valor_selecao in selecao_titulo:
+            pass
+        link_selecionado = urls_youtube[valor_selecao]
+        titulo_link = YouTube(link_selecionado).title
+        autor_link = YouTube(link_selecionado).author
+        print(f'{autor_link} - {titulo_link}')
+
+        self.lbl_resulucao.config(text=f'{autor_link} - {titulo_link}')
+
         self.botao_down_link.config(state=tk.NORMAL)
         self.botao_down_link.config(command=self.thread_download_link)
 
@@ -172,6 +185,9 @@ class Youtube_v4:
             print(f'Validação do link: \n{link}')
             self.botao_add_link.config(state=tk.NORMAL)
             self.botao_add_link.config(command=self.thread_add_link)
+
+    def info_midias(self, selecao_titulo):
+       pass
 
     """#### Processo diversos"""
     """### Threads"""
@@ -240,13 +256,6 @@ class Youtube_v4:
         """#### Declarando o botão para atualizar a lista com os novos dados"""
         self.frame_lbl_botao_limpar.config(text='Atualizar')
         self.botao_limpar_lista.config(command=self.thread_leitura_link)
-
-    def info_midias(self, *args):
-        link_selecionado = self.lista_cache_links_add.get(self.lista_cache_links_add.curselection())
-        titulo_link = YouTube(link_selecionado).title
-        resolucao_link = YouTube(link_selecionado).author
-
-        self.lbl_resulucao(f'{titulo_link} \n{resolucao_link}')
 
     def deletar_links(self):
         item_selecionado = self.lista_cache_links_add.curselection()
