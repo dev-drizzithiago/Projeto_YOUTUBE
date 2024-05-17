@@ -139,6 +139,7 @@ class Youtube_v4:
         self.var_info_resulucao = tk.StringVar()
         self.lbl_resulucao = Label(self.frame_lbl_info_link, text=self.var_info_resulucao)
         self.lbl_resulucao.config(text='Escolha um link para mais informações!')
+        self.lbl_resulucao.bind('<Button-1>', self.info_midias)
         self.lbl_resulucao.place(y=2, x=2)
 
         # --------------------------------------------------------------------------------------------------------------
@@ -240,9 +241,12 @@ class Youtube_v4:
         self.frame_lbl_botao_limpar.config(text='Atualizar')
         self.botao_limpar_lista.config(command=self.thread_leitura_link)
 
-    def info_midias(self):
+    def info_midias(self, *args):
         link_selecionado = self.lista_cache_links_add.get(self.lista_cache_links_add.curselection())
-        resolucao_link = YouTube(link_selecionado).streams.filter()
+        titulo_link = YouTube(link_selecionado).title
+        resolucao_link = YouTube(link_selecionado).author
+
+        self.lbl_resulucao(f'{titulo_link} \n{resolucao_link}')
 
     def deletar_links(self):
         item_selecionado = self.lista_cache_links_add.curselection()
