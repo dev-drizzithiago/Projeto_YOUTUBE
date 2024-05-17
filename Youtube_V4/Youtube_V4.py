@@ -132,15 +132,23 @@ class Youtube_v4:
         self.radio_mp4_midia.config(variable=self.var_radio_, value='MP4')
         self.radio_mp4_midia.place(y=-2, x=140)
         # --------------------------------------------------------------------------------------------------------------
+        """#### Informções sobre o link, como codecs, resolução, etc"""
+        self.frame_lbl_info_link = Labelframe(self.frame_label_principal, text='Informações do link: ')
+        self.frame_lbl_info_link.config(height=65, width=875)
+        self.frame_lbl_info_link.place(y=345, x=5)
+
+        # --------------------------------------------------------------------------------------------------------------
         """Barra de progresso"""
         self.frame_lbl_progresso = LabelFrame(self.frame_label_principal, text='Progresso!')
         self.frame_lbl_progresso.config(height=50, width=875)
-        self.frame_lbl_progresso.place(y=350, x=5)
+        self.frame_lbl_progresso.place(y=410, x=5)
 
         self.barra_progresso_geral = Progressbar(self.frame_lbl_progresso)
         self.barra_progresso_geral.config(mode='determinate', length=868)
         self.barra_progresso_geral.place(y=1, x=1)
+
         # --------------------------------------------------------------------------------------------------------------
+
 
         """#### Declarações de variaveis"""
         self.ativar_ = False
@@ -244,18 +252,22 @@ class Youtube_v4:
             if resp_del:
                 lista_links.pop(indice)
                 print('Arquivo deletado com sucesso!')
-                atualizado_registro_link_salvos = open(caminho_arq_txt, 'w')
+
+            atualizado_registro_link_salvos = open(caminho_arq_txt, 'w')
 
             for valor_lista_atualizado_link in lista_links:
+                atualizado_registro_link_salvos = open(caminho_arq_txt, 'a')
                 try:
-                    atualizado_registro_link_salvos = open(caminho_arq_txt, 'a')
-                    atualizado_registro_link_salvos.write(f'{valor_lista_atualizado_link}\n')
-                    atualizado_registro_link_salvos.close()
+                    atualizado_registro_link_salvos.write(f'{valor_lista_atualizado_link}')
+
                 except:
                     showwarning('AVISO!', 'Não foi possível atualizar o arquivo')
-            self.thread_leitura_link()
+
         except FileNotFoundError:
             showwarning('AVISO!', 'Não existe nenhum arquivo')
+
+        atualizado_registro_link_salvos.close()
+        self.thread_leitura_link()
 
     def MP3_TO_MP4(self):
         for valor_arq_mp4 in listdir(path_temp_yt):
