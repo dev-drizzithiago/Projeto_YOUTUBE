@@ -232,10 +232,6 @@ class Youtube_v4:
                 """#### Remove o vestigio do arquivo mp4"""
                 remove(mp4_file)
 
-                self.barra_progresso_geral.stop()
-                self.barra_progresso_geral.config(value=100)
-                print('Downloads realizado com sucesso!!')
-
     """#### Downloads dos links"""
     def downloads_link(self):
         valor_radio = self.var_radio_.get()
@@ -257,6 +253,11 @@ class Youtube_v4:
                         downloads = YouTube(dados_selecionados).streams.get_audio_only()
                         downloads.download(path_temp_yt)
                         self.MP3_TO_MP4()
+
+                        self.barra_progresso_geral.stop()
+                        self.barra_progresso_geral.config(value=100)
+                        print('Downloads realizado com sucesso!!')
+
                     except:
                         print('Erro ao fazer o downloads!')
 
