@@ -229,14 +229,23 @@ class Youtube_v4:
                 print()
                 print(linha)
                 print('Baixando em MP3')
-                for valor_cursor in self.lista_cache_links_add.curselection():
-                    dados_selecionados = self.lendo_arq_txt_lnk[valor_cursor]
-                """#### Processo de downloads do Audio """
-                """### Inicia a barra de progresso"""
-                self.barra_progresso_geral.start()
-                downloads = YouTube(dados_selecionados).streams.get_audio_only()
-                downloads.download(path_musicas)
-                
+                try:
+                    for valor_cursor in self.lista_cache_links_add.curselection():
+                        dados_selecionados = self.lendo_arq_txt_lnk[valor_cursor]
+                    """#### Processo de downloads do Audio """
+                    """### Inicia a barra de progresso"""
+                    self.barra_progresso_geral.start()
+
+                    """#### Processo do downloads"""
+                    try:
+                        downloads = YouTube(dados_selecionados).streams.get_audio_only()
+                        downloads.download(path_musicas)
+                        print('Downloads realizado com sucesso!')
+                    except:
+                        print('Erro ao fazer o downloads!')
+
+                except:
+                    showwarning('AVISO!', 'Não existem links para downloads')
 
             elif valor_radio == 'MP4':
                 print()
@@ -249,13 +258,19 @@ class Youtube_v4:
                         """#### Processo de downloads de videos """
                         """### Inicia a barra de progresso"""
                         self.barra_progresso_geral.start()
-                        download = YouTube(dados_selecionados).streams.get_highest_resolution()
-                        download.download(path_videos_)
+
+                        """#### Processo do downloads"""
+                        try:
+                            download = YouTube(dados_selecionados).streams.get_highest_resolution()
+                            download.download(path_videos_)
+                        except:
+                            print('Erro ao fazer o downloads!')
 
                         """#### Desativa a barra de progresso e deixa com o valor de 100%"""
                         self.barra_progresso_geral.stop()
                         self.barra_progresso_geral.config(value=100)
                         print('Downloads realizado com sucesso!')
+                        
                 except:
                     showwarning('AVISO!', 'Não existem links para downloads')
         else:
