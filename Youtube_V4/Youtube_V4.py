@@ -239,6 +239,8 @@ class Youtube_v4:
             lista_links = abrindo_arq_link.readlines()
             for indice in item_selecionado:
                 print(lista_links[indice])
+                lista_links.pop(indice)
+            print(lista_links)
 
         except FileNotFoundError:
             showwarning('AVISO!', 'Não existe nenhum arquivo')
