@@ -52,8 +52,8 @@ class Youtube_v4:
         self.frame_label_principal.pack(fill=tk.BOTH, pady=5, padx=5)
         # --------------------------------------------------------------------------------------------------------------
         """#### Frame Lista cache"""
-        self.frame_label_lista_cache = Labelframe(self.frame_label_principal, text='Links Salvos - '
-                                                                                   'Selecione um título para baixar')
+        self.frame_label_lista_cache = Labelframe(self.frame_label_principal)
+        self.frame_label_lista_cache.config(text='Links Salvos - Selecione um título para baixar')
         self.frame_label_lista_cache.place(y=5, x=5)
 
         # ##############################################################################################################
@@ -107,7 +107,6 @@ class Youtube_v4:
         self.botao_limpar_lista = Button(self.frame_lbl_botao_limpar, text='Aplicar')
         self.botao_limpar_lista.config(width=15, command=self.limpar_lista_cache)
         self.botao_limpar_lista.pack(anchor='center')
-
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão delete"""
         self.frame_lbl_delete = Labelframe(self.frame_label_principal, text='Deletar: ')
@@ -117,7 +116,6 @@ class Youtube_v4:
         self.botao_deletar.config(width=15, command=self.thread_deletar_links)
         self.botao_deletar.config(state=tk.DISABLED)
         self.botao_deletar.pack(anchor='center')
-
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão radio mp3/mp4"""
         self.frame_lbl_botao_radio_opc_midia = LabelFrame(self.frame_label_principal, text='Escolha uma opção:')
