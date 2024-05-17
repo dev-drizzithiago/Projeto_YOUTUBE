@@ -106,6 +106,16 @@ class Youtube_v4:
         self.botao_limpar_lista = Button(self.frame_lbl_botao_limpar, text='Aplicar')
         self.botao_limpar_lista.config(width=15, command=self.limpar_lista_cache)
         self.botao_limpar_lista.pack(anchor='center')
+
+        # --------------------------------------------------------------------------------------------------------------
+        """#### Botão delete"""
+        self.frame_lbl_delete = Labelframe(self.frame_label_principal, text='Deletar: ')
+        self.frame_lbl_delete.place(y=270, x=5)
+
+        self.botao_deletar = Button(self.frame_lbl_delete, text='Aplicar')
+        self.botao_deletar.config(width=15)
+        self.botao_deletar.pack(anchor='center', pady=5, padx=5)
+
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão radio mp3/mp4"""
         self.frame_lbl_botao_radio_opc_midia = LabelFrame(self.frame_label_principal, text='Escolha uma opção:')
@@ -120,15 +130,6 @@ class Youtube_v4:
         self.radio_mp4_midia = Radiobutton(self.frame_lbl_botao_radio_opc_midia, text='Downloads (MP4)')
         self.radio_mp4_midia.config(variable=self.var_radio_, value='MP4')
         self.radio_mp4_midia.place(y=-2, x=140)
-        # --------------------------------------------------------------------------------------------------------------
-        """#### Botão delete"""
-        self.frame_lbl_delete = Labelframe(self.frame_label_principal, text='Deletar: ')
-        self.frame_lbl_delete.place(y=270, x=5)
-
-        self.botao_deletar = Button(self.frame_lbl_delete, text='Aplicar')
-        self.botao_deletar.config(width=15)
-        self.botao_deletar.pack(anchor='center', pady=5, padx=5)
-
         # --------------------------------------------------------------------------------------------------------------
         """Barra de progresso"""
         self.frame_lbl_progresso = LabelFrame(self.frame_label_principal, text='Progresso!')
