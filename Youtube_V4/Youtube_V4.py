@@ -243,8 +243,13 @@ class Youtube_v4:
             resp_del = askquestion('Aviso!', 'Deseja deseja deletar esse link?')
             if resp_del:
                 lista_links.pop(indice)
-                
-            print(lista_links)
+                atualizado_registro_link_salvos = open(caminho_arq_txt, 'w')
+
+            for valor_lista_atualizado_link in lista_links:
+                try:
+                    atualizado_registro_link_salvos = open(caminho_arq_txt, 'a')
+                except:
+                    showwarning('AVISO!', 'Não foi possível atualizar o arquivo')
 
         except FileNotFoundError:
             showwarning('AVISO!', 'Não existe nenhum arquivo')
