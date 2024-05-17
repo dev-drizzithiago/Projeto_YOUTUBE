@@ -94,10 +94,10 @@ class Youtube_v4:
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão downloads """
         self.frame_botao_down = LabelFrame(self.frame_label_principal, text='Baixar o link')
-        self.frame_botao_down.place(y=300, x=5)
+        self.frame_botao_down.place(y=295, x=5)
 
         self.botao_down_link = Button(self.frame_botao_down, text='Aplicar')
-        self.botao_down_link.config(width=30, state=tk.DISABLED)
+        self.botao_down_link.config(width=50, state=tk.DISABLED)
         self.botao_down_link.pack(anchor='center')
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão limpar tudo"""
@@ -115,6 +115,7 @@ class Youtube_v4:
 
         self.botao_deletar = Button(self.frame_lbl_delete, text='Aplicar')
         self.botao_deletar.config(width=15, command=self.thread_deletar_links)
+        self.botao_deletar.config(state=tk.DISABLED)
         self.botao_deletar.pack(anchor='center')
 
         # --------------------------------------------------------------------------------------------------------------
