@@ -253,7 +253,7 @@ class Youtube_v4:
                     atualizado_registro_link_salvos.close()
                 except:
                     showwarning('AVISO!', 'Não foi possível atualizar o arquivo')
-
+            self.thread_leitura_link()
         except FileNotFoundError:
             showwarning('AVISO!', 'Não existe nenhum arquivo')
 
