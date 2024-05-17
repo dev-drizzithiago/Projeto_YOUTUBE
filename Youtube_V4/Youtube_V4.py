@@ -1,5 +1,6 @@
 from os import makedirs, listdir, path, remove
 from tkinter.messagebox import showwarning
+from tkinter.messagebox import askquestion
 from moviepy.editor import AudioFileClip
 from threading import Thread
 from pytube import YouTube
@@ -238,8 +239,11 @@ class Youtube_v4:
             abrindo_arq_link = open(caminho_arq_txt, 'r')
             lista_links = abrindo_arq_link.readlines()
             for indice in item_selecionado:
-                print(lista_links[indice])
+                pass
+            resp_del = askquestion('Aviso!', 'Deseja deseja deletar esse link?')
+            if resp_del:
                 lista_links.pop(indice)
+                
             print(lista_links)
 
         except FileNotFoundError:
