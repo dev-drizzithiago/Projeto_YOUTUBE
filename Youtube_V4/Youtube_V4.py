@@ -136,6 +136,9 @@ class Youtube_v4:
         self.frame_lbl_info_link.config(height=65, width=875)
         self.frame_lbl_info_link.place(y=345, x=5)
 
+        self.var_info_resulução = tk.StringVar()
+        self.lbl_resulucao = Label(self.frame_lbl_info_link, )
+
         # --------------------------------------------------------------------------------------------------------------
         """Barra de progresso"""
         self.frame_lbl_progresso = LabelFrame(self.frame_label_principal, text='Progresso!')
@@ -145,9 +148,7 @@ class Youtube_v4:
         self.barra_progresso_geral = Progressbar(self.frame_lbl_progresso)
         self.barra_progresso_geral.config(mode='determinate', length=868)
         self.barra_progresso_geral.place(y=1, x=1)
-
         # --------------------------------------------------------------------------------------------------------------
-
 
         """#### Declarações de variaveis"""
         self.ativar_ = False
