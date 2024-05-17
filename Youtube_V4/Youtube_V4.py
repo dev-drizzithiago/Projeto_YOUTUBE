@@ -86,6 +86,7 @@ class Youtube_v4:
         """#### Botão adicionar """
         self.frame_botao_adicionar = LabelFrame(self.frame_label_principal, text='Adicione o link')
         self.frame_botao_adicionar.place(y=250, x=5)
+
         self.botao_add_link = Button(self.frame_botao_adicionar, text='Aplicar')
         self.botao_add_link.config(width=15, state=tk.DISABLED)
         self.botao_add_link.pack(anchor='center')
@@ -103,8 +104,7 @@ class Youtube_v4:
         self.frame_lbl_botao_limpar.place(y=250, x=120)
 
         self.botao_limpar_lista = Button(self.frame_lbl_botao_limpar, text='Aplicar')
-        self.botao_limpar_lista.config(width=15)
-        self.botao_limpar_lista.config(command=self.limpar_lista_cache)
+        self.botao_limpar_lista.config(width=15, command=self.limpar_lista_cache)
         self.botao_limpar_lista.pack(anchor='center')
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão radio mp3/mp4"""
@@ -121,10 +121,19 @@ class Youtube_v4:
         self.radio_mp4_midia.config(variable=self.var_radio_, value='MP4')
         self.radio_mp4_midia.place(y=-2, x=140)
         # --------------------------------------------------------------------------------------------------------------
+        """#### Botão delete"""
+        self.frame_lbl_delete = Labelframe(self.frame_label_principal, text='Deletar: ')
+        self.frame_lbl_delete.place(y=270, x=5)
+
+        self.botao_deletar = Button(self.frame_lbl_delete, text='Aplicar')
+        self.botao_deletar.config(width=15)
+        self.botao_deletar.pack(anchor='center', pady=5, padx=5)
+
+        # --------------------------------------------------------------------------------------------------------------
         """Barra de progresso"""
         self.frame_lbl_progresso = LabelFrame(self.frame_label_principal, text='Progresso!')
         self.frame_lbl_progresso.config(height=50, width=875)
-        self.frame_lbl_progresso.place(y=300, x=5)
+        self.frame_lbl_progresso.place(y=350, x=5)
 
         self.barra_progresso_geral = Progressbar(self.frame_lbl_progresso)
         self.barra_progresso_geral.config(mode='determinate', length=868)
@@ -217,6 +226,9 @@ class Youtube_v4:
         self.botao_limpar_lista.config(command=self.thread_leitura_link)
 
     def info_midias(self):
+        pass
+
+    def deletar_links(self):
         pass
 
     def MP3_TO_MP4(self):
