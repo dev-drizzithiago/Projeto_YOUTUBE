@@ -4,7 +4,9 @@ from pytube import YouTube
 from tkinter.ttk import *
 from pathlib import Path
 from os import makedirs
+from re import search
 import tkinter as tk
+
 
 
 
@@ -220,6 +222,9 @@ class Youtube_v4:
     def info_midias(self):
         pass
 
+    def MP3_TO_MP4(self):
+        pass
+
     """#### Downloads dos links"""
     def downloads_link(self):
         valor_radio = self.var_radio_.get()
@@ -239,8 +244,7 @@ class Youtube_v4:
                     """#### Processo do downloads"""
                     try:
                         downloads = YouTube(dados_selecionados).streams.get_audio_only()
-                        downloads.download(path_musicas)
-                        print('Downloads realizado com sucesso!')
+                        downloads.download(path_temp_yt)
                     except:
                         print('Erro ao fazer o downloads!')
 
@@ -270,7 +274,7 @@ class Youtube_v4:
                         self.barra_progresso_geral.stop()
                         self.barra_progresso_geral.config(value=100)
                         print('Downloads realizado com sucesso!')
-                        
+
                 except:
                     showwarning('AVISO!', 'Não existem links para downloads')
         else:
