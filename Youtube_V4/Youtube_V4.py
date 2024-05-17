@@ -114,7 +114,7 @@ class Youtube_v4:
 
         self.botao_deletar = Button(self.frame_lbl_delete, text='Aplicar')
         self.botao_deletar.config(width=15)
-        self.botao_deletar.pack(anchor='center', pady=5, padx=5)
+        self.botao_deletar.pack(anchor='center')
 
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão radio mp3/mp4"""
