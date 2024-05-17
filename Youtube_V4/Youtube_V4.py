@@ -224,6 +224,7 @@ class Youtube_v4:
             if search('mp4', valor_arq_mp4):
                 mp4_file = path.join(path_temp_yt, valor_arq_mp4)
                 mp3_file = path.join(path_musicas, path.splitext(mp4_file)[0] + '.mp3')
+                print(mp3_file)
 
                 """#### transformando o arquivo mp4 em mp3"""
                 novo_mp3 = AudioFileClip(mp4_file)
