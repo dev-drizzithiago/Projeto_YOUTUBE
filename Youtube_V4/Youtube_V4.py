@@ -233,7 +233,13 @@ class Youtube_v4:
         pass
 
     def deletar_links(self):
-        pass
+        try:
+            abrindo_arq_link = open(caminho_arq_txt, 'r')
+            lista_links = abrindo_arq_link.readlines()
+            
+        except FileNotFoundError:
+            showwarning('AVISO!', 'Não existe nenhum arquivo')
+
 
     def MP3_TO_MP4(self):
         for valor_arq_mp4 in listdir(path_temp_yt):
