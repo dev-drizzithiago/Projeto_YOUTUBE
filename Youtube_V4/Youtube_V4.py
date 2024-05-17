@@ -110,10 +110,10 @@ class Youtube_v4:
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão delete"""
         self.frame_lbl_delete = Labelframe(self.frame_label_principal, text='Deletar: ')
-        self.frame_lbl_delete.place(y=300, x=5)
+        self.frame_lbl_delete.place(y=298, x=5)
 
         self.botao_deletar = Button(self.frame_lbl_delete, text='Aplicar')
-        self.botao_deletar.config(width=15)
+        self.botao_deletar.config(width=15, command='')
         self.botao_deletar.pack(anchor='center')
 
         # --------------------------------------------------------------------------------------------------------------
@@ -171,6 +171,9 @@ class Youtube_v4:
 
     def thread_download_link(self):
         Thread(target=self.downloads_link).start()
+
+    def thread_deletar_links(self):
+        Thread(target=self.deletar_links).start()
 
     """### Manipulação do arquivo de texto"""
     def registrando_link_youtube(self):
