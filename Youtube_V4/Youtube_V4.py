@@ -229,6 +229,12 @@ class Youtube_v4:
                 novo_mp3 = AudioFileClip(mp4_file)
                 novo_mp3.write_audiofile(mp3_file)
 
+                """#### Remove o vestigio do arquivo mp4"""
+                remove(mp4_file)
+
+                self.barra_progresso_geral.stop()
+                self.barra_progresso_geral.config(value=100)
+                print('Downloads realizado com sucesso!!')
 
     """#### Downloads dos links"""
     def downloads_link(self):
@@ -250,6 +256,7 @@ class Youtube_v4:
                     try:
                         downloads = YouTube(dados_selecionados).streams.get_audio_only()
                         downloads.download(path_temp_yt)
+                        self.MP3_TO_MP4()
                     except:
                         print('Erro ao fazer o downloads!')
 
