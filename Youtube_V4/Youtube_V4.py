@@ -243,11 +243,14 @@ class Youtube_v4:
             resp_del = askquestion('Aviso!', 'Deseja deseja deletar esse link?')
             if resp_del:
                 lista_links.pop(indice)
+                print('Arquivo deletado com sucesso!')
                 atualizado_registro_link_salvos = open(caminho_arq_txt, 'w')
 
             for valor_lista_atualizado_link in lista_links:
                 try:
                     atualizado_registro_link_salvos = open(caminho_arq_txt, 'a')
+                    atualizado_registro_link_salvos.write(f'{valor_lista_atualizado_link}\n')
+                    atualizado_registro_link_salvos.close()
                 except:
                     showwarning('AVISO!', 'Não foi possível atualizar o arquivo')
 
