@@ -113,7 +113,7 @@ class Youtube_v4:
         self.frame_lbl_delete.place(y=298, x=5)
 
         self.botao_deletar = Button(self.frame_lbl_delete, text='Aplicar')
-        self.botao_deletar.config(width=15, command='')
+        self.botao_deletar.config(width=15, command=self.thread_deletar_links)
         self.botao_deletar.pack(anchor='center')
 
         # --------------------------------------------------------------------------------------------------------------
@@ -233,10 +233,13 @@ class Youtube_v4:
         pass
 
     def deletar_links(self):
+        item_selecionado = self.lista_cache_links_add.curselection()
         try:
             abrindo_arq_link = open(caminho_arq_txt, 'r')
             lista_links = abrindo_arq_link.readlines()
-            
+            for indice in item_selecionado:
+                print(lista_links[indice])
+
         except FileNotFoundError:
             showwarning('AVISO!', 'Não existe nenhum arquivo')
 
