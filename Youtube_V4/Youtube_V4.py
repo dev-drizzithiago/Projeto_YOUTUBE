@@ -1,18 +1,12 @@
+from os import makedirs, listdir, path, remove
 from tkinter.messagebox import showwarning
 from moviepy.editor import AudioFileClip
-from os import makedirs, listdir, path
 from threading import Thread
 from pytube import YouTube
 from tkinter.ttk import *
 from pathlib import Path
 from re import search
 import tkinter as tk
-
-
-
-
-
-
 
 
 """Criando pasta home"""
@@ -230,6 +224,11 @@ class Youtube_v4:
             if search('mp4', valor_arq_mp4):
                 mp4_file = path.join(path_temp_yt, valor_arq_mp4)
                 mp3_file = path.join(path_musicas, path.splitext(mp4_file)[0] + '.mp3')
+
+                """#### transformando o arquivo mp4 em mp3"""
+                novo_mp3 = AudioFileClip(mp4_file)
+                novo_mp3.write_audiofile(mp3_file)
+
 
     """#### Downloads dos links"""
     def downloads_link(self):
