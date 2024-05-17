@@ -110,7 +110,7 @@ class Youtube_v4:
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão delete"""
         self.frame_lbl_delete = Labelframe(self.frame_label_principal, text='Deletar: ')
-        self.frame_lbl_delete.place(y=270, x=5)
+        self.frame_lbl_delete.place(y=300, x=5)
 
         self.botao_deletar = Button(self.frame_lbl_delete, text='Aplicar')
         self.botao_deletar.config(width=15)
