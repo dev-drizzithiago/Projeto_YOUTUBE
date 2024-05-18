@@ -17,8 +17,8 @@ except:
     showwarning('AVISO!', 'Função para criara caminho da pasta home não foi criada')
 
 """Declarando as pastas de destino diversas"""
-path_arq_yt_ = str(Path(path_home_, 'AppData', 'LocalLow', 'Youtube_V4'))
 path_temp_yt = str(Path(path_home_, 'AppData', 'Local', 'Temp'))
+path_arq_yt_ = str(Path(path_home_, 'AppData', 'LocalLow', 'Youtube_V4'))
 path_musicas = str(Path(path_home_, 'Downloads', 'Youtube_V4', 'Músicas(MP3)'))
 path_videos_ = str(Path(path_home_, 'Downloads', 'Youtube_V4', 'Vídeos(MP4)'))
 
