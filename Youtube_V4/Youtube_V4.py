@@ -313,15 +313,12 @@ class Youtube_v4:
                     for valor_cursor in self.lista_cache_links_add.curselection():
                         dados_selecionados = self.lendo_arq_txt_lnk[valor_cursor]
 
-
-
                     """#### Processo de downloads do Audio """
                     """### Inicia a barra de progresso"""
                     self.barra_progresso_geral.start()
 
                     """#### Processo do downloads"""
                     try:
-
                         """#### Criando objeto do youtube"""
                         obj_youtube = YouTube(dados_selecionados)
                         obj_youtube.streams.filter(only_audio=True).first().download(path_temp_yt)
