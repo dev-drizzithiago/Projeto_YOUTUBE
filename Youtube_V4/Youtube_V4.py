@@ -162,11 +162,9 @@ class Youtube_v4:
         self.janela_principal.mainloop()
 
     """#### Eventos diversos """
-    def ativar_botao_downloads(self, **kwargs):
+    def ativar_botao_downloads(self, *args):
         self.botao_down_link.config(state=tk.NORMAL)
         self.botao_down_link.config(command=self.thread_download_link)
-
-        self.info_midias(self.lista_cache_links_add.curselection())
 
     def ativar_botao_adicionar_link(self, evento):
         link = self.var_caixa_de_entrada.get()
@@ -314,17 +312,23 @@ class Youtube_v4:
                 try:
                     for valor_cursor in self.lista_cache_links_add.curselection():
                         dados_selecionados = self.lendo_arq_txt_lnk[valor_cursor]
-                    print(dados_selecionados)
+                    self.info_midias(dados_selecionados)
+
+                    """#### Criando objeto do youtube"""
+                    obj_youtube = YouTube(dados_selecionados)
+
                     """#### Processo de downloads do Audio """
                     """### Inicia a barra de progresso"""
                     self.barra_progresso_geral.start()
 
                     """#### Processo do downloads"""
                     try:
-                        obj_youtube = YouTube(dados_selecionados)
                         obj_youtube.streams.filter(only_audio=True).first().download(path_temp_yt)
+
+                        """Abre a função para tranformar o arquivo MP4 em MP3"""
                         self.MP3_TO_MP4()
 
+                        """ Finaliza o processo da barra de progresso. """
                         self.barra_progresso_geral.stop()
                         self.barra_progresso_geral.config(value=100)
                         print('Downloads realizado com sucesso!!')
