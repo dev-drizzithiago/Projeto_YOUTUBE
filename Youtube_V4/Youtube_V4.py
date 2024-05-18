@@ -427,7 +427,7 @@ def __cadastro__():
             self.frame_lbl_botoes.config(height=100, width=455)
             self.frame_lbl_botoes.place(y=70, x=10)
 
-            
+
 
             self.janela_registro.mainloop()
 
