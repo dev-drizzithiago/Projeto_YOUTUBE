@@ -237,10 +237,9 @@ class Youtube_v4:
 
             autor_link = YouTube(valor_link).author
             titulo_link = YouTube(valor_link).title
-            comprimento_link = YouTube(valor_link).length
 
-            self.lista_cache_links_add.insert('end', f'{indice + 1} - {autor_link} - {titulo_link} - '
-                                                     f'{comprimento_link}/s')
+            self.lista_cache_links_add.insert('end', f'{indice + 1} - {autor_link} - {titulo_link}')
+
         self.barra_progresso_geral.stop()
         self.lbl_statos_processos.config(text='Lista carregada!')
 
@@ -370,5 +369,7 @@ class Youtube_v4:
                     showwarning('AVISO!', 'Não existem links para downloads')
         else:
             showwarning('AVISO', 'Selecione uma extensão!')
+
+
 
 iniciando_obj = Youtube_v4()
