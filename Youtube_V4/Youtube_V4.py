@@ -238,7 +238,7 @@ class Youtube_v4:
             autor_link = YouTube(valor_link).author
             titulo_link = YouTube(valor_link).title
 
-            self.lista_cache_links_add.insert('end', f'{indice + 1} - {autor_link} - {titulo_link}')
+            self.lista_cache_links_add.insert('end', f'{indice + 1} - {autor_link} ---- {titulo_link}')
 
         self.barra_progresso_geral.stop()
         self.lbl_statos_processos.config(text='Lista carregada!')
