@@ -164,9 +164,7 @@ class Youtube_v4:
     """#### Eventos diversos """
     def ativar_botao_downloads(self, *args):
         self.botao_down_link.config(state=tk.NORMAL)
-        elf.botao_deletar.config(state=tk.NORMAL)
-        self.botao_down_link.config(command=self.thread_download_link)
-        s
+        self.botao_deletar.config(state=tk.NORMAL)
 
     def ativar_botao_adicionar_link(self, *args):
         link = self.var_caixa_de_entrada.get()
@@ -364,4 +362,3 @@ class Youtube_v4:
             showwarning('AVISO', 'Selecione uma extensão!')
 
 iniciando_obj = Youtube_v4()
-
