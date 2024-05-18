@@ -403,7 +403,14 @@ def __cadastro__():
     :return:
     """
 
-__AVISO__()
+    class CadastroRegistro:
+        def __init__(self):
+            self.janela_registro = tk.Tk()
+            self.janela_registro.geometry('300x300+450+200')
+            self.janela_registro.mainloop()
+
+
+__cadastro__()
 
 
 # iniciando_obj = Youtube_v4()
