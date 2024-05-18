@@ -370,6 +370,7 @@ class Youtube_v4:
         else:
             showwarning('AVISO', 'Selecione uma extensão!')
 
-
+def __AVISO__():
+    pass
 
 iniciando_obj = Youtube_v4()
