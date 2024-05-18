@@ -423,7 +423,7 @@ def __cadastro__():
             self.caixa_enter_email.config(width=72)
             self.caixa_enter_email.place(y=5, x=5)
 
-            self.frame_lbl_box_ativacao = Labelframe(self.frame_lbl_principal_reg, text='Insira o seu e-mail aqui')
+            self.frame_lbl_box_ativacao = Labelframe(self.frame_lbl_principal_reg, text='Insira o codigo')
             self.frame_lbl_box_ativacao.config(height=60, width=455)
             self.frame_lbl_box_ativacao.place(y=70, x=10)
 
