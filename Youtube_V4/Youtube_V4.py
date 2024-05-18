@@ -172,11 +172,12 @@ class Youtube_v4:
 
         if self.quantidade_links == 20:
             showwarning('AVISO!', 'Possui 20 links salvos, delete algum link para adicioar outra. ')
-
-        elif link[:24] == 'https://www.youtube.com/':
-            self.botao_add_link.config(state=tk.NORMAL)
-            self.botao_add_link.config(command=self.thread_add_link)
-            print('Link validado com sucesso!')
+            self.caixa_de_entrada_link.delete(0, 'end')
+        else:
+            if link[:24] == 'https://www.youtube.com/':
+                self.botao_add_link.config(state=tk.NORMAL)
+                self.botao_add_link.config(command=self.thread_add_link)
+                print('Link validado com sucesso!')
 
     """#### Processo diversos"""
     """### Threads"""
