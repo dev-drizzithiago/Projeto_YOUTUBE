@@ -423,9 +423,26 @@ def __cadastro__():
             self.caixa_enter_email.config(width=72)
             self.caixa_enter_email.place(y=5, x=5)
 
+            self.frame_lbl_box_ativacao = Labelframe(self.frame_lbl_principal_reg, text='Insira o seu e-mail aqui')
+            self.frame_lbl_box_ativacao.config(height=60, width=455)
+            self.frame_lbl_box_ativacao.place(y=40, x=10)
+
+            self.var_caixa_ativacao = tk.StringVar()
+            self.caixa_codigo_ativacao = Entry(self.frame_lbl_box_ativacao, textvariable=self.var_caixa_ativacao)
+            self.caixa_codigo_ativacao.config(width=72)
+            self.caixa_codigo_ativacao.place(y=20, x=5)
+
             self.frame_lbl_botoes = Labelframe(self.frame_lbl_principal_reg, text='Escolha uma opção: ')
             self.frame_lbl_botoes.config(height=100, width=455)
             self.frame_lbl_botoes.place(y=70, x=10)
+
+            self.botao_adicionar_email = Button(self.frame_lbl_botoes, text='Adicionar e-mail')
+            self.botao_adicionar_email.config(width=20, padding=1)
+            self.botao_adicionar_email.place(y=15, x=15)
+
+            self.botao_limpar_caixa = Button(self.frame_lbl_botoes, text='Limpar')
+            self.botao_limpar_caixa.config(width=20, padding=1)
+            self.botao_limpar_caixa.place(y=15, x=150)
 
             """#########"""
             self.janela_registro.mainloop()
