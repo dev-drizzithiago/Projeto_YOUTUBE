@@ -6,8 +6,10 @@ from threading import Thread
 from pytube import YouTube
 from tkinter.ttk import *
 from pathlib import Path
+from time import sleep
 from re import search
 import tkinter as tk
+
 
 
 """Criando pasta home"""
@@ -136,10 +138,10 @@ class Youtube_v4:
         self.frame_lbl_info_link.config(height=65, width=875)
         self.frame_lbl_info_link.place(y=345, x=5)
 
-        self.var_info_resulucao = tk.StringVar()
-        self.lbl_resulucao = Label(self.frame_lbl_info_link, text=self.var_info_resulucao)
-        self.lbl_resulucao.config(text='Escolha um link para mais informações!')
-        self.lbl_resulucao.place(y=2, x=329)
+        self.var_info_statos_processos = tk.StringVar()
+        self.lbl_statos_processos = Label(self.frame_lbl_info_link, text=self.var_info_statos_processos)
+        self.lbl_statos_processos.config(text='Escolha um link para mais informações!')
+        self.lbl_statos_processos.place(y=2, x=329)
 
         # --------------------------------------------------------------------------------------------------------------
         """Barra de progresso"""
@@ -173,17 +175,6 @@ class Youtube_v4:
             self.botao_add_link.config(command=self.thread_add_link)
             print('Link validado com sucesso!')
 
-    def info_midias(self, selecao_titulo):
-        abrindo_arq_link = open(caminho_arq_txt, 'r')
-        urls_youtube = abrindo_arq_link.readlines()
-        for valor_selecao in selecao_titulo:
-            pass
-        link_selecionado = urls_youtube[valor_selecao]
-        titulo_link = YouTube(link_selecionado).title
-        autor_link = YouTube(link_selecionado).author
-        print(f'{autor_link} - {titulo_link}')
-
-        self.lbl_resulucao.config(text=f'{autor_link} - {titulo_link}')
 
     """#### Processo diversos"""
     """### Threads"""
@@ -233,6 +224,9 @@ class Youtube_v4:
         valor_arq_txt_link = open(caminho_arq_txt, 'r')
         self.lendo_arq_txt_lnk = valor_arq_txt_link.readlines()
 
+        self.lbl_statos_processos.config(text='Carregando links na lista, aguarde!')
+        self.barra_progresso_geral.start()
+
         for indice, valor_link in enumerate(self.lendo_arq_txt_lnk):
 
             autor_link = YouTube(valor_link).author
@@ -241,7 +235,9 @@ class Youtube_v4:
 
             self.lista_cache_links_add.insert('end', f'{indice + 1} - {autor_link} - {titulo_link} - '
                                                      f'{comprimento_link}/s')
-
+        self.barra_progresso_geral.stop()
+        self.lbl_statos_processos.config(text='Lista carregada!')
+        sleep(2)
         self.frame_lbl_botao_limpar.config(text='Limpar')
         self.botao_limpar_lista.config(command=self.limpar_lista_cache)
 
