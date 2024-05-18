@@ -163,8 +163,19 @@ class Youtube_v4:
 
     """#### Eventos diversos """
     def ativar_botao_downloads(self, **kwargs):
+        self.botao_down_link.config(state=tk.NORMAL)
+        self.botao_down_link.config(command=self.thread_download_link)
 
-        selecao_titulo = self.lista_cache_links_add.curselection()
+        self.info_midias(self.lista_cache_links_add.curselection())
+
+    def ativar_botao_adicionar_link(self, evento):
+        link = self.var_caixa_de_entrada.get()
+        if link[:24] == 'https://www.youtube.com/':
+            print(f'Validação do link: \n{link}')
+            self.botao_add_link.config(state=tk.NORMAL)
+            self.botao_add_link.config(command=self.thread_add_link)
+
+    def info_midias(self, selecao_titulo):
         abrindo_arq_link = open(caminho_arq_txt, 'r')
         urls_youtube = abrindo_arq_link.readlines()
         for valor_selecao in selecao_titulo:
@@ -175,19 +186,6 @@ class Youtube_v4:
         print(f'{autor_link} - {titulo_link}')
 
         self.lbl_resulucao.config(text=f'{autor_link} - {titulo_link}')
-
-        self.botao_down_link.config(state=tk.NORMAL)
-        self.botao_down_link.config(command=self.thread_download_link)
-
-    def ativar_botao_adicionar_link(self, evento):
-        link = self.var_caixa_de_entrada.get()
-        if link[:24] == 'https://www.youtube.com/':
-            print(f'Validação do link: \n{link}')
-            self.botao_add_link.config(state=tk.NORMAL)
-            self.botao_add_link.config(command=self.thread_add_link)
-
-    def info_midias(self, selecao_titulo):
-       pass
 
     """#### Processo diversos"""
     """### Threads"""
@@ -238,8 +236,14 @@ class Youtube_v4:
         self.lendo_arq_txt_lnk = valor_arq_txt_link.readlines()
 
         for indice, valor_link in enumerate(self.lendo_arq_txt_lnk):
-            valor_link = YouTube(valor_link).title
-            self.lista_cache_links_add.insert('end', f'{indice + 1} - {valor_link}')
+
+            autor_link = YouTube(valor_link).author
+            titulo_link = YouTube(valor_link).title
+            comprimento_link = YouTube(valor_link).length
+            descricao_link = YouTube(valor_link).description
+
+            self.lista_cache_links_add.insert('end', f'{indice + 1} - {autor_link} - {titulo_link} - '
+                                                     f'{comprimento_link} - {descricao_link}')
 
         self.frame_lbl_botao_limpar.config(text='Limpar')
         self.botao_limpar_lista.config(command=self.limpar_lista_cache)
