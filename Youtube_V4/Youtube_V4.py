@@ -140,7 +140,7 @@ class Youtube_v4:
         self.var_info_statos_processos = tk.StringVar()
         self.lbl_statos_processos = Label(self.frame_lbl_info_link, text=self.var_info_statos_processos)
         self.lbl_statos_processos.config(text='', justify='center')
-        self.lbl_statos_processos.place(y=2, x=50)
+        self.lbl_statos_processos.place(y=15, x=50)
 
         # --------------------------------------------------------------------------------------------------------------
         """Barra de progresso"""
