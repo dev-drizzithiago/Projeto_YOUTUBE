@@ -1,3 +1,5 @@
+
+"""Declarações dos modulos do youtobe"""
 from os import makedirs, listdir, path, remove
 from tkinter.messagebox import showwarning
 from tkinter.messagebox import askquestion
@@ -6,9 +8,12 @@ from threading import Thread
 from pytube import YouTube
 from tkinter.ttk import *
 from pathlib import Path
-from time import sleep
 from re import search
 import tkinter as tk
+
+"""Declaração dos modulos de cadastros"""
+from mysql.connector import connect
+
 
 """Criando pasta home"""
 try:
@@ -375,7 +380,7 @@ def __AVISO__():
     arquivo_de_log = 'log_YT_V4.log'
     arq_info_aviso = f'{local_registro}\\{arquivo_de_log}'
 
-    """#### Criando arquivo de """
+    """#### Criando pasta que vai receber o arquivo de log"""
     try:
         makedirs(local_registro)
     except FileExistsError:
@@ -391,6 +396,14 @@ def __AVISO__():
     criando_arquivo_info.close()
 
 
+def __cadastro__():
+    """
+    Responsável em coletar informações do usuário. Serve apenas para experiência;
+    Vou utilizar uma conexão para bando de dados.
+    :return:
+    """
+
 __AVISO__()
 
-## iniciando_obj = Youtube_v4()
+
+# iniciando_obj = Youtube_v4()
