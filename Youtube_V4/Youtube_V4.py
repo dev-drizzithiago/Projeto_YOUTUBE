@@ -240,10 +240,9 @@ class Youtube_v4:
             autor_link = YouTube(valor_link).author
             titulo_link = YouTube(valor_link).title
             comprimento_link = YouTube(valor_link).length
-            descricao_link = YouTube(valor_link).views
 
             self.lista_cache_links_add.insert('end', f'{indice + 1} - {autor_link} - {titulo_link} - '
-                                                     f'{comprimento_link} - {descricao_link}')
+                                                     f'{comprimento_link}}')
 
         self.frame_lbl_botao_limpar.config(text='Limpar')
         self.botao_limpar_lista.config(command=self.limpar_lista_cache)
