@@ -132,15 +132,15 @@ class Youtube_v4:
         self.radio_mp4_midia.config(variable=self.var_radio_, value='MP4')
         self.radio_mp4_midia.place(y=-2, x=140)
         # --------------------------------------------------------------------------------------------------------------
-        """#### Informções sobre o link, como codecs, resolução, etc"""
-        self.frame_lbl_info_link = Labelframe(self.frame_label_principal, text='Informações do link: ')
+        """#### Informções de processo"""
+        self.frame_lbl_info_link = Labelframe(self.frame_label_principal, text='Informações do processo: ')
         self.frame_lbl_info_link.config(height=65, width=875)
         self.frame_lbl_info_link.place(y=345, x=5)
 
         self.var_info_statos_processos = tk.StringVar()
         self.lbl_statos_processos = Label(self.frame_lbl_info_link, text=self.var_info_statos_processos)
-        self.lbl_statos_processos.config(text='Escolha um link para mais informações!', justify='center')
-        self.lbl_statos_processos.place(y=2, x=329)
+        self.lbl_statos_processos.config(text='', justify='center')
+        self.lbl_statos_processos.place(y=2, x=50)
 
         # --------------------------------------------------------------------------------------------------------------
         """Barra de progresso"""
@@ -308,23 +308,26 @@ class Youtube_v4:
                     for valor_cursor in self.lista_cache_links_add.curselection():
                         dados_selecionados = self.lendo_arq_txt_lnk[valor_cursor]
 
+                    """#### Criando objeto do youtube"""
+                    obj_youtube = YouTube(dados_selecionados)
+
+                    """ Informando na label do programa"""
+                    self.lbl_statos_processos.config(text=f'Downloads {obj_youtube.author} - {obj_youtube.title} '
+                                                          f'em andamento... Aguarde!')
                     """#### Processo de downloads do Audio """
                     """### Inicia a barra de progresso"""
                     self.barra_progresso_geral.start()
 
                     """#### Processo do downloads"""
                     try:
-                        """#### Criando objeto do youtube"""
-                        obj_youtube = YouTube(dados_selecionados)
                         obj_youtube.streams.filter(only_audio=True).first().download(path_temp_yt)
-
                         """Abre a função para tranformar o arquivo MP4 em MP3"""
                         self.MP3_TO_MP4()
 
                         """ Finaliza o processo da barra de progresso. """
                         self.barra_progresso_geral.stop()
                         self.barra_progresso_geral.config(value=100)
-                        print('Downloads realizado com sucesso!!')
+                        self.lbl_statos_processos.config(text=f'Downloads realizado com sucesso!')
 
                     except:
                         print('Erro ao fazer o downloads!')
