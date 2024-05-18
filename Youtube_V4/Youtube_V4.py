@@ -420,6 +420,8 @@ def __cadastro__():
 
             self.var_caixa_email = tk.StringVar()
             self.caixa_enter_email = Entry(self.frame_lbl_box_entrada_mail, textvariable=self.var_caixa_email)
+            self.caixa_enter_email.config(width=72)
+            self.caixa_enter_email.place(y=5, x=5)
 
 
             self.janela_registro.mainloop()
