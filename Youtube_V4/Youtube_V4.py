@@ -406,10 +406,15 @@ def __cadastro__():
     class CadastroRegistro:
         def __init__(self):
             self.janela_registro = tk.Tk()
-            self.janela_registro.geometry('300x300+450+200')
+            self.janela_registro.geometry('500x300+700+300')
+            self.janela_registro.title('Registro')
+            self.janela_registro.resizable(0, 0)
+
+
             self.janela_registro.mainloop()
 
 
+    obj_inicio_registro = CadastroRegistro()
 __cadastro__()
 
 
