@@ -98,6 +98,7 @@ class Youtube_v4:
 
         self.botao_down_link = Button(self.frame_botao_down, text='Aplicar')
         self.botao_down_link.config(width=50, state=tk.DISABLED)
+        self.botao_down_link.config(command=self.thread_download_link)
         self.botao_down_link.pack(anchor='center')
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão limpar tudo"""
@@ -163,7 +164,9 @@ class Youtube_v4:
     """#### Eventos diversos """
     def ativar_botao_downloads(self, *args):
         self.botao_down_link.config(state=tk.NORMAL)
+        elf.botao_deletar.config(state=tk.NORMAL)
         self.botao_down_link.config(command=self.thread_download_link)
+        s
 
     def ativar_botao_adicionar_link(self, *args):
         link = self.var_caixa_de_entrada.get()
