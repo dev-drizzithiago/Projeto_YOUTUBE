@@ -139,8 +139,7 @@ class Youtube_v4:
         self.var_info_resulucao = tk.StringVar()
         self.lbl_resulucao = Label(self.frame_lbl_info_link, text=self.var_info_resulucao)
         self.lbl_resulucao.config(text='Escolha um link para mais informações!')
-        self.lbl_resulucao.bind('<Button-1>', self.info_midias)
-        self.lbl_resulucao.place(y=2, x=2)
+        self.lbl_resulucao.place(y=2, x=329)
 
         # --------------------------------------------------------------------------------------------------------------
         """Barra de progresso"""
@@ -166,12 +165,13 @@ class Youtube_v4:
         self.botao_down_link.config(state=tk.NORMAL)
         self.botao_down_link.config(command=self.thread_download_link)
 
-    def ativar_botao_adicionar_link(self, evento):
+    def ativar_botao_adicionar_link(self, *args):
         link = self.var_caixa_de_entrada.get()
+        print(f'Validação do link: \n{link}')
         if link[:24] == 'https://www.youtube.com/':
-            print(f'Validação do link: \n{link}')
             self.botao_add_link.config(state=tk.NORMAL)
             self.botao_add_link.config(command=self.thread_add_link)
+            print('Link validado com sucesso!')
 
     def info_midias(self, selecao_titulo):
         abrindo_arq_link = open(caminho_arq_txt, 'r')
