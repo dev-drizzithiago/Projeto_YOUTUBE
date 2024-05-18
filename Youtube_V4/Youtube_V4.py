@@ -177,7 +177,6 @@ class Youtube_v4:
             self.botao_add_link.config(state=tk.NORMAL)
             self.botao_add_link.config(command=self.thread_add_link)
             print('Link validado com sucesso!')
-            
 
     """#### Processo diversos"""
     """### Threads"""
@@ -243,7 +242,6 @@ class Youtube_v4:
                                                      f'{comprimento_link}/s')
         self.barra_progresso_geral.stop()
         self.lbl_statos_processos.config(text='Lista carregada!')
-        sleep(2)
 
         self.frame_lbl_botao_limpar.config(text='Limpar')
         self.botao_limpar_lista.config(command=self.limpar_lista_cache)
