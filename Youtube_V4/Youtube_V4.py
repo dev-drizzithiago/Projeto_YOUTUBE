@@ -138,7 +138,7 @@ class Youtube_v4:
 
         self.var_info_statos_processos = tk.StringVar()
         self.lbl_statos_processos = Label(self.frame_lbl_info_link, text=self.var_info_statos_processos)
-        self.lbl_statos_processos.config(text='Escolha um link para mais informações!')
+        self.lbl_statos_processos.config(text='Escolha um link para mais informações!', justify='center')
         self.lbl_statos_processos.place(y=2, x=329)
 
         # --------------------------------------------------------------------------------------------------------------
@@ -172,7 +172,6 @@ class Youtube_v4:
             self.botao_add_link.config(state=tk.NORMAL)
             self.botao_add_link.config(command=self.thread_add_link)
             print('Link validado com sucesso!')
-
 
     """#### Processo diversos"""
     """### Threads"""
@@ -236,6 +235,7 @@ class Youtube_v4:
         self.barra_progresso_geral.stop()
         self.lbl_statos_processos.config(text='Lista carregada!')
         sleep(2)
+
         self.frame_lbl_botao_limpar.config(text='Limpar')
         self.botao_limpar_lista.config(command=self.limpar_lista_cache)
 
