@@ -10,8 +10,6 @@ from time import sleep
 from re import search
 import tkinter as tk
 
-
-
 """Criando pasta home"""
 try:
     path_home_ = Path.home()
