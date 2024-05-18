@@ -312,10 +312,8 @@ class Youtube_v4:
                 try:
                     for valor_cursor in self.lista_cache_links_add.curselection():
                         dados_selecionados = self.lendo_arq_txt_lnk[valor_cursor]
-                    self.info_midias(dados_selecionados)
 
-                    """#### Criando objeto do youtube"""
-                    obj_youtube = YouTube(dados_selecionados)
+
 
                     """#### Processo de downloads do Audio """
                     """### Inicia a barra de progresso"""
@@ -323,6 +321,9 @@ class Youtube_v4:
 
                     """#### Processo do downloads"""
                     try:
+
+                        """#### Criando objeto do youtube"""
+                        obj_youtube = YouTube(dados_selecionados)
                         obj_youtube.streams.filter(only_audio=True).first().download(path_temp_yt)
 
                         """Abre a função para tranformar o arquivo MP4 em MP3"""
