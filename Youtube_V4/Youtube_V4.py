@@ -242,7 +242,7 @@ class Youtube_v4:
             comprimento_link = YouTube(valor_link).length
 
             self.lista_cache_links_add.insert('end', f'{indice + 1} - {autor_link} - {titulo_link} - '
-                                                     f'{comprimento_link}}')
+                                                     f'{comprimento_link}')
 
         self.frame_lbl_botao_limpar.config(text='Limpar')
         self.botao_limpar_lista.config(command=self.limpar_lista_cache)
