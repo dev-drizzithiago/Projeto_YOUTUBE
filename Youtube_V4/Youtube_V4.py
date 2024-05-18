@@ -169,10 +169,15 @@ class Youtube_v4:
     def ativar_botao_adicionar_link(self, *args):
         link = self.var_caixa_de_entrada.get()
         print(f'Validação do link: \n{link}')
-        if link[:24] == 'https://www.youtube.com/':
+
+        if self.quantidade_links == 20:
+            showwarning('AVISO!', 'Possui 20 links salvos, delete algum link para adicioar outra. ')
+
+        elif link[:24] == 'https://www.youtube.com/':
             self.botao_add_link.config(state=tk.NORMAL)
             self.botao_add_link.config(command=self.thread_add_link)
             print('Link validado com sucesso!')
+            
 
     """#### Processo diversos"""
     """### Threads"""
@@ -222,8 +227,11 @@ class Youtube_v4:
         valor_arq_txt_link = open(caminho_arq_txt, 'r')
         self.lendo_arq_txt_lnk = valor_arq_txt_link.readlines()
 
-        self.lbl_statos_processos.config(text='Carregando links na lista, aguarde!')
+        self.lbl_statos_processos.config(text='Carregando lista de links, aguarde!')
         self.barra_progresso_geral.start()
+
+        """#### Variavel server para guardar a quantidade de links que possui guardadas. """
+        self.quantidade_links = len(self.lendo_arq_txt_lnk)
 
         for indice, valor_link in enumerate(self.lendo_arq_txt_lnk):
 
