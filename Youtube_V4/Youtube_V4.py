@@ -423,11 +423,17 @@ def __cadastro__():
             self.caixa_enter_email.config(width=72)
             self.caixa_enter_email.place(y=5, x=5)
 
+            self.frame_lbl_botoes = Labelframe(self.frame_lbl_principal_reg, text='Escolha uma opção: ')
+            self.frame_lbl_botoes.config(height=100, width=455)
+            self.frame_lbl_botoes.place(y=70, x=10)
+
+            
 
             self.janela_registro.mainloop()
 
-
     obj_inicio_registro = CadastroRegistro()
+
+
 __cadastro__()
 
 
