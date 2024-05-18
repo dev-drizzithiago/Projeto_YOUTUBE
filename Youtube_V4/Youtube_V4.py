@@ -371,6 +371,26 @@ class Youtube_v4:
             showwarning('AVISO', 'Selecione uma extensão!')
 
 def __AVISO__():
-    pass
+    local_registro = Path('C:', 'ProgramData', 'Youtube_V4')
+    arquivo_de_log = 'log_YT_V4.log'
+    arq_info_aviso = f'{local_registro}\\{arquivo_de_log}'
 
-iniciando_obj = Youtube_v4()
+    """#### Criando arquivo de """
+    try:
+        makedirs(local_registro)
+    except FileExistsError:
+        pass
+
+    """#### Criando arquivo de log"""
+    try:
+        criando_arquivo_info = open(local_registro, 'a')
+        criando_arquivo_info.write(f'{''}')
+
+    except FileExistsError:
+        pass
+    criando_arquivo_info.close()
+
+
+__AVISO__()
+
+## iniciando_obj = Youtube_v4()
