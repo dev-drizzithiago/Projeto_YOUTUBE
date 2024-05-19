@@ -448,7 +448,17 @@ def __cadastro__():
             self.botao_fechar.config(width=20, padding=1)
             self.botao_fechar.place(y=15, x=300)
 
-            label_info_github = Label(self.frame_lbl_botoes, text='')
+            label_info_github = Label(self.frame_lbl_botoes, text='github.com/dev-drizzithiago')
+            label_info_github.config(relief='groove')
+            label_info_github.place(y=50, x=120)
+
+            label_info_linkdin = Label(self.frame_lbl_botoes, text='Thiago Alves Pinheiro')
+            label_info_linkdin.config(relief='groove')
+            label_info_linkdin.place(y=50, x=300)
+
+            label_info_instagram = Label(self.frame_lbl_botoes, text='@drizzithiago')
+            label_info_instagram.config(relief='groove')
+            label_info_instagram.place(y=50, x=120)
 
             """#########"""
             self.janela_registro.mainloop()
