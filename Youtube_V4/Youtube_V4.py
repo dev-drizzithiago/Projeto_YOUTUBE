@@ -409,56 +409,57 @@ def __cadastro__():
             self.janela_registro.geometry('500x400+700+300')
             self.janela_registro.title('Registro')
             self.janela_registro.resizable(0, 0)
-
+            # ----------------------------------------------------------------------------------------------------------
             self.frame_lbl_principal_reg = Labelframe(self.janela_registro, text='Registro:')
             self.frame_lbl_principal_reg.config(height=380, width=480)
             self.frame_lbl_principal_reg.place(y=10, x=10)
-
+            # ----------------------------------------------------------------------------------------------------------
             self.frame_lbl_box_entrada_mail = Labelframe(self.frame_lbl_principal_reg, text='Insira o seu e-mail aqui')
             self.frame_lbl_box_entrada_mail.config(height=60, width=455)
             self.frame_lbl_box_entrada_mail.place(y=10, x=10)
-
+            # ----------------------------------------------------------------------------------------------------------
             self.var_caixa_email = tk.StringVar()
             self.caixa_enter_email = Entry(self.frame_lbl_box_entrada_mail, textvariable=self.var_caixa_email)
             self.caixa_enter_email.config(width=72)
             self.caixa_enter_email.place(y=5, x=5)
-
+            # ----------------------------------------------------------------------------------------------------------
             self.frame_lbl_box_ativacao = Labelframe(self.frame_lbl_principal_reg, text='Insira o codigo')
             self.frame_lbl_box_ativacao.config(height=60, width=455)
             self.frame_lbl_box_ativacao.place(y=70, x=10)
-
+            # ----------------------------------------------------------------------------------------------------------
             self.var_caixa_ativacao = tk.StringVar()
             self.caixa_codigo_ativacao = Entry(self.frame_lbl_box_ativacao, textvariable=self.var_caixa_ativacao)
             self.caixa_codigo_ativacao.config(width=72)
             self.caixa_codigo_ativacao.place(y=5, x=5)
-
+            # ----------------------------------------------------------------------------------------------------------
             self.frame_lbl_botoes = Labelframe(self.frame_lbl_principal_reg, text='Escolha uma opção: ')
             self.frame_lbl_botoes.config(height=120, width=455)
             self.frame_lbl_botoes.place(y=130, x=10)
-
+            # ----------------------------------------------------------------------------------------------------------
             self.botao_adicionar_email = Button(self.frame_lbl_botoes, text='Adicionar e-mail')
             self.botao_adicionar_email.config(width=20, padding=1)
             self.botao_adicionar_email.place(y=15, x=15)
-
+            # ----------------------------------------------------------------------------------------------------------
             self.botao_limpar_caixa = Button(self.frame_lbl_botoes, text='Limpar')
             self.botao_limpar_caixa.config(width=20, padding=1)
             self.botao_limpar_caixa.place(y=15, x=150)
-
+            # ----------------------------------------------------------------------------------------------------------
             self.botao_fechar = Button(self.frame_lbl_botoes, text='Fechar')
             self.botao_fechar.config(width=20, padding=1)
             self.botao_fechar.place(y=15, x=300)
-
+            # ----------------------------------------------------------------------------------------------------------
             label_info_linkdin = Label(self.frame_lbl_principal_reg, text='Linkdin: Thiago Alves Pinheiro')
             label_info_linkdin.config(relief='groove')
             label_info_linkdin.place(y=260, x=10)
-
+            # ----------------------------------------------------------------------------------------------------------
             label_info_github = Label(self.frame_lbl_principal_reg, text='GitHub: dev-drizzithiago')
             label_info_github.config(relief='groove')
             label_info_github.place(y=285, x=10)
-
+            # ----------------------------------------------------------------------------------------------------------
             label_info_instagram = Label(self.frame_lbl_principal_reg, text='Instagram: @drizzithiago')
             label_info_instagram.config(relief='groove')
             label_info_instagram.place(y=310, x=10)
+            # ----------------------------------------------------------------------------------------------------------
 
             label_info_instagram = Label(self.frame_lbl_principal_reg, text='E-mails: drizzithdrow@gmail.com / '
                                                                             'th_grifon@hotmail.com')
