@@ -406,7 +406,7 @@ def __cadastro__():
     class CadastroRegistro:
         def __init__(self):
             self.janela_registro = tk.Tk()
-            self.janela_registro.geometry('500x300+700+300')
+            self.janela_registro.geometry('500x400+700+300')
             self.janela_registro.title('Registro')
             self.janela_registro.resizable(0, 0)
 
