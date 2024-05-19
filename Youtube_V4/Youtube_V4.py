@@ -411,7 +411,7 @@ def __cadastro__():
             self.janela_registro.resizable(0, 0)
 
             self.frame_lbl_principal_reg = Labelframe(self.janela_registro, text='Registro:')
-            self.frame_lbl_principal_reg.config(height=280, width=480)
+            self.frame_lbl_principal_reg.config(height=380, width=480)
             self.frame_lbl_principal_reg.place(y=10, x=10)
 
             self.frame_lbl_box_entrada_mail = Labelframe(self.frame_lbl_principal_reg, text='Insira o seu e-mail aqui')
