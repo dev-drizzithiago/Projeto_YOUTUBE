@@ -433,7 +433,7 @@ def __cadastro__():
             self.caixa_codigo_ativacao.place(y=5, x=5)
 
             self.frame_lbl_botoes = Labelframe(self.frame_lbl_principal_reg, text='Escolha uma opção: ')
-            self.frame_lbl_botoes.config(height=100, width=455)
+            self.frame_lbl_botoes.config(height=130, width=455)
             self.frame_lbl_botoes.place(y=130, x=10)
 
             self.botao_adicionar_email = Button(self.frame_lbl_botoes, text='Adicionar e-mail')
@@ -450,15 +450,15 @@ def __cadastro__():
 
             label_info_github = Label(self.frame_lbl_botoes, text='github.com/dev-drizzithiago')
             label_info_github.config(relief='groove')
-            label_info_github.place(y=50, x=120)
+            label_info_github.place(y=50, x=5)
 
             label_info_linkdin = Label(self.frame_lbl_botoes, text='Thiago Alves Pinheiro')
             label_info_linkdin.config(relief='groove')
-            label_info_linkdin.place(y=50, x=300)
+            label_info_linkdin.place(y=50, x=100)
 
             label_info_instagram = Label(self.frame_lbl_botoes, text='@drizzithiago')
             label_info_instagram.config(relief='groove')
-            label_info_instagram.place(y=50, x=120)
+            label_info_instagram.place(y=50, x=300)
 
             """#########"""
             self.janela_registro.mainloop()
