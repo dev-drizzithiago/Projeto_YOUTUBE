@@ -448,17 +448,22 @@ def __cadastro__():
             self.botao_fechar.config(width=20, padding=1)
             self.botao_fechar.place(y=15, x=300)
 
-            label_info_linkdin = Label(self.frame_lbl_botoes, text='Thiago Alves Pinheiro')
+            label_info_linkdin = Label(self.frame_lbl_principal_reg, text='Linkdin: Thiago Alves Pinheiro')
             label_info_linkdin.config(relief='groove')
-            label_info_linkdin.place(y=50, x=100)
+            label_info_linkdin.place(y=260, x=10)
 
-            label_info_github = Label(self.frame_lbl_botoes, text='github.com/dev-drizzithiago')
+            label_info_github = Label(self.frame_lbl_principal_reg, text='GitHub: dev-drizzithiago')
             label_info_github.config(relief='groove')
-            label_info_github.place(y=70, x=5)
+            label_info_github.place(y=285, x=10)
 
-            label_info_instagram = Label(self.frame_lbl_botoes, text='@drizzithiago')
+            label_info_instagram = Label(self.frame_lbl_principal_reg, text='Instagram: @drizzithiago')
             label_info_instagram.config(relief='groove')
-            label_info_instagram.place(y=70, x=300)
+            label_info_instagram.place(y=310, x=10)
+
+            label_info_instagram = Label(self.frame_lbl_principal_reg, text='E-mails: drizzithdrow@gmail.com / '
+                                                                            'th_grifon@hotmail.com')
+            label_info_instagram.config(relief='groove')
+            label_info_instagram.place(y=335, x=10)
 
             """#########"""
             self.janela_registro.mainloop()
