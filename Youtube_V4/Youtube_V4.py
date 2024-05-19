@@ -433,7 +433,7 @@ def __cadastro__():
             self.caixa_codigo_ativacao.place(y=5, x=5)
             # ----------------------------------------------------------------------------------------------------------
             self.frame_lbl_botoes = Labelframe(self.frame_lbl_principal_reg, text='Escolha uma opção: ')
-            self.frame_lbl_botoes.config(height=120, width=455)
+            self.frame_lbl_botoes.config(height=80, width=455)
             self.frame_lbl_botoes.place(y=130, x=10)
             # ----------------------------------------------------------------------------------------------------------
             self.botao_adicionar_email = Button(self.frame_lbl_botoes, text='Adicionar e-mail')
@@ -450,7 +450,7 @@ def __cadastro__():
             # ----------------------------------------------------------------------------------------------------------
             label_info_linkdin = Label(self.frame_lbl_principal_reg, text='Linkdin: Thiago Alves Pinheiro')
             label_info_linkdin.config(relief='groove')
-            label_info_linkdin.place(y=260, x=10)
+            label_info_linkdin.place(y=230, x=10)
             # ----------------------------------------------------------------------------------------------------------
             label_info_github = Label(self.frame_lbl_principal_reg, text='GitHub: dev-drizzithiago')
             label_info_github.config(relief='groove')
