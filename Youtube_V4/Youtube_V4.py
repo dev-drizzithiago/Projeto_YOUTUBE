@@ -406,12 +406,12 @@ def __cadastro__():
     class CadastroRegistro:
         def __init__(self):
             self.janela_registro = tk.Tk()
-            self.janela_registro.geometry('500x400+700+300')
+            self.janela_registro.geometry('500x360+700+300')
             self.janela_registro.title('Registro')
             self.janela_registro.resizable(0, 0)
             # ----------------------------------------------------------------------------------------------------------
             self.frame_lbl_principal_reg = Labelframe(self.janela_registro, text='Registro:')
-            self.frame_lbl_principal_reg.config(height=380, width=480)
+            self.frame_lbl_principal_reg.config(height=340, width=480)
             self.frame_lbl_principal_reg.place(y=10, x=10)
             # ----------------------------------------------------------------------------------------------------------
             self.frame_lbl_box_entrada_mail = Labelframe(self.frame_lbl_principal_reg, text='Insira o seu e-mail aqui')
@@ -438,30 +438,30 @@ def __cadastro__():
             # ----------------------------------------------------------------------------------------------------------
             self.botao_adicionar_email = Button(self.frame_lbl_botoes, text='Adicionar e-mail')
             self.botao_adicionar_email.config(width=20, padding=1)
-            self.botao_adicionar_email.place(y=15, x=15)
+            self.botao_adicionar_email.place(y=15, x=11)
             # ----------------------------------------------------------------------------------------------------------
             self.botao_limpar_caixa = Button(self.frame_lbl_botoes, text='Limpar')
             self.botao_limpar_caixa.config(width=20, padding=1)
-            self.botao_limpar_caixa.place(y=15, x=150)
+            self.botao_limpar_caixa.place(y=15, x=161)
             # ----------------------------------------------------------------------------------------------------------
             self.botao_fechar = Button(self.frame_lbl_botoes, text='Fechar')
             self.botao_fechar.config(width=20, padding=1)
-            self.botao_fechar.place(y=15, x=300)
+            self.botao_fechar.place(y=15, x=310)
             # ----------------------------------------------------------------------------------------------------------
             label_info_linkdin = Label(self.frame_lbl_principal_reg, text='Linkdin: Thiago Alves Pinheiro')
             label_info_linkdin.config(relief='groove')
             label_info_linkdin.place(y=220, x=10)
             # ----------------------------------------------------------------------------------------------------------
-            label_info_github = Label(self.frame_lbl_principal_reg, text='GitHub: dev-drizzithiago')
+            label_info_github = Label(self.frame_lbl_principal_reg, text='GitHub: dev-drizzithiago  ')
             label_info_github.config(relief='groove')
             label_info_github.place(y=245, x=10)
             # ----------------------------------------------------------------------------------------------------------
-            label_info_instagram = Label(self.frame_lbl_principal_reg, text='Instagram: @drizzithiago')
+            label_info_instagram = Label(self.frame_lbl_principal_reg, text='Instagram: @drizzithiago  ')
             label_info_instagram.config(relief='groove')
             label_info_instagram.place(y=270, x=10)
             # ----------------------------------------------------------------------------------------------------------
             label_info_instagram = Label(self.frame_lbl_principal_reg, text='E-mails: drizzithdrow@gmail.com / '
-                                                                            'th_grifon@hotmail.com')
+                                                                            'th_grifon@hotmail.com  ')
             label_info_instagram.config(relief='groove')
             label_info_instagram.place(y=295, x=10)
             # ----------------------------------------------------------------------------------------------------------
