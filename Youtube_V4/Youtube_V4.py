@@ -460,11 +460,11 @@ def __cadastro__():
             label_info_instagram.config(relief='groove')
             label_info_instagram.place(y=310, x=10)
             # ----------------------------------------------------------------------------------------------------------
-
             label_info_instagram = Label(self.frame_lbl_principal_reg, text='E-mails: drizzithdrow@gmail.com / '
                                                                             'th_grifon@hotmail.com')
             label_info_instagram.config(relief='groove')
             label_info_instagram.place(y=335, x=10)
+            # ----------------------------------------------------------------------------------------------------------
 
             """#########"""
             self.janela_registro.mainloop()
