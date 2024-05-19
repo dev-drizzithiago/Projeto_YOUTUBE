@@ -405,24 +405,29 @@ def __cadastro__():
 
     class CadastroRegistro:
         def __init__(self):
+            """#### Janela principal"""
             self.janela_registro = tk.Tk()
             self.janela_registro.geometry('500x360+700+300')
             self.janela_registro.title('Registro')
             self.janela_registro.resizable(0, 0)
             # ----------------------------------------------------------------------------------------------------------
+            """#### Frame label principal"""
             self.frame_lbl_principal_reg = Labelframe(self.janela_registro, text='Registro:')
             self.frame_lbl_principal_reg.config(height=340, width=480)
             self.frame_lbl_principal_reg.place(y=10, x=10)
             # ----------------------------------------------------------------------------------------------------------
+            """#### Frame Label para caixa de e-mail"""
             self.frame_lbl_box_entrada_mail = Labelframe(self.frame_lbl_principal_reg, text='Insira o seu e-mail aqui')
             self.frame_lbl_box_entrada_mail.config(height=60, width=455)
             self.frame_lbl_box_entrada_mail.place(y=10, x=10)
             # ----------------------------------------------------------------------------------------------------------
+            """#### Caixa de entrada de e-mail"""
             self.var_caixa_email = tk.StringVar()
             self.caixa_enter_email = Entry(self.frame_lbl_box_entrada_mail, textvariable=self.var_caixa_email)
             self.caixa_enter_email.config(width=72)
             self.caixa_enter_email.place(y=5, x=5)
             # ----------------------------------------------------------------------------------------------------------
+            """#### Caixa de entrada para o codigo de ativação"""
             self.frame_lbl_box_ativacao = Labelframe(self.frame_lbl_principal_reg, text='Insira o codigo')
             self.frame_lbl_box_ativacao.config(height=60, width=455)
             self.frame_lbl_box_ativacao.place(y=70, x=10)
