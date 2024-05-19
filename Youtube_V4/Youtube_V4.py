@@ -427,32 +427,38 @@ def __cadastro__():
             self.caixa_enter_email.config(width=72)
             self.caixa_enter_email.place(y=5, x=5)
             # ----------------------------------------------------------------------------------------------------------
-            """#### Caixa de entrada para o codigo de ativação"""
+            """#### Frame label para Caixa de entrada para o codigo de ativação"""
             self.frame_lbl_box_ativacao = Labelframe(self.frame_lbl_principal_reg, text='Insira o codigo')
             self.frame_lbl_box_ativacao.config(height=60, width=455)
             self.frame_lbl_box_ativacao.place(y=70, x=10)
             # ----------------------------------------------------------------------------------------------------------
+            """#### Caixa de entrada do codigo de ativação"""
             self.var_caixa_ativacao = tk.StringVar()
             self.caixa_codigo_ativacao = Entry(self.frame_lbl_box_ativacao, textvariable=self.var_caixa_ativacao)
             self.caixa_codigo_ativacao.config(width=72)
             self.caixa_codigo_ativacao.place(y=5, x=5)
             # ----------------------------------------------------------------------------------------------------------
+            """#### Frame label para os botões"""
             self.frame_lbl_botoes = Labelframe(self.frame_lbl_principal_reg, text='Escolha uma opção: ')
             self.frame_lbl_botoes.config(height=80, width=455)
             self.frame_lbl_botoes.place(y=130, x=10)
             # ----------------------------------------------------------------------------------------------------------
+            """#### Botão para adicionar e-mail"""
             self.botao_adicionar_email = Button(self.frame_lbl_botoes, text='Adicionar e-mail')
             self.botao_adicionar_email.config(width=20, padding=1)
             self.botao_adicionar_email.place(y=15, x=11)
             # ----------------------------------------------------------------------------------------------------------
+            """#### Botão para limpar as caixas"""
             self.botao_limpar_caixa = Button(self.frame_lbl_botoes, text='Limpar')
             self.botao_limpar_caixa.config(width=20, padding=1)
             self.botao_limpar_caixa.place(y=15, x=161)
             # ----------------------------------------------------------------------------------------------------------
+            """#### Botão para fechar o programa"""
             self.botao_fechar = Button(self.frame_lbl_botoes, text='Fechar')
             self.botao_fechar.config(width=20, padding=1)
             self.botao_fechar.place(y=15, x=310)
             # ----------------------------------------------------------------------------------------------------------
+            """#### Informações de contato"""
             label_info_linkdin = Label(self.frame_lbl_principal_reg, text='Linkdin: Thiago Alves Pinheiro')
             label_info_linkdin.config(relief='groove')
             label_info_linkdin.place(y=220, x=10)
