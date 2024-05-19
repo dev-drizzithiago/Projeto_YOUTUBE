@@ -444,6 +444,12 @@ def __cadastro__():
             self.botao_limpar_caixa.config(width=20, padding=1)
             self.botao_limpar_caixa.place(y=15, x=150)
 
+            self.botao_fechar = Button(self.frame_lbl_botoes, text='Fechar')
+            self.botao_fechar.config(width=20, padding=1)
+            self.botao_fechar.place(y=15, x=300)
+
+            label_info_github = Label(self.frame_lbl_botoes, text='')
+
             """#########"""
             self.janela_registro.mainloop()
 
