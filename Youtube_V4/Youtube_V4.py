@@ -458,7 +458,7 @@ def __cadastro__():
 
             label_info_instagram = Label(self.frame_lbl_botoes, text='@drizzithiago')
             label_info_instagram.config(relief='groove')
-            label_info_instagram.place(y=70, x=150)
+            label_info_instagram.place(y=70, x=300)
 
             """#########"""
             self.janela_registro.mainloop()
