@@ -450,15 +450,15 @@ def __cadastro__():
             # ----------------------------------------------------------------------------------------------------------
             label_info_linkdin = Label(self.frame_lbl_principal_reg, text='Linkdin: Thiago Alves Pinheiro')
             label_info_linkdin.config(relief='groove')
-            label_info_linkdin.place(y=230, x=10)
+            label_info_linkdin.place(y=220, x=10)
             # ----------------------------------------------------------------------------------------------------------
             label_info_github = Label(self.frame_lbl_principal_reg, text='GitHub: dev-drizzithiago')
             label_info_github.config(relief='groove')
-            label_info_github.place(y=285, x=10)
+            label_info_github.place(y=245, x=10)
             # ----------------------------------------------------------------------------------------------------------
             label_info_instagram = Label(self.frame_lbl_principal_reg, text='Instagram: @drizzithiago')
             label_info_instagram.config(relief='groove')
-            label_info_instagram.place(y=310, x=10)
+            label_info_instagram.place(y=265, x=10)
             # ----------------------------------------------------------------------------------------------------------
             label_info_instagram = Label(self.frame_lbl_principal_reg, text='E-mails: drizzithdrow@gmail.com / '
                                                                             'th_grifon@hotmail.com')
