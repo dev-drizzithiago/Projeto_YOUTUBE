@@ -480,6 +480,12 @@ def __cadastro__():
             """#########"""
             self.janela_registro.mainloop()
 
+        def registrando_email(self):
+            pass
+
+        def registrando_cod(self):
+            pass
+
     obj_inicio_registro = CadastroRegistro()
 
 
