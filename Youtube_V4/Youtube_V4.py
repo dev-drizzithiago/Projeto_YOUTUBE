@@ -182,7 +182,7 @@ class Youtube_v4:
             if link[:24] == 'https://www.youtube.com/':
                 self.botao_add_link.config(state=tk.NORMAL)
                 self.botao_add_link.config(command=self.thread_add_link)
-                print('Link validado com sucesso!')
+                self.lbl_statos_processos('Link validado com sucesso!')
 
     """#### Processo diversos"""
     """### Threads"""
