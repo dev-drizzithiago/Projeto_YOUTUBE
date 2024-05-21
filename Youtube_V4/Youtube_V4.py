@@ -490,11 +490,14 @@ def __cadastro__():
             self.janela_registro.mainloop()
 
         def registro_dados(self):
+
             """#### Conectando ao bando de dados """
+            open_senha = open('C:\\Users\\Thiago\\OneDrive\\Documentos\\Senha_youtube_v4\\senha.txt', 'r')
+            senha = open_senha.readline()
             try:
                 self.conexao_db = Connect(host='db4free.net',
                                           user='drizzithiago',
-                                          password='',
+                                          password=senha,
                                           database='drizzithiago_sql')
                 print('Conexão realizado com sucesso!')
             except:
