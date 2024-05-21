@@ -1,4 +1,3 @@
-
 """Declarações dos modulos do youtobe"""
 from os import makedirs, listdir, path, remove
 from tkinter.messagebox import showwarning
@@ -12,8 +11,7 @@ from re import search
 import tkinter as tk
 
 """Declaração dos modulos de cadastros"""
-from mysql.connector import connect
-
+from mysql.connector import Connect
 
 """Criando pasta home"""
 try:
@@ -40,6 +38,7 @@ except FileExistsError:
 
 """#### Declaração de variaveis"""
 linha = '---' * 20
+
 
 class Youtube_v4:
     def __init__(self):
@@ -167,6 +166,7 @@ class Youtube_v4:
         self.janela_principal.mainloop()
 
     """#### Eventos diversos """
+
     def ativar_botao_downloads(self, *args):
         self.botao_down_link.config(state=tk.NORMAL)
         self.botao_deletar.config(state=tk.NORMAL)
@@ -186,6 +186,7 @@ class Youtube_v4:
 
     """#### Processo diversos"""
     """### Threads"""
+
     def thread_add_link(self):
         Thread(target=self.registrando_link_youtube).start()
 
@@ -199,6 +200,7 @@ class Youtube_v4:
         Thread(target=self.deletar_links).start()
 
     """### Manipulação do arquivo de texto"""
+
     def registrando_link_youtube(self):
         """
 
@@ -239,7 +241,6 @@ class Youtube_v4:
         self.quantidade_links = len(self.lendo_arq_txt_lnk)
 
         for indice, valor_link in enumerate(self.lendo_arq_txt_lnk):
-
             autor_link = YouTube(valor_link).author
             titulo_link = YouTube(valor_link).title
 
@@ -252,6 +253,7 @@ class Youtube_v4:
         self.botao_limpar_lista.config(command=self.limpar_lista_cache)
 
     """# Funções básicas"""
+
     def limpar_lista_cache(self):
 
         """#### Limpando as variaveis"""
@@ -307,6 +309,7 @@ class Youtube_v4:
                 remove(mp4_file)
 
     """#### Downloads dos links"""
+
     def downloads_link(self):
         valor_radio = self.var_radio_.get()
         if len(valor_radio) > 0:
@@ -374,6 +377,7 @@ class Youtube_v4:
                     showwarning('AVISO!', 'Não existem links para downloads')
         else:
             showwarning('AVISO', 'Selecione uma extensão!')
+
 
 def __AVISO__():
     local_registro = Path('C:', 'ProgramData', 'Youtube_V4')
@@ -480,19 +484,25 @@ def __cadastro__():
             self.botao_fechar.config(width=20, padding=1)
             self.botao_fechar.place(y=15, x=310)
 
+            self.registro_dados()
+
             """#########"""
             self.janela_registro.mainloop()
 
-        def registror_dados(self):
+        def registro_dados(self):
             """#### Conectando ao bando de dados """
-            self.conexao_db = connect(user='drizzithiago', password='',
-                                      database='drizzithiago_sql')
-
+            try:
+                self.conexao_db = Connect(host='db4free.net',
+                                          user='drizzithiago',
+                                          password='',
+                                          database='drizzithiago_sql')
+                print('Conexão realizado com sucesso!')
+            except:
+                print('Não foi possível conectar ao banco de dados')
 
     obj_inicio_registro = CadastroRegistro()
 
 
 __cadastro__()
-
 
 # iniciando_obj = Youtube_v4()
