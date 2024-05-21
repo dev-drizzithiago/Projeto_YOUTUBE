@@ -501,6 +501,13 @@ def __cadastro__():
                 print('Conexão realizado com sucesso!')
             except:
                 print('Não foi possível conectar ao banco de dados')
+            nome_teste = 'Thiago'
+            email_teste = 'th_grifon@hotmail.com'
+            teste_regiao = 'São Paulo'
+            self.comando_sql = "INSERT INTO registro_yt_4 (nome_completo, email_cadastros, regiao) " \
+                               'VALUES (%s, %s, %s) '
+
+
 
     obj_inicio_registro = CadastroRegistro()
 
