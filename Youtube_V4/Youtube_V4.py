@@ -463,12 +463,12 @@ def __cadastro__():
             """#### Frame label para os botões"""
             self.frame_lbl_botoes = Labelframe(self.frame_lbl_principal_reg, text='Escolha uma opção: ')
             self.frame_lbl_botoes.config(height=80, width=455)
-            self.frame_lbl_botoes.place(y=250, x=10)
+            self.frame_lbl_botoes.place(y=265, x=10)
             # ----------------------------------------------------------------------------------------------------------
-            """#### Botão para adicionar e-mail"""
-            self.botao_adicionar_email = Button(self.frame_lbl_botoes, text='Adicionar e-mail')
-            self.botao_adicionar_email.config(width=20, padding=1)
-            self.botao_adicionar_email.place(y=15, x=11)
+            """#### Botão para registrar"""
+            self.botao_adicionar_registro = Button(self.frame_lbl_botoes, text='Registrar')
+            self.botao_adicionar_registro.config(width=20, padding=1)
+            self.botao_adicionar_registro.place(y=15, x=11)
             # ----------------------------------------------------------------------------------------------------------
             """#### Botão para limpar as caixas"""
             self.botao_limpar_caixa = Button(self.frame_lbl_botoes, text='Limpar')
