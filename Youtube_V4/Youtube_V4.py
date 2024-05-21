@@ -484,10 +484,10 @@ def __cadastro__():
             self.janela_registro.mainloop()
 
         def registror_dados(self):
-            pass
+            """#### Conectando ao bando de dados """
+            self.conexao_db = connect(user='drizzithiago', password='',
+                                      database='drizzithiago_sql')
 
-        def registrando_cod(self):
-            pass
 
     obj_inicio_registro = CadastroRegistro()
 
