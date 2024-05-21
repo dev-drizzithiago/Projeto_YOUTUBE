@@ -504,7 +504,7 @@ def __cadastro__():
             nome_teste = 'Thiago'
             email_teste = 'th_grifon@hotmail.com'
             teste_regiao = 'São Paulo'
-            self.comando_sql = "INSERT INTO registro_yt_4 (nome_completo, email_cadastros, regiao) " \
+            self.comando_sql = "INSERT INTO registro_yt_4 (nome_completo, email_cadastro, regiao) " \
                                'VALUES (%s, %s, %s) '
             self.valor_sql = (nome_teste, email_teste, teste_regiao)
             curso_db = self.conexao_db.cursor()
