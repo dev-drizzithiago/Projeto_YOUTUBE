@@ -502,7 +502,7 @@ def __cadastro__():
             except:
                 print('Não foi possível conectar ao banco de dados')
             nome_teste = 'Thiago'
-            email_teste = 'th_grifon@hotmail.com'
+            email_teste = '@hotmail.com'
             teste_regiao = 'São Paulo'
             self.comando_sql = "INSERT INTO registro_yt_4 (nome_completo, email_cadastro, regiao) " \
                                'VALUES (%s, %s, %s) '
@@ -510,11 +510,9 @@ def __cadastro__():
             curso_db = self.conexao_db.cursor()
             curso_db.execute(self.comando_sql, self.valor_sql)
 
-
-
     obj_inicio_registro = CadastroRegistro()
 
 
-__cadastro__()
+# __cadastro__()
 
-# iniciando_obj = Youtube_v4()
+iniciando_obj = Youtube_v4()
