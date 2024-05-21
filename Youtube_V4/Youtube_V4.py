@@ -483,7 +483,7 @@ def __cadastro__():
             """#########"""
             self.janela_registro.mainloop()
 
-        def registrando_email(self):
+        def registror_dados(self):
             pass
 
         def registrando_cod(self):
