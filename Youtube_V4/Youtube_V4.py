@@ -490,7 +490,6 @@ def __cadastro__():
             self.janela_registro.mainloop()
 
         def registro_dados(self):
-
             """#### Conectando ao bando de dados """
             open_senha = open('C:\\Users\\Thiago\\OneDrive\\Documentos\\Senha_youtube_v4\\senha.txt', 'r')
             senha = open_senha.readline()
