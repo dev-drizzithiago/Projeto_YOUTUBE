@@ -457,25 +457,6 @@ def __cadastro__():
             self.botao_fechar = Button(self.frame_lbl_botoes, text='Fechar')
             self.botao_fechar.config(width=20, padding=1)
             self.botao_fechar.place(y=15, x=310)
-            # ----------------------------------------------------------------------------------------------------------
-            """#### Informações de contato"""
-            label_info_linkdin = Label(self.frame_lbl_principal_reg, text='Linkdin: Thiago Alves Pinheiro')
-            label_info_linkdin.config(relief='groove')
-            label_info_linkdin.place(y=220, x=10)
-            # ----------------------------------------------------------------------------------------------------------
-            label_info_github = Label(self.frame_lbl_principal_reg, text='GitHub: dev-drizzithiago  ')
-            label_info_github.config(relief='groove')
-            label_info_github.place(y=245, x=10)
-            # ----------------------------------------------------------------------------------------------------------
-            label_info_instagram = Label(self.frame_lbl_principal_reg, text='Instagram: @drizzithiago  ')
-            label_info_instagram.config(relief='groove')
-            label_info_instagram.place(y=270, x=10)
-            # ----------------------------------------------------------------------------------------------------------
-            label_info_instagram = Label(self.frame_lbl_principal_reg, text='E-mails: drizzithdrow@gmail.com / '
-                                                                            'th_grifon@hotmail.com  ')
-            label_info_instagram.config(relief='groove')
-            label_info_instagram.place(y=295, x=10)
-            # ----------------------------------------------------------------------------------------------------------
 
             """#########"""
             self.janela_registro.mainloop()
