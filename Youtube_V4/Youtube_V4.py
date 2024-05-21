@@ -407,16 +407,15 @@ def __cadastro__():
         def __init__(self):
             """#### Janela principal"""
             self.janela_registro = tk.Tk()
-            self.janela_registro.geometry('500x360+700+300')
+            self.janela_registro.geometry('500x400+700+300')
             self.janela_registro.title('Registro')
             self.janela_registro.resizable(0, 0)
             # ----------------------------------------------------------------------------------------------------------
             """#### Frame label principal"""
             self.frame_lbl_principal_reg = Labelframe(self.janela_registro, text='Registro:')
-            self.frame_lbl_principal_reg.config(height=340, width=480)
+            self.frame_lbl_principal_reg.config(height=380, width=480)
             self.frame_lbl_principal_reg.place(y=10, x=10)
-
-            # ----------------------------------------------------------------------------------------------------------
+            # ##########################################################################################################
             """#### Frame label para Caixa de de nome"""
             self.frame_lbl_box_nome = Labelframe(self.frame_lbl_principal_reg, text='Nome completo')
             self.frame_lbl_box_nome.config(height=60, width=455)
@@ -427,7 +426,7 @@ def __cadastro__():
             self.caixa_enter_nome = Entry(self.frame_lbl_box_nome, textvariable=self.var_caixa_enter_nome)
             self.caixa_enter_nome.config(width=72)
             self.caixa_enter_nome.place(y=5, x=5)
-            # ----------------------------------------------------------------------------------------------------------
+            # ##########################################################################################################
             """#### Frame Label para caixa de e-mail"""
             self.frame_lbl_box_entrada_mail = Labelframe(self.frame_lbl_principal_reg, text='Insira o seu e-mail aqui')
             self.frame_lbl_box_entrada_mail.config(height=60, width=455)
@@ -438,7 +437,7 @@ def __cadastro__():
             self.caixa_enter_email = Entry(self.frame_lbl_box_entrada_mail, textvariable=self.var_caixa_email)
             self.caixa_enter_email.config(width=72)
             self.caixa_enter_email.place(y=5, x=5)
-            # ----------------------------------------------------------------------------------------------------------
+            # ##########################################################################################################
             """#### Frame label para Caixa de entrada para o codigo de ativação"""
             self.frame_lbl_box_ativacao = Labelframe(self.frame_lbl_principal_reg, text='Insira o codigo')
             self.frame_lbl_box_ativacao.config(height=60, width=455)
@@ -449,22 +448,22 @@ def __cadastro__():
             self.caixa_codigo_ativacao = Entry(self.frame_lbl_box_ativacao, textvariable=self.var_caixa_ativacao)
             self.caixa_codigo_ativacao.config(width=72)
             self.caixa_codigo_ativacao.place(y=5, x=5)
-            # ----------------------------------------------------------------------------------------------------------
+            # ##########################################################################################################
             """#### Frame label para Caixa região"""
             self.frame_lbl_box_ativacao = Labelframe(self.frame_lbl_principal_reg, text='Insira o codigo')
             self.frame_lbl_box_ativacao.config(height=60, width=455)
             self.frame_lbl_box_ativacao.place(y=200, x=10)
             # ----------------------------------------------------------------------------------------------------------
-            """#### Caixa de entrada do codigo de ativação"""
+            """#### Caixa de entrada Caixa região"""
             self.var_caixa_regiao = tk.StringVar()
             self.caixa_regiao = Entry(self.frame_lbl_box_ativacao, textvariable=self.var_caixa_regiao)
             self.caixa_regiao.config(width=72)
             self.caixa_regiao.place(y=5, x=5)
-            # ----------------------------------------------------------------------------------------------------------
+            # ##########################################################################################################
             """#### Frame label para os botões"""
             self.frame_lbl_botoes = Labelframe(self.frame_lbl_principal_reg, text='Escolha uma opção: ')
             self.frame_lbl_botoes.config(height=80, width=455)
-            self.frame_lbl_botoes.place(y=235, x=10)
+            self.frame_lbl_botoes.place(y=250, x=10)
             # ----------------------------------------------------------------------------------------------------------
             """#### Botão para adicionar e-mail"""
             self.botao_adicionar_email = Button(self.frame_lbl_botoes, text='Adicionar e-mail')
