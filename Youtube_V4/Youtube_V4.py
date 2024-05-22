@@ -237,6 +237,7 @@ class Youtube_v4:
             valor_arq_txt_link = open(caminho_arq_txt, 'r')
             self.lendo_arq_txt_lnk = valor_arq_txt_link.readlines()
         except FileNotFoundError:
+            self.barra_progresso_geral.stop()
             print('Arquivo não foi encontrado')
             showwarning('AVISO', 'Arquivo que contem os links não foi encontrado. \n'
                                  'Tente adicionar um link para criar!')
@@ -296,14 +297,13 @@ class Youtube_v4:
                 atualizado_registro_link_salvos = open(caminho_arq_txt, 'a')
                 try:
                     atualizado_registro_link_salvos.write(f'{valor_lista_atualizado_link}')
-
+                    atualizado_registro_link_salvos.close()
                 except:
                     showwarning('AVISO!', 'Não foi possível atualizar o arquivo')
 
         except FileNotFoundError:
             showwarning('AVISO!', 'Não existe nenhum arquivo')
 
-        atualizado_registro_link_salvos.close()
         self.thread_leitura_link()
 
     def MP3_TO_MP4(self):
