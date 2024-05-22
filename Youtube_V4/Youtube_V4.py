@@ -141,10 +141,10 @@ class Youtube_v4:
         self.frame_lbl_info_link.config(height=65, width=875)
         self.frame_lbl_info_link.place(y=345, x=5)
 
-        self.var_info_statos_processos = tk.StringVar()
-        self.lbl_statos_processos = Label(self.frame_lbl_info_link, text=self.var_info_statos_processos)
-        self.lbl_statos_processos.config(text='', justify='center')
-        self.lbl_statos_processos.place(y=15, x=50)
+        self.var_info_lbl_status_processos = tk.StringVar()
+        self.lbl_status_processos = Label(self.frame_lbl_info_link, text=self.var_info_lbl_status_processos)
+        self.lbl_status_processos.config(text='', justify='center')
+        self.lbl_status_processos.place(y=15, x=50)
 
         # --------------------------------------------------------------------------------------------------------------
         """Barra de progresso"""
@@ -173,7 +173,7 @@ class Youtube_v4:
 
     def ativar_botao_adicionar_link(self, *args):
         link = self.var_caixa_de_entrada.get()
-        print(f'Validação do link: \n{link}')
+        self.lbl_status_processos(f'Validação do link: {link}')
 
         if self.quantidade_links == 20:
             showwarning('AVISO!', 'Possui 20 links salvos, delete algum link para adicioar outra. ')
@@ -182,7 +182,7 @@ class Youtube_v4:
             if link[:24] == 'https://www.youtube.com/':
                 self.botao_add_link.config(state=tk.NORMAL)
                 self.botao_add_link.config(command=self.thread_add_link)
-                self.lbl_statos_processos('Link validado com sucesso!')
+                print('Link validado com sucesso!')
 
     """#### Processo diversos"""
     """### Threads"""
@@ -234,7 +234,7 @@ class Youtube_v4:
         valor_arq_txt_link = open(caminho_arq_txt, 'r')
         self.lendo_arq_txt_lnk = valor_arq_txt_link.readlines()
 
-        self.lbl_statos_processos.config(text='Carregando lista de links, aguarde!')
+        self.lbl_status_processos.config(text='Carregando lista de links, aguarde!')
         self.barra_progresso_geral.start()
 
         """#### Variavel server para guardar a quantidade de links que possui guardadas. """
@@ -247,7 +247,7 @@ class Youtube_v4:
             self.lista_cache_links_add.insert('end', f'{indice + 1} - {autor_link} ---- {titulo_link}')
 
         self.barra_progresso_geral.stop()
-        self.lbl_statos_processos.config(text='Lista carregada!')
+        self.lbl_status_processos.config(text='Lista carregada!')
 
         self.frame_lbl_botao_limpar.config(text='Limpar')
         self.botao_limpar_lista.config(command=self.limpar_lista_cache)
@@ -326,7 +326,7 @@ class Youtube_v4:
                     obj_youtube = YouTube(dados_selecionados)
 
                     """ Informando na label do programa"""
-                    self.lbl_statos_processos.config(text=f'Downloads {obj_youtube.author} - {obj_youtube.title} '
+                    self.lbl_status_processos.config(text=f'Downloads {obj_youtube.author} - {obj_youtube.title} '
                                                           f'em andamento... Aguarde!')
                     """#### Processo de downloads do Audio """
                     """### Inicia a barra de progresso"""
@@ -341,7 +341,7 @@ class Youtube_v4:
                         """ Finaliza o processo da barra de progresso. """
                         self.barra_progresso_geral.stop()
                         self.barra_progresso_geral.config(value=100)
-                        self.lbl_statos_processos.config(text=f'Downloads realizado com sucesso!')
+                        self.lbl_status_processos.config(text=f'Downloads realizado com sucesso!')
 
                     except:
                         print('Erro ao fazer o downloads!')
