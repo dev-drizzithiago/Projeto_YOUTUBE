@@ -145,7 +145,6 @@ class Youtube_v4:
         self.lbl_status_processos = Label(self.frame_lbl_info_link, text=self.var_info_lbl_status_processos)
         self.lbl_status_processos.config(text='', justify='center')
         self.lbl_status_processos.place(y=15, x=50)
-
         # --------------------------------------------------------------------------------------------------------------
         """Barra de progresso"""
         self.frame_lbl_progresso = LabelFrame(self.frame_label_principal, text='Progresso!')
@@ -156,6 +155,14 @@ class Youtube_v4:
         self.barra_progresso_geral.config(mode='determinate', length=868)
         self.barra_progresso_geral.place(y=1, x=1)
         # --------------------------------------------------------------------------------------------------------------
+        """#### Informaçoes do desenvolvedor"""
+        self.frame_lbl_contato = Labelframe(self.frame_label_principal, text='Desenvolvido por:')
+        self.frame_lbl_contato.place(y=250, x=350)
+
+        self.lbl_contato = Label(self.frame_lbl_contato, text='github.com/dev-drizzithiago')
+        self.lbl_contato.pack(anchor='center')
+        # --------------------------------------------------------------------------------------------------------------
+
 
         """#### Declarações de variaveis"""
         self.ativar_ = False
