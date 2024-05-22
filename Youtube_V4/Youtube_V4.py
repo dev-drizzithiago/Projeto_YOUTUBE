@@ -236,6 +236,7 @@ class Youtube_v4:
         try:
             valor_arq_txt_link = open(caminho_arq_txt, 'r')
             self.lendo_arq_txt_lnk = valor_arq_txt_link.readlines()
+            valor_arq_txt_link.close()
         except FileNotFoundError:
             self.barra_progresso_geral.stop()
             print('Arquivo não foi encontrado')
