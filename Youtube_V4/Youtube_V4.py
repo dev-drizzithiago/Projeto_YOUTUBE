@@ -348,6 +348,7 @@ class Youtube_v4:
                     """ Informando na label do programa"""
                     self.lbl_status_processos.config(text=f'Downloads {obj_youtube.author} - {obj_youtube.title} '
                                                           f'em andamento... Aguarde!')
+
                     """#### Processo de downloads do Audio """
                     """### Inicia a barra de progresso"""
                     self.barra_progresso_geral.start()
@@ -355,7 +356,7 @@ class Youtube_v4:
                     """#### Processo do downloads"""
                     try:
                         obj_youtube.streams.filter(only_audio=True).first().download(path_temp_yt)
-                        
+
                         """Abre a função para tranformar o arquivo MP4 em MP3"""
                         self.MP3_TO_MP4()
 
@@ -398,142 +399,5 @@ class Youtube_v4:
                     showwarning('AVISO!', 'Não existem links para downloads')
         else:
             showwarning('AVISO', 'Selecione uma extensão!')
-
-
-def __AVISO__():
-    local_registro = Path('C:', 'ProgramData', 'Youtube_V4')
-    arquivo_de_log = 'log_YT_V4.log'
-    arq_info_aviso = f'{local_registro}\\{arquivo_de_log}'
-
-    """#### Criando pasta que vai receber o arquivo de log"""
-    try:
-        makedirs(local_registro)
-    except FileExistsError:
-        pass
-
-    """#### Criando arquivo de log"""
-    try:
-        criando_arquivo_info = open(local_registro, 'a')
-        criando_arquivo_info.write(f'{''}')
-
-    except FileExistsError:
-        pass
-    criando_arquivo_info.close()
-
-
-def __cadastro__():
-    """
-    Responsável em coletar informações do usuário. Serve apenas para experiência;
-    Vou utilizar uma conexão para bando de dados.
-    :return:
-    """
-
-    class CadastroRegistro:
-        def __init__(self):
-            """#### Janela principal"""
-            self.janela_registro = tk.Tk()
-            self.janela_registro.geometry('500x400+700+300')
-            self.janela_registro.title('Registro')
-            self.janela_registro.resizable(0, 0)
-            # ----------------------------------------------------------------------------------------------------------
-            """#### Frame label principal"""
-            self.frame_lbl_principal_reg = Labelframe(self.janela_registro, text='Registro:')
-            self.frame_lbl_principal_reg.config(height=380, width=480)
-            self.frame_lbl_principal_reg.place(y=10, x=10)
-            # ##########################################################################################################
-            """#### Frame label para Caixa de de nome"""
-            self.frame_lbl_box_nome = Labelframe(self.frame_lbl_principal_reg, text='Nome completo')
-            self.frame_lbl_box_nome.config(height=60, width=455)
-            self.frame_lbl_box_nome.place(y=10, x=10)
-            # ----------------------------------------------------------------------------------------------------------
-            """#### Caixa de entrada do codigo de ativação"""
-            self.var_caixa_enter_nome = tk.StringVar()
-            self.caixa_enter_nome = Entry(self.frame_lbl_box_nome, textvariable=self.var_caixa_enter_nome)
-            self.caixa_enter_nome.config(width=72)
-            self.caixa_enter_nome.place(y=5, x=5)
-            # ##########################################################################################################
-            """#### Frame Label para caixa de e-mail"""
-            self.frame_lbl_box_entrada_mail = Labelframe(self.frame_lbl_principal_reg, text='Insira o seu e-mail aqui')
-            self.frame_lbl_box_entrada_mail.config(height=60, width=455)
-            self.frame_lbl_box_entrada_mail.place(y=70, x=10)
-            # ----------------------------------------------------------------------------------------------------------
-            """#### Caixa de entrada de e-mail"""
-            self.var_caixa_email = tk.StringVar()
-            self.caixa_enter_email = Entry(self.frame_lbl_box_entrada_mail, textvariable=self.var_caixa_email)
-            self.caixa_enter_email.config(width=72)
-            self.caixa_enter_email.place(y=5, x=5)
-            # ##########################################################################################################
-            """#### Frame label para Caixa de entrada para o codigo de ativação"""
-            self.frame_lbl_box_ativacao = Labelframe(self.frame_lbl_principal_reg, text='Insira o codigo')
-            self.frame_lbl_box_ativacao.config(height=60, width=455)
-            self.frame_lbl_box_ativacao.place(y=130, x=10)
-            # ----------------------------------------------------------------------------------------------------------
-            """#### Caixa de entrada do codigo de ativação"""
-            self.var_caixa_ativacao = tk.StringVar()
-            self.caixa_codigo_ativacao = Entry(self.frame_lbl_box_ativacao, textvariable=self.var_caixa_ativacao)
-            self.caixa_codigo_ativacao.config(width=72)
-            self.caixa_codigo_ativacao.place(y=5, x=5)
-            # ##########################################################################################################
-            """#### Frame label para Caixa região"""
-            self.frame_lbl_box_ativacao = Labelframe(self.frame_lbl_principal_reg, text='Insira o codigo')
-            self.frame_lbl_box_ativacao.config(height=60, width=455)
-            self.frame_lbl_box_ativacao.place(y=200, x=10)
-            # ----------------------------------------------------------------------------------------------------------
-            """#### Caixa de entrada Caixa região"""
-            self.var_caixa_regiao = tk.StringVar()
-            self.caixa_regiao = Entry(self.frame_lbl_box_ativacao, textvariable=self.var_caixa_regiao)
-            self.caixa_regiao.config(width=72)
-            self.caixa_regiao.place(y=5, x=5)
-            # ##########################################################################################################
-            """#### Frame label para os botões"""
-            self.frame_lbl_botoes = Labelframe(self.frame_lbl_principal_reg, text='Escolha uma opção: ')
-            self.frame_lbl_botoes.config(height=80, width=455)
-            self.frame_lbl_botoes.place(y=265, x=10)
-            # ----------------------------------------------------------------------------------------------------------
-            """#### Botão para registrar"""
-            self.botao_adicionar_registro = Button(self.frame_lbl_botoes, text='Registrar')
-            self.botao_adicionar_registro.config(width=20, padding=1)
-            self.botao_adicionar_registro.place(y=15, x=11)
-            # ----------------------------------------------------------------------------------------------------------
-            """#### Botão para limpar as caixas"""
-            self.botao_limpar_caixa = Button(self.frame_lbl_botoes, text='Limpar')
-            self.botao_limpar_caixa.config(width=20, padding=1)
-            self.botao_limpar_caixa.place(y=15, x=161)
-            # ----------------------------------------------------------------------------------------------------------
-            """#### Botão para fechar o programa"""
-            self.botao_fechar = Button(self.frame_lbl_botoes, text='Fechar')
-            self.botao_fechar.config(width=20, padding=1)
-            self.botao_fechar.place(y=15, x=310)
-
-            self.registro_dados()
-
-            """#########"""
-            self.janela_registro.mainloop()
-
-        def registro_dados(self):
-            """#### Conectando ao bando de dados """
-            open_senha = open('C:\\Users\\Thiago\\OneDrive\\Documentos\\Senha_youtube_v4\\senha.txt', 'r')
-            senha = open_senha.readline()
-            try:
-                self.conexao_db = Connect(host='db4free.net',
-                                          user='drizzithiago',
-                                          password=senha,
-                                          database='drizzithiago_sql')
-                print('Conexão realizado com sucesso!')
-            except:
-                print('Não foi possível conectar ao banco de dados')
-            nome_teste = 'Thiago'
-            email_teste = '@hotmail.com'
-            teste_regiao = 'São Paulo'
-            self.comando_sql = "INSERT INTO registro_yt_4 (nome_completo, email_cadastro, regiao) " \
-                               'VALUES (%s, %s, %s) '
-            self.valor_sql = (nome_teste, email_teste, teste_regiao)
-            curso_db = self.conexao_db.cursor()
-            curso_db.execute(self.comando_sql, self.valor_sql)
-
-    obj_inicio_registro = CadastroRegistro()
-
-
-# __cadastro__()
 
 iniciando_obj = Youtube_v4()
