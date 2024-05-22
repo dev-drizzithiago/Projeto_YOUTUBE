@@ -233,20 +233,30 @@ class Youtube_v4:
     def leitura_arq_links(self):
         """#### A linha descrita abaixo, serve para quando clicar em atualizar, limpa a lista de reponhe os dados"""
         self.lista_cache_links_add.delete(0, 'end')
-        valor_arq_txt_link = open(caminho_arq_txt, 'r')
-        self.lendo_arq_txt_lnk = valor_arq_txt_link.readlines()
+        try:
+            valor_arq_txt_link = open(caminho_arq_txt, 'r')
+            self.lendo_arq_txt_lnk = valor_arq_txt_link.readlines()
+        except FileNotFoundError:
+            print('Arquivo não foi encontrado')
+            showwarning('AVISO', 'Arquivo que contem os links não foi encontrado. \n'
+                                 'Tente adicionar um link para criar!')
 
         self.lbl_status_processos.config(text='Carregando lista de links, aguarde!')
         self.barra_progresso_geral.start()
 
         """#### Variavel server para guardar a quantidade de links que possui guardadas. """
-        self.quantidade_links = len(self.lendo_arq_txt_lnk)
+        try:
+            self.quantidade_links = len(self.lendo_arq_txt_lnk)
+        except:
+            print('self.quantidade_links - error')
 
-        for indice, valor_link in enumerate(self.lendo_arq_txt_lnk):
-            autor_link = YouTube(valor_link).author
-            titulo_link = YouTube(valor_link).title
-
-            self.lista_cache_links_add.insert('end', f'{indice + 1} - {autor_link} ---- {titulo_link}')
+        try:
+            for indice, valor_link in enumerate(self.lendo_arq_txt_lnk):
+                autor_link = YouTube(valor_link).author
+                titulo_link = YouTube(valor_link).title
+                self.lista_cache_links_add.insert('end', f'{indice + 1} - {autor_link} ---- {titulo_link}')
+        except:
+            print('for indice, valor_link in enumerate(self.lendo_arq_txt_lnk): - error')
 
         self.barra_progresso_geral.stop()
         self.lbl_status_processos.config(text='Lista carregada!')
