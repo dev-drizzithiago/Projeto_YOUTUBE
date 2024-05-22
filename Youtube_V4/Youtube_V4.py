@@ -284,9 +284,12 @@ class Youtube_v4:
         try:
             abrindo_arq_link = open(caminho_arq_txt, 'r')
             lista_links = abrindo_arq_link.readlines()
+
             for indice in item_selecionado:
                 pass
+
             resp_del = askquestion('Aviso!', 'Deseja deseja deletar esse link?')
+
             if resp_del:
                 lista_links.pop(indice)
                 print('Arquivo deletado com sucesso!')
