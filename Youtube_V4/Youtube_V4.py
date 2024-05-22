@@ -237,6 +237,9 @@ class Youtube_v4:
             valor_arq_txt_link = open(caminho_arq_txt, 'r')
             self.lendo_arq_txt_lnk = valor_arq_txt_link.readlines()
             valor_arq_txt_link.close()
+            self.lbl_status_processos.config(text='Carregando lista de links, aguarde!')
+            self.barra_progresso_geral.start()
+
         except FileNotFoundError:
             self.barra_progresso_geral.stop()
             print('Arquivo não foi encontrado')
@@ -244,9 +247,6 @@ class Youtube_v4:
                                  'Tente adicionar um link para criar!')
             self.lbl_status_processos.config(text='Arquivo que contem os links não foi encontrado. \n'
                                                   'Tente adicionar um link para criar!')
-
-        self.lbl_status_processos.config(text='Carregando lista de links, aguarde!')
-        self.barra_progresso_geral.start()
 
         """#### Variavel server para guardar a quantidade de links que possui guardadas. """
         try:
@@ -259,8 +259,8 @@ class Youtube_v4:
                 autor_link = YouTube(valor_link).author
                 titulo_link = YouTube(valor_link).title
                 self.lista_cache_links_add.insert('end', f'{indice + 1} - {autor_link} ---- {titulo_link}')
-                self.barra_progresso_geral.stop()
-                self.lbl_status_processos.config(text='Lista carregada!')
+            self.barra_progresso_geral.stop()
+            self.lbl_status_processos.config(text='Lista carregada!')
         except:
             print('for indice, valor_link in enumerate(self.lendo_arq_txt_lnk): - error')
 
