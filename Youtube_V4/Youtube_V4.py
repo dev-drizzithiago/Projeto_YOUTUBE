@@ -242,6 +242,8 @@ class Youtube_v4:
             print('Arquivo não foi encontrado')
             showwarning('AVISO', 'Arquivo que contem os links não foi encontrado. \n'
                                  'Tente adicionar um link para criar!')
+            self.lbl_status_processos.config(text='Arquivo que contem os links não foi encontrado. \n'
+                                                  'Tente adicionar um link para criar!')
 
         self.lbl_status_processos.config(text='Carregando lista de links, aguarde!')
         self.barra_progresso_geral.start()
@@ -257,11 +259,10 @@ class Youtube_v4:
                 autor_link = YouTube(valor_link).author
                 titulo_link = YouTube(valor_link).title
                 self.lista_cache_links_add.insert('end', f'{indice + 1} - {autor_link} ---- {titulo_link}')
+                self.barra_progresso_geral.stop()
+                self.lbl_status_processos.config(text='Lista carregada!')
         except:
             print('for indice, valor_link in enumerate(self.lendo_arq_txt_lnk): - error')
-
-        self.barra_progresso_geral.stop()
-        self.lbl_status_processos.config(text='Lista carregada!')
 
         self.frame_lbl_botao_limpar.config(text='Limpar')
         self.botao_limpar_lista.config(command=self.limpar_lista_cache)
