@@ -298,6 +298,7 @@ class Youtube_v4:
 
             for valor_lista_atualizado_link in lista_links:
                 atualizado_registro_link_salvos = open(caminho_arq_txt, 'a')
+
                 try:
                     atualizado_registro_link_salvos.write(f'{valor_lista_atualizado_link}')
                     atualizado_registro_link_salvos.close()
