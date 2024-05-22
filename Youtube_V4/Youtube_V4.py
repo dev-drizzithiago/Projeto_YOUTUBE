@@ -312,17 +312,21 @@ class Youtube_v4:
 
     def MP3_TO_MP4(self):
         for valor_arq_mp4 in listdir(path_temp_yt):
-            if search('mp4', valor_arq_mp4):
-                mp4_file = path.join(path_temp_yt, valor_arq_mp4)
-                mp3_file = path.join(path_musicas, path.splitext(valor_arq_mp4)[0] + '.mp3')
-                print(mp3_file)
+            try:
+                if search('mp4', valor_arq_mp4):
+                    mp4_file = path.join(path_temp_yt, valor_arq_mp4)
+                    mp3_file = path.join(path_musicas, path.splitext(valor_arq_mp4)[0] + '.mp3')
+                    print(mp3_file)
 
-                """#### transformando o arquivo mp4 em mp3"""
-                novo_mp3 = AudioFileClip(mp4_file)
-                novo_mp3.write_audiofile(mp3_file)
+                    """#### transformando o arquivo mp4 em mp3"""
+                    novo_mp3 = AudioFileClip(mp4_file)
+                    novo_mp3.write_audiofile(mp3_file)
 
-                """#### Remove o vestigio do arquivo mp4"""
-                remove(mp4_file)
+                    """#### Remove o vestigio do arquivo mp4"""
+                    remove(mp4_file)
+            except FileNotFoundError:
+                showwarning('AVISO', 'Falha na conversão do arquivo para MP3. \n'
+                                     'Pode ser que não foi encontrado do arquivo principal')
 
     """#### Downloads dos links"""
 
@@ -351,6 +355,7 @@ class Youtube_v4:
                     """#### Processo do downloads"""
                     try:
                         obj_youtube.streams.filter(only_audio=True).first().download(path_temp_yt)
+                        
                         """Abre a função para tranformar o arquivo MP4 em MP3"""
                         self.MP3_TO_MP4()
 
@@ -360,7 +365,7 @@ class Youtube_v4:
                         self.lbl_status_processos.config(text=f'Downloads realizado com sucesso!')
 
                     except:
-                        print('Erro ao fazer o downloads!')
+                        print('Não foi possível fazer o downloads!')
 
                 except:
                     showwarning('AVISO!', 'Não existem links para downloads')
