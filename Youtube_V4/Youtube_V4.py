@@ -174,7 +174,7 @@ class Youtube_v4:
     def ativar_botao_adicionar_link(self, *args):
         link = self.var_caixa_de_entrada.get()
         validado = YouTube(link).title
-        self.lbl_status_processos.config(text=f'Validação do link: {validado}')
+        self.lbl_status_processos.config(text=f'Validação do link: [{validado}]')
 
         if self.quantidade_links == 20:
             showwarning('AVISO!', 'Possui 20 links salvos, delete algum link para adicioar outra. ')
