@@ -243,8 +243,6 @@ class Youtube_v4:
         except FileNotFoundError:
             self.barra_progresso_geral.stop()
             print('Arquivo não foi encontrado')
-            showwarning('AVISO', 'Arquivo que contem os links não foi encontrado. \n'
-                                 'Tente adicionar um link para criar!')
             self.lbl_status_processos.config(text='Arquivo que contem os links não foi encontrado. \n'
                                                   'Tente adicionar um link para criar!')
 
