@@ -157,12 +157,13 @@ class Youtube_v4:
         # --------------------------------------------------------------------------------------------------------------
         """#### Informaçoes do desenvolvedor"""
         self.frame_lbl_contato = Labelframe(self.frame_label_principal, text='Desenvolvido por:')
-        self.frame_lbl_contato.place(y=250, x=350)
+        self.frame_lbl_contato.config(height=50, width=270)
+        self.frame_lbl_contato.place(y=295, x=610)
 
-        self.lbl_contato = Label(self.frame_lbl_contato, text='github.com/dev-drizzithiago')
-        self.lbl_contato.pack(anchor='center')
+        self.lbl_contato = Label(self.frame_lbl_contato, text='github: dev-drizzithiago \n'
+                                                              'Intagram: @drizzithiago')
+        self.lbl_contato.place(y=-5, x=58)
         # --------------------------------------------------------------------------------------------------------------
-
 
         """#### Declarações de variaveis"""
         self.ativar_ = False
