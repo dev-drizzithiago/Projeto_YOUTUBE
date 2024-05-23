@@ -324,7 +324,8 @@ class Youtube_v4:
             try:
                 if search('mp4', valor_arq_mp4):
                     mp4_file = path.join(path_temp_yt, valor_arq_mp4)
-                    mp3_file = path.join(path_musicas, autor + path.splitext(valor_arq_mp4)[0] + '.mp3')
+                    mp3_file = path.join(path_musicas,
+                                         autor + '--' + path.splitext(valor_arq_mp4)[0] + '.mp3')
                     print(mp3_file)
 
                     """#### transformando o arquivo mp4 em mp3"""
@@ -394,17 +395,23 @@ class Youtube_v4:
                         """### Inicia a barra de progresso"""
                         self.barra_progresso_geral.start()
 
+                        obj_youtube_autor = YouTube(dados_selecionados).author
+                        obj_youtube_titulo = YouTube(dados_selecionados).title
+
                         """#### Processo do downloads"""
                         try:
                             download = YouTube(dados_selecionados).streams.get_highest_resolution()
                             download.download(path_videos_)
+                            print('Downloads realizado com sucesso!')
+                            self.lbl_status_processos.config(text=f'Downloads do vídeos {obj_youtube_autor} '
+                                                                  f'{obj_youtube_titulo}')
                         except:
                             print('Erro ao fazer o downloads!')
 
                         """#### Desativa a barra de progresso e deixa com o valor de 100%"""
                         self.barra_progresso_geral.stop()
                         self.barra_progresso_geral.config(value=100)
-                        print('Downloads realizado com sucesso!')
+
 
                 except:
                     showwarning('AVISO!', 'Não existem links para downloads')
