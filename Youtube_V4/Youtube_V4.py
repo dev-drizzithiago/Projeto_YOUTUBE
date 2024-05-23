@@ -258,6 +258,7 @@ class Youtube_v4:
         try:
             self.quantidade_links = len(self.lendo_arq_txt_lnk)
         except:
+            self.quantidade_links = 0
             print('self.quantidade_links - error')
 
         try:
@@ -374,6 +375,7 @@ class Youtube_v4:
                         self.lbl_status_processos.config(text=f'Downloads realizado com sucesso!')
 
                     except:
+                        self.barra_progresso_geral.stop()
                         print('Não foi possível fazer o downloads!')
 
                 except:
