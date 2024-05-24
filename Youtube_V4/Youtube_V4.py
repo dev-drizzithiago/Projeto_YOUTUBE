@@ -319,13 +319,12 @@ class Youtube_v4:
 
         self.thread_leitura_link()
 
-    def MP3_TO_MP4(self, autor):
+    def MP3_TO_MP4(self, titulo_mp3):
         for valor_arq_mp4 in listdir(path_temp_yt):
             try:
                 if search('mp4', valor_arq_mp4):
                     mp4_file = path.join(path_temp_yt, valor_arq_mp4)
-                    mp3_file = path.join(path_musicas,
-                                         autor + '--' + path.splitext(valor_arq_mp4)[0] + '.mp3')
+                    mp3_file = path.join(path_musicas, titulo_mp3)
                     print(mp3_file)
 
                     """#### transformando o arquivo mp4 em mp3"""
@@ -356,7 +355,7 @@ class Youtube_v4:
                     obj_youtube = YouTube(dados_selecionados)
                     obj_youtube_autor = YouTube(dados_selecionados).author
                     obj_youtube_titulo = YouTube(dados_selecionados).title
-                    nome_arquivo_mp3 = f'{obj_youtube_autor} - {obj_youtube_titulo}'
+                    nome_arquivo_mp3 = f'{obj_youtube_autor} - {obj_youtube_titulo}.mp3'
 
                     """ Informando na label do programa"""
                     self.lbl_status_processos.config(text=f'Downloads {obj_youtube.author} - {obj_youtube.title} '
@@ -372,7 +371,7 @@ class Youtube_v4:
                         obj_youtube.streams.filter(only_audio=True).first().download(path_temp_yt)
 
                         """Abre a função para tranformar o arquivo MP4 em MP3"""
-                        self.MP3_TO_MP4(obj_youtube_autor)
+                        self.MP3_TO_MP4(nome_arquivo_mp3)
 
                         """ Finaliza o processo da barra de progresso. """
                         self.barra_progresso_geral.stop()
