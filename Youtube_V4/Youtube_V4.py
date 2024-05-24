@@ -135,7 +135,7 @@ class Youtube_v4:
         self.radio_mp4_midia.place(y=-2, x=140)
         # --------------------------------------------------------------------------------------------------------------
         """#### Informções de processo"""
-        self.frame_lbl_info_link = Labelframe(self.frame_label_principal, text='Stand by!')
+        self.frame_lbl_info_link = Labelframe(self.frame_label_principal, text='Status do processo: ')
         self.frame_lbl_info_link.config(height=65, width=875)
         self.frame_lbl_info_link.place(y=345, x=5)
 
