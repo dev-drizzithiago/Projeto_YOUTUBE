@@ -355,6 +355,8 @@ class Youtube_v4:
                     """#### Criando objeto do youtube"""
                     obj_youtube = YouTube(dados_selecionados)
                     obj_youtube_autor = YouTube(dados_selecionados).author
+                    obj_youtube_titulo = YouTube(dados_selecionados).title
+                    nome_arquivo_mp3 = f'{obj_youtube_autor} - {obj_youtube_titulo}'
 
                     """ Informando na label do programa"""
                     self.lbl_status_processos.config(text=f'Downloads {obj_youtube.author} - {obj_youtube.title} '
@@ -366,6 +368,7 @@ class Youtube_v4:
 
                     """#### Processo do downloads"""
                     try:
+                        self.lbl_status_processos.config(text=f'Downloads do vídeos - {nome_arquivo_mp3}')
                         obj_youtube.streams.filter(only_audio=True).first().download(path_temp_yt)
 
                         """Abre a função para tranformar o arquivo MP4 em MP3"""
@@ -397,14 +400,16 @@ class Youtube_v4:
 
                         obj_youtube_autor = YouTube(dados_selecionados).author
                         obj_youtube_titulo = YouTube(dados_selecionados).title
+                        nome_arquivo_mp4 = f'{obj_youtube_autor} - {obj_youtube_titulo}.mp4'
 
                         """#### Processo do downloads"""
                         try:
+                            self.lbl_status_processos.config(text=f'Downloads em processo... aguarde!!')
                             download = YouTube(dados_selecionados).streams.get_highest_resolution()
-                            download.download(path_videos_)
+                            download.download(path_videos_, filename=nome_arquivo_mp4)
+
                             print('Downloads realizado com sucesso!')
-                            self.lbl_status_processos.config(text=f'Downloads do vídeos {obj_youtube_autor} '
-                                                                  f'{obj_youtube_titulo}')
+                            self.lbl_status_processos.config(text=f'Downloads do vídeos - {nome_arquivo_mp4}')
                         except:
                             print('Erro ao fazer o downloads!')
 
