@@ -282,7 +282,7 @@ class Youtube_v4:
         sleep(10)
 
     def limpar_lista_cache(self):
-        self.lbl_status_processos.config('Resetando o sistema... aguarde!')
+        self.lbl_status_processos.config(text='Resetando o sistema... aguarde!')
         sleep(2)
         """#### Limpando as variaveis"""
         self.botao_down_link.config(state=tk.DISABLED)
