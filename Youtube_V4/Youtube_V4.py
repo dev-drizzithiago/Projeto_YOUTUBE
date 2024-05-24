@@ -268,7 +268,9 @@ class Youtube_v4:
                 titulo_link = YouTube(valor_link).title
                 self.lista_cache_links_add.insert('end', f'{indice + 1} - {autor_link} ---- {titulo_link}')
             self.barra_progresso_geral.stop()
-            self.lbl_status_processos.config(text='Lista carregada!')
+            self.lbl_status_processos.config(text='Lista carregada com sucesso!!')
+            self.func_time_10seg()
+            self.lbl_status_processos.config(text=f'Stand by!')
         except:
             print('for indice, valor_link in enumerate(self.lendo_arq_txt_lnk): - error')
 
@@ -280,16 +282,22 @@ class Youtube_v4:
         sleep(10)
 
     def limpar_lista_cache(self):
-
+        self.lbl_status_processos.config('Resetando o sistema... aguarde!')
+        sleep(2)
         """#### Limpando as variaveis"""
         self.botao_down_link.config(state=tk.DISABLED)
         self.lista_cache_links_add.delete(0, 'end')
         self.caixa_de_entrada_link.delete(0, 'end')
         self.var_radio_.set(0)
+        self.lbl_status_processos.config('Sistema resetado com sucesso!')
 
         """#### Declarando o botão para atualizar a lista com os novos dados"""
         self.frame_lbl_botao_limpar.config(text='Atualizar')
         self.botao_limpar_lista.config(command=self.thread_leitura_link)
+
+        """#### Coloca os status em stand by"""
+        self.func_time_10seg()
+        self.lbl_status_processos.config(text=f'Stand by!')
 
     def deletar_links(self):
         item_selecionado = self.lista_cache_links_add.curselection()
@@ -373,7 +381,7 @@ class Youtube_v4:
 
                     """#### Processo do downloads"""
                     try:
-                        self.lbl_status_processos.config(text=f'Downloads do vídeos - {nome_arquivo_mp3}')
+                        self.lbl_status_processos.config(text=f'Downloads da música em andamento - {nome_arquivo_mp3}')
                         obj_youtube.streams.filter(only_audio=True).first().download(path_temp_yt)
 
                         """Abre a função para tranformar o arquivo MP4 em MP3"""
@@ -385,12 +393,9 @@ class Youtube_v4:
                         self.lbl_status_processos.config(text=f'Downloads realizado com sucesso!')
                         self.func_time_10seg()
                         self.lbl_status_processos.config(text=f'Stand by!')
-
-
                     except:
                         self.barra_progresso_geral.stop()
                         print('Não foi possível fazer o downloads!')
-
                 except:
                     showwarning('AVISO!', 'Não existem links para downloads')
 
@@ -418,18 +423,16 @@ class Youtube_v4:
 
                             print('Downloads realizado com sucesso!')
                             self.lbl_status_processos.config(text=f'Downloads do vídeos - {nome_arquivo_mp4}')
-                            self.func_time_10seg()
-                            self.lbl_status_processos.config(text=f'Stand by!')
                         except:
                             print('Erro ao fazer o downloads!')
-
+                        self.func_time_10seg()
+                        self.lbl_status_processos.config(text=f'Stand by!')
                         """#### Desativa a barra de progresso e deixa com o valor de 100%"""
                         self.barra_progresso_geral.stop()
                         self.barra_progresso_geral.config(value=100)
-
-
                 except:
                     showwarning('AVISO!', 'Não existem links para downloads')
+
         else:
             showwarning('AVISO', 'Selecione uma extensão!')
 
