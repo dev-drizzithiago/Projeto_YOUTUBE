@@ -108,7 +108,7 @@ class Youtube_v4:
         self.frame_lbl_botao_limpar.place(y=250, x=110)
 
         self.botao_limpar_lista = Button(self.frame_lbl_botao_limpar, text='Aplicar')
-        self.botao_limpar_lista.config(width=15, command=self.limpar_lista_cache)
+        self.botao_limpar_lista.config(width=15, command=self.thread_limpar_lista_cache)
         self.botao_limpar_lista.pack(anchor='center')
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão delete"""
@@ -210,6 +210,9 @@ class Youtube_v4:
     def thread_func_time_60seg(self):
         Thread(target=self.func_time_10seg).start()
 
+    def thread_limpar_lista_cache(self):
+        Thread(target=self.limpar_lista_cache).start()
+
     """### Manipulação do arquivo de texto"""
 
     def registrando_link_youtube(self):
@@ -267,15 +270,17 @@ class Youtube_v4:
                 autor_link = YouTube(valor_link).author
                 titulo_link = YouTube(valor_link).title
                 self.lista_cache_links_add.insert('end', f'{indice + 1} - {autor_link} ---- {titulo_link}')
+
             self.barra_progresso_geral.stop()
             self.lbl_status_processos.config(text='Lista carregada com sucesso!!')
+
             self.func_time_10seg()
             self.lbl_status_processos.config(text=f'Stand by!')
         except:
             print('for indice, valor_link in enumerate(self.lendo_arq_txt_lnk): - error')
 
         self.frame_lbl_botao_limpar.config(text='Limpar')
-        self.botao_limpar_lista.config(command=self.limpar_lista_cache)
+        self.botao_limpar_lista.config(command=self.thread_limpar_lista_cache)
 
     """# Funções básicas"""
     def func_time_10seg(self):
@@ -289,7 +294,7 @@ class Youtube_v4:
         self.lista_cache_links_add.delete(0, 'end')
         self.caixa_de_entrada_link.delete(0, 'end')
         self.var_radio_.set(0)
-        self.lbl_status_processos.config('Sistema resetado com sucesso!')
+        self.lbl_status_processos.config(text='Sistema resetado com sucesso!')
 
         """#### Declarando o botão para atualizar a lista com os novos dados"""
         self.frame_lbl_botao_limpar.config(text='Atualizar')
