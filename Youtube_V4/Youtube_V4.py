@@ -7,6 +7,7 @@ from threading import Thread
 from pytube import YouTube
 from tkinter.ttk import *
 from pathlib import Path
+from time import sleep
 from re import search
 import tkinter as tk
 
@@ -134,7 +135,7 @@ class Youtube_v4:
         self.radio_mp4_midia.place(y=-2, x=140)
         # --------------------------------------------------------------------------------------------------------------
         """#### Informções de processo"""
-        self.frame_lbl_info_link = Labelframe(self.frame_label_principal, text='Informações do processo: ')
+        self.frame_lbl_info_link = Labelframe(self.frame_label_principal, text='Stand by!')
         self.frame_lbl_info_link.config(height=65, width=875)
         self.frame_lbl_info_link.place(y=345, x=5)
 
@@ -207,7 +208,7 @@ class Youtube_v4:
         Thread(target=self.deletar_links).start()
 
     def thread_func_time_60seg(self):
-        Thread(target=self.func_time_60seg).start()
+        Thread(target=self.func_time_10seg).start()
 
     """### Manipulação do arquivo de texto"""
 
@@ -275,9 +276,8 @@ class Youtube_v4:
         self.botao_limpar_lista.config(command=self.limpar_lista_cache)
 
     """# Funções básicas"""
-
-    def func_time_60seg(self):
-        sleep(60)
+    def func_time_10seg(self):
+        sleep(10)
 
     def limpar_lista_cache(self):
 
@@ -304,7 +304,11 @@ class Youtube_v4:
 
             if resp_del:
                 lista_links.pop(indice)
-                print('Arquivo deletado com sucesso!')
+                self.lbl_status_processos.config(text=f'Deletando arquivo {lista_links(indice)}, aguarde!')
+                sleep(5)
+                self.lbl_status_processos.config(text='Arquivo deletado com sucesso!')
+                self.func_time_10seg()
+                self.lbl_status_processos.config(text=f'Stand by!')
 
             atualizado_registro_link_salvos = open(caminho_arq_txt, 'w')
 
@@ -379,6 +383,9 @@ class Youtube_v4:
                         self.barra_progresso_geral.stop()
                         self.barra_progresso_geral.config(value=100)
                         self.lbl_status_processos.config(text=f'Downloads realizado com sucesso!')
+                        self.func_time_10seg()
+                        self.lbl_status_processos.config(text=f'Stand by!')
+
 
                     except:
                         self.barra_progresso_geral.stop()
@@ -411,6 +418,8 @@ class Youtube_v4:
 
                             print('Downloads realizado com sucesso!')
                             self.lbl_status_processos.config(text=f'Downloads do vídeos - {nome_arquivo_mp4}')
+                            self.func_time_10seg()
+                            self.lbl_status_processos.config(text=f'Stand by!')
                         except:
                             print('Erro ao fazer o downloads!')
 
