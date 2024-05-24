@@ -273,14 +273,14 @@ class Youtube_v4:
 
             self.barra_progresso_geral.stop()
             self.lbl_status_processos.config(text='Lista carregada com sucesso!!')
-
-            self.func_time_10seg()
-            self.lbl_status_processos.config(text=f'Stand by!')
         except:
             print('for indice, valor_link in enumerate(self.lendo_arq_txt_lnk): - error')
 
         self.frame_lbl_botao_limpar.config(text='Limpar')
         self.botao_limpar_lista.config(command=self.thread_limpar_lista_cache)
+
+        self.func_time_10seg()
+        self.lbl_status_processos.config(text=f'Stand by!')
 
     """# Funções básicas"""
     def func_time_10seg(self):
