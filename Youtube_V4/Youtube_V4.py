@@ -10,9 +10,6 @@ from pathlib import Path
 from re import search
 import tkinter as tk
 
-"""Declaração dos modulos de cadastros"""
-from mysql.connector import Connect
-
 """Criando pasta home"""
 try:
     path_home_ = Path.home()
@@ -209,6 +206,9 @@ class Youtube_v4:
     def thread_deletar_links(self):
         Thread(target=self.deletar_links).start()
 
+    def thread_func_time_60seg(self):
+        Thread(target=self.func_time_60seg).start()
+
     """### Manipulação do arquivo de texto"""
 
     def registrando_link_youtube(self):
@@ -276,6 +276,9 @@ class Youtube_v4:
 
     """# Funções básicas"""
 
+    def func_time_60seg(self):
+        sleep(60)
+
     def limpar_lista_cache(self):
 
         """#### Limpando as variaveis"""
@@ -338,7 +341,6 @@ class Youtube_v4:
                                      'Pode ser que não foi encontrado do arquivo principal')
 
     """#### Downloads dos links"""
-
     def downloads_link(self):
         valor_radio = self.var_radio_.get()
         if len(valor_radio) > 0:
@@ -358,7 +360,7 @@ class Youtube_v4:
                     nome_arquivo_mp3 = f'{obj_youtube_autor} - {obj_youtube_titulo}.mp3'
 
                     """ Informando na label do programa"""
-                    self.lbl_status_processos.config(text=f'Downloads {obj_youtube.author} - {obj_youtube.title} '
+                    self.lbl_status_processos.config(text=f'Downloads {nome_arquivo_mp3} '
                                                           f'em andamento... Aguarde!')
 
                     """#### Processo de downloads do Audio """
