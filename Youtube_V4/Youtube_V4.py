@@ -396,8 +396,7 @@ class Youtube_v4:
                         self.barra_progresso_geral.stop()
                         self.barra_progresso_geral.config(value=100)
                         self.lbl_status_processos.config(text=f'Downloads realizado com sucesso!')
-                        self.func_time_10seg()
-                        self.lbl_status_processos.config(text=f'Stand by!')
+
                     except:
                         self.barra_progresso_geral.stop()
                         print('Não foi possível fazer o downloads!')
@@ -430,8 +429,7 @@ class Youtube_v4:
                             self.lbl_status_processos.config(text=f'Downloads do vídeos - {nome_arquivo_mp4}')
                         except:
                             print('Erro ao fazer o downloads!')
-                        self.func_time_10seg()
-                        self.lbl_status_processos.config(text=f'Stand by!')
+
                         """#### Desativa a barra de progresso e deixa com o valor de 100%"""
                         self.barra_progresso_geral.stop()
                         self.barra_progresso_geral.config(value=100)
@@ -440,5 +438,6 @@ class Youtube_v4:
 
         else:
             showwarning('AVISO', 'Selecione uma extensão!')
-
+        self.func_time_10seg()
+        self.lbl_status_processos.config(text=f'Stand by!')
 iniciando_obj = Youtube_v4()
