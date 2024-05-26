@@ -279,8 +279,7 @@ class Youtube_v4:
         self.frame_lbl_botao_limpar.config(text='Limpar')
         self.botao_limpar_lista.config(command=self.thread_limpar_lista_cache)
 
-        self.func_time_10seg()
-        self.lbl_status_processos.config(text=f'Stand by!')
+        self.thread_func_time_10seg()
 
     """# Funções básicas"""
     def func_time_10seg(self):
