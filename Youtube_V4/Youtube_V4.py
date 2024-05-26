@@ -395,6 +395,7 @@ class Youtube_v4:
                         self.barra_progresso_geral.config(value=100)
                         self.lbl_status_processos.config(text=f'Downloads realizado com sucesso - '
                                                               f'{nome_arquivo_mp3}')
+                        self.thread_func_time_10seg()
                     except:
                         self.barra_progresso_geral.stop()
                         print('Não foi possível fazer o downloads!')
@@ -425,6 +426,7 @@ class Youtube_v4:
                             print('Downloads realizado com sucesso!')
                             self.lbl_status_processos.config(text=f'Downloads realizado com sucesso!'
                                                                   f' - {nome_arquivo_mp4}')
+                            self.thread_func_time_10seg()
                         except:
                             print('Erro ao fazer o downloads!')
 
@@ -435,6 +437,6 @@ class Youtube_v4:
                     showwarning('AVISO!', 'Não existem links para downloads')
         else:
             showwarning('AVISO', 'Selecione uma extensão!')
-        self.thread_func_time_10seg()
+
 
 iniciando_obj = Youtube_v4()
