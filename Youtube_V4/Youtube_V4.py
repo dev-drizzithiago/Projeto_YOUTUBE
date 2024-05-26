@@ -393,7 +393,8 @@ class Youtube_v4:
                         """ Finaliza o processo da barra de progresso. """
                         self.barra_progresso_geral.stop()
                         self.barra_progresso_geral.config(value=100)
-                        self.lbl_status_processos.config(text=f'Downloads realizado com sucesso!')
+                        self.lbl_status_processos.config(text=f'Downloads realizado com sucesso - '
+                                                              f'{nome_arquivo_mp3}')
                     except:
                         self.barra_progresso_geral.stop()
                         print('Não foi possível fazer o downloads!')
