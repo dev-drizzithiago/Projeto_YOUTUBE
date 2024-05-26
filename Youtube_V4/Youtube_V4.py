@@ -15,9 +15,9 @@ import tkinter as tk
 try:
     path_home_ = Path.home()
 except:
-    showwarning('AVISO!', 'Função para criara caminho da pasta home não foi criada')
+    showwarning('AVISO!', 'Não foi criado o caminho da pasta home!')
 
-"""Declarando as pastas de destino diversas"""
+"""Declarando as pastas de destino """
 path_temp_yt = str(Path(path_home_, 'AppData', 'Local', 'Temp'))
 path_arq_yt_ = str(Path(path_home_, 'AppData', 'LocalLow', 'Youtube_V4'))
 path_musicas = str(Path(path_home_, 'Downloads', 'Youtube_V4', 'Músicas(MP3)'))
@@ -55,7 +55,7 @@ class Youtube_v4:
         # --------------------------------------------------------------------------------------------------------------
         """#### Frame Lista cache"""
         self.frame_label_lista_cache = Labelframe(self.frame_label_principal)
-        self.frame_label_lista_cache.config(text='Links Salvos - Selecione um título para baixar')
+        self.frame_label_lista_cache.config(text='Links Salvos - Selecione um título para baixar em MP3/MP4')
         self.frame_label_lista_cache.place(y=5, x=5)
 
         # ##############################################################################################################
@@ -87,7 +87,7 @@ class Youtube_v4:
         """ Frame Botões"""
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão adicionar """
-        self.frame_botao_adicionar = LabelFrame(self.frame_label_principal, text='Adicione o link')
+        self.frame_botao_adicionar = LabelFrame(self.frame_label_principal, text='Adicionar um link:')
         self.frame_botao_adicionar.place(y=250, x=5)
 
         self.botao_add_link = Button(self.frame_botao_adicionar, text='Aplicar')
@@ -95,7 +95,7 @@ class Youtube_v4:
         self.botao_add_link.pack(anchor='center')
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão downloads """
-        self.frame_botao_down = LabelFrame(self.frame_label_principal, text='Baixar o link')
+        self.frame_botao_down = LabelFrame(self.frame_label_principal, text='Downlaod do link selecionado')
         self.frame_botao_down.place(y=295, x=5)
 
         self.botao_down_link = Button(self.frame_botao_down, text='Aplicar')
@@ -172,7 +172,6 @@ class Youtube_v4:
         self.janela_principal.mainloop()
 
     """#### Eventos diversos """
-
     def ativar_botao_downloads(self, *args):
         self.botao_down_link.config(state=tk.NORMAL)
         self.botao_deletar.config(state=tk.NORMAL)
@@ -184,7 +183,8 @@ class Youtube_v4:
         self.lbl_status_processos.config(text=f'Validação do link: [{validado_autor} - {validado_titulo}]')
 
         if self.quantidade_links == 20:
-            showwarning('AVISO!', 'Possui 20 links salvos, delete algum link para adicioar outra. ')
+            showwarning('AVISO!', 'Já possui 20 links salvos no sistema, '
+                                  'delete algum link para adicionar outro. ')
             self.caixa_de_entrada_link.delete(0, 'end')
         else:
             if link[:24] == 'https://www.youtube.com/':
