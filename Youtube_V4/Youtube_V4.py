@@ -255,25 +255,25 @@ class Youtube_v4:
             self.barra_progresso_geral.stop()
             print('Arquivo não foi encontrado')
             self.lbl_status_processos.config(text='Arquivo que contem os links não foi encontrado. \n'
-                                                  'Tente adicionar um link para criar!')
+                                                  'Tente adicionar um link para criar o arquivo!')
 
         """#### Variavel server para guardar a quantidade de links que possui guardadas. """
         try:
             self.quantidade_links = len(self.lendo_arq_txt_lnk)
         except:
             self.quantidade_links = 0
-            print('self.quantidade_links - error')
-
         try:
             for indice, valor_link in enumerate(self.lendo_arq_txt_lnk):
                 autor_link = YouTube(valor_link).author
                 titulo_link = YouTube(valor_link).title
-                self.lista_cache_links_add.insert('end', f'{indice + 1} - {autor_link} ---- {titulo_link}')
+                self.lista_cache_links_add.insert('end', f'{indice + 1} - '
+                                                         f'{autor_link} ---- '
+                                                         f'{titulo_link}')
 
             self.barra_progresso_geral.stop()
-            self.lbl_status_processos.config(text='Lista carregada com sucesso!!')
+            self.lbl_status_processos.config(text='Lista de links carregada com sucesso!!')
         except:
-            print('for indice, valor_link in enumerate(self.lendo_arq_txt_lnk): - error')
+            pass
 
         self.frame_lbl_botao_limpar.config(text='Limpar')
         self.botao_limpar_lista.config(command=self.thread_limpar_lista_cache)
@@ -286,7 +286,8 @@ class Youtube_v4:
         self.lbl_status_processos.config(text=f'Stand by!')
 
     def limpar_lista_cache(self):
-        self.lbl_status_processos.config(text='Resetando o sistema... aguarde!')
+        self.lbl_status_processos.config(text='Limpando a lista de links e '
+                                              'seleções de botões... aguarde!')
         sleep(2)
         """#### Limpando as variaveis"""
         self.botao_down_link.config(state=tk.DISABLED)
@@ -311,12 +312,12 @@ class Youtube_v4:
             for indice in item_selecionado:
                 pass
 
-            resp_del = askquestion('Aviso!', 'Deseja deseja deletar esse link?')
+            resp_del = askquestion('Aviso!', 'Deseja deletar o link selecionado?')
 
             if resp_del:
                 lista_links.pop(indice)
                 self.lbl_status_processos.config(text=f'Deletando arquivo {lista_links(indice)}, aguarde!')
-                sleep(5)
+                sleep(2)
                 self.lbl_status_processos.config(text='Arquivo deletado com sucesso!')
                 self.func_time_10seg()
 
@@ -324,7 +325,6 @@ class Youtube_v4:
 
             for valor_lista_atualizado_link in lista_links:
                 atualizado_registro_link_salvos = open(caminho_arq_txt, 'a')
-
                 try:
                     atualizado_registro_link_salvos.write(f'{valor_lista_atualizado_link}')
                     atualizado_registro_link_salvos.close()
