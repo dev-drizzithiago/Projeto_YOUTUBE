@@ -422,7 +422,8 @@ class Youtube_v4:
                             download.download(path_videos_, filename=nome_arquivo_mp4)
 
                             print('Downloads realizado com sucesso!')
-                            self.lbl_status_processos.config(text=f'Downloads do vídeos - {nome_arquivo_mp4}')
+                            self.lbl_status_processos.config(text=f'Downloads realizado com sucesso!'
+                                                                  f' - {nome_arquivo_mp4}')
                         except:
                             print('Erro ao fazer o downloads!')
 
