@@ -112,7 +112,7 @@ class Youtube_v4:
         self.botao_limpar_lista.pack(anchor='center')
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão delete"""
-        self.frame_lbl_delete = Labelframe(self.frame_label_principal, text='Deletar: ')
+        self.frame_lbl_delete = Labelframe(self.frame_label_principal, text='Deletar link selecionado: ')
         self.frame_lbl_delete.place(y=250, x=215)
 
         self.botao_deletar = Button(self.frame_lbl_delete, text='Aplicar')
@@ -121,7 +121,8 @@ class Youtube_v4:
         self.botao_deletar.pack(anchor='center')
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão radio mp3/mp4"""
-        self.frame_lbl_botao_radio_opc_midia = LabelFrame(self.frame_label_principal, text='Escolha uma opção:')
+        self.frame_lbl_botao_radio_opc_midia = LabelFrame(self.frame_label_principal, text='Escolha uma opção '
+                                                                                           'de downloads:')
         self.frame_lbl_botao_radio_opc_midia.config(height=44, width=270)
         self.frame_lbl_botao_radio_opc_midia.place(y=250, x=610)
 
@@ -145,7 +146,7 @@ class Youtube_v4:
         self.lbl_status_processos.place(y=15, x=50)
         # --------------------------------------------------------------------------------------------------------------
         """Barra de progresso"""
-        self.frame_lbl_progresso = LabelFrame(self.frame_label_principal, text='Progresso!')
+        self.frame_lbl_progresso = LabelFrame(self.frame_label_principal, text='Barra de Progresso!')
         self.frame_lbl_progresso.config(height=50, width=875)
         self.frame_lbl_progresso.place(y=410, x=5)
 
@@ -160,7 +161,7 @@ class Youtube_v4:
 
         self.lbl_contato = Label(self.frame_lbl_contato, text='github: dev-drizzithiago \n'
                                                               'Intagram: @drizzithiago')
-        self.lbl_contato.place(y=-5, x=58)
+        self.lbl_contato.place(y=-3, x=58)
         # --------------------------------------------------------------------------------------------------------------
 
         """#### Declarações de variaveis"""
@@ -194,7 +195,6 @@ class Youtube_v4:
 
     """#### Processo diversos"""
     """### Threads"""
-
     def thread_add_link(self):
         Thread(target=self.registrando_link_youtube).start()
 
@@ -214,7 +214,6 @@ class Youtube_v4:
         Thread(target=self.limpar_lista_cache).start()
 
     """### Manipulação do arquivo de texto"""
-
     def registrando_link_youtube(self):
         """
 
