@@ -207,7 +207,7 @@ class Youtube_v4:
     def thread_deletar_links(self):
         Thread(target=self.deletar_links).start()
 
-    def thread_func_time_60seg(self):
+    def thread_func_time_10seg(self):
         Thread(target=self.func_time_10seg).start()
 
     def thread_limpar_lista_cache(self):
@@ -285,6 +285,7 @@ class Youtube_v4:
     """# Funções básicas"""
     def func_time_10seg(self):
         sleep(10)
+        self.lbl_status_processos.config(text=f'Stand by!')
 
     def limpar_lista_cache(self):
         self.lbl_status_processos.config(text='Resetando o sistema... aguarde!')
@@ -361,7 +362,6 @@ class Youtube_v4:
     def downloads_link(self):
         valor_radio = self.var_radio_.get()
         if len(valor_radio) > 0:
-
             if valor_radio == 'MP3':
                 print()
                 print(linha)
@@ -396,13 +396,11 @@ class Youtube_v4:
                         self.barra_progresso_geral.stop()
                         self.barra_progresso_geral.config(value=100)
                         self.lbl_status_processos.config(text=f'Downloads realizado com sucesso!')
-
                     except:
                         self.barra_progresso_geral.stop()
                         print('Não foi possível fazer o downloads!')
                 except:
                     showwarning('AVISO!', 'Não existem links para downloads')
-
             elif valor_radio == 'MP4':
                 print()
                 print(linha)
@@ -435,9 +433,8 @@ class Youtube_v4:
                         self.barra_progresso_geral.config(value=100)
                 except:
                     showwarning('AVISO!', 'Não existem links para downloads')
-
         else:
             showwarning('AVISO', 'Selecione uma extensão!')
-        self.func_time_10seg()
-        self.lbl_status_processos.config(text=f'Stand by!')
+        self.thread_func_time_10seg()
+
 iniciando_obj = Youtube_v4()
