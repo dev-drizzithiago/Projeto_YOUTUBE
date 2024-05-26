@@ -323,6 +323,8 @@ class Youtube_v4:
 
             atualizado_registro_link_salvos = open(caminho_arq_txt, 'w')
 
+            """#### Função é responsavel por refazer o arquivo onde ficar alocado os links. Mas sem o link que foi 
+            deletado"""
             for valor_lista_atualizado_link in lista_links:
                 atualizado_registro_link_salvos = open(caminho_arq_txt, 'a')
                 try:
@@ -337,6 +339,12 @@ class Youtube_v4:
         self.thread_leitura_link()
 
     def MP3_TO_MP4(self, titulo_mp3):
+        """
+        Função responsável em tranformar o arquivo mp4 (somente leitura) em MP3.
+        :param titulo_mp3: Essa variavel vai receber os dados de "autor" e "titulo" do link, para ser adicionado no
+        arquivo MP3.
+        :return: O arquivo no formato mp3
+        """
         for valor_arq_mp4 in listdir(path_temp_yt):
             try:
                 if search('mp4', valor_arq_mp4):
@@ -367,9 +375,12 @@ class Youtube_v4:
                         dados_selecionados = self.lendo_arq_txt_lnk[valor_cursor]
 
                     """#### Criando objeto do youtube"""
-                    obj_youtube = YouTube(dados_selecionados)
-                    obj_youtube_autor = YouTube(dados_selecionados).author
-                    obj_youtube_titulo = YouTube(dados_selecionados).title
+                    obj_youtube = YouTube(dados_selecionados)  # Preparado o link para downloads.
+                    
+                    obj_youtube_autor = YouTube(dados_selecionados).author  # Coloca o autor na variável.
+                    obj_youtube_titulo = YouTube(dados_selecionados).title  # Coloca o título na variável.
+
+                    """#### Contena o as variáveis 'Autor' e Título' para serem usudas no decorrer da função."""
                     nome_arquivo_mp3 = f'{obj_youtube_autor} - {obj_youtube_titulo}.mp3'
 
                     """ Informando na label do programa"""
