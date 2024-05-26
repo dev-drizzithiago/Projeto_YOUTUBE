@@ -302,8 +302,7 @@ class Youtube_v4:
         self.botao_limpar_lista.config(command=self.thread_leitura_link)
 
         """#### Coloca os status em stand by"""
-        self.func_time_10seg()
-        self.lbl_status_processos.config(text=f'Stand by!')
+        self.thread_func_time_10seg()
 
     def deletar_links(self):
         item_selecionado = self.lista_cache_links_add.curselection()
@@ -322,7 +321,6 @@ class Youtube_v4:
                 sleep(5)
                 self.lbl_status_processos.config(text='Arquivo deletado com sucesso!')
                 self.func_time_10seg()
-                self.lbl_status_processos.config(text=f'Stand by!')
 
             atualizado_registro_link_salvos = open(caminho_arq_txt, 'w')
 
