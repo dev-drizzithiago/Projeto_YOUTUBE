@@ -112,7 +112,7 @@ class Youtube_v4:
         self.botao_limpar_lista.pack(anchor='center')
         # --------------------------------------------------------------------------------------------------------------
         """#### Botão delete"""
-        self.frame_lbl_delete = Labelframe(self.frame_label_principal, text='Deletar link selecionado: ')
+        self.frame_lbl_delete = Labelframe(self.frame_label_principal, text='Deletar: ')
         self.frame_lbl_delete.place(y=250, x=215)
 
         self.botao_deletar = Button(self.frame_lbl_delete, text='Aplicar')
