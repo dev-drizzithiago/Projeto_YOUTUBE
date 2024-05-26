@@ -376,7 +376,7 @@ class Youtube_v4:
 
                     """#### Criando objeto do youtube"""
                     obj_youtube = YouTube(dados_selecionados)  # Preparado o link para downloads.
-                    
+
                     obj_youtube_autor = YouTube(dados_selecionados).author  # Coloca o autor na variável.
                     obj_youtube_titulo = YouTube(dados_selecionados).title  # Coloca o título na variável.
 
@@ -393,7 +393,8 @@ class Youtube_v4:
 
                     """#### Processo do downloads"""
                     try:
-                        self.lbl_status_processos.config(text=f'Downloads da música em andamento - {nome_arquivo_mp3}')
+                        self.lbl_status_processos.config(text=f'Downloads em andamento... aguarde!! '
+                                                              f'- {nome_arquivo_mp3}')
                         obj_youtube.streams.filter(only_audio=True).first().download(path_temp_yt)
 
                         """Abre a função para tranformar o arquivo MP4 em MP3"""
@@ -428,7 +429,8 @@ class Youtube_v4:
 
                         """#### Processo do downloads"""
                         try:
-                            self.lbl_status_processos.config(text=f'Downloads em processo... aguarde!!')
+                            self.lbl_status_processos.config(text=f'Downloads em andamento... aguarde!! - '
+                                                                  f'{nome_arquivo_mp4}')
                             download = YouTube(dados_selecionados).streams.get_highest_resolution()
                             download.download(path_videos_, filename=nome_arquivo_mp4)
 
