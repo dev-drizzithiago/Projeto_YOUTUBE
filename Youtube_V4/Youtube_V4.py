@@ -358,7 +358,7 @@ class Youtube_v4:
 
                     """#### Remove o vestigio do arquivo mp4"""
                     remove(mp4_file)
-            except FileNotFoundError:
+            except:
                 showwarning('AVISO', 'Falha na conversão do arquivo para MP3. \n'
                                      'Pode ser que não foi encontrado do arquivo principal')
 
