@@ -25,6 +25,8 @@ linha = '----' * 24
 
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Função simples"""
+
+
 def logo_tube(valor_entrada):
     """
     Deixa a aparencia de casa função melhor
@@ -33,6 +35,7 @@ def logo_tube(valor_entrada):
     """
     linhas = '----' * 10
     print(f'{linhas}{valor_entrada}{linhas}')
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 def leiaInt(valor_entrada):
@@ -48,10 +51,14 @@ def leiaInt(valor_entrada):
         except:
             print(f'Você digitou um valor incorreto!')
 
+
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Funções threads"""
+
+
 def thread_downloads():
     Thread(target=downloads).start()
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 def criando_pastas_midias():
@@ -68,8 +75,11 @@ def criando_pastas_midias():
         makedirs(path_down_mp3)
         makedirs(path_down_mp4)
 
+
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Funções simples"""
+
+
 def criar_pasta_arq_link():
     """#### Função responsável em criar pasta para armazenar o arquivo que fica salvo os links"""
     try:
@@ -78,6 +88,7 @@ def criar_pasta_arq_link():
         pass
     except FileNotFoundError:
         mkdir(path_arqu)
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 def registrar_link(valor_entrada):
@@ -109,8 +120,11 @@ def registrar_link(valor_entrada):
     except FileExistsError:
         pass
 
+
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Funções de processo"""
+
+
 def adicionar_link():
     """
     - Função responsável em receber o link, para que posteriormente ser registrado
@@ -140,6 +154,7 @@ def adicionar_link():
             sleep(1)
             registrar_link(link_tube)
 
+
 # ----------------------------------------------------------------------------------------------------------------------
 def mp3_to_mp4():
     """
@@ -161,6 +176,7 @@ def mp3_to_mp4():
             novo_mp3 = AudioFileClip(mp4_file)
             novo_mp3.write_audiofile(mp3_file)
             remove(mp4_file)
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 def downloads():
@@ -247,8 +263,11 @@ def downloads():
         except FileExistsError:
             pass
 
+
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Funçao responsável em excultar as mídias do usuário."""
+
+
 def abrir_arq():
     """
     Essa função utiliza as configurações padrão do windows.
@@ -361,8 +380,11 @@ def abrir_arq():
             print('Opção invalida!')
             sleep(5)
 
+
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Menu principal"""
+
+
 def menu_principal():
     while True:
         print()
