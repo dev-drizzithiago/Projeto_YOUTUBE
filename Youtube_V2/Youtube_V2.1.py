@@ -155,7 +155,7 @@ def adicionar_link():  # $
 
 
 # ----------------------------------------------------------------------------------------------------------------------
-def mp3_to_mp4():
+def mp3_to_mp4(autor_midia):
     """
     - Aqui, é realizado uma listage na pasta Temp, aonde fica alocado o arquivo mp4;
     - após localizar o arquivo mp4, é realizado a junção do local, para ser processado;
@@ -169,7 +169,7 @@ def mp3_to_mp4():
         if search('mp4', valor_mp4):
             "#### Renomeia o arquivo"
             mp4_file = path.join(path_temp, valor_mp4)
-            mp3_file = path.join(path_down_mp3, path.splitext(valor_mp4)[0] + '.mp3')
+            mp3_file = path.join(path_down_mp3, autor_midia + ' - ' + path.splitext(valor_mp4)[0] + '.mp3')
 
             """#### Processa o MP4 para MP3"""
             novo_mp3 = AudioFileClip(mp4_file)
@@ -233,7 +233,7 @@ def downloads():
                         obj_youtube.streams.filter(only_audio=True).first().download(path_temp)
 
                         """# Chama a função para tranformar o videm em MP3"""
-                        mp3_to_mp4()
+                        mp3_to_mp4(valor_autor)
                         print(f'Download finalizado... \nVerifique o MP3 na pasta [{path_down_mp3}]')
                         sleep(2)
                     except:
