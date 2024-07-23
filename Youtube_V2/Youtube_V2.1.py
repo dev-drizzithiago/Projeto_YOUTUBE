@@ -192,7 +192,8 @@ def downloads():
             """# listando os link salvos"""
             for indice, valor_link in enumerate(link_down_tube):
                 valor_titulo = YouTube(valor_link).title
-                print(f'[{indice + 1}] {valor_titulo}: \n{valor_link}')
+                valor_autor = YouTube(valor_link).author
+                print(f'[{indice + 1}] {valor_autor} - {valor_titulo}: \n{valor_link}')
 
             """### Abre para o usuário escolher o link"""
             print(linha)
@@ -266,8 +267,6 @@ def downloads():
 
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Funçao responsável em excultar as mídias do usuário."""
-
-
 def abrir_arq():
     """
     Essa função utiliza as configurações padrão do windows.
@@ -383,8 +382,6 @@ def abrir_arq():
 
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Menu principal"""
-
-
 def menu_principal():
     while True:
         print()
