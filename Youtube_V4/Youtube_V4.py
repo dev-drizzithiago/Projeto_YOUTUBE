@@ -316,14 +316,14 @@ class Youtube_v4:
 
             if resp_del:
                 lista_links.pop(indice)  # Linha foi modificado
-                self.lbl_status_processos.config(text=f'Deletando arquivo {lista_links}, aguarde!')
+                self.lbl_status_processos.config(text=f'Deletando arquivo {lista_links[indice]}, aguarde!')
                 sleep(2)
                 self.lbl_status_processos.config(text='Arquivo deletado com sucesso!')
-                self.func_time_10seg()
+
 
             atualizado_registro_link_salvos = open(caminho_arq_txt, 'w')
 
-            """#### Função é responsavel por refazer o arquivo onde ficar alocado os links. Mas sem o link que foi 
+            """#### Função é responsavel por refazer o arquivo onde fica alocado os links. Mas sem o link que foi 
             deletado"""
             for valor_lista_atualizado_link in lista_links:
                 atualizado_registro_link_salvos = open(caminho_arq_txt, 'a')
