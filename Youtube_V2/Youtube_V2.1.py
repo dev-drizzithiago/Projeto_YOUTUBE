@@ -123,7 +123,6 @@ def registrar_link(valor_entrada):  # $$
     except FileExistsError:
         pass
 
-
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Funções de processo"""
 def adicionar_link():  # $
@@ -199,8 +198,9 @@ def downloads():
 
             """### Abre para o usuário escolher o link"""
             print(linha)
-            print('- Voltar=999 \n - Deletar links=888')
+            print('- Voltar=999 \n- Deletar links=888')
             opc_downloads = leiaInt('       Escolha uma opção: ') - 1
+
             """#### """
             if opc_downloads == 998:
                 print('Voltando ao menu principal')
