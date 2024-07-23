@@ -315,8 +315,8 @@ class Youtube_v4:
             resp_del = askquestion('Aviso!', 'Deseja deletar o link selecionado?')
 
             if resp_del:
-                lista_links.pop(indice)
-                self.lbl_status_processos.config(text=f'Deletando arquivo {lista_links(indice)}, aguarde!')
+                lista_links.pop(indice)  # Linha foi modificado
+                self.lbl_status_processos.config(text=f'Deletando arquivo {lista_links}, aguarde!')
                 sleep(2)
                 self.lbl_status_processos.config(text='Arquivo deletado com sucesso!')
                 self.func_time_10seg()
