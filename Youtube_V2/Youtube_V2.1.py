@@ -93,8 +93,8 @@ def deletar_arq_links():
     except FileNotFoundError:
         print('Arquivos não existe')
     except PermissionError:
-        print('Vcoê não tem permissão para remover.')
-
+        print('Vcoê não tem permissão para remover o arquivo.\n\n')
+        
 
 # ----------------------------------------------------------------------------------------------------------------------
 def registrar_link(valor_entrada):  # $$
