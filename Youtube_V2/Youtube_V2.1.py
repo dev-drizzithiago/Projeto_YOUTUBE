@@ -52,8 +52,8 @@ def leiaInt(valor_entrada):
 
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Funções threads"""
-def thread_downloads():
-    Thread(target=downloads).start()
+'''def thread_downloads():
+    Thread(target=downloads).start()'''
 
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -83,6 +83,7 @@ def criar_pasta_arq_link():
     except FileNotFoundError:
         mkdir(path_arqu)
 
+
 def deletar_arq_links():
     try:
         remove(arq_youtube)
@@ -91,6 +92,9 @@ def deletar_arq_links():
         print('Arquivos deletado com sucesso.')
     except FileNotFoundError:
         print('Arquivos não existe')
+    except PermissionError:
+        print('Vcoê não tem permissão para remover.')
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 def registrar_link(valor_entrada):  # $$
@@ -122,6 +126,7 @@ def registrar_link(valor_entrada):  # $$
 
     except FileExistsError:
         pass
+
 
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Funções de processo"""
