@@ -17,7 +17,7 @@ path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
 path_down_mp3 = str(Path(path_home, 'Downloads', 'YouTube_V2', 'Músicas(MP3)'))
 path_down_mp4 = str(Path(path_home, 'Downloads', 'YouTube_V2', 'Vídeos(MP4)'))
 
-arq_youtube = str(path_arqu + '\\Link_Youtube_V2.txt')
+arq_youtube = str(path_arqu + '\\Link_Youtube_V2.1.txt')
 
 # ----------------------------------------------------------------------------------------------------------------------
 """Declarando variaveis"""
@@ -25,8 +25,6 @@ linha = '----' * 24
 
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Função simples"""
-
-
 def logo_tube(valor_entrada):
     """
     Deixa a aparencia de casa função melhor
@@ -54,8 +52,6 @@ def leiaInt(valor_entrada):
 
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Funções threads"""
-
-
 def thread_downloads():
     Thread(target=downloads).start()
 
@@ -87,6 +83,14 @@ def criar_pasta_arq_link():
     except FileNotFoundError:
         mkdir(path_arqu)
 
+def deletar_arq_links():
+    try:
+        remove(arq_youtube)
+        print('Deletando arquivo de links... Aguarde!')
+        sleep(2)
+        print('Arquivos deletado com sucesso.')
+    except FileNotFoundError:
+        print('Arquivos não existe')
 
 # ----------------------------------------------------------------------------------------------------------------------
 def registrar_link(valor_entrada):  # $$
@@ -122,8 +126,6 @@ def registrar_link(valor_entrada):  # $$
 
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Funções de processo"""
-
-
 def adicionar_link():  # $
     """
     - Função responsável em receber o link, para que posteriormente ser registrado
