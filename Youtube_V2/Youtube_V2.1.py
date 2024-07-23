@@ -156,6 +156,7 @@ def adicionar_link():  # $
             registrar_link(link_tube)
 
 
+"""#### Funçao responsável em transformar o arquivos mp4 para mp3"""
 # ----------------------------------------------------------------------------------------------------------------------
 def mp3_to_mp4(autor_midia):
     """
@@ -198,15 +199,15 @@ def downloads():
 
             """### Abre para o usuário escolher o link"""
             print(linha)
-            print('voltar=999 \n deletar links=888')
-            opc_downloads = leiaInt('Escolha uma opção (voltar=999): ') - 1
+            print('- Voltar=999 \n - Deletar links=888')
+            opc_downloads = leiaInt('       Escolha uma opção: ') - 1
             """#### """
             if opc_downloads == 998:
                 print('Voltando ao menu principal')
                 sleep(2)
                 system('cls')
                 break
-            elif opc_downloads == 888:
+            elif opc_downloads == 887:
                 deletar_arq_links()
             else:
                 """#### Com as informações de de entrada, escolhe-se o link para o downloads"""
@@ -261,7 +262,7 @@ def downloads():
                         print('Não foi possível realizado o downloads')
 
         except FileNotFoundError:
-            print('\nO arquivo que contém os links não existe! \nAdicione um link para criar')
+            print('\nNão possui nenhum link ou o arquivo não existe! \nAdicione um link para criar')
             sleep(5)
             system('cls')
             break
