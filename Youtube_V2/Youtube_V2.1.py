@@ -78,8 +78,6 @@ def criando_pastas_midias():
 
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Funções simples"""
-
-
 def criar_pasta_arq_link():
     """#### Função responsável em criar pasta para armazenar o arquivo que fica salvo os links"""
     try:
@@ -91,7 +89,7 @@ def criar_pasta_arq_link():
 
 
 # ----------------------------------------------------------------------------------------------------------------------
-def registrar_link(valor_entrada):
+def registrar_link(valor_entrada):  # $$
     """
     :param valor_entrada: Recebe o valor do link
     1) Verifica se o arquivo de texto que vai receber o link está criada, caso não esteja, a funçção já está
@@ -104,13 +102,14 @@ def registrar_link(valor_entrada):
 
     """#### cria o obj para o titulo do video"""
     titulo_link = YouTube(valor_entrada).title
+    author_link = YouTube(valor_entrada).author
 
     """#### Grava os dados do link no arquivo de texto; a função acima é responsável em criar """
     try:
         gravando_link = open(arq_youtube, 'a')
         gravando_link.write(f'{valor_entrada}\n')
         gravando_link.close()
-        print(f'Link adicionado com sucesso! \n{linha}\nTitulo: {titulo_link}')
+        print(f'Link adicionado com sucesso! \n{linha}\nAutor: {author_link} - {titulo_link}')
         sleep(2)
 
     except FileNotFoundError:
@@ -125,7 +124,7 @@ def registrar_link(valor_entrada):
 """#### Funções de processo"""
 
 
-def adicionar_link():
+def adicionar_link():  # $
     """
     - Função responsável em receber o link, para que posteriormente ser registrado
     1) solicita ao usuário o link do YouTube;
@@ -219,7 +218,7 @@ def downloads():
                 print(linha)
                 opc_menu_down = leiaInt('Escolha uma opção: ')
 
-                # Processo de downloads em MP3
+                # Processo de “download” em MP3
                 if opc_menu_down == 1:
                     print()
                     print(linha)
@@ -247,7 +246,7 @@ def downloads():
                     logo_tube('Downloads em MP4')
                     try:
                         print('Download em andamento, aguarde!!')
-                        (obj_youtube.streams.get_highest_resolution().download(path_down_mp4))
+                        obj_youtube.streams.get_highest_resolution().download(path_down_mp4)
 
                         print()
                         print(linha)
