@@ -404,15 +404,23 @@ def menu_principal():
         valor_opc = leiaInt('Escolha uma opção: ')
 
         if valor_opc == 1:
+            print()
+            print()
             adicionar_link()
 
         elif valor_opc == 2:
+            print()
+            print()
             downloads()
 
         elif valor_opc == 3:
+            print()
+            print()
             abrir_arq()
 
         elif valor_opc == 4:
+            print()
+            print()
             system('cls')
             print(linha)
             print('Saindo do programa!')
