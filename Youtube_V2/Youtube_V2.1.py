@@ -198,6 +198,7 @@ def downloads():
 
             """### Abre para o usuário escolher o link"""
             print(linha)
+            print('voltar=999 \n deletar links=888')
             opc_downloads = leiaInt('Escolha uma opção (voltar=999): ') - 1
             """#### """
             if opc_downloads == 998:
@@ -205,6 +206,8 @@ def downloads():
                 sleep(2)
                 system('cls')
                 break
+            elif opc_downloads == 888:
+                deletar_arq_links()
             else:
                 """#### Com as informações de de entrada, escolhe-se o link para o downloads"""
                 link_downloads = link_down_tube[opc_downloads]
