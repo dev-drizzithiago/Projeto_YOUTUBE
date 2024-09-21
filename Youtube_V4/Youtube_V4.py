@@ -1,5 +1,6 @@
 """Declarações dos modulos do youtobe"""
 from os import makedirs, listdir, path, remove
+import imageio_ffmpeg
 from tkinter.messagebox import showwarning
 from tkinter.messagebox import askquestion
 from moviepy.editor import AudioFileClip
