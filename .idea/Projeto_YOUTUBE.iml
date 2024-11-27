@@ -6,6 +6,7 @@
       <excludeFolder url="file://$MODULE_DIR$/venv" />
       <excludeFolder url="file://$MODULE_DIR$/Interpretador_Youtube" />
     </content>
+    <orderEntry type="jdk" jdkName="Python 3.12 (Projeto_YOUTUBE)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
