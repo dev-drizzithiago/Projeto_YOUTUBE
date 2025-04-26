@@ -1,7 +1,7 @@
 from os import mkdir, listdir, path, remove, makedirs, startfile, system
 from moviepy.editor import AudioFileClip
+from pytubefix import YouTube
 from threading import Thread
-from pytube import YouTube
 from pathlib import Path
 from time import sleep
 from re import search
