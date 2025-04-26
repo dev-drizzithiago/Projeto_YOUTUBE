@@ -10,4 +10,4 @@ caminho_download = os.path.join(os.path.dirname(__file__))
 print(caminho_download)
 
 
-ys.download(output_path=caminho_download)
+ys.download(output_path='C:\\Users\\Thiago\\Downloads\\YouTube_V2\\Músicas(MP3)')
