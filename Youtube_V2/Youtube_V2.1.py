@@ -173,7 +173,7 @@ def mp3_to_mp4(autor_midia):
     """
 
     for valor_mp4 in listdir(path_temp):
-        if search('mp4', valor_mp4):
+        if search('m4a', valor_mp4):
             "#### Renomeia o arquivo"
             mp4_file = path.join(path_temp, valor_mp4)
             mp3_file = path.join(path_down_mp3, autor_midia + ' - ' + path.splitext(valor_mp4)[0] + '.mp3')
@@ -241,7 +241,8 @@ def downloads():
 
                     try:
                         """#### Realiza o downloads do vídeo apenas com o audio"""
-                        obj_youtube.streams.get_audio_only().download(path_temp)
+                        yt_audio = obj_youtube.streams.get_audio_only()
+                        yt_audio.download(path_temp)
 
                         """# Chama a função para tranformar o videm em MP3"""
                         mp3_to_mp4(valor_autor)
