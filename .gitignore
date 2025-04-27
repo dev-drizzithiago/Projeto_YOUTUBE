@@ -4,3 +4,4 @@ import mysql.connector(antigo).txt
 *.m4a
 *.pyc
 *.zip
+*.toc
