@@ -14,12 +14,14 @@ lista_menu_downloads = [' Música(MP3) ', ' Vídeo(MP4) ']
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Criando pastas """
 path_home = Path.home()
-path_arqu = str(Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2'))
+path_arquivo_links = str(Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2'))
+part_arquivo_titulos = str(Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2'))
 path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
 path_down_mp3 = str(Path(path_home, 'Downloads', 'YouTube_V2', 'Músicas(MP3)'))
 path_down_mp4 = str(Path(path_home, 'Downloads', 'YouTube_V2', 'Vídeos(MP4)'))
 
-arq_youtube = str(path_arqu + '\\Link_Youtube_V2.1.txt')
+arq_youtube_links = str(path_arquivo_links + '\\Link_Youtube_V2.2.txt')
+arq_youtube_titulos = str(path_arquivo_links + '\\titulos_Youtube_V2.2.txt')
 
 # ----------------------------------------------------------------------------------------------------------------------
 """Declarando variaveis"""
