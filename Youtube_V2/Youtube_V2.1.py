@@ -186,7 +186,9 @@ def mp3_to_mp4(autor_midia):
 
 # ----------------------------------------------------------------------------------------------------------------------
 def downloads():
+
     criando_pastas_midias()
+    lista_titlle_midia = []
     while True:
         logo_tube(' Downloads ')
 
@@ -218,6 +220,7 @@ def downloads():
                 """#### Com as informações de de entrada, escolhe-se o link para o downloads"""
                 link_downloads = link_down_tube[opc_downloads]
                 obj_youtube = YouTube(link_downloads)
+                proximo_autor_download = obj_youtube.author
 
                 """#### Menu downloads: aqui voce vai escolher qual extensão ira baixar, o mp3 ou mp4"""
                 print()
@@ -245,7 +248,7 @@ def downloads():
                         yt_audio.download(path_temp)
 
                         """# Chama a função para tranformar o videm em MP3"""
-                        mp3_to_mp4(valor_autor)
+                        mp3_to_mp4(proximo_autor_download)
                         print(f'Download finalizado... \nVerifique o MP3 na pasta [{path_down_mp3}]')
                         sleep(1)
                     except:
