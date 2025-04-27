@@ -347,7 +347,7 @@ class Youtube_v4:
         """
         for valor_arq_mp4 in listdir(path_temp_yt):
             try:
-                if search('mp4', valor_arq_mp4):
+                if search('m2a', valor_arq_mp4):
                     mp4_file = path.join(path_temp_yt, valor_arq_mp4)
                     mp3_file = path.join(path_musicas, titulo_mp3)
                     print(mp3_file)
