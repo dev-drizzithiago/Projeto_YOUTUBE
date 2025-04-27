@@ -230,14 +230,14 @@ def downloads():
             link_down_tube = valor_links.readlines()
             valor_links.close()
 
-            indice_max_lista = len(link_down_tube)
-            print(indice_max_lista)
+            valor_titulo = open(arq_youtube_titulos, 'r')
+            titulo_down_tube = valor_titulo.readlines()
+            valor_titulo.close()
+
 
             """# listando os link salvos"""
-            for indice, valor_link in enumerate(link_down_tube):
-                valor_titulo = YouTube(valor_link).title
-                valor_autor = YouTube(valor_link).author
-                print(f'[{indice + 1}] {valor_autor} - {valor_titulo}: \n{valor_link}')
+            for indice, valor_titulo in enumerate(titulo_down_tube):
+                print(f'[{indice + 1}] - {valor_titulo}')
 
             """### Abre para o usuário escolher o link"""
             print(linha)
