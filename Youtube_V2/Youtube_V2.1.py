@@ -118,7 +118,7 @@ def registrar_link(valor_entrada):  # $$
         gravando_link.write(f'{valor_entrada}\n')
         gravando_link.close()
         print(f'Link adicionado com sucesso! \n{linha}\nAutor: {author_link} - {titulo_link}')
-        sleep(2)
+        sleep(1)
 
     except FileNotFoundError:
         gravando_link = open(arq_youtube, 'w')
@@ -209,7 +209,7 @@ def downloads():
             """#### """
             if opc_downloads == 998:
                 print('Voltando ao menu principal')
-                sleep(2)
+                sleep(1)
                 system('cls')
                 break
             elif opc_downloads == 887:
@@ -247,7 +247,7 @@ def downloads():
                         """# Chama a função para tranformar o videm em MP3"""
                         mp3_to_mp4(valor_autor)
                         print(f'Download finalizado... \nVerifique o MP3 na pasta [{path_down_mp3}]')
-                        sleep(2)
+                        sleep(1)
                     except:
                         print('Não foi possível realizar o download')
 
@@ -263,7 +263,7 @@ def downloads():
                         print()
                         print(linha)
                         print(f'Download finalizado! \nVerifique o MP4 na pasta  [{path_down_mp4}]')
-                        sleep(2)
+                        sleep(1)
                     except:
                         print('Não foi possível realizado o downloads')
 
@@ -314,7 +314,7 @@ def abrir_arq():
 
         if opc_midia == 999:
             print('Voltando ao menu principal!')
-            sleep(2)
+            sleep(1)
             system('cls')
             break
 
@@ -327,7 +327,7 @@ def abrir_arq():
 
                 if len(lista_mp3) == 0:
                     print('Não existe nenhuma música na pasta')
-                    sleep(2)
+                    sleep(1)
                     break
                 else:
                     for indice, valor_mp3 in enumerate(lista_mp3):
@@ -347,7 +347,7 @@ def abrir_arq():
                 print()
                 print(linha)
                 print(f'Iniciando: {caminho_mp3}')
-                sleep(2)
+                sleep(1)
 
                 """#### Inicia a música no play padrão do windows"""
                 Thread(target=startfile(caminho_mp3)).start()
@@ -381,7 +381,7 @@ def abrir_arq():
                 print()
                 print(linha)
                 print(f'Iniciando: {caminho_mp4}')
-                sleep(2)
+                sleep(1)
 
                 """### Iniciando o vídeo no play padrão do windows"""
                 Thread(target=startfile(caminho_mp4)).start()
