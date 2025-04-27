@@ -133,6 +133,8 @@ def registrar_link(valor_entrada):  # $$
         pass
 
 
+def registrar_titulo(valor_entrada):
+    ...
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Funções de processo"""
 def adicionar_link():  # $
