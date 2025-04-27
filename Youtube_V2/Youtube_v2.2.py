@@ -134,7 +134,26 @@ def registrar_link(valor_entrada):  # $$
 
 
 def registrar_titulo(valor_entrada):
-    ...
+    criar_pasta_arq_link()
+
+    titulo_link = YouTube(valor_entrada).title
+    author_link = YouTube(valor_entrada).author
+    titulo_completo_link = f'{author_link} - {titulo_link}'
+
+    try:
+        gravando_link = open(arq_youtube_links, 'a')
+        gravando_link.write(f'{titulo_completo_link}\n')
+        gravando_link.close()
+
+    except FileNotFoundError:
+        gravando_link = open(arq_youtube_titulos, 'w')
+        gravando_link.write(f'{titulo_completo_link}\n')
+        gravando_link.close()
+
+    except FileExistsError:
+        pass
+
+
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Funções de processo"""
 def adicionar_link():  # $
@@ -165,6 +184,7 @@ def adicionar_link():  # $
             print('Registrando...!')
             sleep(1)
             registrar_link(link_tube)
+            registrar_titulo(link_tube)
 
 
 """#### Funçao responsável em transformar o arquivos mp4 para mp3"""
