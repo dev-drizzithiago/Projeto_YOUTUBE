@@ -91,7 +91,7 @@ def deletar_arq_links():
         sleep(2)
         print('Arquivos deletado com sucesso.')
     except FileNotFoundError:
-        print('Arquivos não existe')
+        print('Arquivo não existe')
     except PermissionError:
         print('Vcoê não tem permissão para remover o arquivo.\n\n')
 
