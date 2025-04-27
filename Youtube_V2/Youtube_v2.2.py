@@ -14,9 +14,11 @@ lista_menu_downloads = [' Música(MP3) ', ' Vídeo(MP4) ']
 # ----------------------------------------------------------------------------------------------------------------------
 """#### Criando pastas """
 path_home = Path.home()
-path_arquivo_links = str(Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2'))
-part_arquivo_titulos = str(Path(path_home, 'AppData', 'LocalLow', 'Youtube_V2'))
 path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
+
+path_arquivo_links = str(Path(path_home, 'Downloads', 'YouTube_V2', 'arquivo_links'))
+path_arquivo_titulos = str(Path(path_home, 'Downloads', 'YouTube_V2', 'arquivo_links'))
+
 path_down_mp3 = str(Path(path_home, 'Downloads', 'YouTube_V2', 'Músicas(MP3)'))
 path_down_mp4 = str(Path(path_home, 'Downloads', 'YouTube_V2', 'Vídeos(MP4)'))
 
@@ -69,6 +71,7 @@ def criando_pastas_midias():
     try:
         makedirs(path_down_mp3)
         makedirs(path_down_mp4)
+
     except FileExistsError:
         pass
     except FileNotFoundError:
@@ -81,11 +84,13 @@ def criando_pastas_midias():
 def criar_pasta_arq_link():
     """#### Função responsável em criar pasta para armazenar o arquivo que fica salvo os links"""
     try:
-        mkdir(arq_youtube_links)
+        mkdir(path_arquivo_links)
+        mkdir(path_arquivo_links)
     except FileExistsError:
         pass
     except FileNotFoundError:
-        mkdir(arq_youtube_links)
+        mkdir(path_arquivo_links)
+        mkdir(path_arquivo_titulos)
 
 
 def deletar_arq_links():
