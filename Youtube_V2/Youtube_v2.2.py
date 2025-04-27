@@ -201,6 +201,9 @@ def downloads():
             link_down_tube = valor_links.readlines()
             valor_links.close()
 
+            indice_max_lista = len(link_down_tube)
+            print(indice_max_lista)
+
             """# listando os link salvos"""
             for indice, valor_link in enumerate(link_down_tube):
                 valor_titulo = YouTube(valor_link).title
@@ -220,6 +223,7 @@ def downloads():
                 break
             elif opc_downloads == 887:
                 deletar_arq_links()
+
             else:
                 """#### Com as informações de de entrada, escolhe-se o link para o downloads"""
                 link_downloads = link_down_tube[opc_downloads]
