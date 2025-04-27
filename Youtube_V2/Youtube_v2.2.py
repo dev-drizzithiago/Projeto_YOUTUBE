@@ -146,7 +146,7 @@ def registrar_titulo(valor_entrada):
     titulo_completo_link = f'{author_link} - {titulo_link}'
 
     try:
-        gravando_link = open(arq_youtube_links, 'a')
+        gravando_link = open(arq_youtube_titulos, 'a')
         gravando_link.write(f'{titulo_completo_link}\n')
         gravando_link.close()
 
