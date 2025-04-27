@@ -125,6 +125,7 @@ def registrar_link(valor_entrada):  # $$
     except FileNotFoundError:
         gravando_link = open(arq_youtube, 'w')
         gravando_link.write(f'{valor_entrada}\n')
+        gravando_link.close()
 
     except FileExistsError:
         pass
@@ -198,6 +199,7 @@ def downloads():
         try:
             valor_links = open(arq_youtube, 'r')
             link_down_tube = valor_links.readlines()
+            valor_links.close()
 
             """# listando os link salvos"""
             for indice, valor_link in enumerate(link_down_tube):
