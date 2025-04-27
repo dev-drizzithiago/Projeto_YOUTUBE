@@ -1,11 +1,10 @@
 """Declarações dos modulos do youtobe"""
 from os import makedirs, listdir, path, remove
-import imageio_ffmpeg
 from tkinter.messagebox import showwarning
 from tkinter.messagebox import askquestion
 from moviepy.editor import AudioFileClip
 from threading import Thread
-from pytube import YouTube
+from pytubefix import YouTube
 from tkinter.ttk import *
 from pathlib import Path
 from time import sleep
@@ -396,7 +395,7 @@ class Youtube_v4:
                     try:
                         self.lbl_status_processos.config(text=f'Downloads em andamento... aguarde!! '
                                                               f'- {nome_arquivo_mp3}')
-                        obj_youtube.streams.filter(only_audio=True).first().download(path_temp_yt)
+                        obj_youtube.streams.get_audio_only().download(path_temp_yt)
 
                         """Abre a função para tranformar o arquivo MP4 em MP3"""
                         self.MP3_TO_MP4(nome_arquivo_mp3)
