@@ -6,6 +6,8 @@ from pathlib import Path
 from time import sleep
 from re import search
 
+""" Essa versão é para corrigir alguns bugs que existe no código"""
+
 lista_menu_principal = [' Adicionar link ', ' Downloads ', ' Abrir arquivo ', ' Sair ']
 lista_menu_downloads = [' Música(MP3) ', ' Vídeo(MP4) ']
 
