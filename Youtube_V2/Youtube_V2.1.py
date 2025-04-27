@@ -88,7 +88,7 @@ def deletar_arq_links():
     try:
         remove(arq_youtube)
         print('Deletando arquivo de links... Aguarde!')
-        sleep(2)
+        sleep(1)
         print('Arquivos deletado com sucesso.')
     except FileNotFoundError:
         print('Arquivo não existe')
