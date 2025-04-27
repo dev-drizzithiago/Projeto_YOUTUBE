@@ -81,16 +81,16 @@ def criando_pastas_midias():
 def criar_pasta_arq_link():
     """#### Função responsável em criar pasta para armazenar o arquivo que fica salvo os links"""
     try:
-        mkdir(path_arqu)
+        mkdir(arq_youtube_links)
     except FileExistsError:
         pass
     except FileNotFoundError:
-        mkdir(path_arqu)
+        mkdir(arq_youtube_links)
 
 
 def deletar_arq_links():
     try:
-        remove(arq_youtube)
+        remove(arq_youtube_links)
         print('Deletando arquivo de links... Aguarde!')
         sleep(1)
         print('Arquivos deletado com sucesso.')
@@ -118,14 +118,14 @@ def registrar_link(valor_entrada):  # $$
 
     """#### Grava os dados do link no arquivo de texto; a função acima é responsável em criar """
     try:
-        gravando_link = open(arq_youtube, 'a')
+        gravando_link = open(arq_youtube_links, 'a')
         gravando_link.write(f'{valor_entrada}\n')
         gravando_link.close()
         print(f'Link adicionado com sucesso! \n{linha}\nAutor: {author_link} - {titulo_link}')
         sleep(1)
 
     except FileNotFoundError:
-        gravando_link = open(arq_youtube, 'w')
+        gravando_link = open(arq_youtube_links, 'w')
         gravando_link.write(f'{valor_entrada}\n')
         gravando_link.close()
 
@@ -199,7 +199,7 @@ def downloads():
 
         """#### abrindo arquivo de texto"""
         try:
-            valor_links = open(arq_youtube, 'r')
+            valor_links = open(arq_youtube_links, 'r')
             link_down_tube = valor_links.readlines()
             valor_links.close()
 
