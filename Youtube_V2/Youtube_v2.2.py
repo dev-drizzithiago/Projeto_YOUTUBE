@@ -33,7 +33,7 @@ linha = '----' * 24
 """#### Função simples"""
 def logo_tube(valor_entrada):
     """
-    Deixa a aparencia de casa função melhor
+    
     :param valor_entrada: Recebe o valor com o nome de casa função;
     :return:
     """
