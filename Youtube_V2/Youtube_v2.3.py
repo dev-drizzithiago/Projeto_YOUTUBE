@@ -37,7 +37,7 @@ class DownloadVideosYoutube:
     # ----------------------------------------------------------------------------------------------------------------------
     """#### Função simples"""
 
-    def logo_tube(valor_entrada):
+    def logo_tube(self, valor_entrada):
         """
 
         :param valor_entrada: Recebe o valor com o nome de casa função;
@@ -47,7 +47,7 @@ class DownloadVideosYoutube:
         print(f'{linhas}{valor_entrada}{linhas}')
 
     # ----------------------------------------------------------------------------------------------------------------------
-    def leiaInt(valor_entrada):
+    def leiaInt(self, valor_entrada):
         """
         Reponsável em analisar se o valor que entrar, é um número inteiro;
         :param valor_entrada:  Recebe o valor em número de cada opção que o usuário escolheu;
@@ -61,7 +61,7 @@ class DownloadVideosYoutube:
                 print(f'Você digitou um valor incorreto!')
 
     # ----------------------------------------------------------------------------------------------------------------------
-    def criando_pastas_midias():
+    def criando_pastas_midias(self):
         """
         Função responsável em criar os diretorios responsavel por receber os arquivos de downloads
         :return:
@@ -79,7 +79,7 @@ class DownloadVideosYoutube:
     # ----------------------------------------------------------------------------------------------------------------------
     """#### Funções simples"""
 
-    def criar_pasta_arq_link():
+    def criar_pasta_arq_link(self):
         """#### Função responsável em criar pasta para armazenar o arquivo que fica salvo os links"""
         try:
             mkdir(path_arquivo_links)
@@ -90,7 +90,7 @@ class DownloadVideosYoutube:
             mkdir(path_arquivo_links)
             mkdir(path_arquivo_titulos)
 
-    def deletar_arq_links():
+    def deletar_arq_links(self):
         try:
             remove(arq_youtube_links)
             print('Deletando arquivo de links... Aguarde!')
@@ -102,7 +102,7 @@ class DownloadVideosYoutube:
             print('Vcoê não tem permissão para remover o arquivo.\n\n')
 
     # ----------------------------------------------------------------------------------------------------------------------
-    def registrar_link(valor_entrada):  # $$
+    def registrar_link(self, valor_entrada):  # $$
         """
         :param valor_entrada: Recebe o valor do link
         1) Verifica se o arquivo de texto que vai receber o link está criada, caso não esteja, a funçção já está
@@ -133,7 +133,7 @@ class DownloadVideosYoutube:
         except FileExistsError:
             pass
 
-    def registrar_titulo(valor_entrada):
+    def registrar_titulo(self, valor_entrada):
         criar_pasta_arq_link()
 
         titulo_link = YouTube(valor_entrada).title
@@ -156,7 +156,7 @@ class DownloadVideosYoutube:
     # ----------------------------------------------------------------------------------------------------------------------
     """#### Funções de processo"""
 
-    def adicionar_link():  # $
+    def adicionar_link(self):  # $
         """
         - Função responsável em receber o link, para que posteriormente ser registrado
         1) solicita ao usuário o link do YouTube;
@@ -189,7 +189,7 @@ class DownloadVideosYoutube:
     """#### Funçao responsável em transformar o arquivos mp4 para mp3"""
 
     # ----------------------------------------------------------------------------------------------------------------------
-    def mp3_to_mp4(autor_midia):
+    def mp3_to_mp4(self, autor_midia):
         """
         - Aqui, é realizado uma listage na pasta Temp, aonde fica alocado o arquivo mp4;
         - após localizar o arquivo mp4, é realizado a junção do local, para ser processado;
@@ -211,7 +211,7 @@ class DownloadVideosYoutube:
                 remove(mp4_file)
 
     # ----------------------------------------------------------------------------------------------------------------------
-    def downloads():
+    def downloads(self):
 
         criando_pastas_midias()
         lista_titlle_midia = []
@@ -311,7 +311,7 @@ class DownloadVideosYoutube:
     # ----------------------------------------------------------------------------------------------------------------------
     """#### Funçao responsável em excultar as mídias do usuário."""
 
-    def abrir_arq():
+    def abrir_arq(self):
         """
         Essa função utiliza as configurações padrão do windows.
         1) Criado duas listas para receber as mídias que forem encontradas nas pastas padrão do aplicativo;
@@ -423,7 +423,7 @@ class DownloadVideosYoutube:
                 print('Opção invalida!')
                 sleep(5)
 
-    def menu_principal():
+    def menu_principal(self):
         while True:
             print()
             print('----' * 24)
