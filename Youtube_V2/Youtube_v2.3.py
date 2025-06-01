@@ -8,9 +8,6 @@ from re import search
 
 class DownloadVideosYoutube:
 
-    def __init__(self):
-        ...
-
     """ Essa versão é para corrigir alguns bugs que existe no código"""
 
     lista_menu_principal = [' Adicionar link ', ' Downloads ', ' Abrir arquivo ', ' Sair ']
@@ -18,6 +15,7 @@ class DownloadVideosYoutube:
 
     # ----------------------------------------------------------------------------------------------------------------------
     """#### Criando pastas """
+
     path_home = Path.home()
     path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
 
@@ -34,13 +32,14 @@ class DownloadVideosYoutube:
     """Declarando variaveis"""
     linha = '----' * 24
 
+    def __init__(self):
+        ...
+
     # ----------------------------------------------------------------------------------------------------------------------
     """#### Função simples"""
-
     def logo_tube(self, valor_entrada):
         """
-
-        :param valor_entrada: Recebe o valor com o nome de casa função;
+        :param valor_entrada: Recebe o valor com o nome de cada função;
         :return:
         """
         linhas = '----' * 10
@@ -67,32 +66,31 @@ class DownloadVideosYoutube:
         :return:
         """
         try:
-            makedirs(path_down_mp3)
-            makedirs(path_down_mp4)
+            makedirs(self.path_down_mp3)
+            makedirs(self.path_down_mp4)
 
         except FileExistsError:
             pass
         except FileNotFoundError:
-            makedirs(path_down_mp3)
-            makedirs(path_down_mp4)
+            makedirs(self.path_down_mp3)
+            makedirs(self.path_down_mp4)
 
     # ----------------------------------------------------------------------------------------------------------------------
     """#### Funções simples"""
-
     def criar_pasta_arq_link(self):
         """#### Função responsável em criar pasta para armazenar o arquivo que fica salvo os links"""
         try:
-            mkdir(path_arquivo_links)
-            mkdir(path_arquivo_links)
+            mkdir(self.path_arquivo_links)
+            mkdir(self.path_arquivo_links)
         except FileExistsError:
             pass
         except FileNotFoundError:
-            mkdir(path_arquivo_links)
-            mkdir(path_arquivo_titulos)
+            mkdir(self.path_arquivo_links)
+            mkdir(self.path_arquivo_titulos)
 
     def deletar_arq_links(self):
         try:
-            remove(arq_youtube_links)
+            remove(self.arq_youtube_links)
             print('Deletando arquivo de links... Aguarde!')
             sleep(1)
             print('Arquivos deletado com sucesso.')
@@ -111,7 +109,7 @@ class DownloadVideosYoutube:
         3) Se tudo estiver correto, é aberto o arquivo de texto, logo depois é registrado o link e fechado o arquivo;
         :return:
         """
-        criar_pasta_arq_link()
+        self.criar_pasta_arq_link()
 
         """#### cria o obj para o titulo do video"""
         titulo_link = YouTube(valor_entrada).title
@@ -119,14 +117,14 @@ class DownloadVideosYoutube:
 
         """#### Grava os dados do link no arquivo de texto; a função acima é responsável em criar """
         try:
-            gravando_link = open(arq_youtube_links, 'a')
+            gravando_link = open(self.arq_youtube_links, 'a')
             gravando_link.write(f'{valor_entrada}\n')
             gravando_link.close()
-            print(f'Link adicionado com sucesso! \n{linha}\nAutor: {author_link} - {titulo_link}')
+            print(f'Link adicionado com sucesso! \n{self.linha}\nAutor: {author_link} - {titulo_link}')
             sleep(1)
 
         except FileNotFoundError:
-            gravando_link = open(arq_youtube_links, 'w')
+            gravando_link = open(self.arq_youtube_links, 'w')
             gravando_link.write(f'{valor_entrada}\n')
             gravando_link.close()
 
@@ -134,19 +132,19 @@ class DownloadVideosYoutube:
             pass
 
     def registrar_titulo(self, valor_entrada):
-        criar_pasta_arq_link()
+        self.criar_pasta_arq_link()
 
         titulo_link = YouTube(valor_entrada).title
         author_link = YouTube(valor_entrada).author
         titulo_completo_link = f'{author_link} - {titulo_link}'
 
         try:
-            gravando_link = open(arq_youtube_titulos, 'a')
+            gravando_link = open(self.arq_youtube_titulos, 'a')
             gravando_link.write(f'{titulo_completo_link}\n')
             gravando_link.close()
 
         except FileNotFoundError:
-            gravando_link = open(arq_youtube_titulos, 'w')
+            gravando_link = open(self.arq_youtube_titulos, 'w')
             gravando_link.write(f'{titulo_completo_link}\n')
             gravando_link.close()
 
@@ -164,11 +162,11 @@ class DownloadVideosYoutube:
         no arquivo responsãvel;
         :return:
         """
-        logo_tube('Adicionar link')
+        self.logo_tube('Adicionar link')
 
         while True:
 
-            print(linha)
+            print(self.linha)
             link_tube = str(input('Cole o link aqui(voltar=999): '))
 
             if link_tube == '999':
@@ -183,8 +181,8 @@ class DownloadVideosYoutube:
             else:
                 print('Registrando...!')
                 sleep(1)
-                registrar_link(link_tube)
-                registrar_titulo(link_tube)
+                self.registrar_link(link_tube)
+                self.registrar_titulo(link_tube)
 
     """#### Funçao responsável em transformar o arquivos mp4 para mp3"""
 
@@ -199,11 +197,11 @@ class DownloadVideosYoutube:
         - Depois que finaliza o processo, o arquivo mp4 é removido da pasta temp
         """
 
-        for valor_mp4 in listdir(path_temp):
+        for valor_mp4 in listdir(self.path_temp):
             if search('m4a', valor_mp4):
                 "#### Renomeia o arquivo"
-                mp4_file = path.join(path_temp, valor_mp4)
-                mp3_file = path.join(path_down_mp3, autor_midia + ' - ' + path.splitext(valor_mp4)[0] + '.mp3')
+                mp4_file = path.join(self.path_temp, valor_mp4)
+                mp3_file = path.join(self.path_down_mp3, autor_midia + ' - ' + path.splitext(valor_mp4)[0] + '.mp3')
 
                 """#### Processa o MP4 para MP3"""
                 novo_mp3 = AudioFileClip(mp4_file)
@@ -213,18 +211,18 @@ class DownloadVideosYoutube:
     # ----------------------------------------------------------------------------------------------------------------------
     def downloads(self):
 
-        criando_pastas_midias()
+        self.criando_pastas_midias()
         lista_titlle_midia = []
         while True:
-            logo_tube(' Downloads ')
+            self.logo_tube(' Downloads ')
 
             """#### abrindo arquivo de texto"""
             try:
-                valor_links = open(arq_youtube_links, 'r')
+                valor_links = open(self.arq_youtube_links, 'r')
                 link_down_tube = valor_links.readlines()
                 valor_links.close()
 
-                valor_titulo = open(arq_youtube_titulos, 'r')
+                valor_titulo = open(self.arq_youtube_titulos, 'r')
                 titulo_down_tube = valor_titulo.readlines()
                 valor_titulo.close()
 
@@ -233,9 +231,9 @@ class DownloadVideosYoutube:
                     print(f'[{indice + 1}] - {valor_titulo}')
 
                 """### Abre para o usuário escolher o link"""
-                print(linha)
+                print(self.linha)
                 print('- Voltar=999 \n- Deletar links=888')
-                opc_downloads = leiaInt('       Escolha uma opção: ') - 1
+                opc_downloads = self.leiaInt('       Escolha uma opção: ') - 1
 
                 """#### """
                 if opc_downloads == 998:
@@ -244,7 +242,7 @@ class DownloadVideosYoutube:
                     system('cls')
                     break
                 elif opc_downloads == 887:
-                    deletar_arq_links()
+                    self.deletar_arq_links()
 
                 else:
                     """#### Com as informações de de entrada, escolhe-se o link para o downloads"""
@@ -254,32 +252,32 @@ class DownloadVideosYoutube:
 
                     """#### Menu downloads: aqui voce vai escolher qual extensão ira baixar, o mp3 ou mp4"""
                     print()
-                    logo_tube('MP3/MP4')
-                    print(linha)
-                    for indice, valor in enumerate(lista_menu_downloads):
+                    self.logo_tube('MP3/MP4')
+                    print(self.linha)
+                    for indice, valor in enumerate(self.lista_menu_downloads):
                         print(f'[{indice + 1}] - {valor}')
 
-                    print(linha)
-                    opc_menu_down = leiaInt('Escolha uma opção: ')
+                    print(self.linha)
+                    opc_menu_down = self.leiaInt('Escolha uma opção: ')
 
                     # Processo de “download” em MP3
                     if opc_menu_down == 1:
                         print()
-                        print(linha)
-                        logo_tube('Downloads em MP3')
+                        print(self.linha)
+                        self.logo_tube('Downloads em MP3')
 
                         print()
-                        print(linha)
+                        print(self.linha)
                         print(f'Downloads em andamento, aguarde!')
 
                         try:
                             """#### Realiza o downloads do vídeo apenas com o audio"""
                             yt_audio = obj_youtube.streams.get_audio_only()
-                            yt_audio.download(path_temp)
+                            yt_audio.download(self.path_temp)
 
                             """# Chama a função para tranformar o videm em MP3"""
-                            mp3_to_mp4(proximo_autor_download)
-                            print(f'Download finalizado... \nVerifique o MP3 na pasta [{path_down_mp3}]')
+                            self.mp3_to_mp4(proximo_autor_download)
+                            print(f'Download finalizado... \nVerifique o MP3 na pasta [{self.path_down_mp3}]')
                             sleep(1)
                         except:
                             print('Não foi possível realizar o download')
@@ -287,15 +285,15 @@ class DownloadVideosYoutube:
                     # Processo de downloads de vídeo"""
                     elif opc_menu_down == 2:
                         print()
-                        print(linha)
-                        logo_tube('Downloads em MP4')
+                        print(self.linha)
+                        self.logo_tube('Downloads em MP4')
                         try:
                             print('Download em andamento, aguarde!!')
-                            obj_youtube.streams.get_highest_resolution().download(path_down_mp4)
+                            obj_youtube.streams.get_highest_resolution().download(self.path_down_mp4)
 
                             print()
-                            print(linha)
-                            print(f'Download finalizado! \nVerifique o MP4 na pasta  [{path_down_mp4}]')
+                            print(self.linha)
+                            print(f'Download finalizado! \nVerifique o MP4 na pasta  [{self.path_down_mp4}]')
                             sleep(1)
                         except:
                             print('Não foi possível realizado o downloads')
@@ -310,7 +308,6 @@ class DownloadVideosYoutube:
 
     # ----------------------------------------------------------------------------------------------------------------------
     """#### Funçao responsável em excultar as mídias do usuário."""
-
     def abrir_arq(self):
         """
         Essa função utiliza as configurações padrão do windows.
@@ -326,24 +323,24 @@ class DownloadVideosYoutube:
         :return:
         """
         while True:
-            logo_tube(' Excecute um arquivos ')
+            self.logo_tube(' Excecute um arquivos ')
             lista_mp3 = []
             lista_mp4 = []
 
-            for valor_midia in listdir(path_down_mp3):
+            for valor_midia in listdir(self.path_down_mp3):
                 lista_mp3.append(str(valor_midia))
 
-            for valor_midia in listdir(path_down_mp4):
+            for valor_midia in listdir(self.path_down_mp4):
                 lista_mp4.append(str(valor_midia))
 
             print()
-            print(linha)
-            for indice, menu in enumerate(lista_menu_downloads):
+            print(self.linha)
+            for indice, menu in enumerate(self.lista_menu_downloads):
                 print(f'[{indice + 1}] - {menu}')
 
             print()
-            print(linha)
-            opc_midia = leiaInt('Escolha uma opção(Voltar=999): ')
+            print(self.linha)
+            opc_midia = self.leiaInt('Escolha uma opção(Voltar=999): ')
 
             if opc_midia == 999:
                 print('Voltando ao menu principal!')
@@ -356,7 +353,7 @@ class DownloadVideosYoutube:
                 while True:
                     print()
                     print('Músicas')
-                    print(linha)
+                    print(self.linha)
 
                     if len(lista_mp3) == 0:
                         print('Não existe nenhuma música na pasta')
@@ -367,18 +364,18 @@ class DownloadVideosYoutube:
                             print(f'{indice + 1} - {valor_mp3}')
 
                     print()
-                    print(linha)
-                    opc_mp3 = leiaInt('Escolha uma Música(voltar=999): ') - 1
+                    print(self.linha)
+                    opc_mp3 = self.leiaInt('Escolha uma Música(voltar=999): ') - 1
                     """Função que volta o menu"""
                     if opc_mp3 == 998:
                         print('Voltando ao menu!')
                         break
 
                     """#### Realiza a junção do caminha e arquivo para que seja lido pela Thread"""
-                    caminho_mp3 = str(path_down_mp3 + '\\' + lista_mp3[opc_mp3])
+                    caminho_mp3 = str(self.path_down_mp3 + '\\' + lista_mp3[opc_mp3])
 
                     print()
-                    print(linha)
+                    print(self.linha)
                     print(f'Iniciando: {caminho_mp3}')
                     sleep(1)
 
@@ -390,7 +387,7 @@ class DownloadVideosYoutube:
                 while True:
                     print()
                     print('Vídeos')
-                    print(linha)
+                    print(self.linha)
 
                     if len(lista_mp4) == 0:
                         print('Não existe nenhuma música na pasta')
@@ -401,18 +398,18 @@ class DownloadVideosYoutube:
                             print(f'{indice + 1} - {valor_mp4}')
 
                     print()
-                    print(linha)
-                    opc_mp4 = leiaInt('Escolha uma opção(voltar=999): ') - 1
+                    print(self.linha)
+                    opc_mp4 = self.leiaInt('Escolha uma opção(voltar=999): ') - 1
                     """Função que volta o menu"""
                     if opc_mp4 == 998:
                         print('Voltando ao menu!')
                         break
 
                     """#### Realiza a junção do caminha e arquivo para que seja lido pela Thread"""
-                    caminho_mp4 = str(path_down_mp4 + '\\' + lista_mp4[opc_mp4])
+                    caminho_mp4 = str(self.path_down_mp4 + '\\' + lista_mp4[opc_mp4])
 
                     print()
-                    print(linha)
+                    print(self.linha)
                     print(f'Iniciando: {caminho_mp4}')
                     sleep(1)
 
@@ -431,34 +428,34 @@ class DownloadVideosYoutube:
             print('                                          @drizzithiago ')
             print('----' * 24)
 
-            logo_tube(' Menu Principal ')
-            for valor_menu in range(len(lista_menu_principal)):
-                print(f'[ {valor_menu + 1} ] ==> {lista_menu_principal[valor_menu]}')
+            self.logo_tube(' Menu Principal ')
+            for valor_menu in range(len(self.lista_menu_principal)):
+                print(f'[ {valor_menu + 1} ] ==> {self.lista_menu_principal[valor_menu]}')
 
             print()
-            print(linha)
-            valor_opc = leiaInt('Escolha uma opção: ')
+            print(self.linha)
+            valor_opc = self.leiaInt('Escolha uma opção: ')
 
             if valor_opc == 1:
                 print()
                 print()
-                adicionar_link()
+                self.adicionar_link()
 
             elif valor_opc == 2:
                 print()
                 print()
-                downloads()
+                self.downloads()
 
             elif valor_opc == 3:
                 print()
                 print()
-                abrir_arq()
+                self.abrir_arq()
 
             elif valor_opc == 4:
                 print()
                 print()
                 system('cls')
-                print(linha)
+                print(self.linha)
                 print('Saindo do programa!')
                 sleep(1)
                 break
@@ -466,3 +463,7 @@ class DownloadVideosYoutube:
             else:
                 print('Opção incorreta!!')
                 sleep(5)
+
+
+obj_yt_down = DownloadVideosYoutube()
+obj_yt_down.menu_principal()
