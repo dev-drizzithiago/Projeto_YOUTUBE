@@ -55,13 +55,6 @@ def leiaInt(valor_entrada):
         except:
             print(f'Você digitou um valor incorreto!')
 
-
-# ----------------------------------------------------------------------------------------------------------------------
-"""#### Funções threads"""
-'''def thread_downloads():
-    Thread(target=downloads).start()'''
-
-
 # ----------------------------------------------------------------------------------------------------------------------
 def criando_pastas_midias():
     """
