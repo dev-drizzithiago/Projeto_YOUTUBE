@@ -13,7 +13,11 @@ class JanelaPrincipalDownYT(QMainWindow):
         self.setWindowTitle('Download YouTube')
         self.setFixedSize(QSize(400, 400))  # QSize Bloqueia o tamanho da janela.
 
-        btn_add_link = QPushButton('Adicionar')
+        self.btn_add_link = QPushButton('Adicionar')
+        self.btn_add_link.setStyleSheet('font-size: 30px;')
+        self.btn_add_link.move(10, 50)
+
+        self.setCentralWidget(self.btn_add_link)
 
         self.lbl_titulo = QLabel('teste')
 
