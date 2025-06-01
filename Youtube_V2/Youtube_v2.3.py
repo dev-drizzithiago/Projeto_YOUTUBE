@@ -8,7 +8,7 @@ from re import search
 
 class DownloadVideosYoutube:
 
-    """ Essa versão é para corrigir alguns bugs que existe no código"""
+    """ Essa versão é para corrigir alguns bugs que existe no código e transformar em uma class"""
 
     lista_menu_principal = [' Adicionar link ', ' Downloads ', ' Abrir arquivo ', ' Sair ']
     lista_menu_downloads = [' Música(MP3) ', ' Vídeo(MP4) ']
