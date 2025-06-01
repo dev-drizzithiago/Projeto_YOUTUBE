@@ -7,28 +7,24 @@ app = QApplication(sys.argv)  # contém os argumentos de linha de comando passad
 
 class JanelaPrincipalDownYT(QMainWindow):
 
-    def __init__(self):
+    def __init__(self, link: str):
         super().__init__()
-        self._link = None
+        self._link = link
         self.setWindowTitle('Download YouTube')
         self.setFixedSize(QSize(400, 400))  # QSize Bloqueia o tamanho da janela.
-        self.add_widget = QWidget()
 
         self.btn_add_link = QPushButton('Adicionar')
         self.btn_add_link.setStyleSheet('font-size: 30px;')
-        self.btn_add_link.move(1000, 50)
+        self.btn_add_link.clicked.connect(self.download_link)
 
-        self.add_widget(self.btn_add_link)
+        self.setCentralWidget(self.btn_add_link)
 
-        self.lbl_titulo = QLabel('teste')
-
-    def download_link(self, link: str):
-        self._link = link
+    def download_link(self):
         print(self._link)
 
 
-obj_init_yt = JanelaPrincipalDownYT()
-obj_init_yt.download_link('link')
+obj_init_yt = JanelaPrincipalDownYT('link')
+obj_init_yt.download_link()
 obj_init_yt.show()
 
 app.exec()
