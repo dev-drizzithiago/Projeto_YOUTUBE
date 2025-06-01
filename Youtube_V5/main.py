@@ -15,9 +15,9 @@ class JanelaPrincipalDownYT(QMainWindow):
 
         self.btn_add_link = QPushButton('Adicionar')
         self.btn_add_link.setStyleSheet('font-size: 30px;')
-        self.btn_add_link.move(10, 50)
+        self.btn_add_link.move(1000, 50)
 
-        self.setCentralWidget(self.btn_add_link)
+        self.setLocale(self.btn_add_link)
 
         self.lbl_titulo = QLabel('teste')
 
