@@ -1,6 +1,6 @@
 import sys
 from PySide6.QtCore import QSize, Qt
-from PySide6.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel
+from PySide6.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QLabel
 
 # app = QApplication([])
 app = QApplication(sys.argv)  # contém os argumentos de linha de comando passados ao aplicativo
@@ -12,12 +12,13 @@ class JanelaPrincipalDownYT(QMainWindow):
         self._link = None
         self.setWindowTitle('Download YouTube')
         self.setFixedSize(QSize(400, 400))  # QSize Bloqueia o tamanho da janela.
+        self.add_widget = QWidget()
 
         self.btn_add_link = QPushButton('Adicionar')
         self.btn_add_link.setStyleSheet('font-size: 30px;')
         self.btn_add_link.move(1000, 50)
 
-        self.setLocale(self.btn_add_link)
+        self.add_widget(self.btn_add_link)
 
         self.lbl_titulo = QLabel('teste')
 
