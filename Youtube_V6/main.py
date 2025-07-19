@@ -1,6 +1,6 @@
-import os
+
+from os import path, listdir,makedirs, remove, system
 from pathlib import Path
-from os import path, listdir, remove
 from re import search
 
 from moviepy.editor import AudioFileClip
@@ -50,8 +50,8 @@ class YouTubeDownload:
             self.path_down_mp3 = str(Path(path_home, 'Documentos', 'YouTube_V6', 'Músicas(MP3)'))
             self.path_down_mp4 = str(Path(path_home, 'Documentos', 'YouTube_V6', 'Vídeos(MP4)'))
         except FileNotFoundError:
-            os.makedirs(self.path_down_mp3)
-            os.makedirs(self.path_down_mp4)
+            makedirs(self.path_down_mp3)
+            makedirs(self.path_down_mp4)
 
         self.DB_YOUTUBE = str(Path(path_home, 'Documentos', 'YouTube_V6'))
 
@@ -115,6 +115,14 @@ class YouTubeDownload:
                 return valor_inteiro
             except:
                 print(f'Você digitou um valor incorreto!')
+
+    def logo_tube(self, valor_entrada):
+        """
+        :param valor_entrada: Recebe o valor com o nome de cada função;
+        :return:
+        """
+        linhas = '----' * 10
+        print(f'{linhas}{valor_entrada}{linhas}')
 
 if __name__ == '__main__':
     obj_youtube_download = YouTubeDownload()
