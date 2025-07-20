@@ -2,12 +2,14 @@ from os import path, listdir, makedirs, remove, system
 
 from pathlib import Path
 from re import search
+from time import sleep
 
 from moviepy.editor import AudioFileClip
 from pytubefix import YouTube
 
 import sqlite3
 import menu
+
 
 
 class YouTubeDownload:
@@ -61,8 +63,18 @@ class YouTubeDownload:
 
 
 if __name__ == '__main__':
-    obj_youtube_download = YouTubeDownload()
+    # obj_youtube_download = YouTubeDownload()
     obj_menu = menu.Menu()
+
+    while True:
+        dados_menu = obj_menu.menu_app()
+
+        if dados_menu == "999":
+            print('Voltando ao menu principal...!')
+            sleep(2)
+
+        if dados_menu == '4':
+            break
 
 
 
