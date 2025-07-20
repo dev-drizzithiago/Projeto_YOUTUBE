@@ -1,53 +1,58 @@
+from os import system
+from time import sleep
+
 
 class Menu:
     lista_menu_principal = [' Adicionar link ', ' Downloads ', ' Abrir arquivo ', ' Sair ']
-    def __init__(self):
-        ...
+    linha = '----' * 24
 
     def menu_app(self):
 
-        while True:
-            print()
-            print('----' * 24)
-            print('                                    github.com/dev-drizzithiago ')
-            print('                                          @drizzithiago ')
-            print('----' * 24)
+        print()
+        print('----' * 24)
+        print('                                    github.com/dev-drizzithiago ')
+        print('                                          @drizzithiago ')
+        print('----' * 24)
 
-            self.logo_tube(' Menu Principal ')
-            for valor_menu in range(len(self.lista_menu_principal)):
-                print(f'[ {valor_menu + 1} ] ==> {self.lista_menu_principal[valor_menu]}')
+        self.logo_tube(' Menu Principal ')
+        for valor_menu in range(len(self.lista_menu_principal)):
+            print(f'[ {valor_menu + 1} ] ==> {self.lista_menu_principal[valor_menu]}')
 
+        print()
+        print(self.linha)
+        valor_opc = self.leiaInt('Escolha uma opção: ')
+
+        if valor_opc == 1:
             print()
+            print()
+
             print(self.linha)
-            valor_opc = self.leiaInt('Escolha uma opção: ')
+            link_tube = str(input('Cole o link aqui(voltar=999): '))
 
-            if valor_opc == 1:
-                print()
-                print()
-                # self.adicionar_link()
+            return link_tube
 
-            elif valor_opc == 2:
-                print()
-                print()
-                self.downloads()
+        elif valor_opc == 2:
+            print()
+            print()
+            return 2
 
-            elif valor_opc == 3:
-                print()
-                print()
-                self.abrir_arq()
+        elif valor_opc == 3:
+            print()
+            print()
+            return 3
 
-            elif valor_opc == 4:
-                print()
-                print()
-                system('cls')
-                print(self.linha)
-                print('Saindo do programa!')
-                sleep(1)
-                break
+        elif valor_opc == 4:
+            print()
+            print()
+            system('cls')
+            print(self.linha)
+            print('Saindo do programa!')
+            sleep(1)
+            return 4
 
-            else:
-                print('Opção incorreta!!')
-                sleep(5)
+        else:
+            print('Opção incorreta!!')
+            sleep(5)
 
     def leiaInt(self, valor_entrada):
         """
@@ -69,4 +74,3 @@ class Menu:
         """
         linhas = '----' * 10
         print(f'{linhas}{valor_entrada}{linhas}')
-
