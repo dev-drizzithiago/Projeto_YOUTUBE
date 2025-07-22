@@ -21,6 +21,8 @@ class YouTubeDownload:
     def downloads(self):
         ...
 
+    # -------------------
+    # Bloco de processos
     def download_music(self):
         ...
 
@@ -63,6 +65,12 @@ class YouTubeDownload:
         self.DB_YOUTUBE = str(Path(path_home, 'Documentos', 'YouTube_V6'))
 
     def criando_banco_dados(self):
+        def criando_tabela():
+            tabela = """
+            CREATE TABLE INFO_TUBE(
+            
+            """
+
         try:
             conexao_banco = sqlite3.connect(self.DB_YOUTUBE)
             print('Base de dados conectado...')
