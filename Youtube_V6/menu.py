@@ -8,6 +8,7 @@ class Menu:
     linha = '----' * 24
 
     def __init__(self):
+
         self.core_ = core.YouTubeDownload()
         self.core_.criando_banco_dados()
 
@@ -82,4 +83,7 @@ class Menu:
 
 
 if __name__ == "__main__":
-    iniciando_obj_menu = Menu()
+    while True:
+        iniciando_obj_menu = Menu()
+
+
