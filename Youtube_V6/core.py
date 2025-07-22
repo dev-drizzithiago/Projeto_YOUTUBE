@@ -8,14 +8,18 @@ from moviepy.editor import AudioFileClip
 from pytubefix import YouTube
 
 import sqlite3
-import menu
-
-
 
 class YouTubeDownload:
+    DB_YOUTUBE = 'dados_core.db'
 
-    def __init__(self, link):
+    def __init__(self):
         self.link = None
+
+    def registrando_link_base_dados(self, link):
+        ...
+
+    def downloads(self):
+        ...
 
     def download_music(self):
         ...
@@ -58,25 +62,10 @@ class YouTubeDownload:
 
         self.DB_YOUTUBE = str(Path(path_home, 'Documentos', 'YouTube_V6'))
 
-    def banco_dados(self):
-        conexao_banco = sqlite3.connect(self.DB_YOUTUBE)
-
-
-if __name__ == '__main__':
-    # obj_youtube_download = YouTubeDownload()
-    obj_menu = menu.Menu()
-
-    while True:
-
-        dados_menu = obj_menu.menu_app()
-
-        if dados_menu == "999":
-            print('Voltando ao menu principal...!')
-            sleep(2)
-
-        if dados_menu == '4':
-            break
-
-
-
+    def criando_banco_dados(self):
+        try:
+            conexao_banco = sqlite3.connect(self.DB_YOUTUBE)
+            print('Base de dados conectado...')
+        except Exception as error:
+            print(f'Erro na conexão {error}')
 
