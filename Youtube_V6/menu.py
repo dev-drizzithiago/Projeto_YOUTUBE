@@ -1,10 +1,15 @@
 from os import system
 from time import sleep
+import core
 
 
 class Menu:
     lista_menu_principal = [' Adicionar link ', ' Downloads ', ' Abrir arquivo ', ' Sair ']
     linha = '----' * 24
+
+    def __init__(self):
+        self.core_ = core.YouTubeDownload()
+        self.core_.criando_banco_dados()
 
     def menu_app(self):
 
@@ -29,7 +34,7 @@ class Menu:
             print(self.linha)
             link_tube = str(input('Cole o link aqui(voltar=999): '))
 
-            return link_tube
+            resulta_processo = self.core_.registrando_link_base_dados(link_tube)
 
         elif valor_opc == 2:
             print()
@@ -74,3 +79,7 @@ class Menu:
         """
         linhas = '----' * 10
         print(f'{linhas}{valor_entrada}{linhas}')
+
+
+if __name__ == "__main__":
+    iniciando_obj_menu = Menu()
