@@ -1,3 +1,37 @@
+"""
+from pytubefix import Search
+
+results = Search('Github Issue Best Practices')
+
+for video in results.videos:
+    print(f'Title: {video.title}')
+    print(f'URL: {video.watch_url}')
+    print(f'Duration: {video.length} sec')
+    print('---')
+
+Title: Good Practices with GitHub Issues
+URL: https://youtube.com/watch?v=v1AeHaopAYE
+Duration: 406 sec
+---
+Title: GitHub Issues Tips and Guidelines
+URL: https://youtube.com/watch?v=kezinXSoV5A
+Duration: 852 sec
+---
+Title: 13 Advanced (but useful) Git Techniques and Shortcuts
+URL: https://youtube.com/watch?v=ecK3EnyGD8o
+Duration: 486 sec
+---
+Title: Managing a GitHub Organization Tools, Tips, and Best Practices - Mark Matyas
+URL: https://youtube.com/watch?v=1T4HAPBFbb0
+Duration: 1525 sec
+---
+Title: Do you know the best way to manage GitHub Issues?
+URL: https://youtube.com/watch?v=OccRyzAS4Vc
+Duration: 534 sec
+---
+
+"""
+
 from os import path, listdir, makedirs, remove, system
 
 from pathlib import Path
@@ -65,15 +99,29 @@ class YouTubeDownload:
         self.DB_YOUTUBE = str(Path(path_home, 'Documentos', 'YouTube_V6'))
 
     def criando_banco_dados(self):
-        def criando_tabela():
+        def criando_tabela(cursor):
             tabela = """
-            CREATE TABLE INFO_TUBE(
-            
+            CREATE TABLE IF NOT EXISTS INFO_TUBE(
+                id int auto_increment not null, 
+                autor_link varchar(255), 
+                titulo_link varchar(255), 
+                duracao varchar(255), 
+                link_tube varchar(500), 
+                miniatura varchar(500), 
+                primary key(id) 
+            );
             """
+            try:
+                cursor.execute(tabela)
+                print('Tabela criada...')
+            except Exception as error:
+                print(f'Erro ao criar a tabela {error}')
 
         try:
             conexao_banco = sqlite3.connect(self.DB_YOUTUBE)
             print('Base de dados conectado...')
+            criando_tabela(conexao_banco.cursor())
+            conexao_banco.commit()
         except Exception as error:
             print(f'Erro na conexão {error}')
 
