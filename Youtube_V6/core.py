@@ -67,6 +67,7 @@ if __name__ == '__main__':
     obj_menu = menu.Menu()
 
     while True:
+
         dados_menu = obj_menu.menu_app()
 
         if dados_menu == "999":
