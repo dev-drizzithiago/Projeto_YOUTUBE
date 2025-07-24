@@ -44,15 +44,23 @@ from pytubefix import YouTube
 import sqlite3
 
 class YouTubeDownload:
-    DB_YOUTUBE = 'dados_core.db'
+
+    path_home = Path.home()
+    path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
+    path_down_mp3 = str(Path(path_home, 'Documentos', 'YouTube_V6', 'Músicas(MP3)'))
+    path_down_mp4 = str(Path(path_home, 'Documentos', 'YouTube_V6', 'Vídeos(MP4)'))
+    DB_YOUTUBE = str(Path(path_home, 'Documentos', 'YouTube_V6', 'dados_core.db'))
+
+    print(path_down_mp3)
 
     def __init__(self):
         self.link = None
+        self.conexao_banco = None
         self.cursor = None
 
     def registrando_link_base_dados(self, link):
         print('Registrando link na base de dados...')
-        print(self)
+        print(link)
 
 
     def downloads(self):
@@ -87,28 +95,22 @@ class YouTubeDownload:
                 novo_mp3.write_audiofile(mp3_file)
                 remove(mp4_file)
 
-    def manipulando_pastas(self):
-        """#### Criando pastas """
+    def criando_diretorios(self):
 
-        path_home = Path.home()
-        path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
         try:
-            self.path_down_mp3 = str(Path(path_home, 'Documentos', 'YouTube_V6', 'Músicas(MP3)'))
-            self.path_down_mp4 = str(Path(path_home, 'Documentos', 'YouTube_V6', 'Vídeos(MP4)'))
+            print('Diretorios criados')
+            listdir(self.path_down_mp3)
+            listdir(self.path_down_mp4)
         except FileNotFoundError:
+            print('erro na criação dosdiretorios')
             makedirs(self.path_down_mp3)
             makedirs(self.path_down_mp4)
 
-        self.DB_YOUTUBE = str(Path(path_home, 'Documentos', 'YouTube_V6'))
-
-    def conectando_base_dados(self):
-        conexao_banco = sqlite3.connect(self.DB_YOUTUBE)
-        print('Base de dados conectado...')
-        self.cursor = conexao_banco.cursor()
-        conexao_banco.commit()
-
     def criando_banco_dados(self):
-
+        """
+        Cria a tabela padrão para ser utilizado no banco.
+        :return:
+        """
         tabela = """
         CREATE TABLE IF NOT EXISTS INFO_TUBE(
             id int auto_increment not null, 
@@ -121,7 +123,20 @@ class YouTubeDownload:
         );
         """
         try:
-            self.cursor.execute(tabela)
-            print('Tabela criada...')
+            # Valida se a tabela existe
+            self.cursor.execute("SELECT * FROM sqlite_master WHERE type='table' AND name='INFO_TUBE';")
+            verif_exist_base_dados = self.cursor.fetchone()
+
+            # Caso a tabela exista finaliza o metodo. Geralmente ela não exista no primeiro acesso.
+            if verif_exist_base_dados:
+                return
+            else:
+                self.cursor.execute(tabela)
+                print('Tabela criada...')
         except Exception as error:
             print(f'Erro ao criar a tabela {error}')
+
+    def conectando_base_dados(self):
+        self.conexao_banco = sqlite3.connect(self.DB_YOUTUBE)
+        print('Base de dados conectado...')
+        self.cursor = self.conexao_banco.cursor()
