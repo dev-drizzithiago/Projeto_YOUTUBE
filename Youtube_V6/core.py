@@ -48,9 +48,12 @@ class YouTubeDownload:
 
     def __init__(self):
         self.link = None
+        self.cursor = None
 
     def registrando_link_base_dados(self, link):
-        ...
+        print('Registrando link na base de dados...')
+        print(self)
+
 
     def downloads(self):
         ...
@@ -98,30 +101,27 @@ class YouTubeDownload:
 
         self.DB_YOUTUBE = str(Path(path_home, 'Documentos', 'YouTube_V6'))
 
+    def conectando_base_dados(self):
+        conexao_banco = sqlite3.connect(self.DB_YOUTUBE)
+        print('Base de dados conectado...')
+        self.cursor = conexao_banco.cursor()
+        conexao_banco.commit()
+
     def criando_banco_dados(self):
-        def criando_tabela(cursor):
-            tabela = """
-            CREATE TABLE IF NOT EXISTS INFO_TUBE(
-                id int auto_increment not null, 
-                autor_link varchar(255), 
-                titulo_link varchar(255), 
-                duracao varchar(255), 
-                link_tube varchar(500), 
-                miniatura varchar(500), 
-                primary key(id) 
-            );
-            """
-            try:
-                cursor.execute(tabela)
-                print('Tabela criada...')
-            except Exception as error:
-                print(f'Erro ao criar a tabela {error}')
 
+        tabela = """
+        CREATE TABLE IF NOT EXISTS INFO_TUBE(
+            id int auto_increment not null, 
+            autor_link varchar(255), 
+            titulo_link varchar(255), 
+            duracao varchar(255), 
+            link_tube varchar(500), 
+            miniatura varchar(500), 
+            primary key(id) 
+        );
+        """
         try:
-            conexao_banco = sqlite3.connect(self.DB_YOUTUBE)
-            print('Base de dados conectado...')
-            criando_tabela(conexao_banco.cursor())
-            conexao_banco.commit()
+            self.cursor.execute(tabela)
+            print('Tabela criada...')
         except Exception as error:
-            print(f'Erro na conexão {error}')
-
+            print(f'Erro ao criar a tabela {error}')
