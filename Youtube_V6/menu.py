@@ -38,6 +38,7 @@ class Menu:
             print(self.linha)
             link_tube = str(input('Cole o link aqui(voltar=999): '))
             resulta_processo = self.core_.registrando_link_base_dados(link_tube)
+            print(resulta_processo)
 
         elif valor_opc == 2:
             print()
