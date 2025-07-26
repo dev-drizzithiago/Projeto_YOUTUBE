@@ -48,6 +48,7 @@ class Menu:
                     resulta_processo = self.core_.registrando_link_base_dados(link_tube)
                     print(resulta_processo)
                 else:
+                    print(f'Link incorreto: {link_tube}')
                     print('Você precisa colocar um link valido...')
                     sleep(3)
 
