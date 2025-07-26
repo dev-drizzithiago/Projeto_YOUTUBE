@@ -40,6 +40,8 @@ from time import sleep
 
 from moviepy.editor import AudioFileClip
 from pytubefix import YouTube
+from pytubefix.cli import on_progress
+from pytubefix import Playlist
 
 import sqlite3
 
@@ -68,10 +70,17 @@ class YouTubeDownload:
         self.cursor = None
 
     def registrando_link_base_dados(self, link):
-        dados_tube = YouTube(link)
-        print(dados_tube.title)
-        print(dados_tube.author)
+        try:
 
+            dados_tube = YouTube(link, on_progress_callback=on_progress)  # Criando objeto
+            print(dados_tube.author)
+            print(dados_tube.title)
+            print(dados_tube.length)
+            print(dados_tube.thumbnail_url)
+            print(dados_tube.watch_url)
+
+        except Exception as error:
+            print(f'O link não possui nenhum conteúdo: {error}')
 
     def download_music(self):
         ...
@@ -101,6 +110,17 @@ class YouTubeDownload:
                 remove(mp4_file)
 
     def validar_link_youtube(self, link):
+
+        if 'https://' not in link[:9]:
+            print('Correção 1')
+            link = f'https://{link}'
+
+        if 'www.' not in link[:13]:
+            print('Correção 2')
+            link = f'{link[:8]}www.{link[8:]}'
+
+        print(link)
+
         if link[:23] != 'https://www.youtube.com':
             return False
         else:
