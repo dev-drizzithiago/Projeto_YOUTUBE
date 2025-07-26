@@ -46,12 +46,21 @@ import sqlite3
 class YouTubeDownload:
 
     path_home = Path.home()
-    path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
-    path_down_mp3 = str(Path(path_home, 'Documentos', 'YouTube_V6', 'Músicas(MP3)'))
-    path_down_mp4 = str(Path(path_home, 'Documentos', 'YouTube_V6', 'Vídeos(MP4)'))
-    DB_YOUTUBE = str(Path(path_home, 'Documentos', 'YouTube_V6', 'dados_core.db'))
 
-    print(path_down_mp3)
+    DB_YOUTUBE_ONE = Path(path_home, 'OneDrive', 'Documentos', 'YouTube_V6', 'dados_core.db')
+    path_down_mp3_one = Path(path_home, 'OneDrive', 'Documentos', 'YouTube_V6', 'Músicas(MP3)')
+    path_down_mp4_one = Path(path_home, 'OneDrive', 'Documentos', 'YouTube_V6', 'Vídeos(MP4)')
+
+    DB_YOUTUBE = Path(path_home, 'Documentos', 'dados_core.db')
+    path_down_mp3 = Path(path_home, 'Documentos', 'YouTube_V6', 'Músicas(MP3)')
+    path_down_mp4 = Path(path_home, 'Documentos', 'YouTube_V6', 'Vídeos(MP4)')
+
+    # Pasta vai receber o vídeo apenas com o som para ser modificado para audio
+    path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
+
+    # Variavel que vai receber o caminho do banco de dados
+
+    pasta_com_onedrive = path.join(path_home, 'OneDrive', 'Documentos')
 
     def __init__(self):
         self.link = None
@@ -95,16 +104,29 @@ class YouTubeDownload:
                 novo_mp3.write_audiofile(mp3_file)
                 remove(mp4_file)
 
-    def criando_diretorios(self):
-
+    def criando_pastas_destino_onedrive(self):
         try:
-            print('Diretorios criados')
-            listdir(self.path_down_mp3)
-            listdir(self.path_down_mp4)
+            makedirs(self.path_down_mp3_one)
+            makedirs(self.path_down_mp4_one)
         except FileNotFoundError:
-            print('erro na criação dosdiretorios')
+            makedirs(self.path_down_mp3_one)
+            makedirs(self.path_down_mp4_one)
+
+    def criando_pastas_destina_normal(self):
+        try:
             makedirs(self.path_down_mp3)
             makedirs(self.path_down_mp4)
+        except FileNotFoundError:
+            makedirs(self.path_down_mp3)
+            makedirs(self.path_down_mp4)
+
+    def validando_sistema(self):
+
+        try:
+            listdir(self.pasta_com_onedrive)
+            self.criando_pastas_destino_onedrive()
+        except FileExistsError:
+            self.criando_pastas_destina_normal()
 
     def criando_banco_dados(self):
         """
@@ -137,6 +159,12 @@ class YouTubeDownload:
             print(f'Erro ao criar a tabela {error}')
 
     def conectando_base_dados(self):
-        self.conexao_banco = sqlite3.connect(self.DB_YOUTUBE)
-        print('Base de dados conectado...')
-        self.cursor = self.conexao_banco.cursor()
+        try:
+            listdir(self.pasta_com_onedrive)
+            self.conexao_banco = sqlite3.connect(self.DB_YOUTUBE_ONE)
+            print('Base de dados conectado...')
+            self.cursor = self.conexao_banco.cursor()
+        except FileNotFoundError:
+            self.conexao_banco = sqlite3.connect(self.DB_YOUTUBE)
+            print('Base de dados conectado...')
+            self.cursor = self.conexao_banco.cursor()
