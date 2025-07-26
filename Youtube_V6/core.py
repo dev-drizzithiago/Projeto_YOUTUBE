@@ -68,8 +68,9 @@ class YouTubeDownload:
         self.cursor = None
 
     def registrando_link_base_dados(self, link):
-        print('Registrando link na base de dados...')
-        print(link)
+        dados_tube = YouTube(link)
+        print(dados_tube.title)
+        print(dados_tube.author)
 
 
     def download_music(self):
