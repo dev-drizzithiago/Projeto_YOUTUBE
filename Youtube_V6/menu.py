@@ -32,13 +32,23 @@ class Menu:
         valor_opc = self.leiaInt('Escolha uma opção: ')
 
         if valor_opc == 1:
-            print()
-            print()
+            while True:
+                print()
+                print()
+                print(self.linha)
 
-            print(self.linha)
-            link_tube = str(input('Cole o link aqui(voltar=999): '))
-            resulta_processo = self.core_.registrando_link_base_dados(link_tube)
-            print(resulta_processo)
+                link_tube = str(input('Cole o link aqui(voltar=999): '))
+                validacao_link = self.core_.validar_link_youtube(link_tube)
+                if link_tube == '999':
+                    print('Voltando ao menu principal...')
+                    sleep(1)
+                    break
+                elif validacao_link:
+                    resulta_processo = self.core_.registrando_link_base_dados(link_tube)
+                    print(resulta_processo)
+                else:
+                    print('Você precisa colocar um link valido...')
+                    sleep(3)
 
         elif valor_opc == 2:
             print()
@@ -86,9 +96,7 @@ class Menu:
 
 
 if __name__ == "__main__":
-   iniciando_obj_menu = Menu()
+    iniciando_obj_menu = Menu()
 
-   while True:
-       iniciando_obj_menu.menu_app()
-
-
+    while True:
+        iniciando_obj_menu.menu_app()
