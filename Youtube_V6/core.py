@@ -71,7 +71,6 @@ class YouTubeDownload:
 
     def registrando_link_base_dados(self, link):
         try:
-
             dados_tube = YouTube(link, on_progress_callback=on_progress)  # Criando objeto
             print(dados_tube.author)
             print(dados_tube.title)
@@ -79,8 +78,27 @@ class YouTubeDownload:
             print(dados_tube.thumbnail_url)
             print(dados_tube.watch_url)
 
+            try:
+                query_sqlite = f"""
+                    INSERT INTO INFO_TUBE (autor_link, titulo_link, duracao, miniatura, link_tube) 
+                    VALUES ({dados_tube.author}, 
+                            {dados_tube.title}, 
+                            {dados_tube.length}, 
+                            {dados_tube.thumbnail_url}, 
+                            {dados_tube.watch_url}) 
+                    """
+
+                self.cursor.execute(query_sqlite)
+                self.conexao_banco.commit()
+                print('Link salvo na base de dados.')
+                
+            except Exception as error:
+                print(f'ERROR: Não foi possível salvar a URL na base de dados: [{error}]')
+
         except Exception as error:
-            print(f'O link não possui nenhum conteúdo: {error}')
+            print(f'ERROR: ocorreu um erro inexperado: [{error}]')
+
+        self.conexao_banco.close()
 
     def download_music(self):
         ...
@@ -126,6 +144,52 @@ class YouTubeDownload:
         else:
             return True
 
+    def criando_tabela_dados(self):
+        """
+        Cria a tabela padrão para ser utilizado no banco.
+        :return:
+        """
+        tabela = """
+        CREATE TABLE IF NOT EXISTS INFO_TUBE(
+            id int auto_increment not null, 
+            autor_link varchar(255), 
+            titulo_link varchar(255), 
+            duracao varchar(255), 
+            miniatura varchar(500), 
+            link_tube varchar(500), 
+            primary key(id) 
+        );
+        """
+        try:
+            # Valida se a tabela existe
+            self.cursor.execute(
+                "SELECT * FROM sqlite_master WHERE type='table' AND name='INFO_TUBE';"
+            )
+            verif_exist_base_dados = self.cursor.fetchone()
+
+            # Caso a tabela exista finaliza o metodo. Geralmente ela não exista no primeiro acesso.
+            if verif_exist_base_dados:
+                print('Tabela de dados validado.')
+                return
+            else:
+                self.cursor.execute(tabela)
+                print('Tabela criada...')
+        except Exception as error:
+            print(f'Erro ao criar a tabela {error}')
+
+        self.conexao_banco.close()
+
+    def conectando_base_dados(self):
+        try:
+            listdir(self.pasta_com_onedrive)
+            self.conexao_banco = sqlite3.connect(self.DB_YOUTUBE_ONE)
+            print('Base de dados conectado.')
+            self.cursor = self.conexao_banco.cursor()
+        except FileNotFoundError:
+            self.conexao_banco = sqlite3.connect(self.DB_YOUTUBE)
+            print('Base de dados conectado...')
+            self.cursor = self.conexao_banco.cursor()
+
     def criando_pastas_destino_onedrive(self):
         try:
             makedirs(self.path_down_mp3_one)
@@ -141,50 +205,9 @@ class YouTubeDownload:
             ...
 
     def validando_sistema(self):
-
         try:
             listdir(self.pasta_com_onedrive)
             self.criando_pastas_destino_onedrive()
+            print('Sistema de arquivo validado.')
         except FileExistsError:
             self.criando_pastas_destina_normal()
-
-    def criando_banco_dados(self):
-        """
-        Cria a tabela padrão para ser utilizado no banco.
-        :return:
-        """
-        tabela = """
-        CREATE TABLE IF NOT EXISTS INFO_TUBE(
-            id int auto_increment not null, 
-            autor_link varchar(255), 
-            titulo_link varchar(255), 
-            duracao varchar(255), 
-            link_tube varchar(500), 
-            miniatura varchar(500), 
-            primary key(id) 
-        );
-        """
-        try:
-            # Valida se a tabela existe
-            self.cursor.execute("SELECT * FROM sqlite_master WHERE type='table' AND name='INFO_TUBE';")
-            verif_exist_base_dados = self.cursor.fetchone()
-
-            # Caso a tabela exista finaliza o metodo. Geralmente ela não exista no primeiro acesso.
-            if verif_exist_base_dados:
-                return
-            else:
-                self.cursor.execute(tabela)
-                print('Tabela criada...')
-        except Exception as error:
-            print(f'Erro ao criar a tabela {error}')
-
-    def conectando_base_dados(self):
-        try:
-            listdir(self.pasta_com_onedrive)
-            self.conexao_banco = sqlite3.connect(self.DB_YOUTUBE_ONE)
-            print('Base de dados conectado...')
-            self.cursor = self.conexao_banco.cursor()
-        except FileNotFoundError:
-            self.conexao_banco = sqlite3.connect(self.DB_YOUTUBE)
-            print('Base de dados conectado...')
-            self.cursor = self.conexao_banco.cursor()
