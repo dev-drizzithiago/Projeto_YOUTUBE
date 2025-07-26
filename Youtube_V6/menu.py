@@ -1,3 +1,4 @@
+import os
 from os import system
 from time import sleep
 import core
@@ -10,9 +11,9 @@ class Menu:
     def __init__(self):
 
         self.core_ = core.YouTubeDownload()
+        self.core_.validando_sistema()
         self.core_.conectando_base_dados()
         self.core_.criando_banco_dados()
-        self.core_.criando_diretorios()
 
     def menu_app(self):
 
