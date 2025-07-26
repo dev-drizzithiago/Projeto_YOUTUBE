@@ -70,35 +70,37 @@ class YouTubeDownload:
         self.cursor = None
 
     def registrando_link_base_dados(self, link):
-        try:
-            dados_tube = YouTube(link, on_progress_callback=on_progress)  # Criando objeto
-            print(dados_tube.author)
-            print(dados_tube.title)
-            print(dados_tube.length)
-            print(dados_tube.thumbnail_url)
-            print(dados_tube.watch_url)
+        # try:
+        dados_tube = YouTube(link, on_progress_callback=on_progress)  # Criando objeto
+        print(dados_tube.author)
+        print(dados_tube.title)
+        print(dados_tube.length)
+        print(dados_tube.thumbnail_url)
+        print(dados_tube.watch_url)
 
-            try:
-                query_sqlite = f"""
-                    INSERT INTO INFO_TUBE (autor_link, titulo_link, duracao, miniatura, link_tube) 
-                    VALUES ({dados_tube.author}, 
-                            {dados_tube.title}, 
-                            {dados_tube.length}, 
-                            {dados_tube.thumbnail_url}, 
-                            {dados_tube.watch_url}) 
-                    """
+            # try:
+        query_sqlite = (
+            f"""INSERT INTO INFO_TUBE (autor_link, titulo_link, duracao, miniatura, link_tube) 
+            VALUES ({dados_tube.author}, 
+                    {dados_tube.title}, 
+                    {dados_tube.length}, 
+                    {dados_tube.thumbnail_url}, 
+                    {dados_tube.watch_url}) 
+            """
+        )
+        cursor = self.conectando_base_dados()
+        cursor.execute(query_sqlite)
+        cursor.connection.commit()
 
-                self.cursor.execute(query_sqlite)
-                self.conexao_banco.commit()
-                print('Link salvo na base de dados.')
-                
-            except Exception as error:
-                print(f'ERROR: Não foi possível salvar a URL na base de dados: [{error}]')
+        print('Link salvo na base de dados.')
 
-        except Exception as error:
-            print(f'ERROR: ocorreu um erro inexperado: [{error}]')
+        #     except Exception as error:
+        #         print(f'ERROR: Não foi possível salvar a URL na base de dados: [{error}]')
+        #
+        # except Exception as error:
+        #     print(f'ERROR: ocorreu um erro inexperado: [{error}]')
 
-        self.conexao_banco.close()
+        cursor.close()
 
     def download_music(self):
         ...
@@ -184,11 +186,11 @@ class YouTubeDownload:
             listdir(self.pasta_com_onedrive)
             self.conexao_banco = sqlite3.connect(self.DB_YOUTUBE_ONE)
             print('Base de dados conectado.')
-            self.cursor = self.conexao_banco.cursor()
+            return self.conexao_banco.cursor()
         except FileNotFoundError:
             self.conexao_banco = sqlite3.connect(self.DB_YOUTUBE)
             print('Base de dados conectado...')
-            self.cursor = self.conexao_banco.cursor()
+            return self.conexao_banco.cursor()
 
     def criando_pastas_destino_onedrive(self):
         try:
