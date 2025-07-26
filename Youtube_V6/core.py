@@ -69,14 +69,16 @@ class YouTubeDownload:
 
     def registrando_link_base_dados(self, link):
         print('Registrando link na base de dados...')
-        print(link)
+        validacao_link = self.validar_link_youtube(link=link)
+        obj_tube = YouTube(link)
+
+        if validacao_link:
+            ...
+        else:
+            return " Link não é valido."
 
 
-    def downloads(self):
-        ...
 
-    # -------------------
-    # Bloco de processos
     def download_music(self):
         ...
 
@@ -104,21 +106,26 @@ class YouTubeDownload:
                 novo_mp3.write_audiofile(mp3_file)
                 remove(mp4_file)
 
+    def validar_link_youtube(self, link):
+        if link[:23] != 'https://www.youtube.com':
+            print('Você não colocou um link YouTube!')
+            return False
+        else:
+            return True
+
     def criando_pastas_destino_onedrive(self):
         try:
             makedirs(self.path_down_mp3_one)
             makedirs(self.path_down_mp4_one)
-        except FileNotFoundError:
-            makedirs(self.path_down_mp3_one)
-            makedirs(self.path_down_mp4_one)
+        except FileExistsError:
+            ...
 
     def criando_pastas_destina_normal(self):
         try:
             makedirs(self.path_down_mp3)
             makedirs(self.path_down_mp4)
-        except FileNotFoundError:
-            makedirs(self.path_down_mp3)
-            makedirs(self.path_down_mp4)
+        except FileExistsError:
+            ...
 
     def validando_sistema(self):
 
