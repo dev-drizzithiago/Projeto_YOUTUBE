@@ -11,9 +11,15 @@ class Menu:
     def __init__(self):
 
         self.core_ = core.YouTubeDownload()
+
+        print('Validando sistema de arquivos...!')
         self.core_.validando_sistema()
+
+        print('Validando base de dados...')
         self.core_.conectando_base_dados()
-        self.core_.criando_banco_dados()
+
+        print('Validando tabelas de dados...!')
+        self.core_.criando_tabela_dados()
 
     def menu_app(self):
 
