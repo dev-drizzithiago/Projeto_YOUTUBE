@@ -44,6 +44,7 @@ class Menu:
                     sleep(1)
                     break
                 elif validacao_link:
+                    print('Adicionando link, aguarde...')
                     resulta_processo = self.core_.registrando_link_base_dados(link_tube)
                     print(resulta_processo)
                 else:
