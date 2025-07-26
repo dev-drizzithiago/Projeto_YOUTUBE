@@ -69,14 +69,7 @@ class YouTubeDownload:
 
     def registrando_link_base_dados(self, link):
         print('Registrando link na base de dados...')
-        validacao_link = self.validar_link_youtube(link=link)
-        obj_tube = YouTube(link)
-
-        if validacao_link:
-            ...
-        else:
-            return " Link não é valido."
-
+        print(link)
 
 
     def download_music(self):
@@ -108,7 +101,6 @@ class YouTubeDownload:
 
     def validar_link_youtube(self, link):
         if link[:23] != 'https://www.youtube.com':
-            print('Você não colocou um link YouTube!')
             return False
         else:
             return True
