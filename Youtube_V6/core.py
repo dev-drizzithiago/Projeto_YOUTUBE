@@ -102,10 +102,10 @@ class YouTubeDownload:
     def listando_info_base_dados(self):
         query_sqlite = "SELECT * FROM INFO_TUBE"
         lista_urls = self.cursor.execute(query_sqlite)
-
-
-        resultado = self.cursor.fetchone()
         print(lista_urls)
+
+        for item in lista_urls:
+            print(item)
 
     def download_music(self):
         ...
@@ -137,14 +137,10 @@ class YouTubeDownload:
     def validar_link_youtube(self, link):
 
         if 'https://' not in link[:9]:
-            print('Correção 1')
             link = f'https://{link}'
 
         if 'www.' not in link[:13]:
-            print('Correção 2')
             link = f'{link[:8]}www.{link[8:]}'
-
-        print(link)
 
         if link[:23] != 'https://www.youtube.com':
             return False
