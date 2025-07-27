@@ -70,38 +70,32 @@ class YouTubeDownload:
         self.cursor = None
 
     def registrando_link_base_dados(self, link):
-        # try:
-        dados_tube = YouTube(link, on_progress_callback=on_progress)  # Criando objeto
-        print(dados_tube.author)
-        print(dados_tube.title)
-        print(dados_tube.length)
-        print(dados_tube.thumbnail_url)
-        print(dados_tube.watch_url)
+        try:
+            dados_tube = YouTube(link, on_progress_callback=on_progress)  # Criando objeto
+            print(dados_tube.author)
+            print(dados_tube.title)
+            print(dados_tube.length)
+            print(dados_tube.thumbnail_url)
+            print(dados_tube.watch_url)
 
-            # try:
-        query_sqlite = (
-            f"""INSERT INTO INFO_TUBE (autor_link, titulo_link, duracao, miniatura, link_tube) 
-            VALUES (   
-            '{dados_tube.author}', 
-            '{dados_tube.title}', 
-            '{dados_tube.length}', 
-            '{dados_tube.thumbnail_url}', 
-            '{dados_tube.watch_url}');
-            """
-        )
-        cursor = self.conectando_base_dados()
-        cursor.execute(query_sqlite)
-        cursor.connection.commit()
+            try:
+                query_sqlite = (f"""INSERT INTO INFO_TUBE (autor_link, titulo_link, duracao, miniatura, link_tube) 
+                    VALUES ('{dados_tube.author}', '{dados_tube.title}', '{dados_tube.length}', 
+                    '{dados_tube.thumbnail_url}', '{dados_tube.watch_url}');"""
+                )
 
-        print('Link salvo na base de dados.')
+                print(query_sqlite)
 
-        #     except Exception as error:
-        #         print(f'ERROR: Não foi possível salvar a URL na base de dados: [{error}]')
-        #
-        # except Exception as error:
-        #     print(f'ERROR: ocorreu um erro inexperado: [{error}]')
+                self.cursor.execute(query_sqlite)
+                print('Link salvo na base de dados.')
 
-        cursor.close()
+            except Exception as error:
+                print(f'ERROR: Não foi possível salvar a URL na base de dados: [{error}]')
+
+        except Exception as error:
+            print(f'ERROR: ocorreu um erro inexperado: [{error}]')
+
+        self.cursor.close()
 
     def download_music(self):
         ...
@@ -154,13 +148,12 @@ class YouTubeDownload:
         """
         tabela = """
         CREATE TABLE IF NOT EXISTS INFO_TUBE(
-            id int auto_increment not null, 
-            autor_link varchar(255), 
-            titulo_link varchar(255), 
-            duracao varchar(255), 
-            miniatura varchar(500), 
-            link_tube varchar(500), 
-            primary key(id) 
+            id INTEGER PRIMARY KEY AUTOINCREMENT, 
+            autor_link VARCHAR(255), 
+            titulo_link VARCHAR(255), 
+            duracao VARCHAR(255), 
+            miniatura VARCHAR(500), 
+            link_tube VARCHAR(500) 
         );
         """
         try:
