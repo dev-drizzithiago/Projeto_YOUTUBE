@@ -81,11 +81,12 @@ class YouTubeDownload:
             # try:
         query_sqlite = (
             f"""INSERT INTO INFO_TUBE (autor_link, titulo_link, duracao, miniatura, link_tube) 
-            VALUES ({dados_tube.author}, 
-                    {dados_tube.title}, 
-                    {dados_tube.length}, 
-                    {dados_tube.thumbnail_url}, 
-                    {dados_tube.watch_url}) 
+            VALUES (   
+            '{dados_tube.author}', 
+            '{dados_tube.title}', 
+            '{dados_tube.length}', 
+            '{dados_tube.thumbnail_url}', 
+            '{dados_tube.watch_url}');
             """
         )
         cursor = self.conectando_base_dados()
