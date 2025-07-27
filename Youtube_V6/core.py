@@ -72,30 +72,35 @@ class YouTubeDownload:
     def registrando_link_base_dados(self, link):
         try:
             dados_tube = YouTube(link, on_progress_callback=on_progress)  # Criando objeto
-            print(dados_tube.author)
-            print(dados_tube.title)
-            print(dados_tube.length)
-            print(dados_tube.thumbnail_url)
-            print(dados_tube.watch_url)
 
             try:
-                query_sqlite = (f"""INSERT INTO INFO_TUBE (autor_link, titulo_link, duracao, miniatura, link_tube) 
-                    VALUES ('{dados_tube.author}', '{dados_tube.title}', '{dados_tube.length}', 
-                    '{dados_tube.thumbnail_url}', '{dados_tube.watch_url}');"""
+                # Adicionando url dentro da base de dados
+                # Estou usando um placeholders para garantir que nenhum comando entre.
+                query_sqlite = (
+                    f"INSERT INTO INFO_TUBE (autor_link, titulo_link, duracao, miniatura, link_tube) "
+                    f"VALUES (?, ?, ?, ?, ?); "
                 )
-
-                print(query_sqlite)
-
-                self.cursor.execute(query_sqlite)
+                valores_query = (
+                    dados_tube.author,
+                    dados_tube.title,
+                    str(dados_tube.length),
+                    dados_tube.thumbnail_url,
+                    dados_tube.watch_url,
+                )
+                self.cursor.execute(query_sqlite, valores_query)
+                self.conexao_banco.commit()
                 print('Link salvo na base de dados.')
 
             except Exception as error:
+                # Desfaz das operações em caso de erro.
+                self.conexao_banco.rollback()
                 print(f'ERROR: Não foi possível salvar a URL na base de dados: [{error}]')
 
         except Exception as error:
             print(f'ERROR: ocorreu um erro inexperado: [{error}]')
 
-        self.cursor.close()
+    def listando_info_base_dados(self):
+        ...
 
     def download_music(self):
         ...
@@ -172,8 +177,6 @@ class YouTubeDownload:
                 print('Tabela criada...')
         except Exception as error:
             print(f'Erro ao criar a tabela {error}')
-
-        self.conexao_banco.close()
 
     def conectando_base_dados(self):
         try:
