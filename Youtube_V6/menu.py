@@ -61,7 +61,7 @@ class Menu:
         elif valor_opc == 2:
             print()
             print()
-            return 2
+            self.core_.listando_info_base_dados()
 
         elif valor_opc == 3:
             print()
