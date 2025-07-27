@@ -187,11 +187,13 @@ class YouTubeDownload:
             listdir(self.pasta_com_onedrive)
             self.conexao_banco = sqlite3.connect(self.DB_YOUTUBE_ONE)
             print('Base de dados conectado.')
-            return self.conexao_banco.cursor()
+            self.cursor = self.conexao_banco.cursor()
+            return self.conexao_banco
         except FileNotFoundError:
             self.conexao_banco = sqlite3.connect(self.DB_YOUTUBE)
             print('Base de dados conectado...')
-            return self.conexao_banco.cursor()
+            self.cursor = self.conexao_banco.cursor()
+            return self.conexao_banco
 
     def criando_pastas_destino_onedrive(self):
         try:
