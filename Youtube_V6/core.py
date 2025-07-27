@@ -100,7 +100,12 @@ class YouTubeDownload:
             print(f'ERROR: ocorreu um erro inexperado: [{error}]')
 
     def listando_info_base_dados(self):
-        ...
+        query_sqlite = "SELECT * FROM INFO_TUBE"
+        lista_urls = self.cursor.execute(query_sqlite)
+
+
+        resultado = self.cursor.fetchone()
+        print(lista_urls)
 
     def download_music(self):
         ...
