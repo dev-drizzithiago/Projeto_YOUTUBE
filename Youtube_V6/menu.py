@@ -61,7 +61,9 @@ class Menu:
         elif valor_opc == 2:
             print()
             print()
-            self.core_.listando_info_base_dados()
+            lista_url = self.core_.listando_info_base_dados()
+            for item in lista_url:
+                print(item)
 
         elif valor_opc == 3:
             print()
