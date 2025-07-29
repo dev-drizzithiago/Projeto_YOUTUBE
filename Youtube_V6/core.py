@@ -100,12 +100,13 @@ class YouTubeDownload:
             print(f'ERROR: ocorreu um erro inexperado: [{error}]')
 
     def listando_info_base_dados(self):
+        """
+        Metodo responsável por lista as urls dentro da base de dados.
+        :return: Sempre vai retornar um tubla. O "fronte" vai ser responsável em mostrar os dados.
+        """
         query_sqlite = "SELECT * FROM INFO_TUBE"
         lista_urls = self.cursor.execute(query_sqlite)
-        print(lista_urls)
-
-        for item in lista_urls:
-            print(item)
+        return lista_urls
 
     def download_music(self):
         ...
