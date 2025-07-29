@@ -64,6 +64,7 @@ class Menu:
             lista_url = self.core_.listando_info_base_dados()
             for item in lista_url:
                 print(item)
+                sleep(2)
 
         elif valor_opc == 3:
             print()
