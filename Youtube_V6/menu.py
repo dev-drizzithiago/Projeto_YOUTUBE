@@ -79,7 +79,7 @@ class Menu:
 
                 self.logo_tube(' Opção de download')
                 for indice, item in enumerate(self.lista_menu_downloads):
-                    print(f'{indice} - {item}')
+                    print(f' {indice}-{item}')
 
                 opcao_down = self.leiaInt('Escolha uma opção (voltar=999): ')
                 if opcao_down == 999:
