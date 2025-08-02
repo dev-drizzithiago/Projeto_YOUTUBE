@@ -62,9 +62,19 @@ class Menu:
             print()
             print()
             lista_url = self.core_.listando_info_base_dados()
+
+            print()
+            print('----' * 24)
+            print('                                    github.com/dev-drizzithiago ')
+            print('                                          @drizzithiago ')
+            print('----' * 24)
             for item in lista_url:
-                print(item)
-                sleep(2)
+                print(f'{item['id']} - {item['autor_link']}-{item['titulo_link']}')
+
+            print(self.linha)
+            opcao = input('Escolha uma opção: ')
+
+
 
         elif valor_opc == 3:
             print()
