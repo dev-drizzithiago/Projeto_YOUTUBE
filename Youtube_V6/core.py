@@ -106,7 +106,17 @@ class YouTubeDownload:
         """
         query_sqlite = "SELECT * FROM INFO_TUBE"
         lista_urls = self.cursor.execute(query_sqlite)
-        return lista_urls
+        lista_dict = list()
+
+        # itera os valores dentro do banco de adiciona a chave na coluna.
+        colunas = [desc[0] for desc in self.cursor.description]
+
+        # itera as linhas que estão dentro do banco
+        for linha in lista_urls:
+            registro = dict(zip(colunas, linha))
+            lista_dict.append(registro)
+
+        return lista_dict
 
     def download_music(self):
         ...
