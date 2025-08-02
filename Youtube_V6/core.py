@@ -69,7 +69,18 @@ class YouTubeDownload:
         self.conexao_banco = None
         self.cursor = None
 
+    # Registra o link na base de dados.
     def registrando_link_base_dados(self, link):
+        """
+        Metodo responsável em registrar o link na base de dados.
+        :param link: Recebe o link do youtube, validado pelo metodo 'validar_link_youtube'.
+        1º O metodo pytubefix.YouTube processo o link e é estraido as informações do link como:
+        Author, title, length(duração em segundos), thumbnail_url(miniatura) e watch_url(Link do vídeo)
+        2º query_sqlite: cria o comanado para adicionar os valores na tabela.
+        3º valores_query: Recebe as variáveis com os valores do link.
+        4º self.cursor.execute(query_sqlite, valores_query): Executa o comando para adicionar os dados na tabela.
+        :return: A confirmação que os dados foram salvos na tabela.
+        """
         try:
             dados_tube = YouTube(link, on_progress_callback=on_progress)  # Criando objeto
 
@@ -89,16 +100,17 @@ class YouTubeDownload:
                 )
                 self.cursor.execute(query_sqlite, valores_query)
                 self.conexao_banco.commit()
-                print('Link salvo na base de dados.')
+                return 'Link salvo na base de dados.'
 
             except Exception as error:
                 # Desfaz das operações em caso de erro.
                 self.conexao_banco.rollback()
-                print(f'ERROR: Não foi possível salvar a URL na base de dados: [{error}]')
+                return f'ERROR: Não foi possível salvar a URL na base de dados (registrando_link_base_dados): [{error}]'
 
         except Exception as error:
             print(f'ERROR: ocorreu um erro inexperado: [{error}]')
 
+    # Listando Tabela INFO_TUBE
     def listando_info_base_dados(self):
         """
         Metodo responsável por lista as urls dentro da base de dados.
@@ -111,23 +123,42 @@ class YouTubeDownload:
         lista_urls = self.cursor.execute(query_sqlite).fetchall()
         lista_dict = list()
 
+        # List comprehension gera uma lista com os nomes das colunas.
         # Itera os valores dentro da tabela e pega nos nomes da coluna.
         # Cada item em description é uma tupla, onde o primeiro elemento (desc[0]) é o nome da coluna.
         colunas = [desc[0] for desc in self.cursor.description]
 
-        # itera as linhas que estão dentro do banco
+        # itera as linhas que estão dentro da tabela
         for linha in lista_urls:
+
+            # Junta a coluna com a linha e transforma em dicionário
             registro = dict(zip(colunas, linha))
+
+            # Adiciona o dicionário na lista
             lista_dict.append(registro)
 
         return lista_dict
 
+    # Faz download do arquivo em MP3.
     def download_music(self):
+        """
+        1º O arquivo M4A é baixado para pasta "temp".
+        2º O metodo mp4_to_mp3 é chamado e transforma o arquivo em MP3.
+        :return: Retorna a confirmação do processo em forma de string.
+        """
         ...
 
+    # Faz o download do arquivo em MP4
     def download_movie(self):
+        """
+        O download é simples, como não preciso converter nenhum arquivo. O vídeo é transferido direto para pasta
+        padrão do app.
+        :return: Retorna a confirmação do processo em forma de string.
+        """
         ...
 
+    # Processo para transformar o arquivo de mp4 em mp3
+    # Esse problema não tem nenhum não pode ser chamado pelo usuário, apenas para uso internet do app
     def mp4_to_mp3(self):
         """
        - Aqui, é realizado uma listage na pasta Temp, aonde fica alocado o arquivo mp4;
@@ -149,6 +180,7 @@ class YouTubeDownload:
                 novo_mp3.write_audiofile(mp3_file)
                 remove(mp4_file)
 
+    # Valida se o link é valido.
     def validar_link_youtube(self, link):
 
         if 'https://' not in link[:9]:
@@ -194,6 +226,7 @@ class YouTubeDownload:
         except Exception as error:
             print(f'Erro ao criar a tabela {error}')
 
+    # Sempre que o programa é iniciado, é conectado a base de dados.
     def conectando_base_dados(self):
         try:
             listdir(self.pasta_com_onedrive)
@@ -207,6 +240,7 @@ class YouTubeDownload:
             self.cursor = self.conexao_banco.cursor()
             return self.conexao_banco
 
+    # Cria as pastas para caso o windows tenha o onedrive instalado
     def criando_pastas_destino_onedrive(self):
         try:
             makedirs(self.path_down_mp3_one)
@@ -214,6 +248,7 @@ class YouTubeDownload:
         except FileExistsError:
             ...
 
+    # Cria as pastas sem o onedrive instalado
     def criando_pastas_destina_normal(self):
         try:
             makedirs(self.path_down_mp3)
