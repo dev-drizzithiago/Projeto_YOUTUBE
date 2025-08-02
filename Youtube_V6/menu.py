@@ -9,6 +9,7 @@ class Menu:
     linha = '----' * 24
 
     def __init__(self):
+        self.logo_inicial()
 
         self.core_ = core.YouTubeDownload()
 
@@ -22,12 +23,6 @@ class Menu:
         self.core_.criando_tabela_dados()
 
     def menu_app(self):
-
-        print()
-        print('----' * 24)
-        print('                                    github.com/dev-drizzithiago ')
-        print('                                          @drizzithiago ')
-        print('----' * 24)
 
         self.logo_tube(' Menu Principal ')
         for valor_menu in range(len(self.lista_menu_principal)):
@@ -63,16 +58,13 @@ class Menu:
             print()
             lista_url = self.core_.listando_info_base_dados()
 
-            print()
-            print('----' * 24)
-            print('                                    github.com/dev-drizzithiago ')
-            print('                                          @drizzithiago ')
-            print('----' * 24)
+            self.logo_tube(' Listando conteúdo ')
             for item in lista_url:
                 print(f'{item['id']} - {item['autor_link']}-{item['titulo_link']}')
 
             print(self.linha)
             opcao = input('Escolha uma opção: ')
+
 
 
 
@@ -115,6 +107,12 @@ class Menu:
         linhas = '----' * 10
         print(f'{linhas}{valor_entrada}{linhas}')
 
+    def logo_inicial(self):
+        print()
+        print('----' * 24)
+        print('                                    github.com/dev-drizzithiago ')
+        print('                                          @drizzithiago ')
+        print('----' * 24)
 
 if __name__ == "__main__":
     iniciando_obj_menu = Menu()
