@@ -104,11 +104,15 @@ class YouTubeDownload:
         Metodo responsável por lista as urls dentro da base de dados.
         :return: Sempre vai retornar um tubla. O "fronte" vai ser responsável em mostrar os dados.
         """
+        # Consulta SQL. Busca todos os dados dentro da tabela  INFO_TUBE
         query_sqlite = "SELECT * FROM INFO_TUBE"
-        lista_urls = self.cursor.execute(query_sqlite)
+
+        # fetchall() extrai todos os resultados e retorna uma lista de tuplas.
+        lista_urls = self.cursor.execute(query_sqlite).fetchall()
         lista_dict = list()
 
-        # itera os valores dentro do banco de adiciona a chave na coluna.
+        # Itera os valores dentro da tabela e pega nos nomes da coluna.
+        # Cada item em description é uma tupla, onde o primeiro elemento (desc[0]) é o nome da coluna.
         colunas = [desc[0] for desc in self.cursor.description]
 
         # itera as linhas que estão dentro do banco
