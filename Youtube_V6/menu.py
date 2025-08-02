@@ -6,6 +6,7 @@ import core
 
 class Menu:
     lista_menu_principal = [' Adicionar link ', ' Downloads ', ' Abrir arquivo ', ' Sair ']
+    lista_menu_downloads = [' Música(MP3) ', ' Vídeo(MP4) ']
     linha = '----' * 24
 
     def __init__(self):
@@ -73,7 +74,22 @@ class Menu:
                     self.limpeza_cmd()
                     break
 
-                print(lista_url[opcao-1]['link_tube'])
+                link_para_download = lista_url[opcao-1]['link_tube']
+                print(link_para_download)
+
+                self.logo_tube(' Opção de download')
+                for indice, item in enumerate(self.lista_menu_downloads):
+                    print(f'{indice} - {item}')
+
+                opcao_down = self.leiaInt('Escolha uma opção (voltar=999): ')
+                if opcao_down == 999:
+                    print('Voltando um menu...')
+                    sleep(1)
+                    break
+                elif opcao_down == 1:
+                    print('Download música')
+                elif opcao_down == 2:
+                    print('Download Vídeo')
 
         elif valor_opc == 3:
             print()
