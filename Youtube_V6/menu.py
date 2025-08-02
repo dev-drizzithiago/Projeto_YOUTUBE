@@ -54,19 +54,26 @@ class Menu:
                     sleep(3)
 
         elif valor_opc == 2:
+            self.limpeza_cmd()
             print()
             print()
             lista_url = self.core_.listando_info_base_dados()
 
-            self.logo_tube(' Listando conteúdo ')
-            for item in lista_url:
-                print(f'{item['id']} - {item['autor_link']}-{item['titulo_link']}')
+            while True:
+                self.logo_tube(' Listando conteúdo ')
+                for item in lista_url:
+                    print(f'{item['id']} - {item['autor_link']}-{item['titulo_link']}')
 
-            print(self.linha)
-            opcao = input('Escolha uma opção: ')
+                print(self.linha)
+                opcao = self.leiaInt('Escolha uma opção(voltar=999): ')
 
+                if opcao == 999:
+                    print('Voltando ao menu principal...')
+                    sleep(1)
+                    self.limpeza_cmd()
+                    break
 
-
+                print(lista_url[opcao-1]['link_tube'])
 
         elif valor_opc == 3:
             print()
@@ -76,7 +83,7 @@ class Menu:
         elif valor_opc == 4:
             print()
             print()
-            system('cls')
+            self.limpeza_cmd()
             print(self.linha)
             print('Saindo do programa!')
             sleep(1)
@@ -113,6 +120,9 @@ class Menu:
         print('                                    github.com/dev-drizzithiago ')
         print('                                          @drizzithiago ')
         print('----' * 24)
+
+    def limpeza_cmd(self):
+        system('cls')
 
 if __name__ == "__main__":
     iniciando_obj_menu = Menu()
