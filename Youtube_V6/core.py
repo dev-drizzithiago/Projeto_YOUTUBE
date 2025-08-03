@@ -146,7 +146,14 @@ class YouTubeDownload:
         2º O metodo mp4_to_mp3 é chamado e transforma o arquivo em MP3.
         :return: Retorna a confirmação do processo em forma de string.
         """
-        print(link_down)
+        download_yt = YouTube(link_down)
+        verificacao_sistema_pastas = self.validando_sistema()
+        stream = download_yt.streams.get_audio_only()
+
+        if verificacao_sistema_pastas:
+            stream.download(self.path_down_mp3)
+        else:
+            stream.download(self.path_down_mp3_one)
 
     # Faz o download do arquivo em MP4
     def download_movie(self, link_down):
@@ -157,12 +164,12 @@ class YouTubeDownload:
         """
         download_yt = YouTube(link_down)
         verificacao_sistema_pastas = self.validando_sistema()
-        stream = download_yt.streams.get_audio_only()
+        stream = download_yt.streams.get_highest_resolution()
 
         if verificacao_sistema_pastas:
-            stream.download(self.path_down_mp3)
+            stream.download(self.path_down_mp4)
         else:
-            stream.download(self.path_down_mp3_one)
+            stream.download(self.path_down_mp4)
 
     # Processo para transformar o arquivo de mp4 em mp3
     # Esse problema não tem nenhum não pode ser chamado pelo usuário, apenas para uso internet do app
@@ -267,7 +274,6 @@ class YouTubeDownload:
         try:
             listdir(self.pasta_com_onedrive)
             self.criando_pastas_destino_onedrive()
-            print('Sistema de arquivo validado.')
             return True
         except FileExistsError:
             self.criando_pastas_destina_normal()
