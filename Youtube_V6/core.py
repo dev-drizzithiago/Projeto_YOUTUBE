@@ -140,22 +140,22 @@ class YouTubeDownload:
         return lista_dict
 
     # Faz download do arquivo em MP3.
-    def download_music(self):
+    def download_music(self, link_down):
         """
         1º O arquivo M4A é baixado para pasta "temp".
         2º O metodo mp4_to_mp3 é chamado e transforma o arquivo em MP3.
         :return: Retorna a confirmação do processo em forma de string.
         """
-        ...
+        print(link_down)
 
     # Faz o download do arquivo em MP4
-    def download_movie(self):
+    def download_movie(self, link_down):
         """
         O download é simples, como não preciso converter nenhum arquivo. O vídeo é transferido direto para pasta
         padrão do app.
         :return: Retorna a confirmação do processo em forma de string.
         """
-        ...
+        print(link_down)
 
     # Processo para transformar o arquivo de mp4 em mp3
     # Esse problema não tem nenhum não pode ser chamado pelo usuário, apenas para uso internet do app
