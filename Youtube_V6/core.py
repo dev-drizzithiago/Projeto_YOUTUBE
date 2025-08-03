@@ -155,7 +155,14 @@ class YouTubeDownload:
         padrão do app.
         :return: Retorna a confirmação do processo em forma de string.
         """
-        print(link_down)
+        download_yt = YouTube(link_down)
+        verificacao_sistema_pastas = self.validando_sistema()
+        stream = download_yt.streams.get_audio_only()
+
+        if verificacao_sistema_pastas:
+            stream.download(self.path_down_mp3)
+        else:
+            stream.download(self.path_down_mp3_one)
 
     # Processo para transformar o arquivo de mp4 em mp3
     # Esse problema não tem nenhum não pode ser chamado pelo usuário, apenas para uso internet do app
@@ -254,12 +261,14 @@ class YouTubeDownload:
             makedirs(self.path_down_mp3)
             makedirs(self.path_down_mp4)
         except FileExistsError:
-            ...
+            return
 
     def validando_sistema(self):
         try:
             listdir(self.pasta_com_onedrive)
             self.criando_pastas_destino_onedrive()
             print('Sistema de arquivo validado.')
+            return True
         except FileExistsError:
             self.criando_pastas_destina_normal()
+            return False
