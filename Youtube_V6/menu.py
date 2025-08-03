@@ -63,7 +63,7 @@ class Menu:
             while True:
                 self.logo_tube(' Listando conteúdo ')
                 for item in lista_url:
-                    print(f'{item['id']} - {item['autor_link']}-{item['titulo_link']}')
+                    print(f'[ {str(item['id']).strip()} ] => {item['autor_link']}-{item['titulo_link']}')
 
                 print(self.linha)
                 opcao = self.leiaInt('Escolha uma opção(voltar=999): ')
@@ -76,19 +76,22 @@ class Menu:
 
                 link_para_download = lista_url[opcao-1]['link_tube']
 
-                self.logo_tube(' Opção de download')
-                for indice, item in enumerate(self.lista_menu_downloads):
-                    print(f' {indice+1} -{item}')
+                while True:
+                    self.logo_tube(' Opção de download ')
+                    for indice, item in enumerate(self.lista_menu_downloads):
+                        print(f' [ {indice+1} ] => {item}')
 
-                opcao_down = self.leiaInt('Escolha uma opção (voltar=999): ')
-                if opcao_down == 999:
-                    print('Voltando um menu...')
-                    sleep(1)
-                    break
-                elif opcao_down == 1:
-                    print('Download música')
-                elif opcao_down == 2:
-                    print('Download Vídeo')
+                    opcao_down = self.leiaInt('Escolha uma opção (voltar=999): ')
+                    if opcao_down == 999:
+                        print('Voltando um menu...')
+                        sleep(1)
+                        break
+                    elif opcao_down == 1:
+                        print('Download música')
+                        self.core_.download_music(link_para_download)
+                    elif opcao_down == 2:
+                        print('Download Vídeo')
+                        self.core_.download_movie(link_para_download)
 
         elif valor_opc == 3:
             print()
