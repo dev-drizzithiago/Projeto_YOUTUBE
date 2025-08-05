@@ -42,10 +42,16 @@ class Menu:
                 link_tube = str(input('Cole o link aqui(voltar=999): '))
                 validacao_link = self.core_.validar_link_youtube(link_tube)
                 if link_tube == '999':
+                    print()
+                    print()
+                    print(self.linha)
                     print('Voltando ao menu principal...')
                     sleep(1)
                     break
                 elif validacao_link:
+                    print()
+                    print()
+                    print(self.linha)
                     print('Adicionando link, aguarde...')
                     resulta_processo = self.core_.registrando_link_base_dados(link_tube)
                     print(resulta_processo)
@@ -61,14 +67,19 @@ class Menu:
             lista_url = self.core_.listando_info_base_dados()
 
             while True:
-                self.logo_tube(' Listando conteúdo ')
+                self.logo_tube(' Lista do conteúdo ')
                 for item in lista_url:
                     print(f'[ {str(item['id']).strip()} ] => {item['autor_link']}-{item['titulo_link']}')
 
+                print()
+                print()
                 print(self.linha)
                 opcao = self.leiaInt('Escolha uma opção(voltar=999): ')
 
                 if opcao == 999:
+                    print()
+                    print()
+                    print(self.linha)
                     print('Voltando ao menu principal...')
                     sleep(1)
                     self.limpeza_cmd()
@@ -81,12 +92,22 @@ class Menu:
                     for indice, item in enumerate(self.lista_menu_downloads):
                         print(f' [ {indice+1} ] => {item}')
 
+                    print()
+                    print()
+                    print(self.linha)
                     opcao_down = self.leiaInt('Escolha uma opção (voltar=999): ')
                     if opcao_down == 999:
+                        print()
+                        print()
+                        print(self.linha)
                         print('Voltando um menu...')
                         sleep(1)
+                        self.limpeza_cmd()
                         break
                     elif opcao_down == 1:
+                        print()
+                        print()
+                        print(self.linha)
                         print('Download música')
                         self.core_.download_music(link_para_download)
                     elif opcao_down == 2:
