@@ -105,7 +105,7 @@ class Menu:
             print(self.linha)
             print('Saindo do programa!')
             sleep(1)
-            return 4
+            return True
 
         else:
             print('Opção incorreta!!')
@@ -146,4 +146,7 @@ if __name__ == "__main__":
     iniciando_obj_menu = Menu()
 
     while True:
-        iniciando_obj_menu.menu_app()
+        finish_app = iniciando_obj_menu.menu_app()
+
+        if finish_app:
+            break
