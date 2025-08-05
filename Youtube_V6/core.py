@@ -1,7 +1,7 @@
 """
 from pytubefix import Search
 
-results = Search('Github Issue Best Practices')
+results = Search('GitHub Issue Best Practices')
 
 for video in results.videos:
     print(f'Title: {video.title}')
@@ -162,12 +162,21 @@ class YouTubeDownload:
         padrão do app.
         :return: Retorna a confirmação do processo em forma de string.
         """
-        download_yt = YouTube(link_down)
-        verificacao_sistema_pastas = self.validando_sistema()
+
+        def on_progress_(stream, chunk, bytes_remaining):
+            total_size = stream.filesize
+            bytes_download = total_size - bytes_remaining
+            porcentagem = (bytes_download / total_size) * 100
+            print(f'Download: {porcentagem:.2f} concluido...')
+            self.limpeza_cmd()
+
+        download_yt = YouTube(link_down, on_progress_callback=on_progress_)
+        verificacao_sistema_pastas_one_drive = self.validando_sistema()
+
         stream = download_yt.streams.get_highest_resolution()
 
-        if verificacao_sistema_pastas:
-            stream.download(self.path_down_mp4)
+        if verificacao_sistema_pastas_one_drive:
+            stream.download(self.path_down_mp4_one)
         else:
             stream.download(self.path_down_mp4)
 
@@ -278,3 +287,6 @@ class YouTubeDownload:
         except FileExistsError:
             self.criando_pastas_destina_normal()
             return False
+
+    def limpeza_cmd(self):
+        system('cls')
