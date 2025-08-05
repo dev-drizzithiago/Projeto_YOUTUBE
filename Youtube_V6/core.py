@@ -46,6 +46,7 @@ from pytubefix import Playlist
 import sqlite3
 
 class YouTubeDownload:
+    linha = '----' * 24
 
     path_home = Path.home()
 
@@ -60,8 +61,7 @@ class YouTubeDownload:
     # Pasta vai receber o vídeo apenas com o som para ser modificado para audio
     path_temp = str(Path(path_home, 'AppData', 'Local', 'Temp'))
 
-    # Variavel que vai receber o caminho do banco de dados
-
+    # Faz uma checagem na pasta
     pasta_com_onedrive = path.join(path_home, 'OneDrive', 'Documentos')
 
     def __init__(self):
@@ -168,7 +168,6 @@ class YouTubeDownload:
             bytes_download = total_size - bytes_remaining
             porcentagem = (bytes_download / total_size) * 100
             print(f'Download: {porcentagem:.2f} concluido...')
-            self.limpeza_cmd()
 
         download_yt = YouTube(link_down, on_progress_callback=on_progress_)
         verificacao_sistema_pastas_one_drive = self.validando_sistema()
@@ -179,6 +178,14 @@ class YouTubeDownload:
             stream.download(self.path_down_mp4_one)
         else:
             stream.download(self.path_down_mp4)
+
+        print(self.linha)
+        print('Download concluído!')
+        print()
+        print()
+
+        sleep(2)
+        self.limpeza_cmd()
 
     # Processo para transformar o arquivo de mp4 em mp3
     # Esse problema não tem nenhum não pode ser chamado pelo usuário, apenas para uso internet do app
