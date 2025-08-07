@@ -110,9 +110,11 @@ class Menu:
                         print(self.linha)
                         print('Download música')
                         self.core_.download_music(link_para_download)
+                        break
                     elif opcao_down == 2:
                         print('Download Vídeo')
                         self.core_.download_movie(link_para_download)
+                        break
 
         elif valor_opc == 3:
             print()
