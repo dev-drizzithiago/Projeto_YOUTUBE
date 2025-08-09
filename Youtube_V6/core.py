@@ -158,6 +158,7 @@ class YouTubeDownload:
         stream = download_yt.streams.get_audio_only()
         stream.download(self.path_temp)
 
+        self.mp4_to_mp3()
 
     # Faz o download do arquivo em MP4
     def download_movie(self, link_down):
@@ -199,16 +200,20 @@ class YouTubeDownload:
        - Depois que finaliza o processo, o arquivo mp4 é removido da pasta temp
        """
 
-        for valor_mp4 in listdir():
-            if search('m4a', valor_mp4):
+        for arquivo_m4a in listdir():
+            if search('m4a', arquivo_m4a):
                 "#### Renomeia o arquivo"
-                mp4_file = path.join()
-                mp3_file = path.join()
+                m4a_file = path.join(self.path_temp, arquivo_m4a)
+
+                if self.validando_sistema():
+                    mp3_file = path.join(self.path_down_mp3_one, arquivo_m4a.replace('m4a', 'mp3'))
+                else:
+                    mp3_file = path.join(self.path_down_mp3, arquivo_m4a.replace('m4a', 'mp3'))
 
                 """#### Processa o MP4 para MP3"""
-                novo_mp3 = AudioFileClip(mp4_file)
+                novo_mp3 = AudioFileClip(m4a_file)
                 novo_mp3.write_audiofile(mp3_file)
-                remove(mp4_file)
+                remove(m4a_file)
 
     # Valida se o link é valido.
     def validar_link_youtube(self, link):
