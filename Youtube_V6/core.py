@@ -45,6 +45,13 @@ from pytubefix import Playlist
 
 import sqlite3
 
+
+def on_progress_(stream, chunk, bytes_remaining):
+    total_size = stream.filesize
+    bytes_download = total_size - bytes_remaining
+    porcentagem = (bytes_download / total_size) * 100
+    print(f'Download: {porcentagem:.2f} concluido...')
+
 class YouTubeDownload:
     linha = '----' * 24
 
@@ -82,7 +89,7 @@ class YouTubeDownload:
         :return: A confirmação que os dados foram salvos na tabela.
         """
         try:
-            dados_tube = YouTube(link, on_progress_callback=on_progress)  # Criando objeto
+            dados_tube = YouTube(link)  # Criando objeto
 
             try:
                 # Adicionando url dentro da base de dados
@@ -146,14 +153,11 @@ class YouTubeDownload:
         2º O metodo mp4_to_mp3 é chamado e transforma o arquivo em MP3.
         :return: Retorna a confirmação do processo em forma de string.
         """
-        download_yt = YouTube(link_down)
+        download_yt = YouTube(link_down, on_progress_callback=on_progress_)
         verificacao_sistema_pastas = self.validando_sistema()
         stream = download_yt.streams.get_audio_only()
+        stream.download(self.path_temp)
 
-        if verificacao_sistema_pastas:
-            stream.download(self.path_down_mp3)
-        else:
-            stream.download(self.path_down_mp3_one)
 
     # Faz o download do arquivo em MP4
     def download_movie(self, link_down):
@@ -162,12 +166,6 @@ class YouTubeDownload:
         padrão do app.
         :return: Retorna a confirmação do processo em forma de string.
         """
-
-        def on_progress_(stream, chunk, bytes_remaining):
-            total_size = stream.filesize
-            bytes_download = total_size - bytes_remaining
-            porcentagem = (bytes_download / total_size) * 100
-            print(f'Download: {porcentagem:.2f} concluido...')
 
         download_yt = YouTube(link_down, on_progress_callback=on_progress_)
         verificacao_sistema_pastas_one_drive = self.validando_sistema()
