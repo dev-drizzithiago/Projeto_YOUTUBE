@@ -223,7 +223,7 @@ class YouTubeDownload:
             if search('m4a', arquivo_m4a):
                 m4a_file_abs = path.join(self.path_temp, arquivo_m4a)
 
-                # valida os nomes do arquivo, removendo os caracteres especiais, caso tenham. 
+                # valida os nomes do arquivo, removendo os caracteres especiais, caso tenham.
                 nome_arquivo_m4a_validado = validacao_nome_arquivo(arquivo_m4a)
                 autor_validado = validacao_nome_arquivo(autor_midia)
 
