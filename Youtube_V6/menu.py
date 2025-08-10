@@ -86,8 +86,8 @@ class Menu:
                     break
 
                 dados_selecao = {
-                    'nome_da_midia': f'{item['autor_link']}-{item['titulo_link']}',
-                    'link_para_download': lista_url[opcao-1]['link_tube']
+                    'filename': f'{item['autor_link']}-{item['titulo_link']}',
+                    'link_tube': lista_url[opcao-1]['link_tube']
                 }
 
                 while True:
