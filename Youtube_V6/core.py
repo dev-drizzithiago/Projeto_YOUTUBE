@@ -214,20 +214,26 @@ class YouTubeDownload:
        a extensão;
        - Logo depois é precessado o arquivo para transformar em mp3;
        - Depois que finaliza o processo, o arquivo mp4 é removido da pasta temp
+       :param autor_midia: Geralmente os vídeos não acompanham o nome do autor, então eu acrescento no final do mp3,
+       mas os nomes podem vir com caracteres especiais, então para evitar problemas, chama-se uma função interna para
+       remove os caracteres especiais e evitar erros.
        """
 
         for arquivo_m4a in listdir(self.path_temp):
             if search('m4a', arquivo_m4a):
                 m4a_file_abs = path.join(self.path_temp, arquivo_m4a)
 
+                # valida os nomes do arquivo, removendo os caracteres especiais, caso tenham. 
+                nome_arquivo_m4a_validado = validacao_nome_arquivo(arquivo_m4a)
+                autor_validado = validacao_nome_arquivo(autor_midia)
+
                 if self.validando_sistema():
                     mp3_file = path.join(
-                        self.path_down_mp3_one, f"{validacao_nome_arquivo(autor_midia)}_"
-                                                f"{arquivo_m4a.replace('m4a', 'mp3')}"
+                        self.path_down_mp3_one, f"{autor_validado}_{arquivo_m4a.replace('m4a', 'mp3')}"
                     )
                 else:
                     mp3_file = path.join(
-                        self.path_down_mp3, f"{autor_midia}_{arquivo_m4a.replace('m4a', 'mp3')}"
+                        self.path_down_mp3, f"{autor_validado}_{arquivo_m4a.replace('m4a', 'mp3')}"
                     )
 
                 print(mp3_file)
