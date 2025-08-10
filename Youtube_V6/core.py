@@ -44,6 +44,7 @@ from pytubefix.cli import on_progress
 from pytubefix import Playlist
 
 import sqlite3
+import re
 
 
 def on_progress_(stream, chunk, bytes_remaining):
@@ -51,6 +52,14 @@ def on_progress_(stream, chunk, bytes_remaining):
     bytes_download = total_size - bytes_remaining
     porcentagem = (bytes_download / total_size) * 100
     print(f'Download: {porcentagem:.2f} concluido...')
+
+def validacao_nome_arquivo(filename):
+    """
+    Corrige o nome, remove os caracteres especiais, evita os erros na criação
+    :param filename: recebe o nome do arquivo, caso tenha erro, arquivo será corrigido.
+    :return:
+    """
+    return re.sub(r'[\/:*?"<>|]', '-', filename)
 
 class YouTubeDownload:
     linha = '----' * 24
@@ -208,17 +217,13 @@ class YouTubeDownload:
        """
 
         for arquivo_m4a in listdir(self.path_temp):
-
             if search('m4a', arquivo_m4a):
-
-                "#### Renomeia o arquivo"
                 m4a_file_abs = path.join(self.path_temp, arquivo_m4a)
-
-                print(m4a_file_abs)
 
                 if self.validando_sistema():
                     mp3_file = path.join(
-                        self.path_down_mp3_one, f"{autor_midia}_{arquivo_m4a.replace('m4a', 'mp3')}"
+                        self.path_down_mp3_one, f"{validacao_nome_arquivo(autor_midia)}_"
+                                                f"{arquivo_m4a.replace('m4a', 'mp3')}"
                     )
                 else:
                     mp3_file = path.join(
