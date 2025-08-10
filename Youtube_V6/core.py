@@ -215,7 +215,9 @@ class YouTubeDownload:
                 print(m4a_file_abs)
 
                 if self.validando_sistema():
-                    mp3_file = path.join(self.path_down_mp3_one, arquivo_m4a.replace('m4a', 'mp3'))
+                    mp3_file = path.join(
+                        self.path_down_mp3_one, f"{nome_midia}_{arquivo_m4a.replace('m4a', 'mp3')}"
+                    )
                 else:
                     mp3_file = path.join(self.path_down_mp3, arquivo_m4a.replace('m4a', 'mp3'))
 
