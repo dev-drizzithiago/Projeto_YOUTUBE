@@ -85,10 +85,7 @@ class Menu:
                     self.limpeza_cmd()
                     break
 
-                dados_selecao = {
-                    'filename': f'{item['autor_link']}-{item['titulo_link']}',
-                    'link_tube': lista_url[opcao-1]['link_tube']
-                }
+                link_para_download = lista_url[opcao-1]['link_tube']
 
                 while True:
                     self.logo_tube(' Opção de download ')
@@ -112,11 +109,11 @@ class Menu:
                         print()
                         print(self.linha)
                         print('Download música')
-                        self.core_.download_music(dados_selecao)
+                        self.core_.download_music(link_para_download)
                         break
                     elif opcao_down == 2:
                         print('Download Vídeo')
-                        self.core_.download_movie(dados_selecao)
+                        self.core_.download_movie(link_para_download)
                         break
 
         elif valor_opc == 3:
