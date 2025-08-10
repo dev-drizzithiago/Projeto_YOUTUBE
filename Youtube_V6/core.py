@@ -147,19 +147,19 @@ class YouTubeDownload:
         return lista_dict
 
     # Faz download do arquivo em MP3.
-    def download_music(self, link_down):
+    def download_music(self, dados_youtube: dict):
         """
         1º O arquivo M4A é baixado para pasta "temp".
         2º O metodo mp4_to_mp3 é chamado e transforma o arquivo em MP3.
         :return: Retorna a confirmação do processo em forma de string.
         """
-        download_yt = YouTube(link_down, on_progress_callback=on_progress_)
+        download_yt = YouTube(dados_youtube['link_para_download'], on_progress_callback=on_progress_)
         verificacao_sistema_pastas = self.validando_sistema()
         stream = download_yt.streams.get_audio_only()
         stream.download(self.path_temp)
 
         # Chama o app para transformar o arquivo m4a(audio) em mp3(audio)
-        self.mp4_to_mp3()
+        self.mp4_to_mp3(nome_midia=dados_youtube['nome_da_midia'])
 
     # Faz o download do arquivo em MP4
     def download_movie(self, link_down):
@@ -191,7 +191,7 @@ class YouTubeDownload:
 
     # Processo para transformar o arquivo de mp4 em mp3
     # Esse problema não tem nenhum não pode ser chamado pelo usuário, apenas para uso internet do app
-    def mp4_to_mp3(self):
+    def mp4_to_mp3(self, nome_midia):
 
         """
        - Aqui, é realizado uma listage na pasta Temp, aonde fica alocado o arquivo mp4;
