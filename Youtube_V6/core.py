@@ -147,20 +147,22 @@ class YouTubeDownload:
         return lista_dict
 
     # Faz download do arquivo em MP3.
-    def download_music(self, dados_youtube):
+    def download_music(self, dados_youtube: dict):
         """
         1º O arquivo M4A é baixado para pasta "temp".
         2º O metodo mp4_to_mp3 é chamado e transforma o arquivo em MP3.
-        :param dados_youtube: Formato de dict: keys: filename, link_tube
-         :return: Retorna a confirmação do processo em forma de string.
+        :param dados_youtube: Formato de entrada: dict - key, filename = None do arquivo: Autor + Titulo.
+        key, link_tube = link do vídeo
+        :return: Retorna a confirmação do processo em forma de string.
         """
+
         download_yt = YouTube(dados_youtube['link_tube'], on_progress_callback=on_progress_)
         verificacao_sistema_pastas = self.validando_sistema()
         stream = download_yt.streams.get_audio_only()
         stream.download(self.path_temp)
 
         # Chama o app para transformar o arquivo m4a(audio) em mp3(audio)
-        self.mp4_to_mp3(nome_midia=dados_youtube['nome_da_midia'])
+        self.mp4_to_mp3(nome_midia=dados_youtube['filename'])
 
     # Faz o download do arquivo em MP4
     def download_movie(self, link_down):
