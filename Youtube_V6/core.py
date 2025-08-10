@@ -147,22 +147,24 @@ class YouTubeDownload:
         return lista_dict
 
     # Faz download do arquivo em MP3.
-    def download_music(self, dados_youtube: dict):
+    def download_music(self, dados_youtube):
         """
         1º O arquivo M4A é baixado para pasta "temp".
         2º O metodo mp4_to_mp3 é chamado e transforma o arquivo em MP3.
-        :param dados_youtube: Formato de entrada: dict - key, filename = None do arquivo: Autor + Titulo.
-        key, link_tube = link do vídeo
+        :param dados_youtube: Entra o link do youtube.
         :return: Retorna a confirmação do processo em forma de string.
         """
-
-        download_yt = YouTube(dados_youtube['link_tube'], on_progress_callback=on_progress_)
+        print()
+        print(self.linha)
+        download_yt = YouTube(dados_youtube, on_progress_callback=on_progress_)
         verificacao_sistema_pastas = self.validando_sistema()
+        print(f'Realizando downloado do arquivo: {download_yt.author}-{download_yt.title}')
+        print()
         stream = download_yt.streams.get_audio_only()
         stream.download(self.path_temp)
 
         # Chama o app para transformar o arquivo m4a(audio) em mp3(audio)
-        self.mp4_to_mp3(nome_midia=dados_youtube['filename'])
+        self.mp4_to_mp3(autor_midia=download_yt.author)
 
     # Faz o download do arquivo em MP4
     def download_movie(self, link_down):
@@ -194,7 +196,7 @@ class YouTubeDownload:
 
     # Processo para transformar o arquivo de mp4 em mp3
     # Esse problema não tem nenhum não pode ser chamado pelo usuário, apenas para uso internet do app
-    def mp4_to_mp3(self, nome_midia):
+    def mp4_to_mp3(self, autor_midia):
 
         """
        - Aqui, é realizado uma listage na pasta Temp, aonde fica alocado o arquivo mp4;
@@ -216,10 +218,12 @@ class YouTubeDownload:
 
                 if self.validando_sistema():
                     mp3_file = path.join(
-                        self.path_down_mp3_one, f"{nome_midia}_{arquivo_m4a.replace('m4a', 'mp3')}"
+                        self.path_down_mp3_one, f"{autor_midia}_{arquivo_m4a.replace('m4a', 'mp3')}"
                     )
                 else:
-                    mp3_file = path.join(self.path_down_mp3, arquivo_m4a.replace('m4a', 'mp3'))
+                    mp3_file = path.join(
+                        self.path_down_mp3, f"{autor_midia}_{arquivo_m4a.replace('m4a', 'mp3')}"
+                    )
 
                 print(mp3_file)
 
