@@ -121,7 +121,24 @@ class Menu:
 
         # opção para reproduzir as mídias
         elif valor_opc == 3:
-            lista_url = self.core_.listando_info_base_dados()
+            pasta_video = os.listdir(self.core_.path_down_mp3_one)
+            for indice, item in enumerate(pasta_video):
+                print(f'{indice + 1} ==> {item}')
+
+            while True:
+                print()
+                print()
+                print(self.linha)
+                opa_open = self.leiaInt('Estolha uma opção(999): ')
+
+                if opa_open == 999:
+                    print()
+                    print()
+                    print(self.linha)
+                    print('Voltando um menu...')
+                    sleep(1)
+                    self.limpeza_cmd()
+                    break
 
         elif valor_opc == 4:
             print('Em construção...')
