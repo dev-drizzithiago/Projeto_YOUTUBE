@@ -121,9 +121,10 @@ class Menu:
 
         # opção para reproduzir as mídias
         elif valor_opc == 3:
-            print()
-            print()
-            return 3
+            lista_url = self.core_.listando_info_base_dados()
+
+        elif valor_opc == 4:
+            print('Em construção...')
 
         elif valor_opc == 0:
             print()
