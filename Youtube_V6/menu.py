@@ -121,24 +121,31 @@ class Menu:
 
         # opção para reproduzir as mídias
         elif valor_opc == 3:
-            pasta_video = os.listdir(self.core_.path_down_mp3_one)
-            for indice, item in enumerate(pasta_video):
-                print(f'{indice + 1} ==> {item}')
-
             while True:
-                print()
-                print()
-                print(self.linha)
-                opa_open = self.leiaInt('Estolha uma opção(999): ')
+                for indice, item in self.lista_menu_downloads:
+                    print(f'{indice} - {item}')
 
-                if opa_open == 999:
+                opcao_midia = self.leiaInt('Escolha uma opção(999): ')
+                pasta_mp3 = os.listdir(self.core_.path_down_mp3_one)
+                for indice, item in enumerate(pasta_mp3):
+                    print(f'{indice + 1} ==> {item}')
+
+                while True:
                     print()
                     print()
                     print(self.linha)
-                    print('Voltando um menu...')
-                    sleep(1)
-                    self.limpeza_cmd()
-                    break
+                    opcao_open = self.leiaInt('Estolha uma opção(999): ')
+
+                    if opcao_open == 999:
+                        print()
+                        print()
+                        print(self.linha)
+                        print('Voltando um menu...')
+                        sleep(1)
+                        self.limpeza_cmd()
+                        break
+
+                    os.startfile(pasta_mp3[opcao_open-1])
 
         elif valor_opc == 4:
             print('Em construção...')
