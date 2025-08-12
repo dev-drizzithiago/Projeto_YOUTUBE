@@ -5,7 +5,7 @@ import core
 
 
 class Menu:
-    lista_menu_principal = [' Adicionar link ', ' Downloads ', ' Abrir arquivo ', ' Sair ']
+    lista_menu_principal = [' Adicionar link ', ' Downloads ', ' Abrir arquivo ', 'Excluir link']
     lista_menu_downloads = [' Música(MP3) ', ' Vídeo(MP4) ']
     linha = '----' * 24
 
@@ -28,11 +28,13 @@ class Menu:
         self.logo_tube(' Menu Principal ')
         for valor_menu in range(len(self.lista_menu_principal)):
             print(f'[ {valor_menu + 1} ] ==> {self.lista_menu_principal[valor_menu]}')
+        print()
 
         print()
         print(self.linha)
         valor_opc = self.leiaInt('Escolha uma opção: ')
 
+        # opcao para salvar o link
         if valor_opc == 1:
             while True:
                 print()
@@ -60,6 +62,7 @@ class Menu:
                     print('Você precisa colocar um link valido...')
                     sleep(3)
 
+        # opção para fazer download, mais complexo.
         elif valor_opc == 2:
             self.limpeza_cmd()
             print()
@@ -116,12 +119,13 @@ class Menu:
                         self.core_.download_movie(link_para_download)
                         break
 
+        # opção para reproduzir as mídias
         elif valor_opc == 3:
             print()
             print()
             return 3
 
-        elif valor_opc == 4:
+        elif valor_opc == 0:
             print()
             print()
             self.limpeza_cmd()
