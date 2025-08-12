@@ -5,7 +5,7 @@ import core
 
 
 class Menu:
-    lista_menu_principal = [' Adicionar link ', ' Downloads ', ' Abrir arquivo ', 'Excluir link']
+    lista_menu_principal = [' Adicionar link ', ' Downloads ', ' Abrir arquivo ', ' Excluir link ']
     lista_menu_downloads = [' Música(MP3) ', ' Vídeo(MP4) ']
     linha = '----' * 24
 
@@ -28,7 +28,7 @@ class Menu:
         self.logo_tube(' Menu Principal ')
         for valor_menu in range(len(self.lista_menu_principal)):
             print(f'[ {valor_menu + 1} ] ==> {self.lista_menu_principal[valor_menu]}')
-        print()
+        print("[ 0 ] ==>  Sair ")
 
         print()
         print(self.linha)
