@@ -116,7 +116,6 @@ class YouTubeDownload:
                 )
                 self.cursor.execute(query_sqlite, valores_query)
                 self.conexao_banco.commit()
-                self.conexao_banco.close()
                 return 'Link salvo na base de dados.'
 
             except Exception as error:
@@ -153,7 +152,7 @@ class YouTubeDownload:
 
             # Adiciona o dicionário na lista
             lista_dict.append(registro)
-        self.conexao_banco.close()
+
         return lista_dict
 
     # Faz download do arquivo em MP3.
