@@ -116,6 +116,7 @@ class YouTubeDownload:
                 )
                 self.cursor.execute(query_sqlite, valores_query)
                 self.conexao_banco.commit()
+                print(f'{dados_tube.author} - {dados_tube.title}')
                 return 'Link salvo na base de dados.'
 
             except Exception as error:
