@@ -147,7 +147,7 @@ class Menu:
                         self.limpeza_cmd()
                         break
 
-                    os.startfile(pasta_mp3[opcao_open-1])
+                    os.startfile(os.path.join(self.core_.path_down_mp3_one, pasta_mp3[opcao_open-1]))
 
         elif valor_opc == 4:
             print('Em construção...')
