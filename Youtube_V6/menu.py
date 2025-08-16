@@ -131,7 +131,7 @@ class Menu:
 
                 for indice, item in enumerate(pasta_mp3):
                     print(f'{indice + 1} ==> {item}')
-                print(pasta_mp3)
+
                 while True:
                     print()
                     print()
