@@ -122,14 +122,16 @@ class Menu:
         # opção para reproduzir as mídias
         elif valor_opc == 3:
             while True:
+
                 for indice, item in enumerate(self.lista_menu_downloads):
                     print(f'{indice+1} - {item}')
 
                 opcao_midia = self.leiaInt('Escolha uma opção(999): ')
                 pasta_mp3 = os.listdir(self.core_.path_down_mp3_one)
-                for indice, item in enumerate(pasta_mp3):
-                    print(f'{indice - 1} ==> {item}')
 
+                for indice, item in enumerate(pasta_mp3):
+                    print(f'{indice + 1} ==> {item}')
+                print(pasta_mp3)
                 while True:
                     print()
                     print()
