@@ -127,7 +127,11 @@ class Menu:
                     print(f'{indice+1} - {item}')
 
                 opcao_midia = self.leiaInt('Escolha uma opção(999): ')
-                pasta_mp3 = os.listdir(self.core_.path_down_mp3_one)
+                if opcao_midia == 999:
+                    print('Voltando ao menu principal.')
+                    sleep(1)
+                elif opcao_midia:                    
+                    pasta_mp3 = os.listdir(self.core_.path_down_mp3_one)
 
                 for indice, item in enumerate(pasta_mp3):
                     print(f'{indice + 1} ==> {item}')
@@ -146,8 +150,11 @@ class Menu:
                         sleep(1)
                         self.limpeza_cmd()
                         break
+                    elif opcao_open == 1:
+                        os.startfile(os.path.join(self.core_.path_down_mp3_one, pasta_mp3[opcao_open-1]))
+                    elif opcao_open == 2:
+                        os.startfile(os.path.join(self.core_.path_down_mp3_one, pasta_mp3[opcao_open-1]))
 
-                    os.startfile(os.path.join(self.core_.path_down_mp3_one, pasta_mp3[opcao_open-1]))
 
         elif valor_opc == 4:
             print('Em construção...')
