@@ -39,20 +39,17 @@ class Menu:
         if valor_opc == 1:
             while True:
                 print()
-                print()
                 print(self.linha)
 
                 link_tube = str(input('Cole o link aqui(voltar=999): '))
                 validacao_link = self.core_.validar_link_youtube(link_tube)
                 if link_tube == '999':
                     print()
-                    print()
                     print(self.linha)
                     print('Voltando ao menu principal...')
                     sleep(1)
                     break
                 elif validacao_link:
-                    print()
                     print()
                     print(self.linha)
                     print('Adicionando link, aguarde...')
@@ -67,7 +64,6 @@ class Menu:
         elif valor_opc == 2:
             self.limpeza_cmd()
             print()
-            print()
             lista_url = self.core_.listando_info_base_dados()
 
             while True:
@@ -76,12 +72,10 @@ class Menu:
                     print(f'[ {str(item['id']).strip()} ] => {item['autor_link']}-{item['titulo_link']}')
 
                 print()
-                print()
                 print(self.linha)
                 opcao = self.leiaInt('Escolha uma opção(voltar=999): ')
 
                 if opcao == 999:
-                    print()
                     print()
                     print(self.linha)
                     print('Voltando ao menu principal...')
@@ -97,11 +91,9 @@ class Menu:
                         print(f' [ {indice+1} ] => {item}')
 
                     print()
-                    print()
                     print(self.linha)
                     opcao_down = self.leiaInt('Escolha uma opção (voltar=999): ')
                     if opcao_down == 999:
-                        print()
                         print()
                         print(self.linha)
                         print('Voltando um menu...')
@@ -109,7 +101,6 @@ class Menu:
                         self.limpeza_cmd()
                         break
                     elif opcao_down == 1:
-                        print()
                         print()
                         print(self.linha)
                         print('Download música')
@@ -129,7 +120,6 @@ class Menu:
                     print(f'{indice+1} - {item}')
 
                 print()
-                print()
                 print(self.linha)
                 opcao_midia = self.leiaInt('Escolha uma opção(999): ')
 
@@ -148,11 +138,12 @@ class Menu:
                 else:
                     print('Opção inválida')
 
+                print()
+                print(self.linha)
                 # Lista as mídias que já foram baixadas para o computador.
                 for indice, item in enumerate(listando_midia):
                     print(f'{indice + 1} ==> {item}')
 
-                print()
                 print()
                 print(self.linha)
                 opcao_open = self.leiaInt('Estolha uma mídia: ')
@@ -160,12 +151,10 @@ class Menu:
                 # Abre a mídia com o reprodutor padrão.
                 os.startfile(os.path.join(caminho_abs_midia, listando_midia[opcao_open-1]))
 
-
         elif valor_opc == 4:
             print('Em construção...')
 
         elif valor_opc == 0:
-            print()
             print()
             self.limpeza_cmd()
             print(self.linha)
