@@ -15,7 +15,8 @@ class Menu:
         self.core_ = core.YouTubeDownload()
 
         print('Validando sistema de arquivos...!')
-        self.core_.validando_sistema()
+        resultado = self.core_.validando_sistema()
+        print(resultado)
 
         print('Validando base de dados...')
         self.core_.conectando_base_dados()
@@ -147,7 +148,7 @@ class Menu:
                 else:
                     print('Opção inválida')
 
-                # Lista as mídias que já foram baixadas para o computador. 
+                # Lista as mídias que já foram baixadas para o computador.
                 for indice, item in enumerate(listando_midia):
                     print(f'{indice + 1} ==> {item}')
 
@@ -156,6 +157,7 @@ class Menu:
                 print(self.linha)
                 opcao_open = self.leiaInt('Estolha uma mídia: ')
 
+                # Abre a mídia com o reprodutor padrão.
                 os.startfile(os.path.join(caminho_abs_midia, listando_midia[opcao_open-1]))
 
 
