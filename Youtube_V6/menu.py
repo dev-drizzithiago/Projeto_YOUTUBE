@@ -126,34 +126,40 @@ class Menu:
                 for indice, item in enumerate(self.lista_menu_downloads):
                     print(f'{indice+1} - {item}')
 
+                print()
+                print()
+                print(self.linha)
                 opcao_midia = self.leiaInt('Escolha uma opção(999): ')
                 if opcao_midia == 999:
                     print('Voltando ao menu principal.')
                     sleep(1)
-                elif opcao_midia:                    
-                    pasta_mp3 = os.listdir(self.core_.path_down_mp3_one)
+                elif opcao_midia == 1:
+                    listando_midia = os.listdir(self.core_.path_down_mp3_one)
+                elif opcao_midia == 2:
+                    listando_midia = os.listdir(self.core_.path_down_mp4_one)
+                else:
+                    print('Opção inválida')
 
-                for indice, item in enumerate(pasta_mp3):
+                for indice, item in enumerate(listando_midia):
                     print(f'{indice + 1} ==> {item}')
 
-                while True:
+                print()
+                print()
+                print(self.linha)
+                opcao_open = self.leiaInt('Estolha uma opção(999): ')
+
+                if opcao_open == 999:
                     print()
                     print()
                     print(self.linha)
-                    opcao_open = self.leiaInt('Estolha uma opção(999): ')
-
-                    if opcao_open == 999:
-                        print()
-                        print()
-                        print(self.linha)
-                        print('Voltando um menu...')
-                        sleep(1)
-                        self.limpeza_cmd()
-                        break
-                    elif opcao_open == 1:
-                        os.startfile(os.path.join(self.core_.path_down_mp3_one, pasta_mp3[opcao_open-1]))
-                    elif opcao_open == 2:
-                        os.startfile(os.path.join(self.core_.path_down_mp3_one, pasta_mp3[opcao_open-1]))
+                    print('Voltando um menu...')
+                    sleep(1)
+                    self.limpeza_cmd()
+                    break
+                elif opcao_open == 1:
+                    os.startfile(os.path.join(self.core_.path_down_mp3_one, listando_midia[opcao_open-1]))
+                elif opcao_open == 2:
+                    os.startfile(os.path.join(self.core_.path_down_mp4_one, listando_midia[opcao_open-1]))
 
 
         elif valor_opc == 4:
