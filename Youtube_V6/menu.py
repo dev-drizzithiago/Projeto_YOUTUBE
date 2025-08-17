@@ -134,10 +134,13 @@ class Menu:
                 if opcao_midia == 999:
                     print('Voltando ao menu principal.')
                     sleep(1)
+                    break
                 elif opcao_midia == 1:
                     listando_midia = os.listdir(self.core_.path_down_mp3_one)
+                    caminho_abs_midia = self.core_.path_down_mp3_one
                 elif opcao_midia == 2:
                     listando_midia = os.listdir(self.core_.path_down_mp4_one)
+                    caminho_abs_midia = self.core_.path_down_mp4_one
                 else:
                     print('Opção inválida')
 
@@ -147,23 +150,10 @@ class Menu:
                 print()
                 print()
                 print(self.linha)
-                opcao_open = self.leiaInt('Estolha uma opção(999): ')
+                opcao_open = self.leiaInt('Estolha uma mídia: ')
 
-                if opcao_open == 999:
-                    print()
-                    print()
-                    print(self.linha)
-                    print('Voltando um menu...')
-                    sleep(1)
-                    self.limpeza_cmd()
-                    break
+                os.startfile(os.path.join(caminho_abs_midia, listando_midia[opcao_open-1]))
 
-                elif opcao_open == 1:
-                    os.startfile(os.path.join(self.core_.path_down_mp3_one, listando_midia[opcao_open-1]))
-                elif opcao_open == 2:
-                    os.startfile(os.path.join(self.core_.path_down_mp4_one, listando_midia[opcao_open-1]))
-                else:
-                    print('Opção inválida')
 
         elif valor_opc == 4:
             print('Em construção...')
