@@ -130,6 +130,7 @@ class Menu:
                 print()
                 print(self.linha)
                 opcao_midia = self.leiaInt('Escolha uma opção(999): ')
+
                 if opcao_midia == 999:
                     print('Voltando ao menu principal.')
                     sleep(1)
@@ -156,6 +157,7 @@ class Menu:
                     sleep(1)
                     self.limpeza_cmd()
                     break
+
                 elif opcao_open == 1:
                     os.startfile(os.path.join(self.core_.path_down_mp3_one, listando_midia[opcao_open-1]))
                 elif opcao_open == 2:
