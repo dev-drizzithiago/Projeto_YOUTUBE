@@ -123,6 +123,7 @@ class Menu:
         elif valor_opc == 3:
             while True:
 
+                # Lista o menu de mídia. Escolhe entre mp3 ou mp4
                 for indice, item in enumerate(self.lista_menu_downloads):
                     print(f'{indice+1} - {item}')
 
@@ -135,6 +136,8 @@ class Menu:
                     print('Voltando ao menu principal.')
                     sleep(1)
                     break
+
+                # Condição para obter as midias corretas, conforme a escolha do usuário.
                 elif opcao_midia == 1:
                     listando_midia = os.listdir(self.core_.path_down_mp3_one)
                     caminho_abs_midia = self.core_.path_down_mp3_one
@@ -144,6 +147,7 @@ class Menu:
                 else:
                     print('Opção inválida')
 
+                # Lista as mídias que já foram baixadas para o computador. 
                 for indice, item in enumerate(listando_midia):
                     print(f'{indice + 1} ==> {item}')
 
