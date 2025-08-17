@@ -160,7 +160,8 @@ class Menu:
                     os.startfile(os.path.join(self.core_.path_down_mp3_one, listando_midia[opcao_open-1]))
                 elif opcao_open == 2:
                     os.startfile(os.path.join(self.core_.path_down_mp4_one, listando_midia[opcao_open-1]))
-
+                else:
+                    print('Opção inválida')
 
         elif valor_opc == 4:
             print('Em construção...')
