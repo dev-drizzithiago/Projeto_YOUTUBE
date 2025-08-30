@@ -197,7 +197,7 @@ class YouTubeDownload:
         print(self.linha)
         print('Download concluído!')
 
-        ## Arruma uma forma de voltar para a lista de urls
+        # Arruma uma forma de voltar para a lista de urls
         print()
         print()
 
