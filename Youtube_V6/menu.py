@@ -68,8 +68,8 @@ class Menu:
 
             while True:
                 self.logo_tube(' Lista do conteúdo ')
-                for item in lista_url:
-                    print(f'[ {str(item['id']).strip()} ] => {item['autor_link']}-{item['titulo_link']}')
+                for index, item in enumerate(lista_url):
+                    print(f'[ {index+1} ] => {item['autor_link']}-{item['titulo_link']}')
 
                 print()
                 print(self.linha)
@@ -151,13 +151,14 @@ class Menu:
                 # Abre a mídia com o reprodutor padrão.
                 os.startfile(os.path.join(caminho_abs_midia, listando_midia[opcao_open-1]))
 
+        # Remove link na base de dados.
         elif valor_opc == 4:
-            lista_url = self.core_.listando_info_base_dados()
             print()
             print(self.linha)
             while True:
-                for item in lista_url:
-                    print(f"{item['id']} - {item['autor_link']} - {item['titulo_link']}")
+                lista_url = self.core_.listando_info_base_dados()
+                for index, item in enumerate(lista_url):
+                    print(f"{index+1} - {item['autor_link']} - {item['titulo_link']}")
 
                 print()
                 print(self.linha)
@@ -169,7 +170,9 @@ class Menu:
 
                 print()
                 print(self.linha)
-                self.core_.removendo_link_base_dados(lista_url[opcao]['id'])
+                retorno_resultado = self.core_.removendo_link_base_dados(lista_url[opcao-1]['id'])
+                print()
+                print(retorno_resultado)
                 print()
                 print(self.linha)
 
