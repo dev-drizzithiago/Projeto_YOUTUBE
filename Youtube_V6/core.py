@@ -127,15 +127,17 @@ class YouTubeDownload:
         except Exception as error:
             print(f'ERROR: ocorreu um erro inexperado: [{error}]')
 
-    def removendo_link_base_dados(self, link_remove):
+    def removendo_link_base_dados(self, link_remove: int):
         """
         Metódo responsável por remover o link da base de dados.
         :param link_remove: Recebe o valor do número do id do link.
         :return: Retorna a confirmação que o link foi deletado.
         """
 
-        print(link_remove)
         cmd_sql = f"DELETE FROM INFO_TUBE WHERE id={link_remove}"
+        self.cursor.execute(cmd_sql)
+        self.conexao_banco.commit()
+        return f'Link deletado...'
 
     # Listando Tabela INFO_TUBE
     def listando_info_base_dados(self):
