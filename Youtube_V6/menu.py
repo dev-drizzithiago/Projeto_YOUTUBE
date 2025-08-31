@@ -152,7 +152,9 @@ class Menu:
                 os.startfile(os.path.join(caminho_abs_midia, listando_midia[opcao_open-1]))
 
         elif valor_opc == 4:
-            print('Em construção...')
+            lista_url = self.core_.listando_info_base_dados()
+            for item in lista_url:
+                print(f"{item['id']} - {item['autor_link']} - {item['titulo_link']}")
 
         elif valor_opc == 0:
             print()
