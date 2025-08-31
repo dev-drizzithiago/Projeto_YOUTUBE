@@ -127,6 +127,14 @@ class YouTubeDownload:
         except Exception as error:
             print(f'ERROR: ocorreu um erro inexperado: [{error}]')
 
+    def removendo_link_base_dados(self, link_remove):
+        """
+        Metódo responsável por remover o link da base de dados.
+        :param link_remove: vem com o número de id 
+        :return:
+        """
+        cmd_sql = f"DELETE FROM INFO_TUBE WHERE id={link_remove}"
+
     # Listando Tabela INFO_TUBE
     def listando_info_base_dados(self):
         """
