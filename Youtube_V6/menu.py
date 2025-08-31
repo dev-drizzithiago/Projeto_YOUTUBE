@@ -38,9 +38,9 @@ class Menu:
         # opcao para salvar o link
         if valor_opc == 1:
             while True:
+                self.limpeza_cmd()
                 print()
                 print(self.linha)
-
                 link_tube = str(input('Cole o link aqui(voltar=999): '))
                 validacao_link = self.core_.validar_link_youtube(link_tube)
                 if link_tube == '999':
@@ -48,6 +48,7 @@ class Menu:
                     print(self.linha)
                     print('Voltando ao menu principal...')
                     sleep(1)
+                    self.limpeza_cmd()
                     break
                 elif validacao_link:
                     print()
@@ -55,10 +56,13 @@ class Menu:
                     print('Adicionando link, aguarde...')
                     resulta_processo = self.core_.registrando_link_base_dados(link_tube)
                     print(resulta_processo)
+                    sleep(2)
+                    self.limpeza_cmd()
                 else:
                     print(f'Link incorreto: {link_tube}')
                     print('Você precisa colocar um link valido...')
                     sleep(3)
+                    self.limpeza_cmd()
 
         # opção para fazer download, mais complexo.
         elif valor_opc == 2:
@@ -118,8 +122,8 @@ class Menu:
 
         # opção para reproduzir as mídias
         elif valor_opc == 3:
+            self.limpeza_cmd()
             while True:
-
                 # Lista o menu de mídia. Escolhe entre mp3 ou mp4
                 for indice, item in enumerate(self.lista_menu_downloads):
                     print(f'{indice+1} - {item}')
@@ -131,6 +135,7 @@ class Menu:
                 if opcao_midia == 999:
                     print('Voltando ao menu principal.')
                     sleep(1)
+                    self.limpeza_cmd()
                     break
 
                 # Condição para obter as midias corretas, conforme a escolha do usuário.
@@ -153,11 +158,15 @@ class Menu:
                 print(self.linha)
                 opcao_open = self.leiaInt('Estolha uma mídia: ')
 
+                print()
+                print(self.linha)
+                print('Midia em execusão...')
                 # Abre a mídia com o reprodutor padrão.
                 os.startfile(os.path.join(caminho_abs_midia, listando_midia[opcao_open-1]))
 
         # Remove link na base de dados.
         elif valor_opc == 4:
+            self.limpeza_cmd()
             print()
             print(self.linha)
             while True:
@@ -172,6 +181,8 @@ class Menu:
 
                     if opcao == 999:
                         print('Voltando ao menu...')
+                        sleep(1)
+                        self.limpeza_cmd()
                         break
 
                     print()
@@ -180,14 +191,22 @@ class Menu:
                         retorno_resultado = self.core_.removendo_link_base_dados(lista_url[opcao-1]['id'])
                         print()
                         print(retorno_resultado)
+                        sleep(1)
+                        self.limpeza_cmd()
                     except IndexError:
+                        print()
+                        print(self.linha)
                         print('Opção inválida...')
+                        sleep(1)
+                        self.limpeza_cmd()
 
                     print()
                     print(self.linha)
                 else:
                     print('Não existe links para serem removidos...')
+                    print()
                     sleep(2)
+                    self.limpeza_cmd()
                     break
 
         elif valor_opc == 0:
