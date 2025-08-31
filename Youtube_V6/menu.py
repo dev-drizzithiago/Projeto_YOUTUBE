@@ -65,51 +65,56 @@ class Menu:
             self.limpeza_cmd()
             print()
             lista_url = self.core_.listando_info_base_dados()
-
-            while True:
-                self.logo_tube(' Lista do conteúdo ')
-                for index, item in enumerate(lista_url):
-                    print(f'[ {index+1} ] => {item['autor_link']}-{item['titulo_link']}')
-
-                print()
-                print(self.linha)
-                opcao = self.leiaInt('Escolha uma opção(voltar=999): ')
-
-                if opcao == 999:
-                    print()
-                    print(self.linha)
-                    print('Voltando ao menu principal...')
-                    sleep(1)
-                    self.limpeza_cmd()
-                    break
-
-                link_para_download = lista_url[opcao-1]['link_tube']
-
+            if len(lista_url):
                 while True:
-                    self.logo_tube(' Opção de download ')
-                    for indice, item in enumerate(self.lista_menu_downloads):
-                        print(f' [ {indice+1} ] => {item}')
+                    self.logo_tube(' Lista do conteúdo ')
+                    for index, item in enumerate(lista_url):
+                        print(f'[ {index+1} ] => {item['autor_link']}-{item['titulo_link']}')
 
                     print()
                     print(self.linha)
-                    opcao_down = self.leiaInt('Escolha uma opção (voltar=999): ')
-                    if opcao_down == 999:
+                    opcao = self.leiaInt('Escolha uma opção(voltar=999): ')
+
+                    if opcao == 999:
                         print()
                         print(self.linha)
-                        print('Voltando um menu...')
+                        print('Voltando ao menu principal...')
                         sleep(1)
                         self.limpeza_cmd()
                         break
-                    elif opcao_down == 1:
+
+                    link_para_download = lista_url[opcao-1]['link_tube']
+
+                    while True:
+                        self.logo_tube(' Opção de download ')
+                        for indice, item in enumerate(self.lista_menu_downloads):
+                            print(f' [ {indice+1} ] => {item}')
+
                         print()
                         print(self.linha)
-                        print('Download música')
-                        self.core_.download_music(link_para_download)
-                        break
-                    elif opcao_down == 2:
-                        print('Download Vídeo')
-                        self.core_.download_movie(link_para_download)
-                        break
+                        opcao_down = self.leiaInt('Escolha uma opção (voltar=999): ')
+                        if opcao_down == 999:
+                            print()
+                            print(self.linha)
+                            print('Voltando um menu...')
+                            sleep(1)
+                            self.limpeza_cmd()
+                            break
+                        elif opcao_down == 1:
+                            print()
+                            print(self.linha)
+                            print('Download música')
+                            self.core_.download_music(link_para_download)
+                            break
+                        elif opcao_down == 2:
+                            print('Download Vídeo')
+                            self.core_.download_movie(link_para_download)
+                            break
+            else:
+                print()
+                print(self.linha)
+                print('Não existe links para download. Adicione um link na opção 1')
+                sleep(2)
 
         # opção para reproduzir as mídias
         elif valor_opc == 3:
@@ -157,28 +162,33 @@ class Menu:
             print(self.linha)
             while True:
                 lista_url = self.core_.listando_info_base_dados()
-                for index, item in enumerate(lista_url):
-                    print(f"{index+1} - {item['autor_link']} - {item['titulo_link']}")
+                if len(lista_url):
+                    for index, item in enumerate(lista_url):
+                        print(f"{index+1} - {item['autor_link']} - {item['titulo_link']}")
 
-                print()
-                print(self.linha)
-                opcao = self.leiaInt('Escolha uma opção para deletar(voltar=999): ')
-
-                if opcao == 999:
-                    print('Voltando ao menu...')
-                    break
-
-                print()
-                print(self.linha)
-                try:
-                    retorno_resultado = self.core_.removendo_link_base_dados(lista_url[opcao-1]['id'])
                     print()
-                    print(retorno_resultado)
-                except IndexError:
-                    print('Opção inválida...')
+                    print(self.linha)
+                    opcao = self.leiaInt('Escolha uma opção para deletar(voltar=999): ')
 
-                print()
-                print(self.linha)
+                    if opcao == 999:
+                        print('Voltando ao menu...')
+                        break
+
+                    print()
+                    print(self.linha)
+                    try:
+                        retorno_resultado = self.core_.removendo_link_base_dados(lista_url[opcao-1]['id'])
+                        print()
+                        print(retorno_resultado)
+                    except IndexError:
+                        print('Opção inválida...')
+
+                    print()
+                    print(self.linha)
+                else:
+                    print('Não existe links para serem removidos...')
+                    sleep(2)
+                    break
 
         elif valor_opc == 0:
             print()
