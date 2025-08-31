@@ -87,7 +87,12 @@ class Menu:
                         self.limpeza_cmd()
                         break
 
-                    link_para_download = lista_url[opcao-1]['link_tube']
+                    try:
+                        link_para_download = lista_url[opcao-1]['link_tube']
+                    except IndexError:
+                        print('Opção inválida...')
+                        sleep()
+                        self.limpeza_cmd()
 
                     while True:
                         self.logo_tube(' Opção de download ')
