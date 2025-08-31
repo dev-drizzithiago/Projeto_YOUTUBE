@@ -131,7 +131,7 @@ class Menu:
             while True:
                 # Lista o menu de mídia. Escolhe entre mp3 ou mp4
                 for indice, item in enumerate(self.lista_menu_downloads):
-                    print(f'{indice+1} - {item}')
+                    print(f'[ {indice+1} ] - {item}')
 
                 print()
                 print(self.linha)
@@ -157,7 +157,7 @@ class Menu:
                 print(self.linha)
                 # Lista as mídias que já foram baixadas para o computador.
                 for indice, item in enumerate(listando_midia):
-                    print(f'{indice + 1} ==> {item}')
+                    print(f'[ {indice + 1} ] ==> {item}')
 
                 print()
                 print(self.linha)
@@ -190,7 +190,7 @@ class Menu:
                 lista_url = self.core_.listando_info_base_dados()
                 if len(lista_url):
                     for index, item in enumerate(lista_url):
-                        print(f"{index+1} - {item['autor_link']} - {item['titulo_link']}")
+                        print(f"[ {index+1} ] - {item['autor_link']} - {item['titulo_link']}")
 
                     print()
                     print(self.linha)
