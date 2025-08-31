@@ -170,9 +170,13 @@ class Menu:
 
                 print()
                 print(self.linha)
-                retorno_resultado = self.core_.removendo_link_base_dados(lista_url[opcao-1]['id'])
-                print()
-                print(retorno_resultado)
+                try:
+                    retorno_resultado = self.core_.removendo_link_base_dados(lista_url[opcao-1]['id'])
+                    print()
+                    print(retorno_resultado)
+                except IndexError:
+                    print('Opção inválida...')
+
                 print()
                 print(self.linha)
 
