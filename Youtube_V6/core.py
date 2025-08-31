@@ -133,6 +133,8 @@ class YouTubeDownload:
         :param link_remove: Recebe o valor do número do id do link.
         :return: Retorna a confirmação que o link foi deletado.
         """
+
+        print(link_remove)
         cmd_sql = f"DELETE FROM INFO_TUBE WHERE id={link_remove}"
 
     # Listando Tabela INFO_TUBE
