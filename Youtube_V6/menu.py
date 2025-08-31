@@ -153,8 +153,25 @@ class Menu:
 
         elif valor_opc == 4:
             lista_url = self.core_.listando_info_base_dados()
-            for item in lista_url:
-                print(f"{item['id']} - {item['autor_link']} - {item['titulo_link']}")
+            print()
+            print(self.linha)
+            while True:
+                for item in lista_url:
+                    print(f"{item['id']} - {item['autor_link']} - {item['titulo_link']}")
+
+                print()
+                print(self.linha)
+                opcao = self.leiaInt('Escolha uma opção para deletar(voltar=999): ')
+
+                if opcao == 999:
+                    print('Voltando ao menu...')
+                    break
+
+                print()
+                print(self.linha)
+                self.core_.removendo_link_base_dados(lista_url[opcao])
+                print()
+                print(self.linha)
 
         elif valor_opc == 0:
             print()
