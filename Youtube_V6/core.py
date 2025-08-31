@@ -130,8 +130,8 @@ class YouTubeDownload:
     def removendo_link_base_dados(self, link_remove):
         """
         Metódo responsável por remover o link da base de dados.
-        :param link_remove: vem com o número de id 
-        :return:
+        :param link_remove: Recebe o valor do número do id do link.
+        :return: Retorna a confirmação que o link foi deletado.
         """
         cmd_sql = f"DELETE FROM INFO_TUBE WHERE id={link_remove}"
 
