@@ -134,10 +134,19 @@ class YouTubeDownload:
         :return: Retorna a confirmação que o link foi deletado.
         """
 
+        # Cria a query para o banco de dados.
         cmd_sql = f"DELETE FROM INFO_TUBE WHERE id={link_remove}"
-        self.cursor.execute(cmd_sql)
-        self.conexao_banco.commit()
-        return f'Link deletado...'
+        try:
+            # Executa o comando do sql
+            self.cursor.execute(cmd_sql)
+
+            # Atualiza o banco de dados.
+            self.conexao_banco.commit()
+
+            # Retorna a confirmação da remoção.
+            return f'Link deletado...'
+        except Exception as error:
+            print(f'Erro: {error}')
 
     # Listando Tabela INFO_TUBE
     def listando_info_base_dados(self):
