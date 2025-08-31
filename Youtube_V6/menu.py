@@ -131,7 +131,7 @@ class Menu:
                 print()
                 print(self.linha)
                 opcao_midia = self.leiaInt('Escolha uma opção(999): ')
-
+                self.limpeza_cmd()
                 if opcao_midia == 999:
                     print('Voltando ao menu principal.')
                     sleep(1)
@@ -156,13 +156,25 @@ class Menu:
 
                 print()
                 print(self.linha)
-                opcao_open = self.leiaInt('Estolha uma mídia: ')
+                opcao_open = self.leiaInt('Estolha uma mídia(voltar=999): ')
+                if opcao_open == 999:
+                    print('Voltando ao menu...')
+                    sleep(1)
+                    self.limpeza_cmd()
 
                 print()
                 print(self.linha)
                 print('Midia em execusão...')
+
                 # Abre a mídia com o reprodutor padrão.
-                os.startfile(os.path.join(caminho_abs_midia, listando_midia[opcao_open-1]))
+                try:
+                    os.startfile(os.path.join(caminho_abs_midia, listando_midia[opcao_open-1]))
+                except IndexError:
+                    print()
+                    print(self.linha)
+                    print('Opção incorreta...')
+                    sleep(1)
+                    self.limpeza_cmd()
 
         # Remove link na base de dados.
         elif valor_opc == 4:
