@@ -169,7 +169,7 @@ class Menu:
 
                 print()
                 print(self.linha)
-                self.core_.removendo_link_base_dados(lista_url[opcao])
+                self.core_.removendo_link_base_dados(lista_url[opcao]['id'])
                 print()
                 print(self.linha)
 
